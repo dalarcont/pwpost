@@ -28,6 +28,7 @@
   
   Technologies used:
     FrontEnd: HTML + CSS + JS + jQuery + BOOTSTRAP
+    
     BackEnd: PHP + mySQL
   
   
