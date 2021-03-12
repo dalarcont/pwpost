@@ -30,8 +30,9 @@
     FrontEnd: HTML + CSS + JS + jQuery + BOOTSTRAP
     BackEnd: PHP + mySQL
   
-  -
+  
   Explaining the directory composition:
+  -
     Folder 'components': Have icons, pictures and scripts made strictly by me for the website
     Folder 'controllers': Have the files called by a user's request in the website, as interventor between procedures and views
     Folder 'css': Have the files that apply styles on the website and include the files used by many frameworks and plugins.
