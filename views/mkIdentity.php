@@ -6,6 +6,11 @@
             <center>
             <fieldset>
             <br>
+            <div class='mb-3'>
+            <label for='username' class='form-label'>Nombre de usuario</label>
+            <input type='text' class='form-control' id='mkidentity_username' onkeyup='validateUsername()'><br>
+            <div id='resultValidationUsername'></div>
+             </div>
                 <div class='mb-3'>
                     <label for='username' class='form-label'>Nombre de usuario</label>
                     <input type='text' class='form-control' id='mkidentity_username' onkeyup='validateUsername()'><br>

@@ -44,6 +44,17 @@
             $("#FrontEnd").html(sucess);
         });
     }
+    function doMkIdentity(){
+        var package = [];
+        package["callingFrom"] = "doIdentity";  
+        package["username"] = $("mkidentity_username").val();
+        
+
+        $.post('controllers/mkIdentity.php', {callingFrom:'doIdentity'}, function(sucess){
+            $("#FrontEnd").html(sucess);
+        });
+    }
+
     function letForgotIdentify(){
         $.post('controllers/forgotIdentity.php', {callingFrom:null}, function(sucess){
             $("#FrontEnd").html(sucess);
@@ -122,7 +133,6 @@
         if(keep1==true && keep2==true){
             alertify.alert("Prueba","CORRECTO");
         }else{
-            if(!keep1){alertify.alert("Nueva entrada","El título debe ser mayor a 5 dígitos...");}
-            if(!keep2){}
+            alertify.alert("Prueba","ERROR");
         }
     }
