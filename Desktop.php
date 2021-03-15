@@ -40,15 +40,18 @@
             <body>
 
             <header>
-            <h1 class='headline'>PostIt!</h1>
-            <p><span class='slogan'><i>Publica lo que quieras, igual nadie lo va a leer ni le dará importancia!</i></span><br>Bienvenido(a) ", $UserData['user_fullname'], "</p>
+            <h1 class='headline'><img src='components/favicon.ico' style='width:32px;height:32px;'></img>  PostIt!</h1>
+            <p><span class='slogan'><i>Publica lo que quieras, igual nadie lo va a leer ni le dará importancia!</i></span></p>
             </header>
             <nav>
-            <a class='active' href='#' id='loadHome'>Inicio</a>
-            <a href='#' id='showProfile'>Perfil</a>
+            <a href='#' id='loadHome'>Inicio</a><span style='padding-left:5em'></span>
+            <a href='#' id='showProfile'>Perfil</a><span style='padding-left:5em'></span>
             <a href='#' id='logOff'>Salir</a>
             </nav>
-            <button class='btn btn-light' onclick='letPost()'><img src='components/newpost.png' style='width:25px;height:25px;'></img>Nueva entrada</button>
+            <br>Bienvenido(a) ", $UserData['user_fullname'], "
+            <div id='actionsMenu'><br>
+            <button class='btn btn-success' onclick='letPost()'><img src='components/newpost.png' style='width:25px;height:25px;'></img>Nueva entrada</button><br><br>
+            </div>
             <section>
             <article>
             <center>
@@ -62,7 +65,7 @@
             </section>
             <footer>
             <div>
-            <span class='footTxt'>PostIt!</span><br><span class='footTxtsign'>
+            <span class='footTxt'><br><img src='components/favicon.ico' style='width:32px;height:32px;'><br>PostIt!</span><br><span class='footTxtsign'>
             Sin derechos reservados, es tan solo un proyecto de asignatura<br>
             No ande de exigente<br>
             Final - TS5C4 - Programación Web<br>

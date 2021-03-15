@@ -1,5 +1,18 @@
 //Click listeners
     $(document).ready(function(){
+        var am = $("#actionsMenu");
+        var pos = am.position();
+        $(window).scroll(function(){
+            var winpos = $(window).scrollTop();
+            if(winpos>=pos.top){
+                am.addClass("actionsMenuMove");
+            }else{
+                am.removeClass("actionsMenuMove");
+            }
+        });
+
+
+
         $("#loadHome").click(function(){
             $.post('controllers/loadHome.php', function(sucess){
                 $("#FrontEnd").html(sucess);
@@ -68,6 +81,23 @@
                 $("#resultValidationUsername").html(data);
             });
         }
+    }
+    function validateEmail(){
+
+        //Execut the POST procedure when detect '@'
+        var email = $("#mkidentity_email").val();
+        email = email.toLowerCase();
+
+        if(email.indexOf('@') >= 0){
+            if(email.length>=3){
+                $.post("procedures/checkEmailAvailable.php", {email:email}, function(data, status){
+                    $("#resultValidationEmail").html(data);
+                });
+            }
+        }else{
+            $("#resultValidationEmail").html("<span style='color:red'>Escribe una dirección de e-mail correcta.</span>");
+        }
+            
     }
 
 

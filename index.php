@@ -36,7 +36,7 @@ session_destroy();
            </center>
        </article>
     </section>
-    <footer>
+    <footer class="footer2">
         <div>
             <span class="footTxt">PostIt!</span><br><span class="footTxtsign">
             Sin derechos reservados, es tan solo un proyecto de asignatura<br>
