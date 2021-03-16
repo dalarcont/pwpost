@@ -13,10 +13,10 @@
         if(mysqli_num_rows($result) > 0){
             //There is a user with the same username, can't create a profile with same username
             echo "<span style='color:red'>Nombre de usuario <b>'$username'</b> está en uso!</span>";
-            echo "<script>$('#availableControl').val('false');  $('#doRegistry').prop('disabled', true);</script>";
+            echo "<script>$('#isOk_2').val('false');</script>";
         }else{
             echo "<span style='color:green'>Nombre de usuario <b>'$username'</b> está disponible!";
-            echo "<script>$('#availableControl').val('false');  $('#doRegistry').prop('disabled', false);</script>";
+            echo "<script>$('#isOk_2').val('true');</script>";
         }
     }
 

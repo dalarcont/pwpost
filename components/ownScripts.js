@@ -1,5 +1,6 @@
 //Click listeners
     $(document).ready(function(){
+        //Let the 'New post' button move around the scroll movement
         var am = $("#actionsMenu");
         var pos = am.position();
         $(window).scroll(function(){
@@ -12,7 +13,7 @@
         });
 
 
-
+        //Let the nav options menu works
         $("#loadHome").click(function(){
             $.post('controllers/loadHome.php', function(sucess){
                 $("#FrontEnd").html(sucess);
@@ -51,21 +52,118 @@
         });
     }
 
-//Make profile and forgot profile
+//Make profile manager
+    //Start driver
     function letMkIdentity(){
         $.post('controllers/mkIdentity.php', {callingFrom:null}, function(sucess){
             $("#FrontEnd").html(sucess);
         });
     }
+    //Assistant for enable or disable execution button
+    function validateBtnGo(package){
+        var r = false ;
+        //To enable the execution button we need 4 true statements
+        if(package.indexOf('false')==-1){
+            //The 4 fields are complete and validated.
+            r = true;
+        }else{
+            //There is an uncomplete field or mismatch field
+            r = false;
+        }
+
+        return r ;
+    }
+    //Validate if the user's full name is at least 4 chars
+    function validatefullname(){
+        var a = $("#mk_fullname").val();
+        if(a.length<4){
+            $("#mkmsg1").html("Tu nombre debe ser de por lo menos 4 dígitos"); 
+        }else{
+            $("#mkmsg1").html(""); 
+            $('#isOk_1').val('true'); 
+            $("#mkmsg1").delay(5000).fadeOut(1000);
+        }
+    }
+    //Validate username
+    function validateUsername(){
+        var username = $("#mk_username").val();
+        username = username.toLowerCase();
+        if(username.length>=3){
+            $.post("procedures/checkUserAvailable.php", {username:username}, function(data, status){
+                $("#mkmsg2").html(data);
+                $("#mkmsg2").delay(5000).fadeOut(1000);
+            });
+        }
+    }
+    //Validate email
+    function validateEmail(){
+        var email = $("#mk_email").val();
+        email = email.toLowerCase();
+        if(email.indexOf('@') >= 0){
+            if(email.length>=3){
+                $.post("procedures/checkEmailAvailable.php", {email:email}, function(data, status){
+                    $("#mkmsg3").html(data);
+                });
+            }
+        }else{
+            $("#mkmsg3").html("<span style='color:red'>Escribe una dirección de e-mail correcta.</span>");
+        }   
+        $("#mkmsg3").delay(5000).fadeOut(1000);
+    }
+    //Passwords field check procedure, as last field to fill, this Fx will be enable or disable the executor of mkIdentity
+    function validatePassField(){
+        var pswd = $("#mk_pswd").val();
+        var isOk = false;
+        if(pswd.length<5){
+            $("#mkmsg4").html("La contraseña debe ser igual o mayor a 5 dígitos");
+        }else{
+            $("#mkmsg4").html("");
+            $("#isOk_4").val('true');
+            isOk = true;
+        }
+        $("#mkmsg4").delay(5000).fadeOut(1000);
+        if(isOk){
+            $("#doRegistry").show();
+        }
+        
+    }
+    
+    //Executor
     function doMkIdentity(){
-        var package = [];
+        //Enable or disable button
+        var pkg = [] ;
+            pkg.push($("#isOk_1").val());
+            pkg.push($("#isOk_2").val());
+            pkg.push($("#isOk_3").val());
+            pkg.push($("#isOk_4").val());
+        validateBtnGo(pkg);
+        if(validateBtnGo(pkg)){
+            //We can execute the signup procedure on DB
+            var signupData = {username: "",fullname: "",email: "",pswd: ""};
+            signupData['username'] = $("#mk_username").val();
+            signupData['fullname'] = $("#mk_fullname").val();
+            signupData['email'] = $("#mk_email").val();
+            signupData['pswd'] = $("#mk_pswd").val();
+            //Send data to controller
+            $.post('controllers/mkIdentity.php', {callingFrom:'doIdentity',data:signupData}, function(sucess){
+                $("#FrontEnd").html(sucess);
+            });
+
+        }else{
+            //There is a field without a validation unprocessed
+            $("#completedData").html("Verifica la información ingresada.");
+        }
+
+        /*var package = [];
         package["callingFrom"] = "doIdentity";  
         package["username"] = $("mkidentity_username").val();
+        
         
 
         $.post('controllers/mkIdentity.php', {callingFrom:'doIdentity'}, function(sucess){
             $("#FrontEnd").html(sucess);
-        });
+        });*/
+        
     }
 
     function letForgotIdentify(){
@@ -73,32 +171,8 @@
             $("#FrontEnd").html(sucess);
         });
     }
-    function validateUsername(){
-        var username = $("#mkidentity_username").val();
-        username = username.toLowerCase();
-        if(username.length>=3){
-            $.post("procedures/checkUserAvailable.php", {username:username}, function(data, status){
-                $("#resultValidationUsername").html(data);
-            });
-        }
-    }
-    function validateEmail(){
-
-        //Execut the POST procedure when detect '@'
-        var email = $("#mkidentity_email").val();
-        email = email.toLowerCase();
-
-        if(email.indexOf('@') >= 0){
-            if(email.length>=3){
-                $.post("procedures/checkEmailAvailable.php", {email:email}, function(data, status){
-                    $("#resultValidationEmail").html(data);
-                });
-            }
-        }else{
-            $("#resultValidationEmail").html("<span style='color:red'>Escribe una dirección de e-mail correcta.</span>");
-        }
-            
-    }
+    
+    
 
 
 //Preparing methods

@@ -13,10 +13,10 @@
         if(mysqli_num_rows($result) > 0){
             //There is a user with the same email, can't create a profile with same email
             echo "<span style='color:red'>Email <b>'$email'</b> pertenece a otro usuario!</span>";
-            echo "<script>$('#availableControl2').val('false');  $('#doRegistry').prop('disabled', true);</script>";
+            echo "<script>$('#isOk_3').val('false');</script>";
         }else{
             echo "<span style='color:green'>Email <b>'$email'</b> está libre de asociación!</span>";
-            echo "<script>$('#availableControl2').val('false');  $('#doRegistry').prop('disabled', false);</script>";
+            echo "<script>$('#isOk_3').val('true');</script>";
         }
     }
 
