@@ -1,8 +1,12 @@
 # postit
   PostIt!
+  
   WebApp for Blogging or Twitter behavior.
+  
   Presented as final project of TS5C4 - Programación Web subject
+  
   Purposed by the teacher.
+  
   Universidad Tecnológica de Pereira
 
   This project is only for academical purposes to show the teacher how much we learn during the semester.
@@ -20,31 +24,53 @@
   -
   
   Pattern used: MVC (Model-View-Controller) but in this project the folders have a pattern like:
+  
     Model = Procedures
+    
     View = Views
+    
     Controller = Controllers
+    
     
   -
   
   Technologies used:
+  
     FrontEnd: HTML + CSS + JS + jQuery + BOOTSTRAP
     
     BackEnd: PHP + mySQL
+    
+    Extras: Using jQueryUI for Dialogs and AlertifyJS for alert dialogs.
   
   
   Explaining the directory composition:
   -
     Folder 'components': Have icons, pictures and scripts made strictly by me for the website
-    Folder 'controllers': Have the files called by a user's request in the website, as interventor between procedures and views
+    
+    Folder 'controllers': Have the files called by a user's request in the website, as interventor between procedures and views, have the majority of view parameters to send to view drivers.
+    
     Folder 'css': Have the files that apply styles on the website and include the files used by many frameworks and plugins.
+    
     Folder 'plugins': Have the JS Core files used by many JS Frameworks that isn't made by me but i need to use them.
+    
     Folder 'procedures': Have the files that the controller use to pull and push data on the DB or advanced procedures that the controller can't host.
+    
     Folder 'views': Have the files that manage the user interface and graphical answer in the website. 
+    
       ! - Some views have methods to modify a little things in the UI depending on the controller's answer and instructions to the views.
+      
     File 'Desktop': Acts like a Dashboard, is the page that the user see after a correct login procedure.
+    
     File 'index': Is the first page that the user see. Nobody can pass this page without a login.
+    
     File 'profile': Is the page made to see a user's profile and it's content. Isn't necessary to be logged to use this page.
+    
     File 'viewPost': Is the page made to see an specific post/entry. Isn't necessary to be logged to use this page.
+    
   -
+  You can feel free to ask me anything...
   
+  maybe(I(can(learn(),something(),from(you))); 
+  
+  maybe(You(can(learn(),something(),from(me)));
   
