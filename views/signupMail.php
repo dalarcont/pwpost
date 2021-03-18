@@ -5,7 +5,7 @@ function signup_mailtemplate($email,$code){
     div.postitnewuser {
       border: 1px solid #1C6EA4;
       background-color: #EEEEEE;
-      width: 100%;
+      width: 565px;
       text-align: center;
       border-collapse: collapse;
     }
@@ -85,16 +85,16 @@ function signup_mailtemplate($email,$code){
     </div>
     <div class='divTableBody'>
     <div class='divTableRow'>
-    <div class='divTableCell'>C&oacute;digo de confirmaci&oacute;n de registro de usuario</div>
+    <div class='divTableCell'><br>C&oacute;digo de confirmaci&oacute;n de registro de usuario<br></div>
     </div>
     <div class='divTableRow'>
-    <div class='divTableCell'>Est&aacute;s a unos pasos de usar nuestro sistema.<br />Ingresa el siguiente c&oacute;digo cuando te sea solicitado en tu primer inicio de sesi&oacute;n:</div>
+    <div class='divTableCell'><br>Est&aacute;s a unos pasos de usar nuestro sistema.<br />Ingresa el siguiente c&oacute;digo cuando te sea solicitado en tu primer inicio de sesi&oacute;n:<br></div>
     </div>
     <div class='divTableRow'>
-    <div class='divTableCell'>".$code."</div>
+    <div class='divTableCell'><br>".$code."<br></div>
     </div>
     <div class='divTableRow'>
-    <div class='divTableCell'>Este correo fue enviado a la direcci&oacute;n propuesta ".$email."<br />Si usted no es el destinatario final y se trata de una equivocaci&oacute;n, por favor hacer caso omiso de este mensaje y eliminarlo.<br /><br />PostIt!<br />2021</div>
+    <div class='divTableCell'><br>Este correo fue enviado a la direcci&oacute;n propuesta ".$email."<br />Si usted no es el destinatario final y se trata de una equivocaci&oacute;n, por favor hacer caso omiso de este mensaje y eliminarlo.<br /><br />PostIt!<br />2021</div>
     </div>
     </div>
     </div>";

@@ -136,10 +136,9 @@
             pkg.push($("#isOk_2").val());
             pkg.push($("#isOk_3").val());
             pkg.push($("#isOk_4").val());
-        validateBtnGo(pkg);
         if(validateBtnGo(pkg)){
             //We can execute the signup procedure on DB
-            var signupData = {username: "",fullname: "",email: "",pswd: ""};
+            var signupData = {username: "",fullname: "",email: "",pswd: "", validationCode: ""};
             signupData['username'] = $("#mk_username").val();
             signupData['fullname'] = $("#mk_fullname").val();
             signupData['email'] = $("#mk_email").val();
@@ -153,16 +152,6 @@
             //There is a field without a validation unprocessed
             $("#completedData").html("Verifica la información ingresada.");
         }
-
-        /*var package = [];
-        package["callingFrom"] = "doIdentity";  
-        package["username"] = $("mkidentity_username").val();
-        
-        
-
-        $.post('controllers/mkIdentity.php', {callingFrom:'doIdentity'}, function(sucess){
-            $("#FrontEnd").html(sucess);
-        });*/
         
     }
 
