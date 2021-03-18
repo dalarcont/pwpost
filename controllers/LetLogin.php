@@ -20,8 +20,15 @@
             //Package isn't empty, load system
             UsrExists();
             session_start();
+            
             $_SESSION['UsrPkg'] = $Pkg ;
-            echo "<script>function GoToPortal() {  window.location = 'Desktop.php'; } setTimeout('GoToPortal()', 1900); </script>";
+            if(!empty($Pkg['first_access'])){
+                echo "<script>function GoToCheck(){ window.location = 'FirstAccess.php'; } setTimeout('GoToCheck()', 1300); </script>";
+            }else{
+                //That means the user has been logged at least 1 time correctly
+                echo "<script>function GoToPortal() {  window.location = 'Desktop.php'; } setTimeout('GoToPortal()', 1900); </script>";
+            }
+            
         }else{
             troubleAccess();
         }

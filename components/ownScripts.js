@@ -34,6 +34,7 @@
     });
 
 //Login procedure
+    //Connect
     function connect(){
         var username = $("#username").val();
         var password = $("#password").val();
@@ -44,6 +45,24 @@
                 $("#FrontEnd").html(sucess);
             });
         }
+    }
+
+    //First access code validation
+    function validateFirstCode(){
+        var x = $("#firstCode");
+
+        if(x.val().length == 8){
+            //User wrote the exactly 8 digits
+            $("#validateFirstButton").show();
+        }
+    }
+
+    //Confirmation first access code validation
+    function confirmFA(){
+        var code =  $("#firstCode").val();
+        $.post('controllers/confirmationFirstAccess.php', {code:code}, function(sucess){
+            $("#FrontEnd").html(sucess);
+        });
     }
 
     function initialLoad(){
