@@ -14,7 +14,9 @@
   
   The project is going get bigger since was purposed because I'm student of the previous mentioned subject, and I develop websites empirically.
   But I think that I'm doing that in a good way...
-  I don't know if my classmates knows how to programming websites and webapps. When i heard the teacher saying how will be the final project and publish the instructions I already have an idea.
+  I don't know if my classmates knows how to programming websites and webapps. 
+  
+  When i heard the teacher saying how will be the final project and publish the instructions I already have an idea.
   
   I think that I can pass this subject without seeing it all the time of the semester...
   
