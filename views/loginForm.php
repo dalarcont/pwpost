@@ -11,6 +11,6 @@
     <br>
     <button class="btn btn-primary" onclick="connect()">Acceder</button><br><br>
     <a href="#" onclick="letMkIdentity()">Crear perfil</a><br>
-    <a href="#" onclick="letForgotIdentity()">Recuperar perfil</a><br>
+    <a href="#" onclick="RecoveryAccount()">Recuperar perfil</a><br>
 <br><br>
 </fieldset>

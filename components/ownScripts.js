@@ -173,9 +173,47 @@
         }
         
     }
+/////////////
+    function RecoveryAccount(){
+        location.href = 'RecoveryAccount.php';
+    }
 
-    function letForgotIdentify(){
-        $.post('controllers/forgotIdentity.php', {callingFrom:null}, function(sucess){
+    //Validate email
+    function chkRcvEmail(){
+        var email = $("#emailRecovery").val();
+        email = email.toLowerCase();
+        if(email.indexOf('@') == -1){
+            $("#msgSpan").html("Escribe una dirección de correo verídica.");
+        }else{
+            $("#msgSpan").html("");
+            $("#rcvButton").show();
+        }   
+        $("#msgSpan").delay(5000).fadeOut(1000);
+    }
+
+    function confirmRecovery(){
+        //Send data to controller
+        var email = $("#emailRecovery").val();
+        $.post('controllers/RecoveryAccount.php', {data:email}, function(sucess){
+            $("#FrontEnd").html(sucess);
+        });
+    }
+
+    function validatePassField_2(){
+        var pswd = $("#newpswd").val();
+        if(pswd.length<5){
+            $("#FrontEnd").html("La contraseña debe ser igual o mayor a 8 dígitos");
+            $("#rcvButton").hide();
+        }else{
+            $("#FrontEnd").html("");
+            $("#rcvButton").show();
+        }
+        
+    }
+
+    function getRecovery(){
+        var pswd = $("#newpswd").val();
+        $.post('controllers/RecoveryAccount.php', {call:"setRecovery",data:pswd}, function(sucess){
             $("#FrontEnd").html(sucess);
         });
     }

@@ -25,8 +25,14 @@
             if(!empty($Pkg['first_access'])){
                 echo "<script>function GoToCheck(){ window.location = 'FirstAccess.php'; } setTimeout('GoToCheck()', 1300); </script>";
             }else{
-                //That means the user has been logged at least 1 time correctly
-                echo "<script>function GoToPortal() {  window.location = 'Desktop.php'; } setTimeout('GoToPortal()', 1900); </script>";
+                //That means the user has been logged at least 1 time correctly, but maybe is trying to recover its access or access normally
+                if($Pkg['user_pswd'] == $Pkg['recovery_key']){
+                    //That means the user is trying to recover its access
+                    echo "<script>function GoToPortal() {  window.location = 'RecoveryAccess.php'; } setTimeout('GoToPortal()', 1900); </script>";
+                }else{
+                    echo "<script>function GoToPortal() {  window.location = 'Desktop.php'; } setTimeout('GoToPortal()', 1900); </script>";
+                }
+                
             }
             
         }else{
