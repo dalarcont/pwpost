@@ -9,7 +9,7 @@
         include '../views/entrie.php';
         if(!empty($_SESSION['UsrPkg'])){
             //Get data from DB
-                $result = loadPost();
+                $result = loadPost($_SESSION['UsrPkg']['username']);
             //Count entries
                 $size = count($result);
             //print entries, connect to views

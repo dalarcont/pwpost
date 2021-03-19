@@ -1,10 +1,21 @@
 <?php
     session_start();
 
-    function loadPost(){
+    function loadPost($loggeduser){
         
         $result = array();
-        $SQL_Query = "SELECT * FROM general_entries ge ORDER BY ge.pubdate DESC";
+        $SQL_Query = "
+        SELECT 
+            pif.username_followed, ge.*
+        FROM
+            pi_following AS pif
+        JOIN
+            general_entries AS ge ON (pif.username_followed = ge.own_user)
+        WHERE
+            pif.username = '$loggeduser'
+        ORDER BY
+            ge.pubdate DESC
+        ";
         $SQL_CON = mysqli_query(DB_CON(),$SQL_Query);
         while($SQL_PKG = mysqli_fetch_array($SQL_CON)){
             $result[]=$SQL_PKG;
