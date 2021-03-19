@@ -46,7 +46,6 @@
             });
         }
     }
-
     //First access code validation
     function validateFirstCode(){
         var x = $("#firstCode");
@@ -56,7 +55,6 @@
             $("#validateFirstButton").show();
         }
     }
-
     //Confirmation first access code validation
     function confirmFA(){
         var code =  $("#firstCode").val();
@@ -64,12 +62,13 @@
             $("#FrontEnd").html(sucess);
         });
     }
-
+    //Inital load after loggin
     function initialLoad(){
         $.post('controllers/loadHome.php', function(sucess){
             $("#FrontEnd").html(sucess);
         });
     }
+
 
 //Make profile manager
     //Start driver
@@ -173,7 +172,9 @@
         }
         
     }
-/////////////
+
+//Recovery account procedure
+    //Start
     function RecoveryAccount(){
         location.href = 'RecoveryAccount.php';
     }
@@ -217,16 +218,95 @@
             $("#FrontEnd").html(sucess);
         });
     }
+
+
+    /*
     
+    
+    
+    
+    */
     
 
 
-//Preparing methods
+//Entry procedures
     function letPost(){
-        //alert("crear nuevo post");
-        $.post('controllers/newPost.php', function(sucess){
+        $.post('controllers/newPost.php', {call:"let"},function(sucess){
             $("#main").html(sucess);
-            });
+        });
+    }
+    //Execution procedure
+    function doPost(){
+        r = 0;
+        var t = $("#newEntrie_title").val();
+        var c = $("#newEntrie_content").val();
+
+        if(t.length<5){
+            //Title haven't 5 digits or more
+            alertify.alert("Nueva entrada","El título debe contener 5 o más digitos.");
+        }else{
+            //Title have 5 digits or more, lets check the content
+            if(c.length<5){
+                //The content haven't 5 digits or more
+                alertify.alert("Nueva entrada","El contenido debe contener 5 o más digitos.");
+            }else{
+                //The title and content have the required requisites, user can publish
+                var pkg = {title: "",content: ""};
+                pkg["title"] = t ; pkg["content"] = c ;
+
+                $.post('controllers/newPost.php', {call:"doIt",data:pkg},function(sucess){
+                    $("#main").html(sucess);
+                });
+            }
+        }
+        /*
+        if(t.length<5){
+            //Title field isn't a string of more or greater than 5 digits
+            r ++ ;
+            alertify.alert("Nueva entrada","El título debe contener 5 o más digitos");
+        }else{
+            if(r!=0){r--;}
+        }
+
+        
+        if(c.length<5){
+            //Content field isn't a string of more or greater than 5 digits
+            r ++ ;
+            alertify.alert("Nueva entrada","El contenido debe contener 5 o más digitos");
+            if(r!=0){r--;}
+        }
+        if(r==0){
+            //Fields haven't errors and are complete
+            //alertify.alert("Prueba","Correcto");
+        }else{
+            //alertify.alert("Prueba","INCORRECTO");
+        }
+
+        /*
+        var keep1 = true;
+        var keep2 = true;
+        //Fields validation
+        if(t.length <=4){
+            keep1 = false;
+            alertify.alert("Nueva entrada","El título debe ser mayor a 5 dígitos...");
+        }else{
+            //That means the title have equal or more than 5 chars
+            keep1 = true;
+        }
+        //Content validation
+        if(c.length <=4){
+            keep2 = false;
+            alertify.alert("Nueva entrada","El contenido debe ser mayor a 5 dígitos...");
+        }else{
+            keep2 = true;
+        }
+        
+        //If both fields are true, then proceed to publish
+        if(keep1==true && keep2==true){
+            alertify.alert("Prueba","CORRECTO");
+        }else{
+            alertify.alert("Prueba","ERROR");
+        }*/
     }
 
     function letUpd(data){
@@ -254,35 +334,5 @@
         alert("UUID a eliminar "+XT);
     }
 
-//Execution methods
-    function doPost(){
-        var t = $("#newEntrie_title").val();
-        var c = $("#newEntrie_content").val();
-        var keep1 = true;
-        var keep2 = true;
-        //Fields validation
-        if(t.length <=4){
-            keep1 = false;
-            alertify.alert("Nueva entrada","El título debe ser mayor a 5 dígitos...");
-            stop();
-        }else{
-            //That means the title have equal or more than 5 chars
-            keep1 = true;
-        }
-        //Content validation
-        if(c.length <=4){
-            keep2 = false;
-            alertify.alert("Nueva entrada","El contenido debe ser mayor a 5 dígitos...");
-            stop();
-        }else{
-            keep2 = true;
-        }
-        
-        //If both fields are true, then proceed to publish
-        
-        if(keep1==true && keep2==true){
-            alertify.alert("Prueba","CORRECTO");
-        }else{
-            alertify.alert("Prueba","ERROR");
-        }
-    }
+    //
+    
