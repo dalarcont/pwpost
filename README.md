@@ -71,6 +71,10 @@
     File 'viewPost': Is the page made to see an specific post/entry. It isn't necessary to be logged in to use this page.
     
     File 'FirstAccess': Is the page made to first user's loggin, contains a procedure to verify if the user's email is the same as the signup email.
+
+    File 'RecoveryAccount': Is the page to start account and access procedure.
+
+    File 'RecoveryAccess': Is the page to finish account and access procedure.
     
   -
   
