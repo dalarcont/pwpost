@@ -2,57 +2,57 @@
 
 function signup_mailtemplate($email,$code){
     $result = "<style>
-    div.postitnewuser {
+    div.PWPostnewuser {
       border: 1px solid #1C6EA4;
       background-color: #EEEEEE;
       width: 565px;
       text-align: center;
       border-collapse: collapse;
     }
-    .divTable.postitnewuser .divTableCell, .divTable.postitnewuser .divTableHead {
+    .divTable.PWPostnewuser .divTableCell, .divTable.PWPostnewuser .divTableHead {
       border: 1px solid #AAAAAA;
       padding: 3px 2px;
     }
-    .divTable.postitnewuser .divTableBody .divTableCell {
+    .divTable.PWPostnewuser .divTableBody .divTableCell {
       font-size: 13px;
     }
-    .divTable.postitnewuser .divTableRow:nth-child(even) {
+    .divTable.PWPostnewuser .divTableRow:nth-child(even) {
       background: #D0E4F5;
     }
-    .divTable.postitnewuser .divTableHeading {
+    .divTable.PWPostnewuser .divTableHeading {
       background: #1C6EA4;
       background: -moz-linear-gradient(top, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
       background: -webkit-linear-gradient(top, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
       background: linear-gradient(to bottom, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
       border-bottom: 2px solid #444444;
     }
-    .divTable.postitnewuser .divTableHeading .divTableHead {
+    .divTable.PWPostnewuser .divTableHeading .divTableHead {
       font-size: 15px;
       font-weight: bold;
       color: #FFFFFF;
       border-left: 2px solid #D0E4F5;
     }
-    .divTable.postitnewuser .divTableHeading .divTableHead:first-child {
+    .divTable.PWPostnewuser .divTableHeading .divTableHead:first-child {
       border-left: none;
     }
     
-    .postitnewuser .tableFootStyle {
+    .PWPostnewuser .tableFootStyle {
       font-size: 14px;
     }
-    .postitnewuser .tableFootStyle .links {
+    .PWPostnewuser .tableFootStyle .links {
          text-align: right;
     }
-    .postitnewuser .tableFootStyle .links a{
+    .PWPostnewuser .tableFootStyle .links a{
       display: inline-block;
       background: #1C6EA4;
       color: #FFFFFF;
       padding: 2px 8px;
       border-radius: 5px;
     }
-    .postitnewuser.outerTableFooter {
+    .PWPostnewuser.outerTableFooter {
       border-top: none;
     }
-    .postitnewuser.outerTableFooter .tableFootStyle {
+    .PWPostnewuser.outerTableFooter .tableFootStyle {
       padding: 3px 5px; 
     }
     .divTable{ display: table; }
@@ -63,7 +63,7 @@ function signup_mailtemplate($email,$code){
     .divTableFoot { display: table-footer-group;}
     .divTableBody { display: table-row-group;}
     </style>
-    <div class='divTable postitnewuser'>
+    <div class='divTable PWPostnewuser'>
     <div class='divTableHeading'>
     <div class='divTableRow'>
     <div class='divTableHead'><?xml version='1.0' encoding='UTF-8' standalone='no'?>
@@ -80,7 +80,7 @@ function signup_mailtemplate($email,$code){
     dbc0d7wPhe4M3pKgs/MAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjEtMDMtMTdUMDE6MjU6MTUrMDM6
     MDAtSZx6AAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIxLTAzLTE3VDAxOjI1OjE1KzAzOjAwXBQkxgAA
     AABJRU5ErkJggg==' />
-    </svg><br>PostIt</div>
+    </svg><br>PWPost</div>
     </div>
     </div>
     <div class='divTableBody'>
@@ -94,7 +94,7 @@ function signup_mailtemplate($email,$code){
     <div class='divTableCell'><br>".$code."<br></div>
     </div>
     <div class='divTableRow'>
-    <div class='divTableCell'><br>Este correo fue enviado a la direcci&oacute;n propuesta ".$email."<br />Si usted no es el destinatario final y se trata de una equivocaci&oacute;n, por favor hacer caso omiso de este mensaje y eliminarlo.<br /><br />PostIt!<br />2021</div>
+    <div class='divTableCell'><br>Este correo fue enviado a la direcci&oacute;n propuesta ".$email."<br />Si usted no es el destinatario final y se trata de una equivocaci&oacute;n, por favor hacer caso omiso de este mensaje y eliminarlo.<br /><br />PWPost!<br />2021</div>
     </div>
     </div>
     </div>";

@@ -10,7 +10,7 @@ function DB_CON(){
 	#Contraseña
 		$linkpss="unmico57"; //"6nEGRz3Hen";
 	#Base de datos
-		$linktbl="postitdb"; //"u958243579_umc";
+		$linktbl="PWPostdb"; //"u958243579_umc";
 	#Ejecutor de conexión
 		$link=mysqli_connect($linkdir,$linkusr,$linkpss,$linktbl);
 	return $link ;

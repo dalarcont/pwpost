@@ -11,16 +11,19 @@
                 <input type='text' class='form-control' id='mk_fullname' onkeyup='validatefullname();'><br>
                 <input type='hidden' id='isOk_1' value='false'>
                 <div id='mkmsg1'></div>
+
+                <label for='username' class='form-label'>Correo electrónico</label>
+                <input type='text' class='form-control' id='mk_email' onblur='validateEmail();' ><br>
+                <div id='mkmsg3'></div>
+                <input type='hidden' id='isOk_3' value='false'>
+                
             
                 <label for='username' class='form-label'>Nombre de usuario</label>
                 <input type='text' class='form-control' id='mk_username' onkeyup='validateUsername();'><br>
                 <input type='hidden' id='isOk_2' value='false'>
                 <div id='mkmsg2'></div>
             
-                <label for='username' class='form-label'>Correo electrónico</label>
-                <input type='text' class='form-control' id='mk_email' onblur='validateEmail();' ><br>
-                <div id='mkmsg3'></div>
-                <input type='hidden' id='isOk_3' value='false'>
+                
             
                 <label for='password' class='form-label'>Contraseña</label>
                 <input type='password' class='form-control' id='mk_pswd' onblur='validatePassField();'>

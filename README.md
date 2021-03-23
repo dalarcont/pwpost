@@ -1,5 +1,6 @@
-# postit
-  PostIt!
+# PWPost
+  PWPost!
+  (ProgramaciónWeb Post)
   
   WebApp for Blogging or Twitter behavior.
   

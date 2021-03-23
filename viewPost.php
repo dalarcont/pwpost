@@ -6,7 +6,7 @@
 ?><!DOCTYPE html>
 <html lang="es">
 <head>
-<title>PostIt</title>
+<title>PWPost</title>
 <meta charset="utf-8" />
 <meta name="description" content="Página para publicar cosas tipo post o twitter">
 <link rel="stylesheet" href="css/final.css">
@@ -24,7 +24,7 @@
  
 <body>
     <header>
-    <h1 class='headline'><img src='components/favicon.ico' style='width:32px;height:32px;'></img>  PostIt!</h1>
+    <h1 class='headline'><img src='components/favicon.ico' style='width:32px;height:32px;'></img>  PWPost!</h1>
        <p class="slogan"><i>Publica lo que quieras, igual nadie lo va a leer ni le dará importancia!</i></p>
     </header>
     <section>
@@ -40,7 +40,7 @@
     </section>
     <footer>
         <div>
-            <span class='footTxt'><br><img src='components/favicon.ico' style='width:32px;height:32px;'><br>PostIt!</span><br><span class='footTxtsign'>
+            <span class='footTxt'><br><img src='components/favicon.ico' style='width:32px;height:32px;'><br>PWPost!</span><br><span class='footTxtsign'>
             Sin derechos reservados, es tan solo un proyecto de asignatura<br>
             No ande de exigente<br>
             Final - TS5C4 - Programación Web<br>
