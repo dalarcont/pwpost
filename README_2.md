@@ -108,11 +108,12 @@
         *POST NEW ENTRY*
     
         In the main page, the user will see always a green button 'Nueva entrada', the button will stay at bottom of the navigation links located at the top center. And according to the scrolling, the button will be moved to the page's right down corner.
-        If the user clicks that button, a controller will 
+        If the user clicks that button, a controller will display a dialog where the user types entry's title, and the content. Once complete the dialog, can click at 'Publicar', the controller invokes the respective procedure file, when the procedure returns 'true', the controller close the new entry dialog and reload the page to see that entry.
         
         *EDIT ENTRY*
     
-        _In development_
+          _In development_
+        Staying at desktop page, or the logged user profile, the entries that the logged user is the owner, these can be modified, the user will be click on the icon 'Edit', the system calls a controller where will invoke an entry editing dialog, in that dialog will show the selected entry to edit, it's title and content, but able to modify, the user make the changes that needed, then clicks on 'Publicar', this acts like the ' *post new entry* ' procedure but the parameters sent to the procedure file will be different. After procedure returns 'true', the controller close the dialog and changes the title and content in the objective without a reloading. That procedure keeps the unique post ID, the publication date, but add a legend 'Edited X times / Last modification: ' on the right top corner of the entry, that contents the times the entry did suffer an edition and the last edition date._
         
         *REPOST ENTRY*
     
