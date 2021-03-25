@@ -62,3 +62,9 @@ table.blueTable {
     padding: 2px 8px;
     border-radius: 5px;
   }
+  .rightUp_entryLegend{
+    right: 1%;
+    font-size: 8px;
+    font-style: italic;
+    color:darkgrey;
+  }

@@ -8,6 +8,7 @@ session_start();
                 //The owner of the respectively entrie isn't the same as the logged user
                 //Then disable edit, delete and hide functions
                 echo "<br>
+                <span class='rightUp_entryLegend'>Edits: X - Last edit date: DD/MM/YY HH:MM:SS</span>
                     <table class='blueTable' style='height: 85px;'>
                     <thead>
                         <tr>
@@ -27,6 +28,7 @@ session_start();
                     </table><br>";
             }else{
                 echo "<br>
+                <span class='rightUp_entryLegend'>Edits: X - Last edit date: DD/MM/YY HH:MM:SS</span>
                 <table class='blueTable' style='height: 85px;'>
                 <thead>
                     <tr>
