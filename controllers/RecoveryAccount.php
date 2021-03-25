@@ -19,7 +19,7 @@
         if($r){
             //Recovery account procedure on DB was correct.
             echo "<script>$('#main').hide(); alertify.alert('Recuperar cuenta', 'En tu correo electrónico encontrarás una contraseña temporal, úsala para iniciar sesión.<br />Una vez ingreses, el sistema te pedirá una nueva contraseña.', function(){ window.location = 'index.php'; });</script>";
-            sendEmail("registro@unimisera.com",$email,"Recuperación de acceso a cuenta",$content);
+            sendEmail("soporte@pwpost.com",$email,"Recuperación de acceso a cuenta",$content);
         }else{
             echo "La dirección de correo electrónico proporcionada NO existe en nuestra base de datos.";
         }

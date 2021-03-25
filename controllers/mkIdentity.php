@@ -9,6 +9,7 @@
     require '../procedures/mkIdentity.php';
     require '../procedures/sendEmail.php';
     require '../procedures/sys_db_con.php';
+    require '../procedures/mkFollow.php';
 
 
     if($_POST['callingFrom']=='doIdentity'){
@@ -23,7 +24,7 @@
         if($Procedure_MkIdentity){
             //The signup on DB was success
             //Send email with validation code for user's first access
-            sendEmail("registro@PWPost.com",$pkg['email'],"Código de confirmación de registro",$EmailContent);
+            sendEmail("registro@pwpost.com",$pkg['email'],"Código de confirmación de registro",$EmailContent);
             echo "<script>alertify.alert('Registro de usuario', 'Apreciado(a) ",$pkg['fullname'],"<br />Tu registro ha sido exitoso. Falta un paso más!<br />En tu correo electrónico encontrarás un código que te será solicitado cuando inicies sesión por primera vez.', function(){ location.reload(); });</script>";
         }else{
             echo "<script>alertify.alert('Registro de usuario','Ha ocurrido un error en nuestro servidor al momento de registrarte. Intenta nuevamente más tarde, si el problema persiste comunícate con soporte.');</script>";

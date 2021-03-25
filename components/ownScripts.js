@@ -1,3 +1,9 @@
+/* JS Scripts
+    Made only for PwPost Project
+    Daniel Alarcon
+ */
+
+
 //Click listeners
     $(document).ready(function(){
         //Let the 'New post' button move around the scroll movement

@@ -43,7 +43,7 @@
   
     FrontEnd: HTML + CSS + JS + jQuery + BOOTSTRAP
     
-    BackEnd: PHP + mySQL + SMTP Server (For email)
+    BackEnd: PHP + mySQL
     
     Extras: Using jQueryUI for Dialogs and AlertifyJS for alert dialogs.
     

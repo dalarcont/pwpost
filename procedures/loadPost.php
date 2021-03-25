@@ -8,7 +8,7 @@
         SELECT 
             pif.username_followed, ge.*
         FROM
-            pi_following AS pif
+            following AS pif
         JOIN
             general_entries AS ge ON (pif.username_followed = ge.own_user)
         WHERE

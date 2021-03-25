@@ -5,7 +5,7 @@
     include 'sys_db_con.php';
     if(isset($_POST['username'])){
         $username = mysqli_real_escape_string(DB_CON(), $_POST['username']);
-        $SQL_QUERY = "SELECT username FROM pi_users WHERE USERNAME = '$username'";
+        $SQL_QUERY = "SELECT username FROM users WHERE USERNAME = '$username'";
         if(!$result = mysqli_query(DB_CON(), $SQL_QUERY)){
             exit(mysqli_error(DB_CON()));
         }

@@ -49,7 +49,7 @@
             <center>
             <div id='main'>
             <p>Dado que es tu primer acceso necesitamos confirmar que la dirección de correo electrónico que suministraste al momento del registro es de fácil acceso para ti.</p>
-            <p>A continuación ingresa el código de confirmación que te enviamos:</p>
+            <p>A continuación ingresa el código de confirmación que te enviamos:<br><i>Debes digitarlo manualmente, no lo copies y pegues directamente del correo que te enviamos.</i></p>
             <div class='mb-3'>
                 <input type='text' class='form-control' style='width:150px;' id='firstCode' aria-describedby='firstCode' onkeyup='validateFirstCode()'><br><br>
                 <button id='validateFirstButton' class='btn btn-primary' onclick='confirmFA()' style='display:none;'>Confirmar</button><br><br>

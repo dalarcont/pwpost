@@ -3,7 +3,6 @@
     //Read user and password
         $USR = $_POST['username'];
         $PSW = $_POST['password'];
-
     
     //Prepare procedures
         require '../procedures/sys_db_con.php';
