@@ -22,7 +22,7 @@ session_destroy();
  
 <body>
     <header>
-       <h1 class="headline">PWPost!</h1>
+       <h1 class="headline"><img src='components/favicon.ico' style='width:32px;height:32px;'>PWPost!</h1>
        <p class="slogan"><i>Publica lo que quieras, igual nadie lo va a leer ni le dará importancia!</i></p>
     </header>
     <section>
