@@ -63,6 +63,7 @@
             </center>
             </article>
             </section>
+            <p><br></p>
             <footer>
             <div>
             <span class='footTxt'><br><img src='components/favicon.ico' style='width:32px;height:32px;'><br>PWPost!</span><br><span class='footTxtsign'>

@@ -10,7 +10,7 @@
         position:relative;
         background-color:#9CC;
         width:100%;
-        height:10%;
+        height:105px;
         margin: 0px auto;}
     nav{
         position:relative;
@@ -29,7 +29,7 @@
     }
     article{
         width:100%;
-        height:95%;
+        height:auto;
         color: black;
     }
     aside{
@@ -47,6 +47,9 @@
         height:auto;
         color:#FFF;
         clear:both;
+        bottom:0;
+        float:inline-end;
+        top:15px;
     }
     .footer2{
         position:fixed; 

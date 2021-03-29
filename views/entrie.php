@@ -7,7 +7,7 @@ session_start();
             if($pkg['own_user']!=$_SESSION['UsrPkg']['username']){
                 //The owner of the respectively entrie isn't the same as the logged user
                 //Then disable edit, delete and hide functions
-                echo "<br>
+                echo "
                 <span class='rightUp_entryLegend'>Edits: X - Last edit date: DD/MM/YY HH:MM:SS</span>
                     <table class='blueTable' style='height: 85px;'>
                     <thead>
@@ -25,9 +25,9 @@ session_start();
                     <td colspan='6'><span id='publishData'>Publicado por: <b><a href='profile.php?p=",$pkg['own_user'],"' target='_blank'>",$pkg['own_user'],"</a></b> - Fecha de publicación: <a href='viewPost.php?post=",$pkg['uuid_post'],"' target='_blank'>",$pkg['pubdate'],"</a></span></td>
                     </tr>
                     </tbody>
-                    </table><br>";
+                    </table>";
             }else{
-                echo "<br>
+                echo "
                 <span class='rightUp_entryLegend'>Edits: X - Last edit date: DD/MM/YY HH:MM:SS</span>
                 <table class='blueTable' style='height: 85px;'>
                 <thead>
@@ -48,7 +48,7 @@ session_start();
                 <td colspan='6'><span id='publishData'>Publicado por: <b><a href='profile.php?p=",$pkg['own_user'],"' target='_blank'>",$pkg['own_user'],"</a></b> - Fecha de publicación: <a href='viewPost.php?post=",$pkg['uuid_post'],"' target='_blank'>",$pkg['pubdate'],"</a></span></td>
                 </tr>
                 </tbody>
-                </table><br>";
+                </table>";
 
             }
         }else{
