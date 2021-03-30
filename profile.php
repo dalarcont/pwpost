@@ -1,4 +1,5 @@
 <?php
+session_start();
     $username = $_GET['p'];
     //Call control file
         require 'controllers/profile.php';
@@ -27,14 +28,30 @@
         <h1 class='headline'><img src='components/favicon.ico' style='width:32px;height:32px;'></img>  PWPost!</h1>
        <p class="slogan"><i>Publica lo que quieras, igual nadie lo va a leer ni le dará importancia!</i></p>
     </header>
+    <?php 
+        if(!empty($_SESSION['UsrPkg'])){
+            //Session is set, that mean that an user is logged on
+            echo "<nav>
+            <a href='#' id='loadHome'>Inicio</a><span style='padding-left:5em'></span>
+            <a href='#' id='showProfile'>Perfil</a><span style='padding-left:5em'></span>
+            <a href='#' id='logOff'>Salir</a>
+            </nav>
+            <div id='actionsMenu'><br>
+            <button class='btn btn-success' onclick='letPost()'><img src='components/newpost.png' style='width:25px;height:25px;'></img>Nueva entrada</button>
+            </div>";
+
+        }
+    ?>
     <section>
        <article>
            <center>
            <div id="main">
                 <?php printProfile_data($username); ?>
+                <button class='btn btn-success' onclick='alert("follow")'>Seguir</button><br><br>
            </div>
            <div id="FrontEnd">
                 <?php printProfile_entries($username); ?>
+                
            </div>
            </center>
        </article>
