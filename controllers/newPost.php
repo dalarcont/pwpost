@@ -9,6 +9,14 @@ session_start();
     /* Procedures has not been needed yet*/
     if($_POST['call']=="let"){
         form_newPost();
+        echo '<script>
+        var userMention = $("#isOnProfile").val();
+            //Verify if this procedure was called from normal page or was called from a profile page
+            //If was called from a profile page, we suppose that the user needs to do an entry with a mention about the visited user
+            if(userMention.length!=0){
+                $("#newEntrie_content").val("@"+userMention+": ");
+            }</script>
+        ';
     }else{
         //That means we need to publish
         //But let we stay safe about it

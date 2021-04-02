@@ -224,28 +224,24 @@
             $("#FrontEnd").html(sucess);
         });
     }
-
-
-    /*
-    
-    
-    
-    
-    */
     
 
 
 //Entry procedures
     function letPost(){
+        //Call the controller
         $.post('controllers/newPost.php', {call:"let"},function(sucess){
             $("#main").html(sucess);
         });
+        
     }
     //Execution procedure
     function doPost(){
         r = 0;
+        //Read properties
         var t = $("#newEntrie_title").val();
         var c = $("#newEntrie_content").val();
+        
 
         if(t.length<5){
             //Title haven't 5 digits or more
@@ -263,56 +259,8 @@
                 $.post('controllers/newPost.php', {call:"doIt",data:pkg},function(sucess){
                     $("#main").html(sucess);
                 });
-            }
+            }   
         }
-        /*
-        if(t.length<5){
-            //Title field isn't a string of more or greater than 5 digits
-            r ++ ;
-            alertify.alert("Nueva entrada","El título debe contener 5 o más digitos");
-        }else{
-            if(r!=0){r--;}
-        }
-
-        
-        if(c.length<5){
-            //Content field isn't a string of more or greater than 5 digits
-            r ++ ;
-            alertify.alert("Nueva entrada","El contenido debe contener 5 o más digitos");
-            if(r!=0){r--;}
-        }
-        if(r==0){
-            //Fields haven't errors and are complete
-            //alertify.alert("Prueba","Correcto");
-        }else{
-            //alertify.alert("Prueba","INCORRECTO");
-        }
-
-        /*
-        var keep1 = true;
-        var keep2 = true;
-        //Fields validation
-        if(t.length <=4){
-            keep1 = false;
-            alertify.alert("Nueva entrada","El título debe ser mayor a 5 dígitos...");
-        }else{
-            //That means the title have equal or more than 5 chars
-            keep1 = true;
-        }
-        //Content validation
-        if(c.length <=4){
-            keep2 = false;
-            alertify.alert("Nueva entrada","El contenido debe ser mayor a 5 dígitos...");
-        }else{
-            keep2 = true;
-        }
-        
-        //If both fields are true, then proceed to publish
-        if(keep1==true && keep2==true){
-            alertify.alert("Prueba","CORRECTO");
-        }else{
-            alertify.alert("Prueba","ERROR");
-        }*/
     }
 
     function letUpd(data){

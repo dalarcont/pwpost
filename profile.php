@@ -45,9 +45,15 @@ session_start();
     <section>
        <article>
            <center>
-           <div id="main">
-                <?php printProfile_data($username); ?>
+           <div id="aux">
+           <?php 
+                echo '<input type="hidden" id="isOnProfile" value="',$username,'"></input>';
+                printProfile_data($username); 
+            ?>
                 <button class='btn btn-success' onclick='alert("follow")'>Seguir</button><br><br>
+           </div>
+           <div id="main">
+                
            </div>
            <div id="FrontEnd">
                 <?php printProfile_entries($username); ?>
