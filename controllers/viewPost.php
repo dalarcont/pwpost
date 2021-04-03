@@ -7,7 +7,7 @@
         require 'procedures/loadPost.php';
         require 'controllers/hiddenManagement.php';
     //Require views, in the same directory because was called from a file on first directory paths
-        include 'views/entrie.php';
+        include 'views/entry.php';
     //Request post data by its uuid
         $result = loadPost_direct($post_id);
         //Get title of post

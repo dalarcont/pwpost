@@ -3,14 +3,14 @@
     function mkUUID($cantChars) {
         $r = "";
         $permitted_chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        $r = "PI".substr(str_shuffle($permitted_chars), 0, $cantChars);
+        $r = "PWP".substr(str_shuffle($permitted_chars), 0, $cantChars);
         return $r;
     }
 
     
     //Execute the insertion data on DB
     function doIdentity($pkg){
-        $uuid = mkUUID(15);
+        $uuid = mkUUID(12);
         date_default_timezone_set('America/Bogota');
         $username = $pkg ['username'];
         $fullname = $pkg['fullname'];

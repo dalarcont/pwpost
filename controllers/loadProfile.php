@@ -9,7 +9,7 @@
         require '../procedures/loadProfile.php';
         require '../controllers/hiddenManagement.php';
     //Require views
-        include '../views/entrie.php';
+        include '../views/entry.php';
         include '../views/profile.php';
 
     //Get user's profile data, is always loaded by default doesn't matter if the user have or have not entries of his own authority

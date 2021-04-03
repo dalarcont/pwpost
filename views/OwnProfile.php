@@ -1,12 +1,12 @@
 <?php 
     session_start();
-    /*Entrie print*/
+    /*Entry print*/
     
     function printProfile($pkg){
-        echo "<br>
-        <p>Nombre completo: <b>",$pkg['user_fullname'],"</b></p>
-        <p>Correo electrónico: <b>",$pkg['user_email'],"</b><br><i>Tu correo no será visible ante el público.</i></p>
-        <p>Fecha de registro: <b>",$pkg['joindate'],"</b></p>
+        echo "
+        <p>Nombre completo: <b>",$pkg['user_fullname'],"</b> - 
+        Correo electrónico: <b>",$pkg['user_email'],"</b><br><i>Tu correo no será visible ante el público.</i> - 
+        Fecha de registro: <b>",$pkg['joindate'],"</b></p>
         ";
     }
 

@@ -19,7 +19,6 @@
             //Package isn't empty, load system
             UsrExists();
             session_start();
-            
             $_SESSION['UsrPkg'] = $Pkg ;
             if(!empty($Pkg['first_access'])){
                 echo "<script>function GoToCheck(){ window.location = 'FirstAccess.php'; } setTimeout('GoToCheck()', 1300); </script>";

@@ -8,7 +8,7 @@
         require 'controllers/hiddenManagement.php';
     //Require views, in the same directory because was called from a file on first directory paths
         include 'views/profile.php';
-        require 'views/entrie.php';
+        require 'views/entry.php';
     //Get user's profile data, in this case we need its username, full name and join date only.
         function printProfile_data($username){
             $result_main = loadProfileData($username);

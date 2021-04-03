@@ -3,12 +3,12 @@
     function postUUID($cantChars) {
         $r = "";
         $permitted_chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        $r = "PI".substr(str_shuffle($permitted_chars), 0, $cantChars);
+        $r = "PWP".substr(str_shuffle($permitted_chars), 0, $cantChars);
         return $r;
     }
 
     function newPost($user,$title,$content){
-        $postUUID = postUUID(15);
+        $postUUID = postUUID(12);
         date_default_timezone_set('America/Bogota');
         $pubdate = date("Y-m-d H:i:s");
         $SQL_QUERY = "INSERT INTO general_entries (uuid_post, own_user, pubdate, title, content)

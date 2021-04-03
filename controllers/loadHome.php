@@ -6,7 +6,7 @@
         require '../procedures/loadPost.php';
         require '../controllers/hiddenManagement.php';
     //Require views
-        include '../views/entrie.php';
+        include '../views/entry.php';
         if(!empty($_SESSION['UsrPkg'])){
             //Get data from DB
                 $result = loadPost($_SESSION['UsrPkg']['username']);

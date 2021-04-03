@@ -1,17 +1,18 @@
 <?php
 session_start();
-    $username = $_GET['p'];
+    $profile_username = $_GET['p'];
     //Call control file
         require 'controllers/profile.php';
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<title>PWPost</title>
+<title>PWPost - Perfil de <?php echo $_GET['p']; ?></title>
 <meta charset="utf-8" />
 <meta name="description" content="Página para publicar cosas tipo post o twitter">
 <link rel="stylesheet" href="css/final.css">
-<link rel="stylesheet" href="css/entrieStyle.css">
+<link rel="stylesheet" href="css/entryStyle.css">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="plugins/jqueryui/jquery-ui.js"></script>
@@ -25,9 +26,7 @@ session_start();
  
 <body>
     <header>
-        <h1 class='headline'><img src='components/favicon.ico' style='width:32px;height:32px;'></img>  PWPost!</h1>
-       <p class="slogan"><i>Publica lo que quieras, igual nadie lo va a leer ni le dará importancia!</i></p>
-    </header>
+        <img src='components/favicon.ico' style='width:32px;height:32px;'></img>  <h2>PWPost!</h2>
     <?php 
         if(!empty($_SESSION['UsrPkg'])){
             //Session is set, that mean that an user is logged on
@@ -42,22 +41,46 @@ session_start();
 
         }
     ?>
+    </header>
+    
     <section>
        <article>
            <center>
            <div id="aux">
            <?php 
-                echo '<input type="hidden" id="isOnProfile" value="',$username,'"></input>';
-                printProfile_data($username); 
+            //Hidden value to set if the new post action will start with a comment or empty
+                echo '<input type="hidden" id="isOnProfile" value="',$profile_username,'"></input>';
+                //Print data profile
+                printProfile_data($profile_username); 
+                //Call procedure to check a follow
+                require 'procedures/getFollowingData.php';
+                //Let us know what's the logged user
+                $loggedUser = $_SESSION['UsrPkg']['username'];
+                //Get list of followed users
+
+
+                //Is the profile in view the same as logged user??
+                if($profile_username==$loggedUser){
+                    //It's the same
+                    echo "---";
+                }else{
+                    //Isn't the same
+                    if(checkFollowing($profile_username,$loggedUser)){
+                        //Print 'Unfollow' FxButton
+                        echo "<button id='fxFollow' class='btn btn-danger' onclick='letUnfollow()'>Dejar de seguir</button><br><br>";
+                    }else{
+                        echo "<button id='fxFollow' class='btn btn-success' onclick='letFollow()'>Seguir</button><br><br>";
+                    }
+                }
+                
             ?>
-                <button class='btn btn-success' onclick='alert("follow")'>Seguir</button><br><br>
+                
            </div>
            <div id="main">
                 
            </div>
            <div id="FrontEnd">
-                <?php printProfile_entries($username); ?>
-                
+                <?php printProfile_entries($profile_username); ?>
            </div>
            </center>
        </article>

@@ -9,7 +9,7 @@
     require '../procedures/mkIdentity.php';
     require '../procedures/sendEmail.php';
     require '../procedures/sys_db_con.php';
-    require '../procedures/mkFollow.php';
+    require '../procedures/mkFirstFollow.php';
 
 
     if($_POST['callingFrom']=='doIdentity'){

@@ -1,8 +1,8 @@
 <?php
 
-    //During the load of an entrie, if its owner user is the same as logged user we need to check something like the following instruction:
-        //if the hidden property is enabled, that means the entrie isn't visible at public but visible to its owner, then, we need to show the 'unhide' button
-        //if the hidden property is disbaled, that means the entrie is visible to whoever wants to see it, then, we need to show the 'hide' button
+    //During the load of an entry, if its owner user is the same as logged user we need to check something like the following instruction:
+        //if the hidden property is enabled, that means the entry isn't visible at public but visible to its owner, then, we need to show the 'unhide' button
+        //if the hidden property is disbaled, that means the entry is visible to whoever wants to see it, then, we need to show the 'hide' button
 
 
     function hidden_FxSelector($property){

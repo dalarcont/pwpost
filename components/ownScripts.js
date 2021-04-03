@@ -197,7 +197,7 @@
         }   
         $("#msgSpan").delay(5000).fadeOut(1000);
     }
-
+    //Confirm recovery
     function confirmRecovery(){
         //Send data to controller
         var email = $("#emailRecovery").val();
@@ -205,7 +205,7 @@
             $("#FrontEnd").html(sucess);
         });
     }
-
+    //Vaidation for the new password afer recovery login
     function validatePassField_2(){
         var pswd = $("#newpswd").val();
         if(pswd.length<5){
@@ -217,7 +217,7 @@
         }
         
     }
-
+    //Set new password on finishing recovery procedure
     function getRecovery(){
         var pswd = $("#newpswd").val();
         $.post('controllers/RecoveryAccount.php', {call:"setRecovery",data:pswd}, function(sucess){
@@ -225,6 +225,20 @@
         });
     }
     
+
+
+//Follow user procedure
+    function letFollow(){
+        //Call the controller and send the username
+        var fw = $("#isOnProfile").val();
+        $.post('controllers/follow.php', {data:fw}, function(sucess){
+            $("#main").html(sucess);
+        });
+    }
+
+    function letUnfollow(){
+        alertify.alert('Prueba','Dejar de seguir');
+    }
 
 
 //Entry procedures

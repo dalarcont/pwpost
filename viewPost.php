@@ -6,11 +6,11 @@
 ?><!DOCTYPE html>
 <html lang="es">
 <head>
-<title>PWPost</title>
+<title>PWPost - Entrada "<?php echo $result['title']; ?>"</title>
 <meta charset="utf-8" />
 <meta name="description" content="Página para publicar cosas tipo post o twitter">
 <link rel="stylesheet" href="css/final.css">
-<link rel="stylesheet" href="css/entrieStyle.css">
+<link rel="stylesheet" href="css/entryStyle.css">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="plugins/jqueryui/jquery-ui.js"></script>
@@ -23,10 +23,24 @@
 </head>
  
 <body>
-    <header>
-    <h1 class='headline'><img src='components/favicon.ico' style='width:32px;height:32px;'></img>  PWPost!</h1>
-       <p class="slogan"><i>Publica lo que quieras, igual nadie lo va a leer ni le dará importancia!</i></p>
+<header>
+        <img src='components/favicon.ico' style='width:32px;height:32px;'></img>  <h2>PWPost!</h2>
+    <?php 
+        if(!empty($_SESSION['UsrPkg'])){
+            //Session is set, that mean that an user is logged on
+            echo "<nav>
+            <a href='#' id='loadHome'>Inicio</a><span style='padding-left:5em'></span>
+            <a href='#' id='showProfile'>Perfil</a><span style='padding-left:5em'></span>
+            <a href='#' id='logOff'>Salir</a>
+            </nav>
+            <div id='actionsMenu'><br>
+            <button class='btn btn-success' onclick='letPost()'><img src='components/newpost.png' style='width:25px;height:25px;'></img>Nueva entrada</button>
+            </div>";
+
+        }
+    ?>
     </header>
+    
     <section>
        <article>
            <center>
