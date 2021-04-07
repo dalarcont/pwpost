@@ -119,7 +119,7 @@
     
         _In development_
         
-        *APPLY PRIVACY TO AN ENTRY*
+        *APPLY PRIVACY TO AN ENTRY* 
     
         _In development_
         

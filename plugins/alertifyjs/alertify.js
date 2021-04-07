@@ -102,7 +102,7 @@
         element.className += ' ' + classNames;
     }
     
-    /**
+    /** 
      * [Helper]  Removes the specified class(es) from the element.
      *
      * @element {node}      The element
