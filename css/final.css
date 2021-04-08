@@ -41,15 +41,13 @@
         float:left;
     }
     footer{
-        position:relative; 
-        background-color:#AA7;
-        width:100%;
-        height:auto;
-        color:#FFF;
-        clear:both;
+        position: fixed;
         bottom:0;
-        float:inline-end;
-        top:15px;
+        background-color: #AA7;
+        width: 100%;
+        height: auto;
+        color: #FFF;
+        clear: both;
     }
     .footer2{
         position:fixed; 
@@ -93,6 +91,33 @@
     .actionsMenuMove{
         position: fixed;
         bottom: 25px;
+        right: 25px;
+        /*position: -webkit-sticky;
+        position: sticky;
+        top: -1px;*/
+        z-index: 2;
+    }
+
+
+    #MoreEntry{
+        border:#777;
+    }
+    .MoreEntryMove{
+        position: fixed;
+        bottom: 95px;
+        right: 25px;
+        /*position: -webkit-sticky;
+        position: sticky;
+        top: -1px;*/
+        z-index: 2;
+    }
+
+    #minusEntry{
+        border:#777;
+    }
+    .minusEntryMove{
+        position: fixed;
+        bottom: 140px;
         right: 25px;
         /*position: -webkit-sticky;
         position: sticky;

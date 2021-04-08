@@ -49,7 +49,7 @@ if(empty($_SESSION['UsrPkg']['recovery_key'])){
         </center>
         </article>
         </section>
-        <footer class='footer2'>
+        <footer class='footer'>
             <div>
                 <span class='footTxt'>PWPost!</span><br><span class='footTxtsign'>
                 Sin derechos reservados, es tan solo un proyecto de asignatura<br>

@@ -47,9 +47,17 @@
                          <br><span style='color:black;'> Usuario: ",$UserData['username'],"</span>
                     </nav>
                 </header>
-            <div id='actionsMenu'><br>
-            <button class='btn btn-success' onclick='letPost()'><img src='components/newpost.png' style='width:25px;height:25px;'></img>Nueva entrada</button><br><br>
+                
+            <div id='MoreEntry'>
+                <button class='btn btn-info' onclick='godown()'><img src='components/down.png' style='width:25px;height:25px;'></img> Ir abajo</button>
             </div>
+            <div id='actionsMenu'><br>
+                <button class='btn btn-success' onclick='letPost()'><img src='components/newpost.png' style='width:25px;height:25px;'></img> Nueva entrada</button><br><br>
+            </div>
+            <div id='minusEntry'>
+                <button class='btn btn-info' onclick='gotop()'><img src='components/up.png' style='width:25px;height:25px;'></img> Ir arriba</button>
+            </div>
+            
             <section>
             <article>
             <center>
@@ -58,24 +66,17 @@
             </div>
             <input type='hidden' id='isOnProfile' value='null'></input>
             <div id='FrontEnd'>
+
+            
             </div>
+            
             </center>
             </article>
+            
             </section>
+            
             <p><br></p>
-            <footer>
-            <div>
-            <span class='footTxt'><br><img src='components/favicon.ico' style='width:32px;height:32px;'><br>PWPost!</span><br><span class='footTxtsign'>
-            Sin derechos reservados, es tan solo un proyecto de asignatura<br>
-            No ande de exigente<br>
-            Final - TS5C4 - Programación Web<br>
-            Tecnología en Desarrollo de Software<br>
-            Universidad Tecnológica de Pereira<br>
-            2021-1<br>
-            Daniel Alarcón</span>
-            </div>
-
-            </footer>
+            
             </body>
             </html>
             ";

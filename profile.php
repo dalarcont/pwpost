@@ -2,101 +2,57 @@
 session_start();
     $profile_username = $_GET['p'];
     //Call control file
+        require 'views/PageTemplate.php';
         require 'controllers/profile.php';
 
-?>
-<!DOCTYPE html>
-<html lang="es">
-<head>
-<title>PWPost - Perfil de <?php echo $_GET['p']; ?></title>
-<meta charset="utf-8" />
-<meta name="description" content="Página para publicar cosas tipo post o twitter">
-<link rel="stylesheet" href="css/final.css">
-<link rel="stylesheet" href="css/entryStyle.css">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="plugins/jqueryui/jquery-ui.js"></script>
-<link rel="stylesheet" href="plugins/jqueryui/jquery-ui.css">
-<script src="plugins/alertifyjs/alertify.min.js"></script>
-<link rel="stylesheet" href="plugins/alertifyjs/css/alertify.min.css" />
-<link rel="stylesheet" href="plugins/alertifyjs/css/themes/default.min.css" />
-<script src="components/ownScripts.js"></script>
-<link rel="shortcut icon" href="components/favicon.ico" type="image/x-icon">
-</head>
- 
-<body>
-    <header>
-        <img src='components/favicon.ico' style='width:32px;height:32px;'></img>  <h2>PWPost!</h2>
-    <?php 
-        if(!empty($_SESSION['UsrPkg'])){
-            //Session is set, that mean that an user is logged on
-            echo "<nav>
-            <a href='#' id='loadHome'>Inicio</a><span style='padding-left:5em'></span>
-            <a href='#' id='showProfile'>Perfil</a><span style='padding-left:5em'></span>
-            <a href='#' id='logOff'>Salir</a>
-            </nav>
-            <div id='actionsMenu'><br>
-            <button class='btn btn-success' onclick='letPost()'><img src='components/newpost.png' style='width:25px;height:25px;'></img>Nueva entrada</button>
-            </div>";
 
-        }
-    ?>
-    </header>
-    
-    <section>
-       <article>
-           <center>
-           <div id="aux">
-           <?php 
+    // IMPORTANT 
+    // Set type page, title page complement, description
+    html_print_firstBlock("profile",$profile_username,"Perfil del usuario");
+
+    // IMPORTANT 
+    // The next function will print a navigation menu if there is a logged user, if not, just nothing to do.
+    html_print_HeaderNav_selector($_SESSION['UsrPkg']);
+
+    // IMPORTANT
+    // After the next function you need to include or call your needed functions in the <main> frame of the HTML
+    html_print_main_frame();
+        //Include, Require, Call your needed functions/procedures below
             //Hidden value to set if the new post action will start with a comment or empty
-                echo '<input type="hidden" id="isOnProfile" value="',$profile_username,'"></input>';
-                //Print data profile
-                printProfile_data($profile_username); 
-                //Call procedure to check a follow
-                require 'procedures/getFollowingData.php';
-                //Let us know what's the logged user
-                $loggedUser = $_SESSION['UsrPkg']['username'];
-                //Get list of followed users
+            echo '<input type="hidden" id="isOnProfile" value="',$profile_username,'"></input>';
+            //Print data profile
+            printProfile_data($profile_username); 
+            //Call procedure to check a follow
+            require 'procedures/getFollowingData.php';
+            //Let us know what's the logged user
+            $loggedUser = $_SESSION['UsrPkg']['username'];
+            //Get list of followed users
 
 
-                //Is the profile in view the same as logged user??
-                if($profile_username==$loggedUser){
-                    //It's the same
-                    echo "---";
+            //Is the profile in view the same as logged user??
+            if($profile_username==$loggedUser){
+                //It's the same
+                echo "---";
+            }else{
+                //Isn't the same
+                if(checkFollowing($profile_username,$loggedUser)){
+                    //Print 'Unfollow' FxButton
+                    echo "<button id='fxFollow' class='btn btn-danger' onclick='letUnfollow()'>Dejar de seguir</button><br><br>";
                 }else{
-                    //Isn't the same
-                    if(checkFollowing($profile_username,$loggedUser)){
-                        //Print 'Unfollow' FxButton
-                        echo "<button id='fxFollow' class='btn btn-danger' onclick='letUnfollow()'>Dejar de seguir</button><br><br>";
-                    }else{
-                        echo "<button id='fxFollow' class='btn btn-success' onclick='letFollow()'>Seguir</button><br><br>";
-                    }
+                    echo "<button id='fxFollow' class='btn btn-success' onclick='letFollow()'>Seguir</button><br><br>";
                 }
+            }
+        //End
+
+    // IMPORTANT
+    // After the next function you need to include or call your needed functions in the <FrontEnd> frame of the HTML
+    html_print_FrontEnd_frame();
+        //Include, Require, Call your needed functions/procedures below
+            printProfile_entries($profile_username);
+        //End
+
+
+    //Closing HTML view
+    html_print_CompletePage(false);
                 
-            ?>
-                
-           </div>
-           <div id="main">
-                
-           </div>
-           <div id="FrontEnd">
-                <?php printProfile_entries($profile_username); ?>
-           </div>
-           </center>
-       </article>
-    </section>
-    <footer>
-        <div>
-            <span class='footTxt'><br><img src='components/favicon.ico' style='width:32px;height:32px;'><br>PWPost!</span><br><span class='footTxtsign'>
-            Sin derechos reservados, es tan solo un proyecto de asignatura<br>
-            No ande de exigente<br>
-            Final - TS5C4 - Programación Web<br>
-            Tecnología en Desarrollo de Software<br>
-            Universidad Tecnológica de Pereira<br>
-            2021-1<br>
-            Daniel Alarcón</span>
-        </div>
-        
-    </footer>
-</body>
-</html>
+?>

@@ -18,6 +18,38 @@
             }
         });
 
+        //Let the 'Go Down' button move around the scroll movement
+        var am2 = $("#MoreEntry");
+        var pos2 = am2.position();
+        //Hidde button because we only need it when the user scrolls down
+        am2.hide();
+        $(window).scroll(function(){
+            var winpos = $(window).scrollTop();
+            if(winpos>=pos2.top){
+                am2.show();
+                am2.addClass("MoreEntryMove");
+            }else{
+                am2.hide();
+                am2.removeClass("MoreEntryMove");
+            }
+        });
+
+        //Let the 'Go Down' button move around the scroll movement
+        var am3 = $("#minusEntry");
+        var pos3 = am3.position();
+        //Hidde button because we only need it when the user scrolls up
+        am3.hide();
+        $(window).scroll(function(){
+            var winpos = $(window).scrollTop();
+            if(winpos>=pos3.top){
+                am3.show();
+                am3.addClass("minusEntryMove");
+            }else{
+                am3.hide();
+                am3.removeClass("minusEntryMove");
+            }
+        });
+
 
         //Let the nav options menu works
         $("#loadHome").click(function(){
@@ -38,7 +70,15 @@
             location.href='index.php' ;
         });
     });
-
+//Go to top or down
+    function godown(){
+        var hgt = $(document).height();
+        $("html, body").animate({scrollTop:hgt+"px"});
+    }
+    function gotop(){
+        var hgt = $(document).height();
+        $("html, body").animate({scrollTop:"0px"});
+    }
 //Login procedure
     //Connect
     function connect(){
