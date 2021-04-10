@@ -21,16 +21,16 @@ session_start();
             //Then disable Edit(), Delete(), Hide()/Unhide() edit, delete and hide functions
             echo "<tr>
                 <th colspan='5'>",$pkg['title'],"</th>
-                <th><button class='btn btn-light' onclick='letRep(this)' value='",$pkg['uuid_post'],"'><img src='components/repost.png' style='width:28px;height:28px;'></img></button></th>
+                <th style='width:45px'><button class='btn btn-light' onclick='letRep(this)' value='",$pkg['uuid_post'],"'><img src='components/repost.png' style='width:28px;height:28px;'></img></button></th>
             </tr>";
         }else{
             //Entry owner is the same as logged user
             echo "<tr>
             <th colspan='2'>",$pkg['title'],"</th>
-            <th><button class='btn btn-light' onclick='letUpd(this)' value='",$pkg['uuid_post'],"'><img src='components/edit.png' style='width:25px;height:25px;'></img></button></th>
-            <th><button class='btn btn-light' onclick='letRem(this)' value='",$pkg['uuid_post'],"'><img src='components/delete.png' style='width:25px;height:25px;'></img></button></th>
-            <th><button class='btn btn-light' onclick='",hidden_FxSelector($pkg['hiddenprop']),"(this)' value='",$pkg['uuid_post'],"' ><img src='components/",hidden_imgSelector($pkg['hiddenprop']),".png' style='width:25px;height:25px;'></img></button></th>
-            <th><button class='btn btn-light' onclick='letRep(this)' value='",$pkg['uuid_post'],"'><img src='components/repost.png' style='width:25px;height:25px;'></img></button></th>
+            <th style='width:45px'><button class='btn btn-light' onclick='letUpd(this)' value='",$pkg['uuid_post'],"'><img src='components/edit.png' style='width:25px;height:25px;'></img></button></th>
+            <th style='width:45px'><button class='btn btn-light' onclick='letRem(this)' value='",$pkg['uuid_post'],"'><img src='components/delete.png' style='width:25px;height:25px;'></img></button></th>
+            <th style='width:45px'><button class='btn btn-light' onclick='",hidden_FxSelector($pkg['hiddenprop']),"(this)' value='",$pkg['uuid_post'],"' ><img src='components/",hidden_imgSelector($pkg['hiddenprop']),".png' style='width:25px;height:25px;'></img></button></th>
+            <th style='width:45px'><button class='btn btn-light' onclick='letRep(this)' value='",$pkg['uuid_post'],"'><img src='components/repost.png' style='width:25px;height:25px;'></img></button></th>
             </tr>";
         }
         
@@ -50,7 +50,7 @@ session_start();
                 </thead>
                 <tbody>
                 <tr>
-                <td colspan='6'>",$pkg['content'],"</td>
+                <td colspan='6' style='height:85px'>",$pkg['content'],"</td>
                 </tr>
                 <tr>
                 <td colspan='6'>

@@ -25,13 +25,13 @@
         $SQL_QUERY = "SELECT * FROM following WHERE username = '$follower' AND username_followed = '$followed'";
         $do = mysqli_query(DB_CON(),$SQL_QUERY);
         if($do){
-            /*$r = mysqli_fetch_array($do);
+            $r = mysqli_fetch_array($do);
             if($r['username_followed']==$followed AND $r['username']==$follower){
                 return true;
             }else{
                 return false;
-            }*/
-            return true;
+            }
+            //return true;
         }else{
             return false;
         }

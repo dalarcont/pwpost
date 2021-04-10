@@ -6,18 +6,31 @@
 
 //Click listeners
     $(document).ready(function(){
-        //Let the 'New post' button move around the scroll movement
+        //Let the actions Post;Go to the top; Go to the bottom move when user scrolling 
         var am = $("#actionsMenu");
+        var am2 = $("#MoreEntry");
+        var am3 = $("#minusEntry");
+        am2.hide();
+        am3.hide();
         var pos = am.position();
         $(window).scroll(function(){
             var winpos = $(window).scrollTop();
-            if(winpos>=pos.top){
+            if(winpos>pos.top){
                 am.addClass("actionsMenuMove");
+                am2.show();
+                am2.addClass("MoreEntryMove");
+                am3.show();
+                am3.addClass("minusEntryMove");
             }else{
                 am.removeClass("actionsMenuMove");
+                am2.hide();
+                am2.removeClass("MoreEntryMove");
+                am3.hide();
+                am3.removeClass("minusEntryMove");
             }
         });
 
+            /*
         //Let the 'Go Down' button move around the scroll movement
         var am2 = $("#MoreEntry");
         var pos2 = am2.position();
@@ -48,7 +61,7 @@
                 am3.hide();
                 am3.removeClass("minusEntryMove");
             }
-        });
+        });*/
 
 
         //Let the nav options menu works
