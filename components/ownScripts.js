@@ -6,31 +6,18 @@
 
 //Click listeners
     $(document).ready(function(){
-        //Let the actions Post;Go to the top; Go to the bottom move when user scrolling 
+        //Let the 'New post' button move around the scroll movement
         var am = $("#actionsMenu");
-        var am2 = $("#MoreEntry");
-        var am3 = $("#minusEntry");
-        am2.hide();
-        am3.hide();
         var pos = am.position();
         $(window).scroll(function(){
             var winpos = $(window).scrollTop();
-            if(winpos>pos.top){
+            if(winpos>=pos.top){
                 am.addClass("actionsMenuMove");
-                am2.show();
-                am2.addClass("MoreEntryMove");
-                am3.show();
-                am3.addClass("minusEntryMove");
             }else{
                 am.removeClass("actionsMenuMove");
-                am2.hide();
-                am2.removeClass("MoreEntryMove");
-                am3.hide();
-                am3.removeClass("minusEntryMove");
             }
         });
 
-            /*
         //Let the 'Go Down' button move around the scroll movement
         var am2 = $("#MoreEntry");
         var pos2 = am2.position();
@@ -61,7 +48,7 @@
                 am3.hide();
                 am3.removeClass("minusEntryMove");
             }
-        });*/
+        });
 
 
         //Let the nav options menu works
@@ -306,8 +293,8 @@
     function doPost(){
         r = 0;
         //Read properties
-        var t = $("#newEntrie_title").val();
-        var c = $("#newEntrie_content").val();
+        var t = $("#newEntry_title").val();
+        var c = $("#newEntry_content").val();
         
 
         if(t.length<5){
@@ -330,10 +317,31 @@
         }
     }
 
+//Edit post procedure
     function letUpd(data){
-        var XT = $(data).val();
-        alert("UUID a editar "+XT);
+        //Next statement will clean any garbage of other 'Edit post' usage.
+        $("#main").empty();
+        var e = $(data).val();
+        $.post('controllers/editPost.php', {call:"let",post:e},function(sucess){
+            $("#main").html(sucess);
+        })
     }
+
+    function postEdit(){
+        var edit_t = $("#editEntry_title").val();
+        var edit_c = $("#editEntry_content").val();
+        var id = $("#editpostid").val();
+        var pkg = {edit_t: "",edit_c: "",id:""};
+        pkg["edit_t"] = edit_t; pkg["edit_c"] = edit_c ; pkg["id"]=id;
+        $.post('controllers/editPost.php', {call:"doIt",post:pkg},function(sucess){
+            $("#main").html(sucess);
+        })
+    }
+
+
+
+
+
 
     function letRep(data){
         var XT = $(data).val();
