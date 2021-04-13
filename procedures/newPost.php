@@ -11,6 +11,8 @@
         $postUUID = postUUID(12);
         date_default_timezone_set('America/Bogota');
         $pubdate = date("Y-m-d H:i:s");
+        //
+        $content = nl2br($content,true);
         $SQL_QUERY = "INSERT INTO general_entries (uuid_post, own_user, pubdate, title, content)
         VALUES ('$postUUID','$user','$pubdate','$title','$content')";
         if(mysqli_query(DB_CON(),$SQL_QUERY)){

@@ -318,9 +318,18 @@
     }
 
 //Edit post procedure
+
+    function updtng(data){
+        $("#updBtn").show();
+    }
+
     function letUpd(data){
         //Next statement will clean any garbage of other 'Edit post' usage.
         $("#main").empty();
+        document.querySelectorAll('[role="dialog"]').forEach(function (el){
+            el.remove();
+        });
+
         var e = $(data).val();
         $.post('controllers/editPost.php', {call:"let",post:e},function(sucess){
             $("#main").html(sucess);
@@ -331,8 +340,10 @@
         var edit_t = $("#editEntry_title").val();
         var edit_c = $("#editEntry_content").val();
         var id = $("#editpostid").val();
-        var pkg = {edit_t: "",edit_c: "",id:""};
-        pkg["edit_t"] = edit_t; pkg["edit_c"] = edit_c ; pkg["id"]=id;
+        var chk_t = $("#alterationControl_t").val();
+        var chk_c = $("#alterationControl_c").val();
+        var pkg = {edit_t: "",edit_c: "",id:"",chk_t: "", chk_c: ""};
+        pkg["edit_t"] = edit_t; pkg["edit_c"] = edit_c ; pkg["id"]=id; pkg["chk_t"] = chk_t; pkg["chk_c"] = chk_c;
         $.post('controllers/editPost.php', {call:"doIt",post:pkg},function(sucess){
             $("#main").html(sucess);
         })
