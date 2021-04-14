@@ -7,7 +7,7 @@
     //Require procedures
         require '../procedures/loadPost.php';
         require '../procedures/loadOwnProfile.php';
-        require '../controllers/hiddenManagement.php';
+        require '../controllers/HidenShowEntryMgmt.php';
     //Require views
         include '../views/entry.php';
         include '../views/Ownprofile.php';

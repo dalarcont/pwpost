@@ -365,23 +365,40 @@
         })
     }
 
+    //Hide UnHide procedure
+    //Hide
+    function letHide(data){
+        var id = $(data).val();
+        $.post('controllers/hidePost.php', {call:"letH",post:id},function(sucess){
+            $("#main").html(sucess);
+        })
+    }
+    function hidePost(id){
+        $.post('controllers/hidePost.php', {call:"doItH",post:id},function(sucess){
+            $("#main").html(sucess);
+        })
+    }
+    //Unhide
+    function letUnhide(data){
+        var id = $(data).val();
+        $.post('controllers/hidePost.php', {call:"letU",post:id},function(sucess){
+            $("#main").html(sucess);
+        })
+    }
+    function unhidePost(id){
+        $.post('controllers/hidePost.php', {call:"doItU",post:id},function(sucess){
+            $("#main").html(sucess);
+        })
+    }
+
+
+
+
 
     function letRep(data){
         var XT = $(data).val();
         alert("UUID a repostear "+XT);
     }
-
-    function letHide(data){
-        var XT = $(data).val();
-        alert("UUID a ocultar "+XT);
-    }
-
-    function letUnhide(data){
-        var XT = $(data).val();
-        alert("UUID a mostrar "+XT);
-    }
-
-    
 
     //
     

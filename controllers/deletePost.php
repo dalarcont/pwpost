@@ -4,6 +4,7 @@ session_start();
     require '../views/confirmations.php';
     //Load procedure
     require '../procedures/sys_db_con.php';
+    require '../procedures/validators.php';
     require '../procedures/deletePost.php';
 
     /* Procedures has not been needed yet*/
@@ -22,7 +23,7 @@ session_start();
                 //To delete we need to verify the authority between the entry and it's true owner
                 $auth = validateAuthority_post($_POST['post'],$_SESSION['UsrPkg']['username']);
                 //By the auth value, take the properly way
-                if($auth[0]=="true"){
+                if($auth=="true"){
                     //The entry is property of the same logged user, that means the owner user is who wants to delete it
                     //Ok, delete now
                     $r = remPost($_POST['post'],$_SESSION['UsrPkg']['username']);

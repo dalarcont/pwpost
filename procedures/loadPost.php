@@ -12,8 +12,6 @@
 
     //Load post of the user and its followed accounts
     function loadPost($loggeduser){
-        
-        //$result = array();
         $SQL_Query = "
         SELECT 
             pif.username_followed, ge.*

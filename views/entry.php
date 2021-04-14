@@ -59,9 +59,9 @@ session_start();
     function printEntrie($pkg){
         //Verify that the data package isn't empty or null, if it's empty that means the DB isn't working properly
         //or the user that wants to load post haven't followed accounts
-        //echo $pkg['attached_content']."<br>".count($pkg);
         
         if($pkg!=null){
+            
             //In this statement, means that the system will show at least 1 entry
             echo "<div id='",$pkg['uuid_post'],"'>
                 ",editLogger($pkg['edit_counter'],$pkg['edit_lastdate']),"

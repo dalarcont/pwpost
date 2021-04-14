@@ -5,7 +5,7 @@
         require 'procedures/sys_db_con.php';
     //Require procedures, in the same directory because was called from a file on first directory path
         require 'procedures/loadDataProfile.php';
-        require 'controllers/hiddenManagement.php';
+        require 'controllers/HidenShowEntryMgmt.php';
     //Require views, in the same directory because was called from a file on first directory paths
         include 'views/profile.php';
         require 'views/entry.php';
