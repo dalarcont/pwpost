@@ -350,8 +350,20 @@
     }
 
 
+//Delete post procedure
+    function letRem(data){
+        var rm_id = $(data).val();
+        $.post('controllers/deletePost.php', {call:"let",post:rm_id},function(sucess){
+            $("#main").html(sucess);
+        })
+        
+    }
 
-
+    function rmPost(id){
+        $.post('controllers/deletePost.php', {call:"doIt",post:id},function(sucess){
+            $("#main").html(sucess);
+        })
+    }
 
 
     function letRep(data){
@@ -369,10 +381,7 @@
         alert("UUID a mostrar "+XT);
     }
 
-    function letRem(data){
-        var XT = $(data).val();
-        alert("UUID a eliminar "+XT);
-    }
+    
 
     //
     

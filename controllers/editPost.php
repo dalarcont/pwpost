@@ -5,7 +5,7 @@ session_start();
     //Load procedure
     require '../procedures/sys_db_con.php';
     require '../procedures/loadPost.php';
-    require '../procedures/updPost.php';
+    //require '../procedures/updPost.php';
 
     /* Procedures has not been needed yet*/
     if($_POST['call']=="let"){

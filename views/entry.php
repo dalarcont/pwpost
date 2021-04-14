@@ -1,5 +1,6 @@
 <?php 
 session_start();
+
     /*Entry print*/
 
     //This provides to the viewers if an entry was edited and how many times was affected.
@@ -36,13 +37,33 @@ session_start();
         
     }
 
+    //If an entry is a repost of another one, let print another row to show it
+    function entryAttached($pkg){
+        if($pkg['attached_prop']!=0){
+            //There is an attached entry, post its content while the attached post exists
+            if(!$pkg['attached_content']){
+                //The attached entry is private or was deleted.
+                echo "<tr><td colspan='6' style='height:85px;'><b><i>Esta entrada es un repost de otra que está privada o fue eliminada.</i></b></td></tr>";
+            }else{
+                //The attached entry is available
+                echo "<tr><td colspan='6' style='height:45px;'>Repost a entrada de: <a href='profile.php?p=",$pkg['attached_user'],"' target='_blank'><b>@",$pkg['attached_user'],"</b></a> : '",$pkg['attached_title'],"'</td></tr>";
+                echo "<tr><td colspan='6' style='height:85px;'><i>",$pkg['attached_content'],"</i></td></tr>";
+                echo "<tr><td colspan='6'><a href='viewPost.php?post=",$pkg['attached_uuid_post'],"' target='_blank'>Ver original del post adjunto</a></td></tr>";
+            }
+            
+        }
+        
+    }
+
     //Show the entry
     function printEntrie($pkg){
         //Verify that the data package isn't empty or null, if it's empty that means the DB isn't working properly
         //or the user that wants to load post haven't followed accounts
+        //echo $pkg['attached_content']."<br>".count($pkg);
+        
         if($pkg!=null){
             //In this statement, means that the system will show at least 1 entry
-            echo "<div>
+            echo "<div id='",$pkg['uuid_post'],"'>
                 ",editLogger($pkg['edit_counter'],$pkg['edit_lastdate']),"
                 <table class='blueTable' style='height: 85px;'>
                 <thead>
@@ -52,6 +73,7 @@ session_start();
                 <tr>
                 <td colspan='6' style='height:85px'>",$pkg['content'],"</td>
                 </tr>
+                ",entryAttached($pkg),"
                 <tr>
                 <td colspan='6'>
                     <span id='publishData'>Publicado por: <b>
