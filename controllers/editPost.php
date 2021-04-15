@@ -2,10 +2,24 @@
 session_start();
     //Load views
     require '../views/forms_post.php';
+    require '../views/entry.php';
     //Load procedure
     require '../procedures/sys_db_con.php';
     require '../procedures/loadPost.php';
     //require '../procedures/updPost.php';
+
+    /* real time entry editing */
+    function removeOldEntry_addNewEntry($id){
+        //Remove old entry and clean aux edit entry if exists to prevent problems
+        echo "<script>$('#",$id,"').remove(); $('#auxEdit').empty();</script>";
+        //Get data of new edited entry
+        $newEntry_data = loadPost_direct($id);
+        //Get the HTML data to print
+        $newPost_HTML = printEntry_forHTML($newEntry_data);
+        //Apply on HTML
+        echo "<script>$('",$newPost_HTML,"').insertAfter('#auxEdit');
+        $('#auxEdit').remove;</script>";
+    }
 
     /* Procedures has not been needed yet*/
     if($_POST['call']=="let"){
@@ -22,7 +36,6 @@ session_start();
         if($_POST['call']=="doIt"){
             //Yes, publish, but check if session isn't broken
             if(!empty($_SESSION['UsrPkg'])){
-
                 //Verify if the title and content wasn't altered. 
                 //If wasn't altered, just close the dialog
                 $edit_t = $_POST['post']['edit_t']; //New title
@@ -45,13 +58,20 @@ session_start();
 
                 if(($Entry_Original_Title_Hash == $Entry_Edited_Title_Hash) AND ($Entry_Original_Content_Hash == $Entry_Edited_Content_Hash)){
                     //There is no data to update
-                    echo "<script>alert('IGUAL');</script>";
+                    echo "<script>  $('#form_editPost').dialog('close'); alertify.success('No se realizaron modificaciones.');</script>";
                 }else{
                     //Ok, update now
-                    $r = updPost($user,$postid,$title,$content);
+                    //$r = updPost($user,$postid,$title,$content);
+                    $r=true;
                     if($r){
                         //The pub has been updated
-                        echo "<script>$('#form_editPost').dialog('close'); location.reload();</script>";
+                        echo "<script>$('#form_editPost').dialog('close');</script>";
+                        //Create an auxiliar div to print the entry with its new data after the original entry <div>
+                        //The aux was made to know the position where system will put the entry with the new data
+                        echo "<script>$('<div id=auxEdit></div>').insertAfter('#",$originalId,"');</script>";
+                        //Delete old entry, print new entry after the aux that we made previously, after that remove aux div.
+                        removeOldEntry_addNewEntry($originalId);
+
                     }else{
                         //There is an error
                         echo "<script>$('#form_editPost').dialog('close'); alertify.alert('Actualización de entrada', 'Ha ocurrido un error en la base de datos.<br />No se pudo actualizar tu entrada. Intenta más tarde.', function(){ location.reload(); });</script>";

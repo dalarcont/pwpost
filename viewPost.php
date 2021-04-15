@@ -1,12 +1,14 @@
 <?php
+    //Get the post ID
     $post_id = $_GET['post'];
+
     //Call control file
-        require 'controllers/viewPost.php';
+    require 'controllers/viewPost.php';
 
 ?><!DOCTYPE html>
 <html lang="es">
 <head>
-<title>PWPost - Entrada "<?php echo $result['title']; ?>"</title>
+<title>PWPost - Entrada <?php echo $r_title; ?></title>
 <meta charset="utf-8" />
 <meta name="description" content="Página para publicar cosas tipo post o twitter">
 <link rel="stylesheet" href="css/final.css">
@@ -26,6 +28,7 @@
 <header>
         <img src='components/favicon.ico' style='width:32px;height:32px;'></img>  <h2>PWPost!</h2>
     <?php 
+        //Show navigation bar if is a logged user
         if(!empty($_SESSION['UsrPkg'])){
             //Session is set, that mean that an user is logged on
             echo "<nav>
@@ -45,7 +48,18 @@
            <div id="main">
            </div>
            <div id="FrontEnd">
-                <br><?php printEntrie($result); ?>
+                <br><?php 
+                if($result=="PRIVATE"){
+                    //The entry is private or doesn't exits
+                    echo "La publicación que buscas no está disponible. Puede ser que esté privada o haya sido eliminada.";
+                }else{
+                    //The entry isn't private OR the entry is private but the logged user is the owner of that entry
+                    printEntry($result); 
+                }
+                
+                
+                
+                ?>
            </div>
            </center>
        </article>

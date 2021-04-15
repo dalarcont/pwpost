@@ -24,7 +24,7 @@
                     $size = count($result);
                 //print entries, connect to views
                 for($i=0; $i<=($size-1); $i++){
-                    printEntrie($result[$i]);
+                    printEntry($result[$i]);
                 }
             }else{
                 //Have not user some entries ? Ok, lets invite him to make one.

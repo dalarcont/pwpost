@@ -8,7 +8,7 @@ session_start();
         //If there is a 1 single or more edits attached to an entry, let print it's respective data
         if($count!=0){
             //There is affections attached to the entry across the time
-            $r = "<span class='rightUp_entryLegend'>Ediciones: ".$count." - Ùltima edición: ".$lastdate."</span>";
+            $r = "Ediciones: ".$count." - Ùltima edición: ".$lastdate."";
         }
 
         return $r;
@@ -21,13 +21,13 @@ session_start();
             //Isn't the same user
             //Then disable Edit(), Delete(), Hide()/Unhide() edit, delete and hide functions
             echo "<tr>
-                <th colspan='5'>",$pkg['title'],"</th>
+                <th id='entryTitle' colspan='5'>",$pkg['title'],"</th>
                 <th style='width:45px'><button class='btn btn-light' id='btn_repost' onclick='letRep(this)' value='",$pkg['uuid_post'],"'><img src='components/repost.png' style='width:28px;height:28px;'></img></button></th>
             </tr>";
         }else{
             //Entry owner is the same as logged user
             echo "<tr>
-            <th colspan='2'>",$pkg['title'],"</th>
+            <th id='entryTitle' colspan='2'>",$pkg['title'],"</th>
             <th style='width:45px'><button class='btn btn-info' id='btn_edit' onclick='letUpd(this)' value='",$pkg['uuid_post'],"'><img src='components/edit.png' style='width:25px;height:25px;'></img></button></th>
             <th style='width:45px'><button class='btn btn-danger' id='btn_del' onclick='letRem(this)' value='",$pkg['uuid_post'],"'><img src='components/delete.png' style='width:25px;height:25px;'></img></button></th>
             <th style='width:45px'><button class='btn btn-warning' id='btn_hide' onclick='",hidden_FxSelector($pkg['hiddenprop']),"(this)' value='",$pkg['uuid_post'],"' ><img src='components/",hidden_imgSelector($pkg['hiddenprop']),".png' style='width:25px;height:25px;'></img></button></th>
@@ -56,7 +56,7 @@ session_start();
     }
 
     //Show the entry
-    function printEntrie($pkg){
+    function printEntry($pkg){
         //Verify that the data package isn't empty or null, if it's empty that means the DB isn't working properly
         //or the user that wants to load post haven't followed accounts
         
@@ -64,16 +64,19 @@ session_start();
             
             //In this statement, means that the system will show at least 1 entry
             echo "<div id='",$pkg['uuid_post'],"'>
-                ",editLogger($pkg['edit_counter'],$pkg['edit_lastdate']),"
+                <span id='entryEdits' class='rightUp_entryLegend'>
+                    ",editLogger($pkg['edit_counter'],$pkg['edit_lastdate']),"
+                </span>
+                    
                 <table class='blueTable' style='height: 85px;'>
                 <thead>
                     ",entryActions_selector($pkg),"
                 </thead>
                 <tbody>
                 <tr>
-                <td colspan='6' style='height:85px'>",$pkg['content'],"</td>
+                    <td  id='entryContent' colspan='6' style='height:85px'>",$pkg['content'],"</td>
                 </tr>
-                ",entryAttached($pkg),"
+                    ",entryAttached($pkg),"
                 <tr>
                 <td colspan='6'>
                     <span id='publishData'>Publicado por: <b>
@@ -89,6 +92,46 @@ session_start();
             echo "<br>No sigues a ninguna cuenta y tampoco has publicado algo.<br>Anímate, no seas mala onda.<br>
             <button class='art-button' onclick='letPost()'><img src='components/newpost.png' style='width:25px;height:25px;'></img></button>";
         }
+    }
+
+    function printEntry_forHTML($pkg){
+        //Verify that the data package isn't empty or null, if it's empty that means the DB isn't working properly
+        //or the user that wants to load post haven't followed accounts
+        
+        if($pkg!=null){
+            
+            //In this statement, means that the system will show at least 1 entry
+            $data = "<div id='".$pkg['uuid_post']."'>
+                <span id='entryEdits' class='rightUp_entryLegend'>
+                    ".editLogger($pkg['edit_counter'],$pkg['edit_lastdate'])."
+                </span>
+                    
+                <table class='blueTable' style='height: 85px;'>
+                <thead>
+                    ".entryActions_selector($pkg)."
+                </thead>
+                <tbody>
+                <tr>
+                    <td  id='entryContent' colspan='6' style='height:85px'>".$pkg['content']."</td>
+                </tr>
+                    ".entryAttached($pkg)."
+                <tr>
+                <td colspan='6'>
+                    <span id='publishData'>Publicado por: <b>
+                        <a href='profile.php?p=".$pkg['own_user']."' target='_blank'>".$pkg['own_user']."</a></b> - 
+                        Fecha de publicación: <a href='viewPost.php?post=".$pkg['uuid_post']."' target='_blank'>".$pkg['pubdate']."</a>
+                    </span><br>
+                </td>
+                </tbody>
+                </table>
+            </div><br>";
+        }else{
+            //System doesn't have any entry to show, that means the user haven't published an entry or follow nobody.
+            $data = "<br>No sigues a ninguna cuenta y tampoco has publicado algo.<br>Anímate, no seas mala onda.<br>
+            <button class='art-button' onclick='letPost()'><img src='components/newpost.png' style='width:25px;height:25px;'></img></button>";
+        }
+
+        return $data;
     }
     
     

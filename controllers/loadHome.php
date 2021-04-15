@@ -32,7 +32,7 @@
                         }
                         
                     }
-                    printEntrie($result[$i]);
+                    printEntry($result[$i]);
                 }elseif($result[$i]['hiddenprop']==0){
                     //Its public
                     if($result[$i]['attached_prop']!=0){
@@ -49,17 +49,17 @@
                         }
                         
                     }
-                    printEntrie($result[$i]);
+                    printEntry($result[$i]);
                 }else{
                     //Its private and the logged user isn't the owner of the entry
                     $result = null;
-                    printEntrie($result);
+                    printEntry($result);
                 }
                 
             }
         }else{
             $result = null;
-            printEntrie($result);
+            printEntry($result);
         }
 
 ?>

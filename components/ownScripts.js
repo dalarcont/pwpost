@@ -4,7 +4,7 @@
  */
 
 
-//Click listeners
+//Entire body action listener and onload behavior
     $(document).ready(function(){
         //Let the 'New post' button move around the scroll movement
         var am = $("#actionsMenu");
@@ -34,7 +34,7 @@
             }
         });
 
-        //Let the 'Go Down' button move around the scroll movement
+        //Let the 'Go Top' button move around the scroll movement
         var am3 = $("#minusEntry");
         var pos3 = am3.position();
         //Hidde button because we only need it when the user scrolls up
@@ -70,6 +70,7 @@
             location.href='index.php' ;
         });
     });
+
 //Go to top or down
     function godown(){
         var hgt = $(document).height();
@@ -79,6 +80,7 @@
         var hgt = $(document).height();
         $("html, body").animate({scrollTop:"0px"});
     }
+    
 //Login procedure
     //Connect
     function connect(){
