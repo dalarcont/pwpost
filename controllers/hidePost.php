@@ -32,8 +32,12 @@ session_start();
                     //Ok, hide now
                     $r = hiddenProperty("hide",$_POST['post'],$_SESSION['UsrPkg']['username']);
                     if($r){
-                        //The pub has been updated
-                        echo "<script> alertify.success('Entrada privatizada'); alertify.alert('Ocultar entrada','Entrada oculta<br />Aquellos usuarios que hayan realizado repost de esta entrada les saldrá un aviso de que la misma ya no está disponible.');</script>";
+                        //The pub has been hiden
+                        echo "<script> 
+                        $('#",$_POST['post']," #btn_hide img').attr('src','components/unhide.png'); 
+                        $('#",$_POST['post']," #btn_hide').attr('onclick','letUnhide(this)');
+                        alertify.success('Entrada privatizada'); 
+                        alertify.alert('Ocultar entrada','Entrada oculta<br />Aquellos usuarios que hayan realizado repost de esta entrada les saldrá un aviso de que la misma ya no está disponible.');</script>";
                     }else{
                         //There is an error
                         echo "<script>alertify.alert('Ocultar entrada', 'Ha ocurrido un error en la base de datos.<br />No se pudo ocultar tu entrada. Intenta más tarde.', function(){ location.reload(); });</script>";
@@ -71,8 +75,13 @@ session_start();
                     //Ok, unhide now
                     $r = hiddenProperty("unhide",$_POST['post'],$_SESSION['UsrPkg']['username']);
                     if($r){
-                        //The pub has been updated
-                        echo "<script> alertify.success('Entrada privatizada'); alertify.alert('Mostrar entrada','Entrada pública<br />Aquellos usuarios que hayan realizado repost de esta entrada les aparecerá el contenido.');</script>";
+                        //The pub has been unhide, let change button and event
+                        echo "<script>
+                        $('#",$_POST['post']," #btn_hide img').attr('src','components/hide.png'); 
+                        $('#",$_POST['post']," #btn_hide').attr('onclick','letHide(this)');
+                        alertify.success('Entrada pública'); 
+                        alertify.alert('Mostrar entrada','Entrada pública<br />Aquellos usuarios que hayan realizado repost de esta entrada les aparecerá el contenido.');
+                        </script>";
                     }else{
                         //There is an error
                         echo "<script>alertify.alert('Mostrar entrada', 'Ha ocurrido un error en la base de datos.<br />No se pudo mostrar tu entrada. Intenta más tarde.', function(){ location.reload(); });</script>";
