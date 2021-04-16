@@ -6,19 +6,18 @@ session_start();
     //Load procedure
     require '../procedures/sys_db_con.php';
     require '../procedures/loadPost.php';
-    //require '../procedures/updPost.php';
+    require '../procedures/updPost.php';
 
     /* real time entry editing */
-    function removeOldEntry_addNewEntry($id){
-        //Remove old entry and clean aux edit entry if exists to prevent problems
-        echo "<script>$('#",$id,"').remove(); $('#auxEdit').empty();</script>";
+    function applyEntryEdition($id){
         //Get data of new edited entry
         $newEntry_data = loadPost_direct($id);
+        $newPost_title=$newEntry_data['title'];
+        $newPost_content=$newEntry_data['content'];
+        //$newPost_content=str_replace("$#13","<br />;",$newPost_content);
         //Get the HTML data to print
-        $newPost_HTML = printEntry_forHTML($newEntry_data);
-        //Apply on HTML
-        echo "<script>$('",$newPost_HTML,"').insertAfter('#auxEdit');
-        $('#auxEdit').remove;</script>";
+        echo "<script>$('#",$id," #entryTitle').html('",$newPost_title,"'); </script>";
+        echo "<script>$('#",$id," #entryContent').html('".$newPost_content."'); </script>";
     }
 
     /* Procedures has not been needed yet*/
@@ -56,22 +55,18 @@ session_start();
                     $Entry_Edited_Content_Hash = hash("md5",$edit_c);   //New
 
 
-                if(($Entry_Original_Title_Hash == $Entry_Edited_Title_Hash) AND ($Entry_Original_Content_Hash == $Entry_Edited_Content_Hash)){
+                if(($Entry_Original_Title_Hash == $Entry_Edited_Title_Hash) && ($Entry_Original_Content_Hash == $Entry_Edited_Content_Hash)){
                     //There is no data to update
-                    echo "<script>  $('#form_editPost').dialog('close'); alertify.success('No se realizaron modificaciones.');</script>";
+                    echo "<script> $('#form_editPost').dialog('close'); alertify.success('No se realizaron modificaciones.');</script>";
                 }else{
-                    //Ok, update now
-                    //$r = updPost($user,$postid,$title,$content);
-                    $r=true;
+                    //Ok, update now. Plase indicate the original id to the following function
+                    $r = updatePost($_SESSION['UsrPkg']['username'],$originalId,$edit_t,$edit_c);
                     if($r){
-                        //The pub has been updated
+                        //The pub has been updated, close dialog and remove all related to.
                         echo "<script>$('#form_editPost').dialog('close');</script>";
-                        //Create an auxiliar div to print the entry with its new data after the original entry <div>
-                        //The aux was made to know the position where system will put the entry with the new data
-                        echo "<script>$('<div id=auxEdit></div>').insertAfter('#",$originalId,"');</script>";
-                        //Delete old entry, print new entry after the aux that we made previously, after that remove aux div.
-                        removeOldEntry_addNewEntry($originalId);
-
+                        //Apply changes on the entry without reload, thats simple we need to show new title and new content
+                        // IMPORTANT: The data will be taken from DB not from the dialog
+                        applyEntryEdition($originalId);
                     }else{
                         //There is an error
                         echo "<script>$('#form_editPost').dialog('close'); alertify.alert('Actualización de entrada', 'Ha ocurrido un error en la base de datos.<br />No se pudo actualizar tu entrada. Intenta más tarde.', function(){ location.reload(); });</script>";

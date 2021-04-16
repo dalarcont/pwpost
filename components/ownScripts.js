@@ -348,6 +348,9 @@
         pkg["edit_t"] = edit_t; pkg["edit_c"] = edit_c ; pkg["id"]=id; pkg["chk_t"] = chk_t; pkg["chk_c"] = chk_c;
         $.post('controllers/editPost.php', {call:"doIt",post:pkg},function(sucess){
             $("#main").html(sucess);
+            document.querySelectorAll('[role="dialog"]').forEach(function (el){
+                el.remove();
+            });
         })
     }
 

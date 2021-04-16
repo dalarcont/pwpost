@@ -112,7 +112,7 @@ session_start();
                 </thead>
                 <tbody>
                 <tr>
-                    <td  id='entryContent' colspan='6' style='height:85px'>".$pkg['content']."</td>
+                    <td  colspan='6' style='height:85px'><div id='entryContent' >".$pkg['content']."</div></td>
                 </tr>
                     ".entryAttached($pkg)."
                 <tr>
