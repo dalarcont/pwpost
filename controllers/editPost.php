@@ -11,13 +11,13 @@ session_start();
     /* real time entry editing */
     function applyEntryEdition($id){
         //Get data of new edited entry
-        $newEntry_data = loadPost_direct($id);
-        $newPost_title=$newEntry_data['title'];
-        $newPost_content=$newEntry_data['content'];
-        //$newPost_content=str_replace("$#13","<br />;",$newPost_content);
-        //Get the HTML data to print
-        echo "<script>$('#",$id," #entryTitle').html('",$newPost_title,"'); </script>";
-        echo "<script>$('#",$id," #entryContent').html('".$newPost_content."'); </script>";
+        //Print the entry
+        echo "<script>End_postEdit('",$id,"')</script>";
+        //Clean the div that helps to system do operations
+        echo "<script>$('#main').empty();</script>";
+        //Delete aux div
+        echo "<script>$('#auxEdited_post').remove();</script>";
+
     }
 
     /* Procedures has not been needed yet*/
@@ -62,11 +62,14 @@ session_start();
                     //Ok, update now. Plase indicate the original id to the following function
                     $r = updatePost($_SESSION['UsrPkg']['username'],$originalId,$edit_t,$edit_c);
                     if($r){
-                        //The pub has been updated, close dialog and remove all related to.
-                        echo "<script>$('#form_editPost').dialog('close');</script>";
+                        //The pub has been updated
+                            //Close dialog
+                            //Make an auxiliar 'div' at the top of TimeLine (#FrontEnd div) where inside of it, call JS_FX to print an entry (the entry will be the edited entry with the new content);
+                            //Delete the edited entry. Why? Because the entry has new date of update/creation and its taken as new/recent and will be showed on the top of TimeLine
+                            echo "<script>$('#form_editPost').dialog('close'); $('#FrontEnd').prepend('<div id=auxEdited_post></div>'); $('#",$originalId,"').remove();</script>";
                         //Apply changes on the entry without reload, thats simple we need to show new title and new content
-                        // IMPORTANT: The data will be taken from DB not from the dialog
-                        applyEntryEdition($originalId);
+                            // IMPORTANT: The data will be taken from DB not from the dialog
+                            applyEntryEdition($originalId);
                     }else{
                         //There is an error
                         echo "<script>$('#form_editPost').dialog('close'); alertify.alert('Actualización de entrada', 'Ha ocurrido un error en la base de datos.<br />No se pudo actualizar tu entrada. Intenta más tarde.', function(){ location.reload(); });</script>";
@@ -74,9 +77,11 @@ session_start();
                 }
                 
             }else{
+                //Session is broken
                 echo "<script>$('#form_editPost').dialog('close'); alertify.alert('Actualización de entrada', 'Ha ocurrido un error en el sistema.<br />La sesión está rota.', function(){ location.href='index.php'; });</script>";
             }
         }else{
+            //Procedure parameter wasn't recognized
             echo "<script>$('#form_editPost').dialog('close'); alertify.alert('Actualización de entrada', 'Procedimiento de actualización de entrada erróneo', function(){ location.reload(); });</script>";
         }
     }

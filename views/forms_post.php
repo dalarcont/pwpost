@@ -45,7 +45,7 @@
             <thead>
                 <tr>
                 <th colspan='1' style='height:30px'>
-                    <input type='text' id='editEntry_title' placeholder='Título del post' style='width:450px' value='",$title,"'>
+                    <input type='text' id='editEntry_title' placeholder='Título del post' style='width:450px' onkeyup='updtng(this)' value='",$title,"'>
                 </th>
                 </tr>
             </thead>

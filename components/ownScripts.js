@@ -354,6 +354,12 @@
         })
     }
 
+    function End_postEdit(idp){
+        $.post('controllers/editPost_aux.php', {post:idp},function(sucess){
+            $("#auxEdited_post").html(sucess);
+        })
+    }
+
 
 //Delete post procedure
     function letRem(data){
