@@ -4,11 +4,11 @@ session_start();
     /*Entry print*/
 
     //This provides to the viewers if an entry was edited and how many times was affected.
-    function editLogger($count,$lastdate){
+    function editLogger($count,$lastdate,$originalDate){
         //If there is a 1 single or more edits attached to an entry, let print it's respective data
         if($count!=0){
             //There is affections attached to the entry across the time
-            $r = "Ediciones: ".$count." - Ùltima edición: ".$lastdate."";
+            $r = "Ediciones: ".$count." - Fecha de edición previa a la actual: ".$lastdate." - Fecha de publicación original: ".$originalDate;
         }
 
         return $r;
@@ -65,7 +65,7 @@ session_start();
             //In this statement, means that the system will show at least 1 entry
             echo "<div id='",$pkg['uuid_post'],"'>
                 <span id='entryEdits' class='rightUp_entryLegend'>
-                    ",editLogger($pkg['edit_counter'],$pkg['edit_lastdate']),"
+                    ",editLogger($pkg['edit_counter'],$pkg['edit_lastdate'],$pkg['pubdate_original']),"
                 </span>
                     
                 <table class='blueTable' style='height: 85px;'>
@@ -92,46 +92,6 @@ session_start();
             echo "<br>No sigues a ninguna cuenta y tampoco has publicado algo.<br>Anímate, no seas mala onda.<br>
             <button class='art-button' onclick='letPost()'><img src='components/newpost.png' style='width:25px;height:25px;'></img></button>";
         }
-    }
-
-    function printEntry_forHTML($pkg){
-        //Verify that the data package isn't empty or null, if it's empty that means the DB isn't working properly
-        //or the user that wants to load post haven't followed accounts
-        
-        if($pkg!=null){
-            
-            //In this statement, means that the system will show at least 1 entry
-            $data = "<div id='".$pkg['uuid_post']."'>
-                <span id='entryEdits' class='rightUp_entryLegend'>
-                    ".editLogger($pkg['edit_counter'],$pkg['edit_lastdate'])."
-                </span>
-                    
-                <table class='blueTable' style='height: 85px;'>
-                <thead>
-                    ".entryActions_selector($pkg)."
-                </thead>
-                <tbody>
-                <tr>
-                    <td  colspan='6' style='height:85px'><div id='entryContent' >".$pkg['content']."</div></td>
-                </tr>
-                    ".entryAttached($pkg)."
-                <tr>
-                <td colspan='6'>
-                    <span id='publishData'>Publicado por: <b>
-                        <a href='profile.php?p=".$pkg['own_user']."' target='_blank'>".$pkg['own_user']."</a></b> - 
-                        Fecha de publicación: <a href='viewPost.php?post=".$pkg['uuid_post']."' target='_blank'>".$pkg['pubdate']."</a>
-                    </span><br>
-                </td>
-                </tbody>
-                </table>
-            </div><br>";
-        }else{
-            //System doesn't have any entry to show, that means the user haven't published an entry or follow nobody.
-            $data = "<br>No sigues a ninguna cuenta y tampoco has publicado algo.<br>Anímate, no seas mala onda.<br>
-            <button class='art-button' onclick='letPost()'><img src='components/newpost.png' style='width:25px;height:25px;'></img></button>";
-        }
-
-        return $data;
     }
     
     
