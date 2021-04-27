@@ -1,7 +1,7 @@
 <?php 
     //Set follow procedure for User to User
     //THIS PROCEDURE OR QUERY STATEMENT IT'S DIFFERENT FROM mkFirstFollow
-    //Follower and followed 'username' & 'uuid' are required.
+    //Follower and followed 'username' & 'uid' are required.
     session_start();
 
 
@@ -11,10 +11,10 @@
         $followdate =  date("Y-m-d H:i:s");
         //Needed data
         $follower_un = $_SESSION['UsrPkg']['username'];
-        $follower_uid = $_SESSION['UsrPkg']['uuid_user'];
+        $follower_uid = $_SESSION['UsrPkg']['uid_user'];
         //Query statement
-        $SQL_QUERY = "INSERT INTO following (uuid_followed, username_followed, uuid_user, username, follow_date)
-        SELECT uuid_user, username, '$follower_uid', '$follower_un', '$followdate'
+        $SQL_QUERY = "INSERT INTO following (uid_followed, username_followed, uid_user, username, follow_date)
+        SELECT uid_user, username, '$follower_uid', '$follower_un', '$followdate'
             FROM users 
                 WHERE username = '$followed'";
                 //Let's do the query and check if it was sucess

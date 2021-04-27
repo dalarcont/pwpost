@@ -27,7 +27,7 @@
         if($_POST['call']=="setRecovery"){
             //User calls for get back its access after use a temporal password
             $pswd_new = $_POST['data'];
-            $r2 = set_newPass($pswd_new,$_SESSION['UsrPkg']['uuid_user']);
+            $r2 = set_newPass($pswd_new,$_SESSION['UsrPkg']['uid_user']);
             if($r2){
                 echo "<script>$('#main').hide(); alertify.alert('Recuperar cuenta', 'Cuenta y contraseña de acceso recuperadas.', function(){ window.location = 'index.php'; });</script>";
             }else{

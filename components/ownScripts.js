@@ -408,7 +408,7 @@
 
     function letRep(data){
         var XT = $(data).val();
-        alert("UUID a repostear "+XT);
+        alert("uid a repostear "+XT);
     }
 
     //

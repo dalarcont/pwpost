@@ -1,7 +1,7 @@
 <?php 
 
     function EditLimit($updPostId){
-        $SQL_QUERY = "SELECT edit_counter FROM general_entries WHERE uuid_post = '$updPostId'";
+        $SQL_QUERY = "SELECT edit_counter FROM general_entries WHERE uid_post = '$updPostId'";
         $do = mysqli_query(DB_CON(),$SQL_QUERY);
         $r = mysqli_fetch_array($do);
         return $r;
@@ -30,7 +30,7 @@
             pubdate = '$pubdate', 
             edit_counter = edit_counter+1, 
             edit_lastdate = '$lastUpddate'
-            WHERE uuid_post ='$updPostId' AND own_user='$updUser'";
+            WHERE uid_post ='$updPostId' AND own_user='$updUser'";
         $DOIT = mysqli_query(DB_CON(),$SQL_QUERY);
         if($DOIT){
             return true;

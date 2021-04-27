@@ -15,9 +15,9 @@ session_start();
         case "letH":
             //User wants to hide an entry
                 //Get UID of post that the user wants to hide
-                $uuid_post = $_POST['post'];
+                $uid_post = $_POST['post'];
                 //Ask for confirmation
-                confirm_hide_post($uuid_post);
+                confirm_hide_post($uid_post);
         break;
 
         case "doItH":
@@ -58,9 +58,9 @@ session_start();
         case "letU":
             //User wants to unhide an entry
                 //Get UID of post that the user wants to unhide
-                $uuid_post = $_POST['post'];
+                $uid_post = $_POST['post'];
                 //Ask for confirmation
-                confirm_unhide_post($uuid_post);
+                confirm_unhide_post($uid_post);
         break;
 
         case "doItU":

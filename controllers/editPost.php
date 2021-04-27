@@ -22,12 +22,12 @@ if ($_POST['call'] == "let") {
         echo "<script>alertify.alert('Actualización de entrada','Ya utilizaste las 5 veces que se permite que una entrada sea editada.<br />No se permite editar la entrada.<br />Crea una nueva o hazle repost a esta.');</script>";
     } else {
         //Get content of the post that the user wants to edit
-        $uuid_post = $_POST['post'];
-        $sourceEntry = loadPost_direct($uuid_post);
+        $uid_post = $_POST['post'];
+        $sourceEntry = loadPost_direct($uid_post);
         //Decode the <br /> to show correctly on HTML TextArea
         $decodedContent = str_replace("<br />", "&#13;", $sourceEntry['content']);
         //Show the dialog form to edit post with title and content from the original entry
-        form_editPost($sourceEntry['title'], $decodedContent, $uuid_post);
+        form_editPost($sourceEntry['title'], $decodedContent, $uid_post);
     }
     
 } else {

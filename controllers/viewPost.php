@@ -31,7 +31,7 @@ session_start();
             }
         }
     }
-    //Request post data by its uuid
+    //Request post data by its uid
         $result = loadPost_direct($post_id);
 
         //Entry is private?
@@ -53,7 +53,7 @@ session_start();
             //Load attached post if exists
             if($result['attached_prop']!=0){
                 //There is an attached entry
-                $attachedPackage = loadPost_direct($result['attached_uuid_post']);
+                $attachedPackage = loadPost_direct($result['attached_uid_post']);
                 //If the attached entry is private, return false
                 if($attachedPackage['hiddenprop']==1){
                     $result[$i]["attached_content"]=false;

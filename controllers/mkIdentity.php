@@ -17,7 +17,7 @@
         //doIdentity();
         $pkg = [];
         $pkg = $_POST['data'];
-        $pkg['validationCode'] = mkUUID(7);
+        $pkg['validationCode'] = mkuid(7);
         $EmailContent = signup_mailtemplate($pkg['email'],$pkg['validationCode']);
         
         $Procedure_MkIdentity = doIdentity($pkg);

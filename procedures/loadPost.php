@@ -3,7 +3,7 @@
 
     //Load a post directly only with its post ID
     function loadPost_direct($post_id){
-        $SQL_Query = "SELECT * FROM general_entries ge WHERE ge.uuid_post = '$post_id'";
+        $SQL_Query = "SELECT * FROM general_entries ge WHERE ge.uid_post = '$post_id'";
         $SQL_CON = mysqli_query(DB_CON(),$SQL_Query);
         $SQL_PKG = mysqli_fetch_array($SQL_CON);
         $result = $SQL_PKG ;

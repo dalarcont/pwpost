@@ -29,10 +29,10 @@ session_start();
                 $user = $_SESSION['UsrPkg']['username'];
                 $title = $pkg['title'];
                 $content = $pkg['content'];
-                $postUUID = postUUID(12);
-                $r = newPost($user,$title,$content,$postUUID);
+                $postuid = postuid(12);
+                $r = newPost($user,$title,$content,$postuid);
                 //The next procedure will be checked in an IF sentence to validate if post was registered in general DB and its version control in the respective DB
-                $vc = Post_VersionControl($user,$title,$content,0,$postUUID);
+                $vc = Post_VersionControl($user,$title,$content,0,$postuid);
                 if($r && $vc){
                     //The pub has been publishied
                     echo "<script>$('#form_newPost').dialog('close'); location.reload();</script>";

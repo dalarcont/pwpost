@@ -7,7 +7,7 @@
         include '../controllers/HidenShowEntryMgmt.php';
     //Require views, in the same directory as 'editPost' file, because system thinks we are on the same file
         include '../views/entry.php';
-    //Request post data by its uuid
+    //Request post data by its uid
         $result = loadPost_direct($_POST['post']);
 
         if(empty($result)){

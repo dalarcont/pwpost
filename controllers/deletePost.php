@@ -10,9 +10,9 @@ session_start();
     /* Procedures has not been needed yet*/
     if($_POST['call']=="let"){
         //Get UID of post that the user wants to delete
-        $uuid_post = $_POST['post'];
+        $uid_post = $_POST['post'];
         //Ask for confirmation
-        confirm_rm_post($uuid_post);
+        confirm_rm_post($uid_post);
     }else{
         //That means we need to publish (set) the new content
         //But let we stay safe about it
