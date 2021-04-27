@@ -65,7 +65,7 @@ if ($_POST['call'] == "let") {
                 //Ok, update now. Plase indicate the original id to the following function
                 $r = updatePost($_SESSION['UsrPkg']['username'], $originalId, $edit_t, $edit_c, $sourceEntry['pubdate']);
                 //Add version control record
-                $vc = Post_VersionControl($_SESSION['UsrPkg']['username'],$edit_t, $edit_c,$edition_limit_2, $originalId);
+                $vc = Post_VersionControl($_SESSION['UsrPkg']['username'],$edit_t, $edit_c,$edition_limit_2, $originalId,NULL);
                 if ($r && $vc) {
                     //The pub has been updated
                     //Close dialog
@@ -75,7 +75,7 @@ if ($_POST['call'] == "let") {
                     //Apply changes on the entry without reload, thats simple we need to show new title and new content
                     // IMPORTANT: The data will be taken from DB not from the dialog
                     //Print the entry
-                    echo "<script>End_postEdit('", $originalId, "')</script>";
+                    echo "<script>printPost('", $originalId, "')</script>";
                     //Notification
                     echo "<script>alertify.success('Entrada actualizada. La encuentras al principio.'); </script>";
                     //Clean the div that helps to system do operations

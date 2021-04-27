@@ -71,5 +71,45 @@
         ";
     }
 
+    function form_rePost($rp_src,$rp_t,$rp_c){
+        echo  "<div id='form_rePost' title='Nueva entrada' style='display:none;'><center>
+        <input type='hidden' id='repostsourceid' value='",$rp_src,"'>
+            <table class='blueTable' style='height:95%; width:95%'>
+            <thead>
+                <tr>
+                <th colspan='1' style='height:30px'>
+                    <input type='text' id='reEntry_title' placeholder='Título del repost' style='width:450px'>
+                </th>
+                </tr>
+            </thead>
+            <tbody>
+            <tr>
+            <td colspan='1'  >
+                <textarea id='reEntry_content' style='width:500px;height:150px;resize:none' placeholder='Escribe el contenido/comentario de tu repost&#10Recuerda que el sistema lee etiquetas HTML por si lo deseas'></textarea>
+            </td>
+            </tr>
+            <tr class='tdrp'>
+            <td colspan='1'  >
+                <span><i>Título publicación al que haces repost:</i></span><br><b>",$rp_t,"</b>
+            </td>
+            </tr>
+            <tr class='tdrp'>
+            <td colspan='1'  >
+                <span><i>Contenido del post al que haces repost:</i></span><br><b>",$rp_c,"</b>
+            </td>
+            </tr>
+            <tr>
+            <td colspan='1'>
+            <button class='btn btn-light' onclick='dorePost()'>Publicar repost</button>
+                </td>
+            </tr>
+            </tbody>
+            </table><br> 
+                </center>
+                </div>
+                <script>$('#form_rePost').dialog({height:450,width:650});</script>
+        ";
+    }
+
 
 ?>

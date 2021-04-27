@@ -2,10 +2,10 @@
 -- version 4.6.6
 -- https://www.phpmyadmin.net/
 --
--- Servidor: localhost
--- Tiempo de generación: 23-04-2021 a las 21:21:36
--- Versión del servidor: 5.7.17-log
--- Versión de PHP: 5.6.30
+-- Host: localhost
+-- Generation Time: Apr 27, 2021 at 09:50 PM
+-- Server version: 5.7.17-log
+-- PHP Version: 5.6.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,29 +17,71 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `pwpostdb`
+-- Database: `pwpostdb`
 --
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `following`
+-- Table structure for table `entry_versioncontrol`
+--
+
+CREATE TABLE `entry_versioncontrol` (
+  `commit_id` varchar(16) COLLATE utf8_spanish_ci NOT NULL COMMENT 'VersionControlCommitId',
+  `uid_post` varchar(15) COLLATE utf8_spanish_ci NOT NULL COMMENT 'PostUniqueID',
+  `edit_version` int(1) NOT NULL COMMENT 'EditionRecord',
+  `own_user` varchar(15) COLLATE utf8_spanish_ci NOT NULL COMMENT 'OwnerID',
+  `pubdate` datetime NOT NULL COMMENT 'PublishDate',
+  `title` text COLLATE utf8_spanish_ci NOT NULL COMMENT 'TitleEntrie',
+  `content` text COLLATE utf8_spanish_ci NOT NULL COMMENT 'ContentEntrie',
+  `attached_prop` tinyint(1) NOT NULL COMMENT 'isRepost?',
+  `attached_uid_post` text COLLATE utf8_spanish_ci NOT NULL COMMENT 'PostUIDSource',
+  `hiddenprop` tinyint(1) NOT NULL COMMENT 'isHidden?',
+  `attached_tw_sourcelink` text COLLATE utf8_spanish_ci NOT NULL COMMENT 'TwitterSource'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci COMMENT='Contents all of entries published by all users';
+
+--
+-- Dumping data for table `entry_versioncontrol`
+--
+
+INSERT INTO `entry_versioncontrol` (`commit_id`, `uid_post`, `edit_version`, `own_user`, `pubdate`, `title`, `content`, `attached_prop`, `attached_uid_post`, `hiddenprop`, `attached_tw_sourcelink`) VALUES
+('PWP6bFknaIEmZ830', 'PWP6bFknaIEmZ83', 0, 'dalarcont', '2021-04-26 23:55:27', 'UPOKANTA', 'UPOLKANTA', 0, '', 0, ''),
+('PWP6JWhBq124Moa0', 'PWP6JWhBq124Moa', 0, 'dalarcont', '2021-04-27 16:29:15', 'PRIMER REPOST HDSPM', 'COMENTARIO SOBRE EL POST RAIZ', 1, 'PWPQrkofxO8HtFv', 0, ''),
+('PWP7WV8vSLmru0F0', 'PWP7WV8vSLmru0F', 0, 'dalarcont', '2021-04-27 16:27:16', 'PRIMER REPOST HDSPM!', 'MERA MIERDA!', 1, 'PWPQrkofxO8HtFv', 0, ''),
+('PWPdc6YboGjwRQl0', 'PWPdc6YboGjwRQl', 0, 'dalarcont', '2021-04-27 16:32:48', 'PRIMER REPOST HDSPM', 'Maldito Uribe', 1, 'PWPQrkofxO8HtFv', 0, ''),
+('PWPeuIKi6Pwx1oL0', 'PWPeuIKi6Pwx1oL', 0, 'dalarcont', '2021-04-27 16:48:24', 'Prueba DONTRELOAD::after[newPost] ', 'Probando si esta entrada se publica al top del frontEnd sin necesidad de recargar o dejar en blanco el frontEnd', 0, '', 0, ''),
+('PWPfhWip6ISGYTP0', 'PWPfhWip6ISGYTP', 0, 'dalarcont', '2021-04-26 22:51:00', 'PRIMER POST DALARCONT', 'CONTENIDO PRIMARIO DALARCONT', 0, '', 0, ''),
+('PWPfhWip6ISGYTP1', 'PWPfhWip6ISGYTP', 1, 'dalarcont', '2021-04-26 22:51:36', 'PRIMER POST DALARCONT EDITADO', 'CONTENIDO PRIMARIO DALARCONT EDITADO', 0, '', 0, ''),
+('PWPfhWip6ISGYTP2', 'PWPfhWip6ISGYTP', 2, 'dalarcont', '2021-04-26 22:57:57', 'PRIMER POST DALARCONT EDITADO 2DA', 'CONTENIDO PRIMARIO DALARCONT EDITADO POR SEGUNDA VEZ', 0, '', 0, ''),
+('PWPfhWip6ISGYTP3', 'PWPfhWip6ISGYTP', 3, 'dalarcont', '2021-04-27 11:41:26', 'PRIMER POST DALARCONT EDITADO 2DA', 'CONTENIDO PRIMARIO DALARCONT EDITADO POR TERCERA VEZ', 0, '', 0, ''),
+('PWPi1YsBxJbkw7V0', 'PWPi1YsBxJbkw7V', 0, 'dalarcont', '2021-04-27 16:33:50', 'No se expresa...', 'Nadie sabe lo que dice ahí, salvo quien lo escribió.', 1, 'PWP6bFknaIEmZ83', 0, ''),
+('PWPnw7prLdGzbcP0', 'PWPnw7prLdGzbcP', 0, 'dalarcont', '2021-04-27 16:46:35', 'Prueba DONTRELOAD::after[newPost]', 'Probando si esta entrada se publica al top del frontEnd sin necesidad de recargar o dejar en blanco el frontEnd', 0, '', 0, ''),
+('PWPpw1PCtl8oSTY0', 'PWPpw1PCtl8oSTY', 0, 'dalarcont', '2021-04-27 16:42:52', 'Fin del CRUD', 'Hemos finalizado el CRUD!!!!!!<br />\nAbril 27 de 2021 a las 4:42pm', 0, '', 0, ''),
+('PWPQrkofxO8HtFv0', 'PWPQrkofxO8HtFv', 0, 'system', '2021-04-26 23:36:32', 'PRIMERA ENTRADA DEL SISTEMA', 'PRIMERA PRIMERA', 0, '', 0, ''),
+('PWPRnTPDf92mgrs0', 'PWPRnTPDf92mgrs', 0, 'dalarcont', '2021-04-27 16:21:18', 'Prueba de Repost', 'Contenido de repost (o sea el comentario) xd xd xd', 1, 'PWPQrkofxO8HtFv', 0, ''),
+('PWPvRcxJQWhBPOC0', 'PWPvRcxJQWhBPOC', 0, 'dalarcont', '2021-04-27 16:35:59', 'REPOST DE UN REPOST', 'Veremos que al hacer repost a un post que es un repost, nos mostrará que el repost que hicimos es del comentario hecho al repost raíz. RepostInception().', 1, 'PWPdc6YboGjwRQl', 0, ''),
+('PWPvRcxJQWhBPOC1', 'PWPvRcxJQWhBPOC', 1, 'dalarcont', '2021-04-27 16:36:55', 'EDITANDO REPOST DE UN REPOST', 'Veremos que al hacer repost a un post que es un repost, nos mostrará que el repost que hicimos es del comentario hecho al repost raíz. RepostInception().<br /><br />\nEsto fue editado. Omg...', 0, '', 0, '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `following`
 --
 
 CREATE TABLE `following` (
   `record` int(11) NOT NULL,
-  `uuid_user` varchar(15) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `uid_user` varchar(15) COLLATE utf8_spanish_ci DEFAULT NULL,
   `username` tinytext COLLATE utf8_spanish_ci,
-  `uuid_followed` varchar(15) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `uid_followed` varchar(15) COLLATE utf8_spanish_ci DEFAULT NULL,
   `username_followed` tinytext COLLATE utf8_spanish_ci,
   `follow_date` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
--- Volcado de datos para la tabla `following`
+-- Dumping data for table `following`
 --
 
-INSERT INTO `following` (`record`, `uuid_user`, `username`, `uuid_followed`, `username_followed`, `follow_date`) VALUES
+INSERT INTO `following` (`record`, `uid_user`, `username`, `uid_followed`, `username_followed`, `follow_date`) VALUES
 (18, 'PWP1beVwLy', 'dalarcont', 'PWP1beVwLy', 'dalarcont', '2021-04-14 15:40:15'),
 (19, 'PWPYpxBI1bO8gsX', 'system', 'PWPYpxBI1bO8gsX', 'system', '2021-04-14 15:43:30'),
 (20, 'PWPYpxBI1bO8gsX', 'system', 'PWP1beVwLy', 'dalarcont', '2021-04-14 15:44:15'),
@@ -48,11 +90,11 @@ INSERT INTO `following` (`record`, `uuid_user`, `username`, `uuid_followed`, `us
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `general_entries`
+-- Table structure for table `general_entries`
 --
 
 CREATE TABLE `general_entries` (
-  `uuid_post` varchar(15) COLLATE utf8_spanish_ci NOT NULL COMMENT 'PostUniqueID',
+  `uid_post` varchar(15) COLLATE utf8_spanish_ci NOT NULL COMMENT 'PostUniqueID',
   `own_user` varchar(15) COLLATE utf8_spanish_ci NOT NULL COMMENT 'OwnerID',
   `pubdate_original` datetime NOT NULL,
   `pubdate` datetime NOT NULL COMMENT 'PublishDate',
@@ -61,30 +103,33 @@ CREATE TABLE `general_entries` (
   `edit_counter` int(2) DEFAULT NULL,
   `edit_lastdate` datetime DEFAULT NULL,
   `attached_prop` tinyint(1) NOT NULL COMMENT 'isRepost?',
-  `attached_uuid_post` text COLLATE utf8_spanish_ci NOT NULL COMMENT 'PostUIDSource',
-  `attached_comment` text COLLATE utf8_spanish_ci NOT NULL COMMENT 'AttachedComment',
+  `attached_uid_post` text COLLATE utf8_spanish_ci NOT NULL COMMENT 'PostUIDSource',
   `hiddenprop` tinyint(1) NOT NULL COMMENT 'isHidden?',
   `attached_tw_sourcelink` text COLLATE utf8_spanish_ci NOT NULL COMMENT 'TwitterSource'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci COMMENT='Contents all of entries published by all users';
 
 --
--- Volcado de datos para la tabla `general_entries`
+-- Dumping data for table `general_entries`
 --
 
-INSERT INTO `general_entries` (`uuid_post`, `own_user`, `pubdate_original`, `pubdate`, `title`, `content`, `edit_counter`, `edit_lastdate`, `attached_prop`, `attached_uuid_post`, `attached_comment`, `hiddenprop`, `attached_tw_sourcelink`) VALUES
-('PWPBIzoSCT6NspF', 'dalarcont', '2021-04-23 15:07:15', '2021-04-23 16:09:06', 'Lorem Ipsum', '<br />\n<br />\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Nam ornare diam leo. Fusce mauris elit, rhoncus at nibh in, iaculis semper risus. Maecenas maximus arcu arcu. Nam ac laoreet dolor, fringilla sollicitudin elit. Ut sed enim ut risus lobortis venenatis sed non lorem. Phasellus a augue hendrerit, imperdiet est id, dapibus erat. Ut ullamcorper turpis ultricies lectus molestie bibendum. Nulla ac quam sit amet diam venenatis egestas. Curabitur tincidunt nisi eu erat iaculis pharetra. Duis sapien arcu, aliquam quis nisi vel, accumsan euismod sapien. Integer varius, ante non mollis condimentum, turpis metus hendrerit dui, nec sodales leo purus vitae enim. Proin eu congue nunc, vitae euismod turpis. Duis ut quam nec arcu ullamcorper finibus sed in nisi. Donec venenatis, lacus ut consectetur maximus, sapien elit bibendum leo, ac commodo lacus ipsum a tortor. Maecenas ac augue vel lorem tempor interdum id eget nisi. Nullam nunc nisl, aliquet non imperdiet a, imperdiet id tortor.<br />\n<br />\nAenean id commodo mi. Praesent enim felis, efficitur aliquet justo nec, imperdiet fermentum mi. Curabitur sit amet finibus massa. Nullam dolor nibh, maximus a dolor vel, convallis dapibus nunc. Morbi dui arcu, fringilla eget nulla sagittis, rutrum maximus leo. Vivamus vel mauris in est feugiat mollis. Maecenas auctor ante eget suscipit dapibus. Aliquam mollis felis neque, suscipit elementum magna ullamcorper nec. Integer porttitor quis nisl at viverra. Praesent gravida dapibus justo, convallis ullamcorper ex mollis sit amet. Cras non massa ante. Mauris sollicitudin finibus tortor at laoreet. Aliquam aliquam mauris turpis, vel pretium leo fermentum sed. Donec posuere neque lectus, id scelerisque mi faucibus vitae. Quisque sit amet purus erat. Curabitur scelerisque mollis tellus, vel eleifend lacus condimentum at.<br />\n<br />\nUt nec blandit lacus. Donec rhoncus orci eu tortor bibendum, id ultrices sem venenatis. Sed auctor tempus justo dictum gravida. Curabitur molestie pretium neque, at imperdiet tellus tempus sagittis. Integer commodo metus sed nisi sodales, lobortis iaculis felis dictum. Sed ultricies risus ante, quis accumsan ante malesuada sit amet. Pellentesque ex dolor, pellentesque sed tortor in, rhoncus molestie felis. Curabitur et tincidunt dui, dignissim tempus ipsum. Mauris tincidunt interdum pretium. Phasellus eu pellentesque eros. Mauris mattis fermentum tincidunt. Duis tincidunt tempor imperdiet. Phasellus vulputate ullamcorper feugiat. Suspendisse erat mi, egestas in accumsan vitae, aliquet sit amet risus. In eu suscipit tellus, et sollicitudin risus. Nam ultrices eget dolor vel dictum.<br />\n<br />\nNulla laoreet, magna ac varius ullamcorper, metus velit semper tortor, ut gravida nulla velit nec nulla. Donec vestibulum consequat nulla vel feugiat. In auctor rhoncus nibh vel bibendum. Quisque mattis ac tortor id suscipit. Fusce dolor est, dignissim eget fermentum eu, ornare quis nunc. Ut mi dolor, semper ut purus facilisis, dictum ultrices nibh. Praesent fermentum erat ac feugiat malesuada. Duis tincidunt scelerisque varius. Etiam ut felis aliquam, varius felis et, tristique eros. Fusce at vestibulum enim. Nullam suscipit arcu vitae ornare rutrum. Suspendisse consectetur consectetur hendrerit. Donec feugiat fermentum ligula at vulputate. Sed vestibulum leo lorem, a luctus lectus fermentum sed. Vivamus posuere nisi eu sapien pharetra, ac egestas ex finibus.<br />\n<br />\nNulla commodo lacinia velit, vitae ornare lorem congue eu. Sed eu mauris sit amet risus imperdiet faucibus. Nunc rutrum molestie rutrum. Nulla facilisi. Quisque in congue felis. Donec efficitur velit turpis, et maximus purus malesuada vel. Aliquam condimentum ipsum vitae enim pellentesque, ut laoreet metus interdum. Donec nec tortor libero. Cras nisi velit, tincidunt sed purus eu, sagittis pellentesque justo. ', 2, '2021-04-23 15:13:34', 0, '', '', 1, ''),
-('PWPCnMQg81ey7oD', 'dalarcont', '2021-04-16 16:04:14', '2021-04-16 16:04:14', 'Facultad Profesional: Nuevo Programa Anulado', 'La Facultad Profesional presenta su nuevo programa académico \"Ingeniería Depresiva\", invita a los interesados a consultar su contenido y generar interés para apuntarse a dicho programa en las próximas inscripciones.<br />\nsdgsdfhsdhsd<br />\nIngeniería Depresiva - 867377<br />\n7 Semestres<br />\nIngeniero(a) Depresivo<br />\nNivel Profesional Simple Titulación<br />\nNIE377', 0, NULL, 0, '', '', 0, ''),
-('PWPFClBuZy0zaYT', 'dalarcont', '2021-04-15 15:33:21', '2021-04-15 15:33:21', 'TITULACION DOBLE EN CURSO', 'La Facultad Profesional de la mano de la Presidencia está desarrollando los planes necesarios para que en cuanto la medida entre, los estudiantes antiguos y nuevos podrán graduarse no solo con el título de la Unimísera sino también de la Universidad Deformática de México. <br />\n<br />\n*SOLO PARA PROGRAMAS DE LA FACULTAD PROFESIONAL QUE ENTREN EN EL ACUERDO, ESTUDIANTES EGRESADOS NO PODRÁN SOLICITAR ACREDITACIÓN PARA CONVALIDAR SEGUNDO TÍTULO*', 0, NULL, 0, '', '', 0, ''),
-('PWPGv6cAHS09xko', 'dalarcont', '2021-04-15 15:33:38', '2021-04-15 15:33:38', 'Facultad Tecnologías: Nuevo Programa Académico', 'La Facultad Tecnologías presenta su nuevo programa académico \"Tecnología en Gestión de la Cultura Diversamente Sexual\", invita a los interesados a consultar su contenido y generar interés para apuntarse a dicho programa en las próximas inscripciones. <br />\nTecnología en Gestión de la Cultura Diversamente Sexual - 8684337<br />\n5 Semestres<br />\nTecnólogo(a) en Gestión de la Cultura Diversamente Sexual<br />\nNivel Tecnológico Profesional<br />\nNIE4337', 0, NULL, 0, '', '', 0, '');
+INSERT INTO `general_entries` (`uid_post`, `own_user`, `pubdate_original`, `pubdate`, `title`, `content`, `edit_counter`, `edit_lastdate`, `attached_prop`, `attached_uid_post`, `hiddenprop`, `attached_tw_sourcelink`) VALUES
+('PWP6bFknaIEmZ83', 'dalarcont', '2021-04-26 23:55:27', '2021-04-26 23:55:27', 'UPOKANTA', 'UPOLKANTA', 0, NULL, 0, '', 0, ''),
+('PWPdc6YboGjwRQl', 'dalarcont', '2021-04-27 16:32:48', '2021-04-27 16:32:48', 'PRIMER REPOST HDSPM', 'Maldito Uribe', 0, NULL, 1, 'PWPQrkofxO8HtFv', 0, ''),
+('PWPeuIKi6Pwx1oL', 'dalarcont', '2021-04-27 16:48:24', '2021-04-27 16:48:24', 'Prueba DONTRELOAD::after[newPost] ', 'Probando si esta entrada se publica al top del frontEnd sin necesidad de recargar o dejar en blanco el frontEnd', 0, NULL, 0, '', 0, ''),
+('PWPfhWip6ISGYTP', 'dalarcont', '2021-04-26 22:51:00', '2021-04-27 11:41:26', 'PRIMER POST DALARCONT EDITADO 2DA', 'CONTENIDO PRIMARIO DALARCONT EDITADO POR TERCERA VEZ', 3, '2021-04-26 22:57:57', 1, 'PWP6bFknaIEmZ83', 0, ''),
+('PWPi1YsBxJbkw7V', 'dalarcont', '2021-04-27 16:33:50', '2021-04-27 16:33:50', 'No se expresa...', 'Nadie sabe lo que dice ahí, salvo quien lo escribió.', 0, NULL, 1, 'PWP6bFknaIEmZ83', 0, ''),
+('PWPpw1PCtl8oSTY', 'dalarcont', '2021-04-27 16:42:52', '2021-04-27 16:42:52', 'Fin del CRUD', 'Hemos finalizado el CRUD!!!!!!<br />\nAbril 27 de 2021 a las 4:42pm', 0, NULL, 0, '', 0, ''),
+('PWPQrkofxO8HtFv', 'system', '2021-04-26 23:36:32', '2021-04-26 23:36:32', 'PRIMERA ENTRADA DEL SISTEMA', 'PRIMERA PRIMERA', 0, NULL, 0, '', 0, ''),
+('PWPvRcxJQWhBPOC', 'dalarcont', '2021-04-27 16:35:59', '2021-04-27 16:36:55', 'EDITANDO REPOST DE UN REPOST', 'Veremos que al hacer repost a un post que es un repost, nos mostrará que el repost que hicimos es del comentario hecho al repost raíz. RepostInception().<br />\nEsto fue editado. Omg...', 1, '2021-04-27 16:35:59', 1, 'PWPdc6YboGjwRQl', 0, '');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `users`
+-- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
-  `uuid_user` varchar(15) COLLATE utf8_spanish_ci NOT NULL COMMENT 'UniqueID',
+  `uid_user` varchar(15) COLLATE utf8_spanish_ci NOT NULL COMMENT 'UniqueID',
   `username` varchar(30) COLLATE utf8_spanish_ci NOT NULL COMMENT 'Username',
   `user_fullname` text COLLATE utf8_spanish_ci NOT NULL COMMENT 'Fullname',
   `user_email` text COLLATE utf8_spanish_ci NOT NULL COMMENT 'Email',
@@ -96,43 +141,49 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci COMMENT='Contents all of client users profiles';
 
 --
--- Volcado de datos para la tabla `users`
+-- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`uuid_user`, `username`, `user_fullname`, `user_email`, `user_pswd`, `joindate`, `first_access`, `recovery_key`, `following`) VALUES
+INSERT INTO `users` (`uid_user`, `username`, `user_fullname`, `user_email`, `user_pswd`, `joindate`, `first_access`, `recovery_key`, `following`) VALUES
 ('PWP1beVwLy', 'dalarcont', 'Daniel Alarcón Tabares', 'daniel.alarcon@utp.edu.co', 'D4larcont', '2021-04-14', '', NULL, 'null'),
 ('PWPYpxBI1bO8gsX', 'system', 'SISTEMA', 'registro@pwpost.com', 'sistema', '2021-04-14', '', NULL, 'null');
 
 --
--- Índices para tablas volcadas
+-- Indexes for dumped tables
 --
 
 --
--- Indices de la tabla `following`
+-- Indexes for table `entry_versioncontrol`
+--
+ALTER TABLE `entry_versioncontrol`
+  ADD UNIQUE KEY `commit_id` (`commit_id`);
+
+--
+-- Indexes for table `following`
 --
 ALTER TABLE `following`
   ADD PRIMARY KEY (`record`),
   ADD UNIQUE KEY `record_UNIQUE` (`record`);
 
 --
--- Indices de la tabla `general_entries`
+-- Indexes for table `general_entries`
 --
 ALTER TABLE `general_entries`
-  ADD UNIQUE KEY `uuid_post_UNIQUE` (`uuid_post`);
+  ADD UNIQUE KEY `uid_post` (`uid_post`);
 
 --
--- Indices de la tabla `users`
+-- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`username`),
   ADD UNIQUE KEY `username_UNIQUE` (`username`);
 
 --
--- AUTO_INCREMENT de las tablas volcadas
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT de la tabla `following`
+-- AUTO_INCREMENT for table `following`
 --
 ALTER TABLE `following`
   MODIFY `record` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;

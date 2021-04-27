@@ -27,6 +27,23 @@ session_start();
             $size = count($Entries);
             //print entries, connect to views
             for($i=0; $i<=($size-1); $i++){
+                
+                //Load attached post if exists
+                if($Entries[$i]['attached_prop']!=0){
+                    //There is an attached entry
+                    $attachedPackage = loadPost_direct($Entries[$i]['attached_uid_post']);
+                    //If the attached entry is private, return false
+                    if($attachedPackage['hiddenprop']==1){
+                        $Entries[$i]["attached_content"]=false;
+                    }else{
+                        //Push above elements on the array
+                        $Entries[$i]["attached_user"] = $attachedPackage['own_user'];
+                        $Entries[$i]["attached_title"] = $attachedPackage['title'];
+                        $Entries[$i]["attached_content"] = $attachedPackage['content'];
+                    }
+                    
+                }
+                //Print
                 printEntry_VC($Entries[$i]);
             }
         }

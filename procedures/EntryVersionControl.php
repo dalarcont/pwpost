@@ -13,13 +13,15 @@
     }
 
     //At new registry or editing post, let version control
-    function Post_VersionControl($user,$title,$content,$version,$objetive){
+    function Post_VersionControl($user,$title,$content,$version,$objetive,$attachedsource){
         date_default_timezone_set('America/Bogota');
         $pubdate = date("Y-m-d H:i:s");
+        //If there isn't attached post (for a repost), just let empty attached and '0' to property
+        if($attachedsource==NULL){$attached_prop=0;$attachedsource="";}else{$attached_prop=1;}
         $commit_id = $objetive.$version;
         $content = nl2br($content,true);
-        $SQL_QUERY = "INSERT INTO entry_versioncontrol (commit_id, uid_post, edit_version, own_user, pubdate, title, content)
-        VALUES ('$commit_id','$objetive','$version','$user','$pubdate','$title','$content')";
+        $SQL_QUERY = "INSERT INTO entry_versioncontrol (commit_id, uid_post, edit_version, own_user, pubdate, title, content, attached_prop, attached_uid_post)
+        VALUES ('$commit_id','$objetive','$version','$user','$pubdate','$title','$content','$attached_prop','$attachedsource')";
         if(mysqli_query(DB_CON(),$SQL_QUERY)){
             return true;
         }else{

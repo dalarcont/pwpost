@@ -55,9 +55,9 @@ session_start();
         
     }
 
-    //Counter auxiliar for printEntry_VC
+    //Auxiliar counter for printEntry_VC
     function counterAux($version){
-        if($version==0){echo "Versión original.";}else{echo $version;}
+        if($version==0){echo "Versión original.";}else{echo "Edición #".$version;}
     }
 
     //Show the entry
@@ -108,7 +108,7 @@ session_start();
              //In this statement, means that the system will show at least 1 entry
             echo "<div id='",$pkg['uid_post'],"'>
                     <span id='entryEdits' class='rightUp_entryLegend'>
-                    Versión #",counterAux($pkg['edit_version']),".
+                    ",counterAux($pkg['edit_version']),".
                 </span>
                 <table class='blueTable' style='height: 85px;'>
                 <thead>

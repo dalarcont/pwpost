@@ -285,7 +285,12 @@
 
 //Entry procedures
     function letPost(){
-        //Call the controller
+        //Call the controller, but first clean divs
+        $("#main").empty();
+        document.querySelectorAll('[role="dialog"]').forEach(function (el){
+            el.remove();
+        });
+        //Execute what this functions wants
         $.post('controllers/newPost.php', {call:"let"},function(sucess){
             $("#main").html(sucess);
         });
@@ -354,12 +359,53 @@
         })
     }
 
-    function End_postEdit(idp){
-        $.post('controllers/editPost_aux.php', {post:idp},function(sucess){
+    //Auxiliar post printer
+    function printPost(idp){
+        $.post('controllers/EntryPrinter_aux.php', {post:idp},function(sucess){
             $("#auxEdited_post").html(sucess);
         })
     }
+//Repost procedure
+    function letRep(data){
+        //Next statement will clean any garbage of the other 'Repost' usage.
+        $("#main").empty();
+        document.querySelectorAll('[role="dialog"]').forEach(function (el){
+            el.remove();
+        });
+        //Get vars
+        var rpid = $(data).val();
+        $.post('controllers/rePost.php', {call:"let",post:rpid},function(sucess){
+            $("#main").html(sucess);
+        })
+    }
 
+    //Execution procedure of repost
+    function dorePost(){
+        //Read properties
+        var t = $("#reEntry_title").val();
+        var c = $("#reEntry_content").val();
+        var rps = $("#repostsourceid").val();
+        
+
+        if(t.length<5){
+            //Title haven't 5 digits or more
+            alertify.alert("Repost","El título debe contener 5 o más digitos.");
+        }else{
+            //Title have 5 digits or more, lets check the content
+            if(c.length<5){  
+                //The content haven't 5 digits or more
+                alertify.alert("Repost","El contenido debe contener 5 o más digitos.");
+            }else{
+                //The title and content have the required requisites, user can publish
+                var pkg = {title: "",content: "",attachedid: ""};
+                pkg["title"] = t ; pkg["content"] = c ; pkg["attachedid"] = rps;
+                // Call controller
+                $.post('controllers/rePost.php', {call:"doIt",data:pkg},function(sucess){
+                    $("#main").html(sucess); 
+                });
+            }   
+        }
+    }
 
 //Delete post procedure
     function letRem(data){
@@ -403,13 +449,16 @@
     }
 
 
-
-
-
-    function letRep(data){
-        var XT = $(data).val();
-        alert("uid a repostear "+XT);
-    }
-
-    //
+//Remove profile procedure
+function letRemoveProfile(data){
+    var id = data;
+    $.post('controllers/removeProfile.php', {call:"letU",post:id},function(sucess){
+        $("#main").html(sucess);
+    })
+}
+function executeRemove(confirmation){
+    $.post('controllers/removeProfile.php', {call:"doItU",post:confirmation},function(sucess){
+        $("#main").html(sucess);
+    })
+}
     

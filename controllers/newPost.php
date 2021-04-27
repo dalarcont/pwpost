@@ -30,12 +30,21 @@ session_start();
                 $title = $pkg['title'];
                 $content = $pkg['content'];
                 $postuid = postuid(12);
-                $r = newPost($user,$title,$content,$postuid);
+                $r = newPost($user,$title,$content,$postuid,NULL);
                 //The next procedure will be checked in an IF sentence to validate if post was registered in general DB and its version control in the respective DB
-                $vc = Post_VersionControl($user,$title,$content,0,$postuid);
+                $vc = Post_VersionControl($user,$title,$content,0,$postuid,NULL);
                 if($r && $vc){
                     //The pub has been publishied
-                    echo "<script>$('#form_newPost').dialog('close'); location.reload();</script>";
+                    //Close dialog
+                    //Make an auxiliar 'div' at the top of TimeLine (#FrontEnd div) where inside of it, call JS_FX to print an entry
+                    echo "<script>$('#form_newPost').dialog('close'); $('#FrontEnd').prepend('<div id=auxEdited_post></div>'); </script>";
+                    // IMPORTANT: The data will be taken from DB not from the dialog
+                    //Print the entry
+                    echo "<script>printPost('", $postuid, "')</script>";
+                    //Clean the div that helps to system do operations
+                    echo "<script>$('#main').empty();</script>";
+                    //Delete aux div
+                    echo "<script>$('#auxEdited_post').remove();</script>";
                 }else{
                     //There is an error
                     echo "<script>$('#form_newPost').dialog('close'); alertify.alert('Nueva entrada', 'Ha ocurrido un error en la base de datos.<br />No se pudo publicar tu entrada. Intenta más tarde.', function(){ location.reload(); });</script>";
