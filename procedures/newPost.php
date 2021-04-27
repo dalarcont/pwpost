@@ -7,8 +7,7 @@
         return $r;
     }
 
-    function newPost($user,$title,$content){
-        $postUUID = postUUID(12);
+    function newPost($user,$title,$content,$postUUID){
         date_default_timezone_set('America/Bogota');
         $pubdate = date("Y-m-d H:i:s");
         //

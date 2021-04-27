@@ -4,7 +4,7 @@
         $SQL_QUERY = "SELECT edit_counter FROM general_entries WHERE uuid_post = '$updPostId'";
         $do = mysqli_query(DB_CON(),$SQL_QUERY);
         $r = mysqli_fetch_array($do);
-        if($r[0]>=5){return true;}else{return false;}
+        return $r;
     }
 
     function updatePost($updUser,$updPostId,$updTitle,$updContent,$lastUpddate){

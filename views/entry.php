@@ -55,6 +55,11 @@ session_start();
         
     }
 
+    //Counter auxiliar for printEntry_VC
+    function counterAux($version){
+        if($version==0){echo "Versión original.";}else{echo $version;}
+    }
+
     //Show the entry
     function printEntry($pkg){
         //Verify that the data package isn't empty or null, if it's empty that means the DB isn't working properly
@@ -91,6 +96,38 @@ session_start();
             //System doesn't have any entry to show, that means the user haven't published an entry or follow nobody.
             echo "<br>No sigues a ninguna cuenta y tampoco has publicado algo.<br>Anímate, no seas mala onda.<br>
             <button class='art-button' onclick='letPost()'><img src='components/newpost.png' style='width:25px;height:25px;'></img></button>";
+        }
+    }
+
+    //Show the previous data of the entry following instructions on version control
+    function printEntry_VC($pkg){
+        //Verify that the data package isn't empty or null, if it's empty that means the DB isn't working properly
+        //or the user that wants to load post haven't followed accounts
+        
+        if($pkg!=null){
+             //In this statement, means that the system will show at least 1 entry
+            echo "<div id='",$pkg['uuid_post'],"'>
+                    <span id='entryEdits' class='rightUp_entryLegend'>
+                    Versión #",counterAux($pkg['edit_version']),".
+                </span>
+                <table class='blueTable' style='height: 85px;'>
+                <thead>
+                <tr>
+                <th id='entryTitle' colspan='5'>",$pkg['title'],"</th></tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td  id='entryContent' colspan='6' style='height:85px'>",$pkg['content'],"</td>
+                </tr>
+                    ",entryAttached($pkg),"
+                <tr>
+                <td colspan='6'>
+                    <span id='publishData'>Publicado por: <b>",$pkg['own_user'],"</b> - Fecha de publicación de esta versión: ",$pkg['pubdate'],"
+                    </span><br>
+                </td>
+                </tbody>
+                </table>
+            </div><br>";
         }
     }
     

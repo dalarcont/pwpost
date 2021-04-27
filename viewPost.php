@@ -55,6 +55,9 @@
                 }else{
                     //The entry isn't private OR the entry is private but the logged user is the owner of that entry
                     printEntry($result); 
+                    //Print version controlling of the entry
+                    VersionControlStatement($result['edit_counter'],$post_id);
+                    
                 }
                 
                 
@@ -64,7 +67,7 @@
            </center>
        </article>
     </section>
-    <footer>
+    <!-- <footer>
         <div>
             <span class='footTxt'><br><img src='components/favicon.ico' style='width:32px;height:32px;'><br>PWPost!</span><br><span class='footTxtsign'>
             Sin derechos reservados, es tan solo un proyecto de asignatura<br>
@@ -76,6 +79,6 @@
             Daniel Alarcón</span>
         </div>
         
-    </footer>
+    </footer>-->
 </body>
 </html>

@@ -7,6 +7,7 @@ require '../views/entry.php';
 require '../procedures/sys_db_con.php';
 require '../procedures/loadPost.php';
 require '../procedures/updPost.php';
+require '../procedures/EntryVersionControl.php';
 
 
 //Keep the process going on
@@ -15,7 +16,8 @@ if ($_POST['call'] == "let") {
     //Every entry haves a limitation:
     //  Users can edit a post 5 times only
     //  After 5 times, system will not let them edit a post
-    if (EditLimit($_POST['post']) == true) {
+    $edition_limit = EditLimit($_POST['post'])[0];
+    if ($edition_limit >= 5) {
         //Entry has been updated 5 times and can't acept a new edition
         echo "<script>alertify.alert('Actualización de entrada','Ya utilizaste las 5 veces que se permite que una entrada sea editada.<br />No se permite editar la entrada.<br />Crea una nueva o hazle repost a esta.');</script>";
     } else {
@@ -58,9 +60,13 @@ if ($_POST['call'] == "let") {
                 //There is no data to update
                 echo "<script> $('#form_editPost').dialog('close'); alertify.success('No se realizaron modificaciones.');</script>";
             } else {
+                //Before the edit post procedure, set actual counter of editions
+                $edition_limit_2 = EditLimit($originalId)[0] + 1;
                 //Ok, update now. Plase indicate the original id to the following function
                 $r = updatePost($_SESSION['UsrPkg']['username'], $originalId, $edit_t, $edit_c, $sourceEntry['pubdate']);
-                if ($r) {
+                //Add version control record
+                $vc = Post_VersionControl($_SESSION['UsrPkg']['username'],$edit_t, $edit_c,$edition_limit_2, $originalId);
+                if ($r && $vc) {
                     //The pub has been updated
                     //Close dialog
                     //Make an auxiliar 'div' at the top of TimeLine (#FrontEnd div) where inside of it, call JS_FX to print an entry (the entry will be the edited entry with the new content);

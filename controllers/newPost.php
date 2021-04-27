@@ -5,6 +5,7 @@ session_start();
     //Load procedure
     require '../procedures/newPost.php';
     require '../procedures/sys_db_con.php';
+    require '../procedures/EntryVersionControl.php';
 
     /* Procedures has not been needed yet*/
     if($_POST['call']=="let"){
@@ -28,8 +29,11 @@ session_start();
                 $user = $_SESSION['UsrPkg']['username'];
                 $title = $pkg['title'];
                 $content = $pkg['content'];
-                $r = newPost($user,$title,$content);
-                if($r){
+                $postUUID = postUUID(12);
+                $r = newPost($user,$title,$content,$postUUID);
+                //The next procedure will be checked in an IF sentence to validate if post was registered in general DB and its version control in the respective DB
+                $vc = Post_VersionControl($user,$title,$content,0,$postUUID);
+                if($r && $vc){
                     //The pub has been publishied
                     echo "<script>$('#form_newPost').dialog('close'); location.reload();</script>";
                 }else{
