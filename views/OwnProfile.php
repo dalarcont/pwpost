@@ -3,9 +3,7 @@
     /*Entry print*/
     
     function printProfile($pkg){
-        $data="<p>Nombre completo: <b>".$pkg['user_fullname']."</b>-Correo electrónico: <b>".$pkg['user_email']."</b><br \><i>Tu correo no será visible ante el público.</i> -Fecha de registro: <b>".$pkg['joindate']."</b></p><button class='btn btn-danger' id='btn_hide' onclick=letRemoveProfile(".$_SESSION['UsrPkg']['username'].")>Eliminar mi perfil</button><p><br \></p>";
-        $data = str_replace("<br />", "&#13;", $data);
-        echo "<script>$('<div id=profileDescription>",$data,"</div>').insertBefore('#FrontEnd'); </script>";
+        echo "<div id='contentProfileDescription'><p>Nombre completo: <b>".$pkg['user_fullname']."</b>-Correo electrónico: <b>".$pkg['user_email']."</b><br><i>Tu correo no será visible ante el público.</i> -Fecha de registro: <b>".$pkg['joindate']."</b></p><button class='btn btn-danger' id='btn_hide' onclick=letRemoveProfile(".$_SESSION['UsrPkg']['username'].")>Eliminar mi perfil</button><p><br \></p></div>";
         
     }
 

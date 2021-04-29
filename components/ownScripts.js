@@ -53,6 +53,8 @@
 
         //Let the nav options menu works
         $("#loadHome").click(function(){
+            //Delete aux profile description div
+            $("#profileDescription").remove();
             $.post('controllers/loadHome.php', function(sucess){
                 $("#FrontEnd").html(sucess);
             });
@@ -60,7 +62,9 @@
         });
 
         $("#showProfile").click(function(){
-            $.post('controllers/loadOwnProfile.php', function(sucess){
+            $('<div id=profileDescription></div>').insertBefore('#FrontEnd');
+            showProfileData();
+            $.post('controllers/loadOwnProfile.php', {path:"PE"},function(sucess){
                 $("#FrontEnd").html(sucess);
             });
                     
@@ -70,6 +74,7 @@
             location.href='index.php' ;
         });
     });
+
 
 //Go to top or down
     function godown(){
@@ -282,6 +287,12 @@
         alertify.alert('Prueba','Dejar de seguir');
     }
 
+//Auxiliar profile data
+    function showProfileData(){
+        $.post('controllers/loadOwnProfile.php', {path:false},function(sucess){
+            $("#profileDescription").html(sucess);
+        });
+    }
 
 //Entry procedures
     function letPost(){
