@@ -33,7 +33,7 @@
             <script src='plugins/alertifyjs/alertify.min.js'></script>
             <link rel='stylesheet' href='plugins/alertifyjs/css/alertify.min.css' />
             <link rel='stylesheet' href='plugins/alertifyjs/css/themes/default.min.css' />
-            <script src='components/ownScripts.js'></script>
+            <script src='components/SystemScripts.js'></script>
             <link rel='shortcut icon' href='components/favicon.ico' type='image/x-icon'>
             </head>
 
@@ -49,20 +49,20 @@
                 </header>
                 
             <div id='MoreEntry'>
-                <button class='btn btn-info' onclick='godown()'><img src='components/down.png' style='width:25px;height:25px;'></img> Ir abajo</button>
+                <button class='btn btn-info' onclick='BottomPage()'><img src='components/down.png' style='width:25px;height:25px;'></img> Ir abajo</button>
             </div>
             <div id='actionsMenu'><br>
-                <button class='btn btn-success' onclick='letPost()'><img src='components/newpost.png' style='width:25px;height:25px;'></img> Nueva entrada</button><br><br>
+                <button class='btn btn-success' onclick='startNewPost()'><img src='components/newpost.png' style='width:25px;height:25px;'></img> Nueva entrada</button><br><br>
             </div>
             <div id='minusEntry'>
-                <button class='btn btn-info' onclick='gotop()'><img src='components/up.png' style='width:25px;height:25px;'></img> Ir arriba</button>
+                <button class='btn btn-info' onclick='TopPage()'><img src='components/up.png' style='width:25px;height:25px;'></img> Ir arriba</button>
             </div>
             
             <section>
             <article>
             <center>
             <div id='main'>
-            <script>initialLoad();</script>
+            <script>DesktopLoad();</script>
             </div>
             <input type='hidden' id='isOnProfile' value='null'></input>
             <div id='FrontEnd'>

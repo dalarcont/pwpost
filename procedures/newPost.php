@@ -1,13 +1,13 @@
 <?php 
     
-    function postuid($cantChars) {
+    function MakePostUID($cantChars) {
         $r = "";
         $permitted_chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $r = "PWP".substr(str_shuffle($permitted_chars), 0, $cantChars);
         return $r;
     }
 
-    function newPost($user,$title,$content,$postuid,$attachedsource){
+    function DB_SetNewPost($user,$title,$content,$postuid,$attachedsource){
         date_default_timezone_set('America/Bogota');
         $pubdate = date("Y-m-d H:i:s");
         //If there isn't attached post (for a repost), just let empty attached and '0' to property
@@ -25,7 +25,7 @@
 
     }
 
-    function rePost($user,$title,$content,$postuid,$attachedsource){
+    function DB_SetRePost($user,$title,$content,$postuid,$attachedsource){
         date_default_timezone_set('America/Bogota');
         $pubdate = date("Y-m-d H:i:s");
         //

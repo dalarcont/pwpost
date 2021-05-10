@@ -1,13 +1,13 @@
 <?php 
 
-    function EditLimit($updPostId){
+    function DB_ReadEditionCounter($updPostId){
         $SQL_QUERY = "SELECT edit_counter FROM general_entries WHERE uid_post = '$updPostId'";
         $do = mysqli_query(DB_CON(),$SQL_QUERY);
         $r = mysqli_fetch_array($do);
         return $r;
     }
 
-    function updatePost($updUser,$updPostId,$updTitle,$updContent,$lastUpddate){
+    function DB_SetUpdatePost($updUser,$updPostId,$updTitle,$updContent,$lastUpddate){
         
         date_default_timezone_set('America/Bogota');
         $pubdate = date("Y-m-d H:i:s");

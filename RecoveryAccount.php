@@ -14,7 +14,7 @@
 <script src='plugins/alertifyjs/alertify.min.js'></script>
 <link rel='stylesheet' href='plugins/alertifyjs/css/alertify.min.css' />
 <link rel='stylesheet' href='plugins/alertifyjs/css/themes/default.min.css' />
-<script src='components/ownScripts.js'></script>
+<script src='components/SystemScripts.js'></script>
 <link rel='shortcut icon' href='components/favicon.ico' type='image/x-icon'>
 </head>
 

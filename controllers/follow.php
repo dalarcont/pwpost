@@ -3,8 +3,8 @@
     //Require DB connection
 
     //Call procedures
-    require '../procedures/sys_db_con.php';
-    require '../procedures/follow.php';
+    require '../procedures/SYS_DB_CON.php';
+    require '../procedures/Follow.php';
     //This procedure doesn't need view file. This same controller can change a simply style property
 
     if(empty($_SESSION['UsrPkg'])){
@@ -14,7 +14,7 @@
         //User session is working properly
         //The 'username' that is requesting to follow other 'username' is taken from session data, but the followed 'username' is taken from JS and HTML
         $followed_user = $_POST['data'];
-        $r = doFollow($followed_user);
+        $r = DB_SetUpFollow($followed_user,null);
         if($r){
             //Follow procedure was great and can set changes in HTML UI
             echo "<script>

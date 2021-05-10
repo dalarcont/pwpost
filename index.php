@@ -1,6 +1,7 @@
 <?php 
 session_start();
 session_destroy();
+include 'views/LoginForms.php';
 ?><!DOCTYPE html>
 <html lang="es">
 <head>
@@ -16,12 +17,12 @@ session_destroy();
 <script src="plugins/alertifyjs/alertify.min.js"></script>
 <link rel="stylesheet" href="plugins/alertifyjs/css/alertify.min.css" />
 <link rel="stylesheet" href="plugins/alertifyjs/css/themes/default.min.css" />
-<script src="components/ownScripts.js"></script>
+<script src="components/SystemScripts.js"></script>
 <link rel="shortcut icon" href="components/favicon.ico" type="image/x-icon">
 <script>
     $(document).on('keypress',function(e){
         if(e.which == 13){
-            connect();
+            systemConnect();
         }
     });
 </script>
@@ -36,7 +37,7 @@ session_destroy();
        <article>
            <center>
            <div id="main">
-               <?php require 'views/loginForm.php'; ?>
+               <?php Form_Login(); ?>
            </div>
            <div id="FrontEnd">
            </div>

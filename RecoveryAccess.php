@@ -21,7 +21,7 @@ if(empty($_SESSION['UsrPkg']['recovery_key'])){
         <script src='plugins/alertifyjs/alertify.min.js'></script>
         <link rel='stylesheet' href='plugins/alertifyjs/css/alertify.min.css' />
         <link rel='stylesheet' href='plugins/alertifyjs/css/themes/default.min.css' />
-        <script src='components/ownScripts.js'></script>
+        <script src='components/SystemScripts.js'></script>
         <link rel='shortcut icon' href='components/favicon.ico' type='image/x-icon'>
         </head>
 
@@ -39,9 +39,9 @@ if(empty($_SESSION['UsrPkg']['recovery_key'])){
         <p>Ingresaste con la contraseña temporal</p>
         <p>Dado esto, tendrás que asignar a tu perfil una nueva contraseña<br> Digita tu nueva contraseña. Recuerda que debe ser igual o mayor a 8 dígitos.</p>
         <div class='mb-3'>
-            <input type='password' class='form-control' id='newpswd' style='width:200px;' onkeyup='validatePassField_2()'><br><br>
+            <input type='password' class='form-control' id='newpswd' style='width:200px;' onkeyup='UserKeyValidation_2()'><br><br>
             <span id='msgSpan' style='color:red;'></span>
-            <button id='rcvButton' class='btn btn-primary' onclick='getRecovery()' style='display:none;'>Continuar</button><br><br>
+            <button id='rcvButton' class='btn btn-primary' onclick='StartRecovery()' style='display:none;'>Continuar</button><br><br>
         </div>
         </div>
         <div id='FrontEnd'>

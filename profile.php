@@ -2,7 +2,7 @@
 session_start();
     $profile_username = $_GET['p'];
     //Call control file
-        require 'controllers/profile.php';
+        require 'controllers/ProfilePublic.php';
 
 ?>
 <!DOCTYPE html>
@@ -20,7 +20,7 @@ session_start();
 <script src="plugins/alertifyjs/alertify.min.js"></script>
 <link rel="stylesheet" href="plugins/alertifyjs/css/alertify.min.css" />
 <link rel="stylesheet" href="plugins/alertifyjs/css/themes/default.min.css" />
-<script src="components/ownScripts.js"></script>
+<script src="components/SystemScripts.js"></script>
 <link rel="shortcut icon" href="components/favicon.ico" type="image/x-icon">
 </head>
  
@@ -43,13 +43,13 @@ session_start();
                 if(!empty($_SESSION['UsrPkg'])){
                 //Session is set, that mean that an user is logged on
                     echo "<div id='actionsMenu'><br>
-                    <button class='btn btn-success' onclick='letPost()'><img src='components/newpost.png' style='width:25px;height:25px;'></img> Nueva entrada</button>
+                    <button class='btn btn-success' onclick='startNewPost()'><img src='components/newpost.png' style='width:25px;height:25px;'></img> Nueva entrada</button>
                     </div>
                     <div id='MoreEntry'>
-                        <button class='btn btn-info' onclick='godown()'><img src='components/down.png' style='width:25px;height:25px;'></img> Ir abajo</button>
+                        <button class='btn btn-info' onclick='BottomPage()'><img src='components/down.png' style='width:25px;height:25px;'></img> Ir abajo</button>
                     </div>
                     <div id='minusEntry'>
-                        <button class='btn btn-info' onclick='gotop()'><img src='components/up.png' style='width:25px;height:25px;'></img> Ir arriba</button>
+                        <button class='btn btn-info' onclick='TopPage()'><img src='components/up.png' style='width:25px;height:25px;'></img> Ir arriba</button>
                     </div>
                     ";
 
@@ -64,7 +64,7 @@ session_start();
                 //Print data profile
                 printProfile_data($profile_username); 
                 //Call procedure to check a follow
-                require 'procedures/getFollowingData.php';
+                require 'procedures/FollowingData.php';
                 //Let us know what's the logged user
                 $loggedUser = $_SESSION['UsrPkg']['username'];
                 //Get list of followed users
@@ -76,11 +76,11 @@ session_start();
                     echo "---";
                 }else{
                     //Isn't the same
-                    if(checkFollowing($profile_username,$loggedUser)){
+                    if(DB_VerifyFollow($profile_username,$loggedUser)){
                         //Print 'Unfollow' FxButton
                         echo "<button id='fxFollow' class='btn btn-danger' onclick='letUnfollow()'>Dejar de seguir</button><br><br>";
                     }else{
-                        echo "<button id='fxFollow' class='btn btn-success' onclick='letFollow()'>Seguir</button><br><br>";
+                        echo "<button id='fxFollow' class='btn btn-success' onclick='SetUpFollow()'>Seguir</button><br><br>";
                     }
                 }
                 

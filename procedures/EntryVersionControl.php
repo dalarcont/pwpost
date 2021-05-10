@@ -13,7 +13,7 @@
     }
 
     //At new registry or editing post, let version control
-    function Post_VersionControl($user,$title,$content,$version,$objetive,$attachedsource){
+    function DB_AddPost_VersionControl($user,$title,$content,$version,$objetive,$attachedsource){
         date_default_timezone_set('America/Bogota');
         $pubdate = date("Y-m-d H:i:s");
         //If there isn't attached post (for a repost), just let empty attached and '0' to property

@@ -1,19 +1,19 @@
 <?php 
 
     session_start();
-    require '../procedures/RecoveryAccount.php';
-    require '../procedures/sys_db_con.php';
-    require '../procedures/sendEmail.php';
-    require '../views/recoveryMail.php';
-    require '../procedures/SetNewPassword.php';
+    require '../procedures/Recovery.php';
+    require '../procedures/SYS_DB_CON.php';
+    require '../procedures/Email.php';
+    require '../views/RecoveryMail.php';
+    require '../procedures/UpdatePassword.php';
 
 
     if(empty($_POST['call'])){
         //email
         $email = $_POST['data'];
-        $pswd = mkTempPswd(10);
+        $pswd = MakeTemporalPassword(10);
 
-        $r = set_RecoveryAccount($email,$pswd);
+        $r = DB_SetUpRecoveryPassword$email,$pswd);
         $content = recovery_mailtemplate($email, $pswd);
 
         if($r){
@@ -27,7 +27,7 @@
         if($_POST['call']=="setRecovery"){
             //User calls for get back its access after use a temporal password
             $pswd_new = $_POST['data'];
-            $r2 = set_newPass($pswd_new,$_SESSION['UsrPkg']['uid_user']);
+            $r2 = DB_SetUpNewPassword$pswd_new,$_SESSION['UsrPkg']['uid_user']);
             if($r2){
                 echo "<script>$('#main').hide(); alertify.alert('Recuperar cuenta', 'Cuenta y contraseña de acceso recuperadas.', function(){ window.location = 'index.php'; });</script>";
             }else{
