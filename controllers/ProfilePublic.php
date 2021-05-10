@@ -28,7 +28,7 @@
                 }
             }else{
                 //Have not user some entries ? Ok, lets invite him to make one.
-                printProfile_entrieEmpty();
+                Print_PublicProfileEmpty();
             }
         }
         
