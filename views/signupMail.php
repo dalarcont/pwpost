@@ -1,6 +1,6 @@
 <?php 
 
-function signup_mailtemplate($email,$code){
+function EmailTemplate_SignUp($email,$code){
     $result = "<style>
     div.PWPostnewuser {
       border: 1px solid #1C6EA4;

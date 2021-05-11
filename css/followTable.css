@@ -1,0 +1,41 @@
+table.followTable {
+    border: 1px solid #1C6EA4;
+    background-color: #FFFFFF;
+    width: 100%;
+    text-align: center;
+    border-collapse: collapse;
+    color:#000000;
+  }
+  table.followTable td, table.followTable th {
+    border: 1px solid #AAAAAA;
+    padding: 3px 2px;
+  }
+  table.followTable tbody td {
+    font-size: 13px;
+  }
+  table.followTable tfoot td {
+    font-size: 14px;
+  }
+  table.followTable tfoot .links {
+    text-align: right;
+  }
+  table.followTable tfoot .links a{
+    display: inline-block;
+    background: #1C6EA4;
+    color: #FFFFFF;
+    padding: 2px 8px;
+    border-radius: 5px;
+  }
+  #usrpic{
+      width:15px;
+  }
+  #username{
+      width:150px;
+  }
+  #name{
+      width:150px;
+  }
+  #action{
+      width:35px;
+  }
+    

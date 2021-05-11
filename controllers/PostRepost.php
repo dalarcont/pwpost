@@ -20,7 +20,7 @@ if ($_POST['call'] == "let") {
     $RepostSource = DB_Post_DirectLoad($RepostSourceId);
     if(!empty($RepostSource)){
         //Post source is available
-        form_DB_SetRePost($RepostSourceId,$RepostSource['title'],$RepostSource['content']);
+        Form_RePost($RepostSourceId,$RepostSource['title'],$RepostSource['content']);
     }else{
         //Post source is unavailable
         echo "<script>alertify.alert('Repost','La entrada a la que quieres hacer repost acaba de declararse no disponible.<br />El usuario ha eliminado la entrada o la hemos eliminado nosotros.');</script>";

@@ -1,8 +1,9 @@
 <?php
 session_start();
     $profile_username = $_GET['p'];
-    //Call control file
-        require 'controllers/ProfilePublic.php';
+    
+    /*//Call control file
+        require 'controllers/ProfilePublic.php';*/
 
 ?>
 <!DOCTYPE html>
@@ -22,10 +23,18 @@ session_start();
 <link rel="stylesheet" href="plugins/alertifyjs/css/themes/default.min.css" />
 <script src="components/SystemScripts.js"></script>
 <link rel="shortcut icon" href="components/favicon.ico" type="image/x-icon">
+
 </head>
- 
+<?php 
+echo "<script>
+$.post('controllers/ProfileManager.php', {path:'PV',p:'".$_GET['p']."'},function(sucess){
+    $('#FrontEnd').html(sucess);
+});
+</script>";
+?>
 <body>
     <header>
+    <br>
         <img src='components/favicon.ico' style='width:32px;height:32px;'></img>  <h2>PWPost!</h2>
         <?php 
                 if(!empty($_SESSION['UsrPkg'])){
@@ -36,8 +45,7 @@ session_start();
                     <a href='#' id='logOff'>Salir</a>
                     </nav>
                 </header>";} 
-            ?>
-     
+            ?><br>
     <section>
     <?php 
                 if(!empty($_SESSION['UsrPkg'])){
@@ -57,40 +65,11 @@ session_start();
             ?>
        <article>
            <center>
-           <div id="aux">
-           <?php 
-            //Hidden value to set if the new post action will start with a comment or empty
-                echo '<input type="hidden" id="isOnProfile" value="',$profile_username,'"></input>';
-                //Print data profile
-                printProfile_data($profile_username); 
-                //Call procedure to check a follow
-                require 'procedures/FollowingData.php';
-                //Let us know what's the logged user
-                $loggedUser = $_SESSION['UsrPkg']['username'];
-                //Get list of followed users
-
-
-                //Is the profile in view the same as logged user??
-                if($profile_username==$loggedUser){
-                    //It's the same
-                    echo "---";
-                }else{
-                    //Isn't the same
-                    if(DB_VerifyFollow($profile_username,$loggedUser)){
-                        //Print 'Unfollow' FxButton
-                        echo "<button id='fxFollow' class='btn btn-danger' onclick='letUnfollow()'>Dejar de seguir</button><br><br>";
-                    }else{
-                        echo "<button id='fxFollow' class='btn btn-success' onclick='SetUpFollow()'>Seguir</button><br><br>";
-                    }
-                }
-                
-            ?>     
-           </div>
            <div id="main">
+           <?php echo '<input type="hidden" id="isOnProfile" value="',$profile_username,'"></input>'; ?>
            <!-- Keep this DIV empty for this page because it will be used for new post dialog with user mention-->
            </div>
            <div id="FrontEnd">
-                <?php printProfile_entries($profile_username); ?>
            </div>
            </center>
        </article>

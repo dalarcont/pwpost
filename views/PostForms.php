@@ -1,7 +1,5 @@
 <?php 
 
-    session_start();
-
     function Form_New(){
         echo  "<div id='form_newPost' title='Nueva entrada' style='display:none;'><center>
             <table class='blueTable' style='height:95%; width:95%'>
@@ -32,7 +30,6 @@
                 <script>$('#form_newPost').dialog({height:450,width:550});</script>
         ";
     }
-
 
     function Form_Edit($title,$content,$postid){
         $md1 = hash("md5",$title);

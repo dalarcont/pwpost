@@ -9,7 +9,7 @@ session_start();
 
     /* Procedures has not been needed yet*/
     if($_POST['call']=="let"){
-        form_DB_SetNewPost();
+        Form_New();
         echo '<script>
         var userMention = $("#isOnProfile").val();
             //Verify if this procedure was called from normal page or was called from a profile page

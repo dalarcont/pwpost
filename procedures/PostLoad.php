@@ -32,9 +32,15 @@
     }
 
     //Load posts of an specific user
-    function DB_Post_Profile($usrname){
+    function DB_Post_Profile($usrname,$hideProp){
 
-        $SQL_Query = "SELECT * FROM general_entries ge WHERE ge.own_user = '$usrname' ORDER BY ge.pubdate DESC";
+        if($hideProp==true){
+            //Show only public entries
+            $SQL_Query = "SELECT * FROM general_entries ge WHERE ge.own_user = '$usrname' AND hiddenprop = '0' ORDER BY ge.pubdate DESC";
+        }else{
+            $SQL_Query = "SELECT * FROM general_entries ge WHERE ge.own_user = '$usrname' ORDER BY ge.pubdate DESC";
+        }
+
         $SQL_CON = mysqli_query(DB_CON(),$SQL_Query);
         while($SQL_PKG = mysqli_fetch_array($SQL_CON)){
             $result[]=$SQL_PKG;

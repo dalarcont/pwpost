@@ -17,7 +17,7 @@
         $pkg = [];
         $pkg = $_POST['data'];
         $pkg['validationCode'] = MakeUID(7);
-        $EmailContent = signup_mailtemplate($pkg['email'],$pkg['validationCode']);
+        $EmailContent = EmailTemplate_SignUp($pkg['email'],$pkg['validationCode']);
         
         $Procedure_MkIdentity = DB_SetUpIdentity($pkg);
         if($Procedure_MkIdentity){

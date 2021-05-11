@@ -14,7 +14,7 @@
         $pswd = MakeTemporalPassword(10);
 
         $r = DB_SetUpRecoveryPassword$email,$pswd);
-        $content = recovery_mailtemplate($email, $pswd);
+        $content = EmailTemplate_Recovery($email, $pswd);
 
         if($r){
             //Recovery account procedure on DB was correct.

@@ -1,6 +1,6 @@
 <?php 
 
-function recovery_mailtemplate($email,$code){
+function EmailTemplate_Recovery($email,$code){
     $result = "<style>
     div.PWPostnewuser {
       border: 1px solid #1C6EA4;

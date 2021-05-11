@@ -16,23 +16,29 @@ session_start();
 
     //If an entry is property of the same logged user in system, it will show actions buttons
     function PrintEntryActions($pkg){
-
-        if($pkg['own_user']!=$_SESSION['UsrPkg']['username']){
-            //Isn't the same user
-            //Then disable Edit(), Delete(), Hide()/Unhide() edit, delete and hide functions
-            echo "<tr>
+        $isLoggedUser = $_SESSION['UsrPkg']['username'];
+        
+        if(empty($isLoggedUser)){
+            //Session username is not declared. This post wants viewed from the public
+            echo "<tr><th id='entryTitle' colspan='6'>",$pkg['title'],"</th></tr>";
+        }else{
+            //Session username is declared, compare, and show repost or not, or all actions
+            if($pkg['own_user']!=$isLoggedUser){
+                //Then disable Edit(), Delete(), Hide()/Unhide() edit, delete and hide functions
+                echo "<tr>
                 <th id='entryTitle' colspan='5'>",$pkg['title'],"</th>
                 <th style='width:45px'><button class='btn btn-light' id='btn_repost' onclick='startRepost(this)' value='",$pkg['uid_post'],"'><img src='components/repost.png' style='width:28px;height:28px;'></img></button></th>
-            </tr>";
-        }else{
-            //Entry owner is the same as logged user
-            echo "<tr>
-            <th id='entryTitle' colspan='2'>",$pkg['title'],"</th>
-            <th style='width:45px'><button class='btn btn-info' id='btn_edit' onclick='startUpdatePost(this)' value='",$pkg['uid_post'],"'><img src='components/edit.png' style='width:25px;height:25px;'></img></button></th>
-            <th style='width:45px'><button class='btn btn-danger' id='btn_del' onclick='startRemovePost(this)' value='",$pkg['uid_post'],"'><img src='components/delete.png' style='width:25px;height:25px;'></img></button></th>
-            <th style='width:45px'><button class='btn btn-warning' id='btn_hide' onclick='",hidden_FxSelector($pkg['hiddenprop']),"(this)' value='",$pkg['uid_post'],"' ><img src='components/",hidden_imgSelector($pkg['hiddenprop']),".png' style='width:25px;height:25px;'></img></button></th>
-            <th style='width:45px'><button class='btn btn-light' id='btn_repost' onclick='startRepost(this)' value='",$pkg['uid_post'],"'><img src='components/repost.png' style='width:25px;height:25px;'></img></button></th>
-            </tr>";
+                </tr>";
+            }else{
+                //Entry owner is the same as logged user
+                echo "<tr>
+                <th id='entryTitle' colspan='2'>",$pkg['title'],"</th>
+                <th style='width:45px'><button class='btn btn-info' id='btn_edit' onclick='startUpdatePost(this)' value='",$pkg['uid_post'],"'><img src='components/edit.png' style='width:25px;height:25px;'></img></button></th>
+                <th style='width:45px'><button class='btn btn-danger' id='btn_del' onclick='startRemovePost(this)' value='",$pkg['uid_post'],"'><img src='components/delete.png' style='width:25px;height:25px;'></img></button></th>
+                <th style='width:45px'><button class='btn btn-warning' id='btn_hide' onclick='",hidden_FxSelector($pkg['hiddenprop']),"(this)' value='",$pkg['uid_post'],"' ><img src='components/",hidden_imgSelector($pkg['hiddenprop']),".png' style='width:25px;height:25px;'></img></button></th>
+                <th style='width:45px'><button class='btn btn-light' id='btn_repost' onclick='startRepost(this)' value='",$pkg['uid_post'],"'><img src='components/repost.png' style='width:25px;height:25px;'></img></button></th>
+                </tr>";
+            }
         }
         
     }
@@ -62,13 +68,14 @@ session_start();
 
     //Show the entry
     function PrintEntry($pkg){
+        //pkg = package ; mode = define if entry is show as public (no button action) or have button if is logged some user
         //Verify that the data package isn't empty or null, if it's empty that means the DB isn't working properly
         //or the user that wants to load post haven't followed accounts
         
         if($pkg!=null){
             
             //In this statement, means that the system will show at least 1 entry
-            echo "<div id='",$pkg['uid_post'],"'>
+            echo "<div style='padding-top: 15px;' id='",$pkg['uid_post'],"'>
                 <span id='entryEdits' class='rightUp_entryLegend'>
                     ",PrintEditCounterFrame($pkg['edit_counter'],$pkg['edit_lastdate'],$pkg['pubdate_original']),"
                 </span>
@@ -87,11 +94,11 @@ session_start();
                     <span id='publishData'>Publicado por: <b>
                         <a href='Profile.php?p=",$pkg['own_user'],"' target='_blank'>",$pkg['own_user'],"</a></b> - 
                         Fecha de publicación: <a href='Post.php?post=",$pkg['uid_post'],"' target='_blank'>",$pkg['pubdate'],"</a>
-                    </span><br>
+                    </span>
                 </td>
                 </tbody>
                 </table>
-            </div><br>";
+            </div>";
         }else{
             //System doesn't have any entry to show, that means the user haven't published an entry or follow nobody.
             echo "<br>No sigues a ninguna cuenta y tampoco has publicado algo.<br>Anímate, no seas mala onda.<br>

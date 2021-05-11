@@ -62,9 +62,9 @@
         });
 
         $("#showProfile").click(function(){
-            $('<div id=profileDescription></div>').insertBefore('#FrontEnd');
-            showProfileData();
-            $.post('controllers/OwnProfileLoad.php', {path:"PE"},function(sucess){
+            //$('<div id=profileDescription></div>').insertBefore('#FrontEnd');
+            //showProfileResume_LoggedUser();
+            $.post('controllers/ProfileManager.php', {path:"LUOWN"},function(sucess){
                 $("#FrontEnd").html(sucess);
             });
                     
@@ -288,8 +288,8 @@
     }
 
 //Auxiliar profile data
-    function showProfileData(){
-        $.post('controllers/OwnProfileLoad.php', {path:false},function(sucess){
+    function showProfileResume_LoggedUser(){
+        $.post('controllers/ProfileManager.php', {path:RSM},function(sucess){
             $("#profileDescription").html(sucess);
         });
     }
@@ -458,7 +458,13 @@
             $("#main").html(sucess);
         })
     }
+//Showing follows and followed people
 
+    function showFollows(type,data){
+        $.post('controllers/PeopleList.php', {call:"upok"},function(sucess){
+            $("#main").html(sucess);
+        })
+    }
 
 //Remove profile procedure
 function startUnsetIdentity(data){
