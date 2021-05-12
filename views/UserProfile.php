@@ -29,6 +29,11 @@
         echo "<big>Este usuario no existe o no está disponible temporalmente.</big>";
     }
 
+    //Follow action buttons
+    function FollowButtons(){
+        
+    }
+
     function ShowFollowData($mode,$data){
 
         if($mode=="1N"){

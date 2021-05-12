@@ -39,6 +39,15 @@
         }
     }
 
+    function DB_UnsetFollow($unfollowed,$user){
+        $SQL_QUERY = "DELETE FROM following WHERE username_followed = '$unfollowed' AND username = '$user'";
+        if(mysqli_query(DB_CON(),$SQL_QUERY)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
     
 
 

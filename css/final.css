@@ -124,3 +124,12 @@
         top: -1px;*/
         z-index: 2;
     }
+
+    .followStatus{
+        background-color: gray;
+        height: 5px;
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        color:whitesmoke;
+        font-size: 9px;
+        ;
+    }

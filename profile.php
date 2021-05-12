@@ -4,6 +4,8 @@ session_start();
     
     /*//Call control file
         require 'controllers/ProfilePublic.php';*/
+        require 'procedures/SYS_DB_CON.php';
+        require 'procedures/FollowingData.php';
 
 ?>
 <!DOCTYPE html>
@@ -65,6 +67,35 @@ $.post('controllers/ProfileManager.php', {path:'PV',p:'".$_GET['p']."'},function
             ?>
        <article>
            <center>
+           <div id="aux">
+           <?php 
+           /*
+                We need to know if the logged user follows this user
+                Also we need to know if this profile follows the logged user
+            */
+                
+                if(!empty($_SESSION['UsrPkg'])){
+
+                    if($profile_username!=$_SESSION['UsrPkg']['username']){
+                        //Chek if this profile follows logged user
+                        if(DB_VerifyFollow($_SESSION['UsrPkg']['username'],$profile_username)){
+                            //Print 'Unfollow' FxButton
+                            echo "<span id='followStatus' class='followStatus'>&nbsp;&nbsp;ESTE PERFIL TE SIGUE&nbsp;&nbsp;</span>";
+                        }
+
+                        //Check if the logged user follows this profile
+                        if(DB_VerifyFollow($profile_username,$_SESSION['UsrPkg']['username'])){
+                            //Print 'Unfollow' FxButton
+                            echo "<br><button id='fxFollow' class='btn btn-danger' onclick='UnsetFollow()'>Dejar de seguir</button><br>";
+                        }else{
+                            echo "<br><button id='fxFollow' class='btn btn-success' onclick='SetUpFollow()'>Seguir</button><br>";
+                        }
+
+                        
+                    }
+                }
+           ?>
+           </div>
            <div id="main">
            <?php echo '<input type="hidden" id="isOnProfile" value="',$profile_username,'"></input>'; ?>
            <!-- Keep this DIV empty for this page because it will be used for new post dialog with user mention-->

@@ -278,12 +278,12 @@
     function SetUpFollow(){
         //Call the controller and send the username
         var fw = $("#isOnProfile").val();
-        $.post('controllers/Follow.php', {data:fw}, function(sucess){
+        $.post('controllers/Follow.php', {data:fw,param:"set"}, function(sucess){
             $("#main").html(sucess);
         });
     }
 
-    function letUnfollow(){
+    function UnsetFollow(){
         alertify.alert('Prueba','Dejar de seguir');
     }
 

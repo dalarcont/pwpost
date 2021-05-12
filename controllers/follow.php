@@ -11,17 +11,39 @@
         //User hasn't logged or its session was broken
         echo "<script>alertify.alert('Seguir usuario', 'Error de sesión<br />No se puede ejecutar tu orden.<br />Intenta nuevamente.<br />Si el problema persiste, por favor cierra e inicia sesión nuevamente.', function(){ location.reload(); });</script>";
     }else{
-        //User session is working properly
-        //The 'username' that is requesting to follow other 'username' is taken from session data, but the followed 'username' is taken from JS and HTML
-        $followed_user = $_POST['data'];
-        $r = DB_SetUpFollow($followed_user,null);
-        if($r){
-            //Follow procedure was great and can set changes in HTML UI
-            echo "<script>
-                $('#fxFollow').removeClass('btn btn-success');
-                $('#fxFollow').addClass('btn btn-danger');
-                $('#fxFollow').html('Dejar de seguir');
-                $('#fxFollow').attr('onclick','letUnfollow()');
-            </script>";
+
+
+        if($_POST['param']=="set"){
+            //User session is working properly
+            //The 'username' that is requesting to follow other 'username' is taken from session data, but the followed 'username' is taken from JS and HTML
+            $followed_user = $_POST['data'];
+            $r = DB_SetUpFollow($followed_user,null);
+            if($r){
+                //Follow procedure was great and can set changes in HTML UI
+                echo "<script>
+                    $('#fxFollow').removeClass('btn btn-success');
+                    $('#fxFollow').addClass('btn btn-danger');
+                    $('#fxFollow').html('Dejar de seguir');
+                    $('#fxFollow').attr('onclick','UnsetFollow()');
+                </script>";
+            }else{
+                echo "<script>alertify.alert('Seguir usuario','Ocurrió un error en el sistema.<br />Por favor intenta luego.');</script>";
+            }
+        }else{
+            //User needs to unfollow someone
+            $unfollow_object = $_POST['data'];
+            $r = DB_UnsetFollow($unfollow_object,$_SESSION['UsrPkg']['username']);
+            if($r){
+                //Unfollow procedure was great and can set changes in HTML UI
+                echo "<script>
+                    $('#fxFollow').removeClass('btn btn-danger');
+                    $('#fxFollow').addClass('btn btn-success');
+                    $('#fxFollow').html('Seguir');
+                    $('#fxFollow').attr('onclick','SetUpFollow()');
+                </script>";
+            }else{
+                echo "<script>alertify.alert('Dejar de seguir usuario','Ocurrió un error en el sistema.<br />Por favor intenta luego.');</script>";
+            }
         }
+        
     }
