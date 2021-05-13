@@ -133,3 +133,12 @@
         font-size: 9px;
         ;
     }
+
+    .followStatusNull{
+        background-color: rgb(255, 0, 0);
+        height: 5px;
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        color:whitesmoke;
+        font-size: 9px;
+        ;
+    }

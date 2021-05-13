@@ -1,9 +1,12 @@
 <?php
 session_start();
+if(empty($_GET['p'])){
+    $profile_username = $_SESSION['UsrPkg']['username'];
+}else{
     $profile_username = $_GET['p'];
+}
     
-    /*//Call control file
-        require 'controllers/ProfilePublic.php';*/
+    //Call procedure files
         require 'procedures/SYS_DB_CON.php';
         require 'procedures/FollowingData.php';
 
@@ -76,6 +79,8 @@ $.post('controllers/ProfileManager.php', {path:'PV',p:'".$_GET['p']."'},function
                 
                 if(!empty($_SESSION['UsrPkg'])){
 
+                    echo "<br><button class='btn btn-info' onclick='showFollowed()'>Seguidos</button>&nbsp;&nbsp;&nbsp;<button id='PeopleList' class='btn btn-info' onclick='showFollowers()'>Seguidores</button><br>";
+
                     if($profile_username!=$_SESSION['UsrPkg']['username']){
                         //Chek if this profile follows logged user
                         if(DB_VerifyFollow($_SESSION['UsrPkg']['username'],$profile_username)){
@@ -86,9 +91,9 @@ $.post('controllers/ProfileManager.php', {path:'PV',p:'".$_GET['p']."'},function
                         //Check if the logged user follows this profile
                         if(DB_VerifyFollow($profile_username,$_SESSION['UsrPkg']['username'])){
                             //Print 'Unfollow' FxButton
-                            echo "<br><button id='fxFollow' class='btn btn-danger' onclick='UnsetFollow()'>Dejar de seguir</button><br>";
+                            echo "<br><button id='fxFollow' class='btn btn-danger' onclick='UnsetFollow(null)'>Dejar de seguir</button><br>";
                         }else{
-                            echo "<br><button id='fxFollow' class='btn btn-success' onclick='SetUpFollow()'>Seguir</button><br>";
+                            echo "<br><button id='fxFollow' class='btn btn-success' onclick='SetUpFollow(null)'>Seguir</button><br>";
                         }
 
                         

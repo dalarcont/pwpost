@@ -27,15 +27,15 @@ table.followTable {
     border-radius: 5px;
   }
   #usrpic{
-      width:15px;
+    width:15px;
   }
   #username{
-      width:150px;
+      width:80px;
   }
   #name{
       width:150px;
   }
   #action{
-      width:35px;
+      width:85px;
   }
     

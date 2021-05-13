@@ -275,15 +275,22 @@
 
 
 //Follow user procedure
-    function SetUpFollow(){
+    function SetUpFollow(fw){
         //Call the controller and send the username
-        var fw = $("#isOnProfile").val();
-        $.post('controllers/Follow.php', {data:fw,param:"set"}, function(sucess){
-            $("#main").html(sucess);
-        });
+        if(fw==null){
+            //Procedure called from different profile as the same logged user
+            fw = $("#isOnProfile").val();
+            alert(fw);
+        }else{
+            /*$.post('controllers/Follow.php', {data:fw,param:"set"}, function(sucess){
+                $("#main").html(sucess);
+            });*/
+            alert(fw+" perreo intenso");
+        }
+        
     }
 
-    function UnsetFollow(){
+    function UnsetFollow(fw){
         alertify.alert('Prueba','Dejar de seguir');
     }
 
@@ -460,9 +467,19 @@
     }
 //Showing follows and followed people
 
-    function showFollows(type,data){
-        $.post('controllers/PeopleList.php', {call:"upok"},function(sucess){
-            $("#main").html(sucess);
+    function showFollowed(){
+        var u = $("#isOnProfile").val();
+        if(u=='null'){u="";}
+        $.post('controllers/PeopleList.php', {typeList:true,source:u},function(sucess){
+            $("#main").append(sucess);
+        })
+    }
+
+    function showFollowers(){
+        var u = $("#isOnProfile").val();
+        if(u=='null'){u="";}
+        $.post('controllers/PeopleList.php', {typeList:null,source:u},function(sucess){
+            $("#main").append(sucess);
         })
     }
 

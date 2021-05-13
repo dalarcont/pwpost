@@ -5,7 +5,7 @@
         echo "<div id='contentProfileDescription'>
         <br><p>Nombre completo: <b>".$pkg['user_fullname']."</b>-Correo electrónico: <b>".$pkg['user_email']."</b><br>
         <i>Tu correo no será visible ante el público.</i> -Fecha de registro: <b>".$pkg['joindate']."</b></p>
-        <button class='btn btn-info' id='btn_showpeople' onclick=showFollows(1,'') >Seguidos</button><span style='padding-left:55px;'></span><button class='btn btn-info' id='btn_showpeople' onclick=showFollows(2,'') >Seguidores</button><br>
+        <button class='btn btn-info' id='btn_showpeople' onclick=showFollowed() >Seguidos</button><span style='padding-left:55px;'></span><button class='btn btn-info' id='btn_showpeople' onclick=showFollowers() >Seguidores</button><br>
         <button class='btn btn-danger' style='margin-top:15px;' id='btn_hide' onclick=startRemovePostoveProfile(".$_SESSION['UsrPkg']['username'].")>Eliminar mi perfil</button><p><br \></p></div>"; 
     }
 
@@ -34,164 +34,66 @@
         
     }
 
-    function ShowFollowData($mode,$data){
+    function ShowFollowData($mode,$data,$aux){
 
-        if($mode=="1N"){
+        //Dialog title
+        if($mode==true){
             //1N means 1 to much, i.e. list all people followed by the user
-            $modeName = "Seguidos";
+            $modeName = "Seguidos por ".$aux."";
+            $followBackField = true;
         }else{
-            $modeName = "Seguidores";
+            $modeName = "Seguidores de ".$aux."";
+            $followBackField = false;
         }
+
+        function buttonSelector($mode,$object,$status){
+            if($mode==true){
+                //Always show this button because we are showing the users followed by the logged user, isn't logic if we show a 'Follow' button related to a user that the logged user follows already
+                return $r = "<button id='fxFollow' class='btn btn-danger' onclick='UnsetFollow(".$object.")'>Dejar de seguir</button>";
+            }else{
+                //System will show the people who is following the logged user, may someone of these isn't followed by the logged user, then use a selector
+                if($status==true){
+                    //Some follower is followed by the logged user
+                    return $r = "<button id='fxFollow' class='btn btn-danger' onclick='UnsetFollow(".$object.")'>Dejar de seguir</button>";
+                }else{
+                    //Some follower isn't followed by the logged user
+                    return $r = "<button id='fxFollow' class='btn btn-success' onclick='SetUpFollow(".$object.")'>Seguir</button>";
+                }
+            }
+        }
+
+        function followBackLegend($x){
+            if($x==true){
+                return "<span id='followStatus' class='followStatus'>&nbsp;&nbsp;TE SIGUE&nbsp;&nbsp;</span>";
+            }else{
+                return "<span id='followStatus' class='followStatusNull'>&nbsp;&nbsp;NO TE SIGUE&nbsp;&nbsp;</span>";
+            }
+        }
+
         //Show the followers or the people followed of an user
-        echo  "<div id='form_newPost' title='".$modeName."' style='display:none;'>
+        echo  "<div id='PeopleListDialog' title='".$modeName."' style='display:none;'>
         <link rel='stylesheet' href='css/followTable.css' />
         <center>
             <table class='followTable'>
-            <tbody>
-            <tr>
-            <td id='usrpic'>USR</td>
-            <td id='username'>USERNAME</td>
-            <td id='name'>NOMBRE</td>
-            <td id='action'>ACTION</td>
-            </tr>";
+            <tbody>";
             $size  = count($data);
-
-            echo"
-            <tr>
-            <td>X</td>
-            <td>FULANITO</td>
-            <td>FULANITO DEL CARMEN CONTRERAS</td>
-            <td>BUTTON</td>
-            </tr>";
-
-
-            echo"
-            <tr>
-            <td>X</td>
-            <td>FULANITO</td>
-            <td>FULANITO DEL CARMEN CONTRERAS</td>
-            <td>BUTTON</td>
-            </tr>
-            <tr>
-            <td>X</td>
-            <td>FULANITO</td>
-            <td>FULANITO DEL CARMEN CONTRERAS</td>
-            <td>BUTTON</td>
-            </tr>
-            <tr>
-            <td>X</td>
-            <td>FULANITO</td>
-            <td>FULANITO DEL CARMEN CONTRERAS</td>
-            <td>BUTTON</td>
-            </tr>
-            <tr>
-            <td>X</td>
-            <td>FULANITO</td>
-            <td>FULANITO DEL CARMEN CONTRERAS</td>
-            <td>BUTTON</td>
-            </tr>
-            <tr>
-            <td>X</td>
-            <td>FULANITO</td>
-            <td>FULANITO DEL CARMEN CONTRERAS</td>
-            <td>BUTTON</td>
-            </tr>
-            <tr>
-            <td>X</td>
-            <td>FULANITO</td>
-            <td>FULANITO DEL CARMEN CONTRERAS</td>
-            <td>BUTTON</td>
-            </tr>
-            <tr>
-            <td>X</td>
-            <td>FULANITO</td>
-            <td>FULANITO DEL CARMEN CONTRERAS</td>
-            <td>BUTTON</td>
-            </tr>
-            <tr>
-            <td>X</td>
-            <td>FULANITO</td>
-            <td>FULANITO DEL CARMEN CONTRERAS</td>
-            <td>BUTTON</td>
-            </tr>
-            <tr>
-            <td>X</td>
-            <td>FULANITO</td>
-            <td>FULANITO DEL CARMEN CONTRERAS</td>
-            <td>BUTTON</td>
-            </tr>
-            <tr>
-            <td>X</td>
-            <td>FULANITO</td>
-            <td>FULANITO DEL CARMEN CONTRERAS</td>
-            <td>BUTTON</td>
-            </tr>
-            <tr>
-            <td>X</td>
-            <td>FULANITO</td>
-            <td>FULANITO DEL CARMEN CONTRERAS</td>
-            <td>BUTTON</td>
-            </tr>
-            <tr>
-            <td>X</td>
-            <td>FULANITO</td>
-            <td>FULANITO DEL CARMEN CONTRERAS</td>
-            <td>BUTTON</td>
-            </tr>
-            <tr>
-            <td>X</td>
-            <td>FULANITO</td>
-            <td>FULANITO DEL CARMEN CONTRERAS</td>
-            <td>BUTTON</td>
-            </tr>
-            <tr>
-            <td>X</td>
-            <td>FULANITO</td>
-            <td>FULANITO DEL CARMEN CONTRERAS</td>
-            <td>BUTTON</td>
-            </tr>
-            <tr>
-            <td>X</td>
-            <td>FULANITO</td>
-            <td>FULANITO DEL CARMEN CONTRERAS</td>
-            <td>BUTTON</td>
-            </tr>
-            <tr>
-            <td>X</td>
-            <td>FULANITO</td>
-            <td>FULANITO DEL CARMEN CONTRERAS</td>
-            <td>BUTTON</td>
-            </tr>
-            <tr>
-            <td>X</td>
-            <td>FULANITO</td>
-            <td>FULANITO DEL CARMEN CONTRERAS</td>
-            <td>BUTTON</td>
-            </tr>
-            <tr>
-            <td>X</td>
-            <td>FULANITO</td>
-            <td>FULANITO DEL CARMEN CONTRERAS</td>
-            <td>BUTTON</td>
-            </tr>
-            <tr>
-            <td>X</td>
-            <td>FULANITO</td>
-            <td>FULANITO DEL CARMEN CONTRERAS</td>
-            <td>BUTTON</td>
-            </tr>";
-
-
-
-
-
-
+            for($i=0; $i<=($size-1); $i++){
+                echo"
+                    <tr id='".$data[$i]['identificador']."'>
+                    <td><img src='components/avatarNull.png' style='width:25px;height:25px;'></img></td>
+                    <td>".$data[$i]['identificador']."</td>
+                    <td>".$data[$i]['nombre']."</td>";
+                    //If the list is in mode of 'Who follows me', then disable followBack field
+                    if($followBackField){echo "<td>".followBackLegend($data[$i]['followBack'])."</td>";}
+                    echo "<td>".buttonSelector($mode,$data[$i]['identificador'],$data[$i]['followBack'])."</td>
+                    </tr>";
+            }
             echo "
             </tbody>
             </table>    
         </center>
         </div>
-        <script>$('#form_newPost').dialog({height:450,width:550});</script>
+        <script>$('#PeopleListDialog').dialog({height:450,width:600});</script>
         ";
 
     }
