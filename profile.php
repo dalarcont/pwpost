@@ -38,6 +38,8 @@ $.post('controllers/ProfileManager.php', {path:'PV',p:'".$_GET['p']."'},function
 </script>";
 ?>
 <body>
+
+<?php echo '<input type="hidden" id="isOnProfile" value="',$profile_username,'"></input>'; ?>
     <header>
     <br>
         <img src='components/favicon.ico' style='width:32px;height:32px;'></img>  <h2>PWPost!</h2>
@@ -102,7 +104,6 @@ $.post('controllers/ProfileManager.php', {path:'PV',p:'".$_GET['p']."'},function
            ?>
            </div>
            <div id="main">
-           <?php echo '<input type="hidden" id="isOnProfile" value="',$profile_username,'"></input>'; ?>
            <!-- Keep this DIV empty for this page because it will be used for new post dialog with user mention-->
            </div>
            <div id="FrontEnd">

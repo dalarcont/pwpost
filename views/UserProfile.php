@@ -34,7 +34,7 @@
         
     }
 
-    function ShowFollowData($mode,$data,$aux){
+    function ShowFollowData($mode,$data,$aux,$whoIsOnline){
 
         //Dialog title
         if($mode==true){
@@ -49,15 +49,15 @@
         function buttonSelector($mode,$object,$status){
             if($mode==true){
                 //Always show this button because we are showing the users followed by the logged user, isn't logic if we show a 'Follow' button related to a user that the logged user follows already
-                return $r = "<button id='fxFollow' class='btn btn-danger' onclick='UnsetFollow(".$object.")'>Dejar de seguir</button>";
+                return $r = "<button id='btn-".$object."' role='".$object."' class='btn btn-danger' onclick=UnsetFollow(this)>Dejar de seguir</button>";
             }else{
                 //System will show the people who is following the logged user, may someone of these isn't followed by the logged user, then use a selector
                 if($status==true){
                     //Some follower is followed by the logged user
-                    return $r = "<button id='fxFollow' class='btn btn-danger' onclick='UnsetFollow(".$object.")'>Dejar de seguir</button>";
+                    return $r = "<button id='btn-".$object."' role='".$object."' class='btn btn-danger' onclick=UnsetFollow(this)>Dejar de seguir</button>";
                 }else{
                     //Some follower isn't followed by the logged user
-                    return $r = "<button id='fxFollow' class='btn btn-success' onclick='SetUpFollow(".$object.")'>Seguir</button>";
+                    return $r = "<button id='btn-".$object."' role='".$object."' class='btn btn-success' onclick=SetUpFollow(this)>Seguir</button>";
                 }
             }
         }
@@ -80,13 +80,18 @@
             for($i=0; $i<=($size-1); $i++){
                 echo"
                     <tr id='".$data[$i]['identificador']."'>
-                    <td><img src='components/avatarNull.png' style='width:25px;height:25px;'></img></td>
-                    <td>".$data[$i]['identificador']."</td>
-                    <td>".$data[$i]['nombre']."</td>";
-                    //If the list is in mode of 'Who follows me', then disable followBack field
-                    if($followBackField){echo "<td>".followBackLegend($data[$i]['followBack'])."</td>";}
-                    echo "<td>".buttonSelector($mode,$data[$i]['identificador'],$data[$i]['followBack'])."</td>
-                    </tr>";
+                    <td id='usrpic'><img src='components/avatarNull.png' style='width:25px;height:25px;'></img></td>
+                    <td id='username'>".$data[$i]['identificador']."</td>
+                    <td id='name'>".$data[$i]['nombre']."</td>";
+                    if($data['identificador']!=$whoIsOnline){
+                        //If the list is in mode of 'Who follows me', then disable followBack field
+                        if($followBackField){echo "<td id='username'>".followBackLegend($data[$i]['followBack'])."</td>";}
+                        echo "<td id='action'>".buttonSelector($mode,$data[$i]['identificador'],$data[$i]['followBack'])."</td>
+                        </tr>";
+                    }else{
+                        //Logged user was found in the people list
+                        echo "<td id='username'>".$whoIsOnline."</td><td id='action'><button class='btn btn-info'>Eres tú.</button></td>";
+                    }
             }
             echo "
             </tbody>

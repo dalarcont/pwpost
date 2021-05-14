@@ -31,7 +31,7 @@
 
     //Define if we need the list of people who an user follows or the list of people who follows an user
     $typeList = $_POST['typeList'];
-    echo $typeList;
+    
     if($typeList){
         //Statement to get people followed by an user
         $Pkg = getFollowedList($ObjectUser);
@@ -39,9 +39,14 @@
             //There is data, print...
             //We want to show to user if someone from that list is following back its profile
             $Pkg = FollowBackVerify($ObjectUser,$Pkg);
-            ShowFollowData(true,$Pkg,$ObjectUser);
+            //Show data BUT send to view side who is logged to prevent that the logged user can 'follow/unfollow/ its self, just show its info.
+            ShowFollowData(true,$Pkg,$ObjectUser,$_SESSION['UsrPkg']['username']);
         }else{
-            echo "<script>alertify.alert('Seguidos ",$ObjectUser,"','Ocurrió un error en el sistema.<br />Intenta luego.');</script>";
+            if(empty($Pkg)){
+                echo "<script>alertify.alert('Seguidos','<b>".$ObjectUser."</b> No sigue a nadie.<br />Intenta luego.');</script>";
+            }else{
+                echo "<script>alertify.alert('Seguidos','Ocurrió un error en el sistema.<br />Intenta luego.');</script>";
+            }
         }
     }else{
         //Statement to get people who follows an user
@@ -50,9 +55,15 @@
             //There is data, print...
             //We want to show to user who isn't followed by itself in these followers
             $Pkg = FollowedFollower($ObjectUser,$Pkg);
-            ShowFollowData(false,$Pkg,$ObjectUser);
+            //Show data BUT send to view side who is logged to prevent that the logged user can 'follow/unfollow/ its self
+            ShowFollowData(false,$Pkg,$ObjectUser,$_SESSION['UsrPkg']['username']);
         }else{
-            echo "<script>alertify.alert('Seguidores','Ocurrió un error en el sistema.<br />Intenta luego.');</script>";
+            if(empty($Pkg)){
+                echo "<script>alertify.alert('Seguidores','<b>".$ObjectUser."</b> No tiene seguidores.<br />Intenta luego.');</script>";
+            }else{
+                echo "<script>alertify.alert('Seguidores','Ocurrió un error en el sistema.<br />Intenta luego.');</script>";
+            }
+            
         }
     }
 

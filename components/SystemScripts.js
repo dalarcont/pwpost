@@ -275,23 +275,42 @@
 
 
 //Follow user procedure
-    function SetUpFollow(fw){
+    function SetUpFollow(data){
         //Call the controller and send the username
-        if(fw==null){
-            //Procedure called from different profile as the same logged user
+        if(data==null){
+            //Procedure was called from a single profile viewing
             fw = $("#isOnProfile").val();
-            alert(fw);
-        }else{
-            /*$.post('controllers/Follow.php', {data:fw,param:"set"}, function(sucess){
+            $.post('controllers/Follow.php', {data:fw,param:"set"}, function(sucess){
                 $("#main").html(sucess);
-            });*/
-            alert(fw+" perreo intenso");
+            });
+        }else{
+            //Procedure was called from a people listing in the user's profile or other user profile
+            var ObjectUser = $(data).attr('role');
+            $.post('controllers/Follow.php', {data:ObjectUser,param:"set",extra:true}, function(sucess){
+                $("#main").html(sucess);
+                //Clean this div to prevent garbage
+                $("#main").empty();
+            });
         }
-        
     }
 
-    function UnsetFollow(fw){
-        alertify.alert('Prueba','Dejar de seguir');
+    function UnsetFollow(data){
+        //Call the controller and send the username
+        if(data==null){
+            //Procedure was called from a single profile viewing
+            fw = $("#isOnProfile").val();
+            $.post('controllers/Follow.php', {data:fw,param:"unset"}, function(sucess){
+                $("#main").html(sucess);
+            });
+        }else{
+            //Procedure was called from a people listing in the user's profile or other user profile
+            var ObjectUser = $(data).attr('role');
+            $.post('controllers/Follow.php', {data:ObjectUser,param:"unset",extra:true}, function(sucess){
+                $("#main").html(sucess);
+                //Clean this div to prevent garbage
+                $("#main").empty();
+            });
+        }
     }
 
 //Auxiliar profile data
@@ -468,19 +487,31 @@
 //Showing follows and followed people
 
     function showFollowed(){
+        //Clean all dialogs/forms that we used to perform a clean new dialog
+        document.querySelectorAll('[role="dialog"]').forEach(function (el){
+            el.remove();
+        });
         var u = $("#isOnProfile").val();
         if(u=='null'){u="";}
         $.post('controllers/PeopleList.php', {typeList:true,source:u},function(sucess){
-            $("#main").append(sucess);
+            $("#main").html(sucess);
         })
+        //Clean main div
+        $("#main").empty();
     }
 
     function showFollowers(){
+        //Clean all dialogs/forms that we used to perform a clean new dialog
+        document.querySelectorAll('[role="dialog"]').forEach(function (el){
+            el.remove();
+        });
         var u = $("#isOnProfile").val();
         if(u=='null'){u="";}
         $.post('controllers/PeopleList.php', {typeList:null,source:u},function(sucess){
-            $("#main").append(sucess);
+            $("#main").html(sucess);
         })
+        //Clean main div
+        $("#main").empty();
     }
 
 //Remove profile procedure
