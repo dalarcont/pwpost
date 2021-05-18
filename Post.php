@@ -26,6 +26,7 @@
  
 <body>
 <header>
+<br>
         <img src='components/favicon.ico' style='width:32px;height:32px;'></img>  <h2>PWPost!</h2>
     <?php 
         //Show navigation bar if is a logged user

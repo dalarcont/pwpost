@@ -21,6 +21,7 @@
 <body>
 
 <header>
+<br>
 <h1 class='headline'><img src='components/favicon.ico' style='width:32px;height:32px;'></img>  PWPost!</h1>
 <p><span class='slogan'><i>Publica lo que quieras, igual nadie lo va a leer ni le dará importancia!</i></span></p>
 </header>

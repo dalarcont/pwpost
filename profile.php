@@ -106,6 +106,7 @@ $.post('controllers/ProfileManager.php', {path:'PV',p:'".$_GET['p']."'},function
            <div id="main">
            <!-- Keep this DIV empty for this page because it will be used for new post dialog with user mention-->
            </div>
+           <div id='profileResume'></div>
            <div id="FrontEnd">
            </div>
            </center>

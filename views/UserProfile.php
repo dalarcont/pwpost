@@ -2,15 +2,15 @@
     
     //Resume of profile
     function Print_ProfileResume($pkg){
-        echo "<div id='contentProfileDescription'>
+        echo  "<div id=contentProfileDescription>
         <br><p>Nombre completo: <b>".$pkg['user_fullname']."</b>-Correo electrónico: <b>".$pkg['user_email']."</b><br>
         <i>Tu correo no será visible ante el público.</i> -Fecha de registro: <b>".$pkg['joindate']."</b></p>
-        <button class='btn btn-info' id='btn_showpeople' onclick=showFollowed() >Seguidos</button><span style='padding-left:55px;'></span><button class='btn btn-info' id='btn_showpeople' onclick=showFollowers() >Seguidores</button><br>
-        <button class='btn btn-danger' style='margin-top:15px;' id='btn_hide' onclick=startRemovePostoveProfile(".$_SESSION['UsrPkg']['username'].")>Eliminar mi perfil</button><p><br \></p></div>"; 
+        <button class=btn btn-info id=btn_showpeople onclick=showFollowed() >Seguidos</button><span style=padding-left:55px;></span><button class=btn btn-info id=btn_showpeople onclick=showFollowers() >Seguidores</button><br>
+        <button class=btn btn-danger style=margin-top:15px; id=btn_hide onclick=startRemovePostoveProfile(".$_SESSION['UsrPkg']['username'].")>Eliminar mi perfil</button><p><br \></p></div>"; 
     }
 
     function Print_ProfileResumePublic($pkg){
-        echo "<div id='contentProfileDescription'><p>Nombre completo: <b>".$pkg['user_fullname']."</b><br>Fecha de registro: <b>".$pkg['joindate']."</b></p></div>";
+        echo "<div id=contentProfileDescription><p>Nombre completo: <b>".$pkg['user_fullname']."</b><br>Fecha de registro: <b>".$pkg['joindate']."</b></p></div>";
     }
 
     //Print entries
@@ -27,11 +27,6 @@
     //Profile doesn't exists or incorrect profile parameter
     function PrintProfileNonexistence(){
         echo "<big>Este usuario no existe o no está disponible temporalmente.</big>";
-    }
-
-    //Follow action buttons
-    function FollowButtons(){
-        
     }
 
     function ShowFollowData($mode,$data,$aux,$whoIsOnline){
@@ -63,10 +58,19 @@
         }
 
         function followBackLegend($x){
-            if($x==true){
-                return "<span id='followStatus' class='followStatus'>&nbsp;&nbsp;TE SIGUE&nbsp;&nbsp;</span>";
-            }else{
-                return "<span id='followStatus' class='followStatusNull'>&nbsp;&nbsp;NO TE SIGUE&nbsp;&nbsp;</span>";
+
+            switch($x){
+                case true:
+                    return "<span id='followStatus' class='followStatus'>&nbsp;&nbsp;TE SIGUE&nbsp;&nbsp;</span>";
+                break;
+
+                case false:
+                    return "<span id='followStatus' class='followStatusNull'>&nbsp;&nbsp;NO TE SIGUE&nbsp;&nbsp;</span>";
+                break;
+
+                default:
+                    return "ERROR";
+                break;
             }
         }
 
@@ -78,20 +82,26 @@
             <tbody>";
             $size  = count($data);
             for($i=0; $i<=($size-1); $i++){
-                echo"
+                if($data[$i]['identificador']!=$whoIsOnline){
+                    echo"
+                    <tr id='".$data[$i]['identificador']."'>
+                    <td id='usrpic'>847rq374<img src='components/avatarNull.png' style='width:25px;height:25px;'></img></td>
+                    <td id='username'>".$data[$i]['identificador']."</td>
+                    <td id='name'>".$data[$i]['nombre']."</td>";
+                    //Follow back field
+                    if($followBackField){echo "<td id='username'>".followBackLegend($data[$i]['followBack'])."</td>";}
+                    //Action selector
+                    echo "<td id='action'>".buttonSelector($mode,$data[$i]['identificador'],$data[$i]['followBack'])."</td></tr>";
+                }else{
+                    echo"
                     <tr id='".$data[$i]['identificador']."'>
                     <td id='usrpic'><img src='components/avatarNull.png' style='width:25px;height:25px;'></img></td>
                     <td id='username'>".$data[$i]['identificador']."</td>
-                    <td id='name'>".$data[$i]['nombre']."</td>";
-                    if($data['identificador']!=$whoIsOnline){
-                        //If the list is in mode of 'Who follows me', then disable followBack field
-                        if($followBackField){echo "<td id='username'>".followBackLegend($data[$i]['followBack'])."</td>";}
-                        echo "<td id='action'>".buttonSelector($mode,$data[$i]['identificador'],$data[$i]['followBack'])."</td>
-                        </tr>";
-                    }else{
-                        //Logged user was found in the people list
-                        echo "<td id='username'>".$whoIsOnline."</td><td id='action'><button class='btn btn-info'>Eres tú.</button></td>";
-                    }
+                    <td id='name'>".$data[$i]['nombre']."</td>
+                    <td id='username'><span id='followStatus' class='followStatus'>&nbsp;&nbsp;ERES TÚ&nbsp;&nbsp;</span></td>
+                    <td id='action'><button class='btn btn-info'>Eres tú.</button></td></tr>";
+                }
+
             }
             echo "
             </tbody>

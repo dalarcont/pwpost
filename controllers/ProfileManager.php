@@ -8,20 +8,31 @@
 
     //Require DB connection
         require '../procedures/SYS_DB_CON.php';
-    //Require procedures
+    //Require procedures and processors
         require '../procedures/PostLoad.php'; //Post loader
         require '../procedures/ProfileData.php'; //Data profile loader
         require '../controllers/PrivacyManager.php'; //Privacy manager at printing post
-        include '../procedures/UserExists.php'; //Verify user existence
+        require '../procedures/UserExists.php'; //Verify user existence
+        require '../controllers/AttachedManagement.php'; //Attached entry management
     //Require views
-        include '../views/Entry.php';
-        include '../views/UserProfile.php';
-        include '../procedures/EntryPrinter.php';
+        require '../views/Entry.php';
+        require '../views/UserProfile.php';
+
+    //Entry printer in loop
+    function EntryPrinter($PKG){
+        $size = count($PKG);
+        //print entries, connect to views, but first take support from attached entry management if there are.
+        for($i=0; $i<=($size-1); $i++){
+            //Process package
+            $PKG[$i] = AttachedEntryManagement($PKG[$i]);
+            PrintEntry($PKG[$i]);
+        }
+    }
 
     //Selector functions
     function SameUser($a){
         //Print description
-        Print_ProfileResume($a);
+        echo "<script>$('#profileResume').append('".Print_ProfileResume($a)."');</script>";
         //Print entries included the hidden because user wants to see its own profile
         $EntryPkg = DB_Post_Profile($a['username'],false);
         if(empty($EntryPkg)){

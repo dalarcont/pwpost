@@ -39,6 +39,7 @@
 
             <body>
                 <header>
+                <br>
                     <img src='components/favicon.ico' style='width:32px;height:32px;'></img>  <h2>PWPost!</h2>
                     <nav>
                         <a href='#' id='loadHome'>Inicio</a><span style='padding-left:5em'></span>

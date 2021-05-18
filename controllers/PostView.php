@@ -7,6 +7,7 @@ session_start();
         require 'procedures/PostLoad.php';
         require 'procedures/EntryVersionControl.php';
         require 'controllers/PrivacyManager.php';
+        require 'controllers/AttachedManagement.php';
     //Require views, in the same directory because was called from a file on first directory paths
         include 'views/Entry.php';
 
@@ -27,22 +28,8 @@ session_start();
             $size = count($Entries);
             //print entries, connect to views
             for($i=0; $i<=($size-1); $i++){
-                
                 //Load attached post if exists
-                if($Entries[$i]['attached_prop']!=0){
-                    //There is an attached entry
-                    $attachedPackage = DB_Post_DirectLoad($Entries[$i]['attached_uid_post']);
-                    //If the attached entry is private, return false
-                    if($attachedPackage['hiddenprop']==1){
-                        $Entries[$i]["attached_content"]=false;
-                    }else{
-                        //Push above elements on the array
-                        $Entries[$i]["attached_user"] = $attachedPackage['own_user'];
-                        $Entries[$i]["attached_title"] = $attachedPackage['title'];
-                        $Entries[$i]["attached_content"] = $attachedPackage['content'];
-                    }
-                    
-                }
+                $Entries[$i] = AttachedEntryManagement($Entries[$i]);
                 //Print
                 PrintEntryVersionControl($Entries[$i]);
             }
@@ -68,22 +55,8 @@ session_start();
             //Entry is public
             $r_title = $result['title'];
             //Load attached post if exists
-            if($result['attached_prop']!=0){
-                //There is an attached entry
-                $attachedPackage = DB_Post_DirectLoad($result['attached_uid_post']);
-                //If the attached entry is private, return false
-                if($attachedPackage['hiddenprop']==1){
-                    $result[$i]["attached_content"]=false;
-                }else{
-                    //Push above elements on the array
-                    $result["attached_user"] = $attachedPackage['own_user'];
-                    $result["attached_title"] = $attachedPackage['title'];
-                    $result["attached_content"] = $attachedPackage['content'];
-                }
-                
-            }
-            
-            
+            $result = AttachedEntryManagement($result);
+            //Let the values for the printer contained on the public webpage viewing side
         }
         
 
