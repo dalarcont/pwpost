@@ -43,22 +43,34 @@
         }
     }
 
-    function PublicUser(){
+    function PublicUser($selector){
         //Procedure was called from public, i.e. not logged user
         if(DB_VerifyUserExistence($_POST['p'])){
             //User exists
-            $PV_Pkg = DB_LoadProfile_Data($_POST['p']);
-            //Check if 
-            Print_ProfileResumePublic($PV_Pkg);
+            //Get data but indicate if a logged user is viewing the profile
+            if($selector=="private"){
+                //Someone logged is viewing this profile
+                //$PV_Pkg = DB_LoadProfile_Data($_POST['p'],$_SESSION['UserPkg']['username']);
+                $PV_Pkg = DB_LoadProfile_Data($_POST['p'],$_SESSION['UserPkg']['username']);
+            }else{
+                //Public is viewing
+                $PV_Pkg = DB_LoadProfile_Data($_POST['p'],false);
+            }
+
+            //Print profile resume
+            //Print_ProfileResumePublic($PV_Pkg);
+            ProfileResume("private",$PV_Pkg);
+/*
             //Print entries (Public entries)
             $PV_Entry = DB_Post_Profile($_POST['p'],true);
+            //Selector of post's cantity
             if(empty($PV_Entry)){
                 //User exists but doesn't have entries
                 PrintProfilePublic_Empty();
             }else{
                 //User have at least 1 entry
                 EntryPrinter($PV_Entry);
-            }
+            }*/
         }else{
             PrintProfileNonexistence();
         }
@@ -77,8 +89,10 @@
             if($_POST['p']==$UserData['username']){
                 //The logged user wants to see its profile from the separate page for profile public viewing.
                 echo "<i>Estimado(a) usuario(a): ".$UserData['username'].", esta es la vista de tu perfil ante el público.</i>";
+                PublicUser("private");
+            }else{
+                PublicUser(false);
             }
-            PublicUser();
         break;
 
         default:

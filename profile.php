@@ -1,10 +1,10 @@
 <?php
 session_start();
-if(empty($_GET['p'])){
-    $profile_username = $_SESSION['UsrPkg']['username'];
-}else{
-    $profile_username = $_GET['p'];
-}
+    if(empty($_GET['p'])){
+        $profile_username = $_SESSION['UsrPkg']['username'];
+    }else{
+        $profile_username = $_GET['p'];
+    }
     
     //Call procedure files
         require 'procedures/SYS_DB_CON.php';
@@ -77,7 +77,7 @@ $.post('controllers/ProfileManager.php', {path:'PV',p:'".$_GET['p']."'},function
            /*
                 We need to know if the logged user follows this user
                 Also we need to know if this profile follows the logged user
-            */
+            
                 
                 if(!empty($_SESSION['UsrPkg'])){
 
@@ -100,7 +100,7 @@ $.post('controllers/ProfileManager.php', {path:'PV',p:'".$_GET['p']."'},function
 
                         
                     }
-                }
+                }*/
            ?>
            </div>
            <div id="main">

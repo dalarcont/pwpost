@@ -88,14 +88,12 @@
 
     #actionsMenu{
         border:#777;
+        margin-top: 1%;
     }
     .actionsMenuMove{
         position: fixed;
         bottom: 25px;
         right: 25px;
-        /*position: -webkit-sticky;
-        position: sticky;
-        top: -1px;*/
         z-index: 2;
     }
 
@@ -107,9 +105,6 @@
         position: fixed;
         bottom: 95px;
         right: 25px;
-        /*position: -webkit-sticky;
-        position: sticky;
-        top: -1px;*/
         z-index: 2;
     }
 
@@ -120,9 +115,6 @@
         position: fixed;
         bottom: 140px;
         right: 25px;
-        /*position: -webkit-sticky;
-        position: sticky;
-        top: -1px;*/
         z-index: 2;
     }
 
