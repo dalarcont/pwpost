@@ -62,8 +62,6 @@
         });
 
         $("#showProfile").click(function(){
-            //$('<div id=profileDescription></div>').insertBefore('#FrontEnd');
-            //showProfileResume_LoggedUser();
             $.post('controllers/ProfileManager.php', {path:"LUOWN"},function(sucess){
                 $("#FrontEnd").html(sucess);
             });
@@ -489,7 +487,7 @@
     function ProfileView(path,object){
         $.post('controllers/ProfileManager.php', {path:path,p:object},function(sucess){
             $('#FrontEnd').html(sucess);
-        });
+        })
     }
 
 //Showing follows and followed people

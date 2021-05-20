@@ -12,8 +12,8 @@
             (SELECT COUNT(username_followed)-1 FROM following WHERE username = '$user') as cantidadSeguidos,
             (SELECT COUNT(username)-1 FROM following WHERE username_followed = '$user') as cantidadSeguidores,
             (SELECT COUNT(uid_post) FROM general_entries WHERE own_user = '$user') as cantidadPublicaciones,
-            (SELECT EXISTS(SELECT * FROM following WHERE username = '$user' AND username_followed = '$user')) as followStatus,
-            (SELECT EXISTS(SELECT * FROM following WHERE username_followed = '$user' AND username = '$whoIsOnline')) as followBack
+            (SELECT EXISTS(SELECT * FROM following WHERE username = '$whoIsOnline' AND username_followed = '$user')) as followStatus,
+            (SELECT EXISTS(SELECT * FROM following WHERE username = '$user' AND username_followed = '$whoIsOnline')) as followBack
             FROM
                 users as usr
             WHERE

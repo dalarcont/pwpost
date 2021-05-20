@@ -1,9 +1,18 @@
 <?php
 session_start();
     if(empty($_GET['p'])){
-        $profile_username = $_SESSION['UsrPkg']['username'];
+        //URL hasn't indicate a profile username
+        $profile_username = null ;
     }else{
+        //There is a profile indicated on URL
         $profile_username = $_GET['p'];
+        if(empty($_SESSION['UsrPkg'])){
+            //There is no one logged, all data will be display as public viewing
+            $mode = null;
+        }else{
+            //Someone is logged, let show extra data
+            $mode = "PV";
+        }
     }
     
     //Call procedure files
@@ -30,14 +39,9 @@ session_start();
 <link rel="shortcut icon" href="components/favicon.ico" type="image/x-icon">
 
 </head>
-<?php 
-echo "<script>
-
-</script>";
-?>
 <body>
-
 <?php echo '<input type="hidden" id="isOnProfile" value="',$profile_username,'"></input>'; ?>
+<?php echo "<script>ProfileView('".$mode."','".$profile_username."');</script>"; ?>
     <header>
     <br>
         <img src='components/favicon.ico' style='width:32px;height:32px;'></img>  <h2>PWPost!</h2>
@@ -55,9 +59,7 @@ echo "<script>
     <?php 
                 if(!empty($_SESSION['UsrPkg'])){
                 //Session is set, that mean that an user is logged on
-                    echo "<div id='actionsMenu' style='margin-top: 0%'><br>
-                    <button class='btn btn-success' onclick='startNewPost()'><img src='components/newpost.png' style='width:25px;height:25px;'></img> Nueva entrada</button>
-                    </div>
+                    echo "<br>
                     <div id='MoreEntry'>
                         <button class='btn btn-info' onclick='BottomPage()'><img src='components/down.png' style='width:25px;height:25px;'></img> Ir abajo</button>
                     </div>
@@ -71,7 +73,6 @@ echo "<script>
        <article>
            <center>
            <div id="aux">
-               <?php echo "<script>ProfileView('PV','".$profile_username."');</script>"; ?>
            </div>
            <div id="main">
            <!-- Keep this DIV empty for this page because it will be used for new post dialog with user mention-->

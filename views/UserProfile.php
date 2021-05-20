@@ -36,10 +36,15 @@
                 //decide what legend show if the profile follows the logged user
                 if($fbstat){
                     //User follows
-                    return "<span id='followStatus' class='followStatus'>&nbsp;&nbsp;TE SIGUE&nbsp;&nbsp;</span>";
+                    return "<span id='followStatus' class='followStatus'>&nbsp;&nbsp;TE SIGUE upok ".$fbstat."&nbsp;&nbsp;</span>";
                 }else{
-                    //User doesnt follow
-                    return "<span id='followStatus' class='followStatusNull'>&nbsp;&nbsp;NO TE SIGUE&nbsp;&nbsp;</span>";
+
+                    if(empty($fbstat)){
+                        return "vacio bebé";
+                    }else{
+                        //User doesnt follow
+                        return "<span id='followStatus' class='followStatusNull'>&nbsp;&nbsp;NO TE SIGUE upok".$fbstat."&nbsp;&nbsp;</span>";
+                    }
                 }
         }
 
@@ -50,20 +55,22 @@
                 return "<button id='btn-".$object."' role='".$object."' class='btn btn-danger' onclick=UnsetFollow(this)>Dejar de seguir</button>";
             }else{
                 //User doesnt follow
-                return "<button id='btn-".$object."' role='".$object."' class='btn btn-success' onclick=SetUpFollow(this)>Seguir</button>";
+                //return "<button id='btn-".$object."' role='".$object."' class='btn btn-success' onclick=SetUpFollow(this)>Seguir</button>";
+                return $fstat ;
             }
         }
 
         function ProfileResumeHeader($type,$data){
             if($type=="private"){
                 //true = Can show all data, i.e. is viewing from a logged profile
-                echo "<th>".$data['nombreCompleto']."</th>
-                <th>".$data['usuario']."</th>
+                return "<th>".$data['nombreCompleto']."</th>
+                <th>@".$data['usuario']."</th>
                 <th>".profileFollowLegend($data['followBack'])."</th>
                 <th>".profileFollowButtonSelector($data['followStatus'],$data['usuario'])."</th>";
-            }else{echo "<tr>
+            }else{
+                return "<tr>
                 <th colspan='2'>".$data['nombreCompleto']."</th>
-                <th colspan='2'>".$data['usuario']."</th>
+                <th colspan='2'>@".$data['usuario']."</th>
                 </tr>";
             }
         }
@@ -73,27 +80,27 @@
                 //Can show all data but according the button
                 switch($button){
                     case 1:
-                        echo "<button class='btn btn-info' id='btn_showpeople' onclick='showFollowed()' >Seguidos</button>";
+                        return "<button class='btn btn-info' id='btn_showpeople' onclick='showFollowed()' >Seguidos</button>";
                     break;
 
                     case 2:
-                        echo "<button class='btn btn-info' id='btn_showpeople' onclick='showFollowers()' >Seguidores</button>";
+                        return "<button class='btn btn-info' id='btn_showpeople' onclick='showFollowers()' >Seguidores</button>";
                     break;
                 }
             }else{
                 switch($button){
                     case 1:
-                        echo "Seguidos";
+                        return "Seguidos";
                     break;
 
                     case 2:
-                        echo "Seguidores";
+                        return "Seguidores";
                     break;
                 }
             }
         }
 
-        echo "<table class='blueTable'>
+        echo "<div id='profileResumeTable'><table class='blueTable'>
         <thead>
         ".ProfileResumeHeader($type,$data)."
         </thead>
@@ -115,7 +122,8 @@
         <td colspan='2'>".$data['cantidadSeguidores']."</td>
         </tr>
         </tbody>
-        </table>";
+        </table>
+        </div>";
         
     }
 
