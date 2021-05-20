@@ -484,6 +484,14 @@
             $("#main").html(sucess);
         })
     }
+
+//Auxiliar for profile viewing
+    function ProfileView(path,object){
+        $.post('controllers/ProfileManager.php', {path:path,p:object},function(sucess){
+            $('#FrontEnd').html(sucess);
+        });
+    }
+
 //Showing follows and followed people
 
     function showFollowed(){

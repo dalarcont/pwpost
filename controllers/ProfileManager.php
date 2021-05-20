@@ -51,7 +51,8 @@
             if($selector=="private"){
                 //Someone logged is viewing this profile
                 //$PV_Pkg = DB_LoadProfile_Data($_POST['p'],$_SESSION['UserPkg']['username']);
-                $PV_Pkg = DB_LoadProfile_Data($_POST['p'],$_SESSION['UserPkg']['username']);
+                //$PV_Pkg = DB_LoadProfile_Data($_POST['p'],$_SESSION['UserPkg']['username']);
+                $PV_Pkg = DB_LoadProfile_Data($_POST['p'],false);
             }else{
                 //Public is viewing
                 $PV_Pkg = DB_LoadProfile_Data($_POST['p'],false);
@@ -76,7 +77,7 @@
         }
     }
 
-
+    //Main selector
     switch($_POST['path']){
         case "LUOWN":
             //Logged user
@@ -89,7 +90,7 @@
             if($_POST['p']==$UserData['username']){
                 //The logged user wants to see its profile from the separate page for profile public viewing.
                 echo "<i>Estimado(a) usuario(a): ".$UserData['username'].", esta es la vista de tu perfil ante el público.</i>";
-                PublicUser("private");
+                PublicUser($UserData['username']);
             }else{
                 PublicUser(false);
             }
