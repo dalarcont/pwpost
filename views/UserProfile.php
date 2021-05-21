@@ -30,44 +30,48 @@
     }
 
     //Show profile resume grid
-    function ProfileResume($type,$data){
+    function ProfileResume($type,$data,$visitor){
         
         function profileFollowLegend($fbstat){
-                //decide what legend show if the profile follows the logged user
-                if($fbstat){
-                    //User follows
-                    return "<span id='followStatus' class='followStatus'>&nbsp;&nbsp;TE SIGUE upok ".$fbstat."&nbsp;&nbsp;</span>";
-                }else{
-
-                    if(empty($fbstat)){
-                        return "vacio bebé";
-                    }else{
-                        //User doesnt follow
-                        return "<span id='followStatus' class='followStatusNull'>&nbsp;&nbsp;NO TE SIGUE upok".$fbstat."&nbsp;&nbsp;</span>";
-                    }
-                }
+            //Normal procedure
+            if($fbstat){
+                //User follows
+                return "<span id='followStatus' class='followStatus'>&nbsp;&nbsp;TE SIGUE&nbsp;&nbsp;</span>";
+            }else{
+                //User doesnt follow
+                return "<span id='followStatus' class='followStatusNull'>&nbsp;&nbsp;NO TE SIGUE&nbsp;&nbsp;</span>";
+            }
         }
 
         function profileFollowButtonSelector($fstat,$object){
-            //decide what button show if logged user follows or not the user profile
             if($fstat){
                 //User follows
                 return "<button id='btn-".$object."' role='".$object."' class='btn btn-danger' onclick=UnsetFollow(this)>Dejar de seguir</button>";
             }else{
                 //User doesnt follow
-                //return "<button id='btn-".$object."' role='".$object."' class='btn btn-success' onclick=SetUpFollow(this)>Seguir</button>";
-                return $fstat ;
-            }
+                return "<button id='btn-".$object."' role='".$object."' class='btn btn-success' onclick=SetUpFollow(this)>Seguir</button>";
+            }            
         }
 
-        function ProfileResumeHeader($type,$data){
+        function ProfileResumeHeader($type,$data,$visitor){
             if($type=="private"){
                 //true = Can show all data, i.e. is viewing from a logged profile
-                return "<th>".$data['nombreCompleto']."</th>
-                <th>@".$data['usuario']."</th>
-                <th>".profileFollowLegend($data['followBack'])."</th>
-                <th>".profileFollowButtonSelector($data['followStatus'],$data['usuario'])."</th>";
+                //BUT only show name and user if the visited profile is the same as the logged user
+                if($visitor==$data['usuario']){
+                    //Logged user wants to see its own profile
+                    return "<tr>
+                    <th colspan='2'>".$data['nombreCompleto']."</th>
+                    <th colspan='2'>@".$data['usuario']."</th>
+                    </tr>";
+                }else{
+                    //Logged user wants to see other profile that isn't its own
+                    return "<th id='profileResume_name'>".$data['nombreCompleto']."</th>
+                    <th id='profileResume_user'>@".$data['usuario']."</th>
+                    <th id='profileResume_fbs'>".profileFollowLegend($data['followBack'])."</th>
+                    <th id='profileResume_btn'>".profileFollowButtonSelector($data['followStatus'],$data['usuario'])."</th>";
+                }
             }else{
+                //Anyone form public wants to see a profile
                 return "<tr>
                 <th colspan='2'>".$data['nombreCompleto']."</th>
                 <th colspan='2'>@".$data['usuario']."</th>
@@ -100,9 +104,9 @@
             }
         }
 
-        echo "<div id='profileResumeTable'><table class='blueTable'>
+        echo "<div id='profileResumeTable'><table class='profileResumeTable'>
         <thead>
-        ".ProfileResumeHeader($type,$data)."
+        ".ProfileResumeHeader($type,$data,$visitor)."
         </thead>
         <tbody>
         <tr>

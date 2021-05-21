@@ -9,17 +9,8 @@
     }
 
     //Path selected
-    if($_POST['path']=="PV"){
-        $Path = "private";
-    }else{
-        if($_POST['path']=="LUOWN"){
-            //Logged user wants it self
-            $Path = "LUOWN";
-        }else{
-            $Path = false;
-        }
-        
-    }
+    $Path = $_POST['path'];
+    
     //Profile selected
     $ProfileSelected = $_POST['p'];
 
@@ -49,6 +40,10 @@
     //Selector functions
     function SameUser($a){
         //Print description
+        $PV_Pkg = DB_LoadProfile_Data($a,$a);
+        //Print profile resume
+        //ProfileResume(false,$PV_Pkg);
+        /*
         echo "<script>$('#profileResume').append('".Print_ProfileResume($a)."');</script>";
         //Print entries included the hidden because user wants to see its own profile
         $EntryPkg = DB_Post_Profile($a['username'],false);
@@ -57,7 +52,7 @@
             PrintProfile_Empty();
         }else{
             EntryPrinter($EntryPkg);
-        }
+        }*/
     }
 
     function PublicUser($selector,$object,$viewingUser){
@@ -69,13 +64,13 @@
                 //Someone logged is viewing this profile
                 $PV_Pkg = DB_LoadProfile_Data($object,$viewingUser);
             }else{
-                //Public is viewing
+                //Public is viewing, will load basic data
                 $PV_Pkg = DB_LoadProfile_Data($object,false);
             }
 
             //Print profile resume
-            ProfileResume("private",$PV_Pkg);
-            /*
+            ProfileResume($selector,$PV_Pkg,$viewingUser);
+            
             //Print entries (Public entries)
             $PV_Entry = DB_Post_Profile($object,true);
             //Selector of post's cantity
@@ -85,20 +80,19 @@
             }else{
                 //User have at least 1 entry
                 EntryPrinter($PV_Entry);
-            }*/
+            }
         }else{
             PrintProfileNonexistence();
         }
     }
-
+/*
     if($ProfileSelected!=null){
         //Profile selected isn't empty, will charge a profile
         //Main selector
         //Detect if logged user tries to see its own profile or another
         if($ProfileSelected==$UserData['username']){
             //Logged user wants to see its own profile
-            //PublicUser($Path,$ProfileSelected,$ProfileSelected);
-            echo "<i>Estimado(a) usuario(a): ".$ProfileSelected.", esta es la vista de tu perfil ante el público.</i>";
+            sameUser($ProfileSelected);
         }else{
             //See other user profile
             PublicUser($Path,$ProfileSelected,$UserData['username']);
@@ -107,10 +101,21 @@
         if($Path=="LUOWN"){
             //Logged User Own
             //Wants to see its own profile from Desktop page
-            echo "<i>Estimado(a) usuario(a): ".$UserData['username'].", esta es la vista de tu perfil ante el público.</i>";
+            echo "<i>Estimado(a) usuario(a): ".$UserData['username'].", esta es la vista de tu perfil ante el público.</i> ELSE SUPERIOR PRIMER IF SENTENCIA TRUE";
+            sameUser($ProfileSelected);
         }else{
             echo "<big>No se ha definido el perfil a mostrar. Verifica la URL</big>";
         }
+    }*/
+
+    if($Path=="PV"){
+        //Private access
+        //Can show more data
+        PublicUser("private",$ProfileSelected,$UserData['username']);
+    }else{
+        //Only show basic data (name,username,join date, post cantity, followers cantity, followed cantity)
+        echo "BASIC DATA<br>";
+        PublicUser(false,$ProfileSelected,null);
     }
 
     

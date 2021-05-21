@@ -62,7 +62,8 @@
         });
 
         $("#showProfile").click(function(){
-            $.post('controllers/ProfileManager.php', {path:"LUOWN"},function(sucess){
+            var objLogged = $("#whoIsOnline").val();
+            $.post('controllers/ProfileManager.php', {path:"PV",p:objLogged},function(sucess){
                 $("#FrontEnd").html(sucess);
             });
                     
