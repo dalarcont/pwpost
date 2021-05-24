@@ -45,7 +45,6 @@ if ($_POST['call'] == "let") {
                     //The pub has been published
                     //Close dialog
                     echo "<script>$('#form_rePost').dialog('close'); $('#FrontEnd').prepend('<div id=auxEdited_post></div>');</script>";
-                    //EXPERIMENTAL: Post the new entry at the top of FrontEnd div
                     //Print the entry
                     echo "<script>PostPrinter('",$pid,"')</script>";
                     //Clean the div that helps to system do operations

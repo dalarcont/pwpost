@@ -5,11 +5,14 @@
     //Call procedures
     require '../procedures/SYS_DB_CON.php';
     require '../procedures/Follow.php';
+    //View templates
+    require '../views/Alerts.php';
     //This procedure doesn't need view file. This same controller can change a simply style property
 
     if(empty($_SESSION['UsrPkg'])){
         //User hasn't logged or its session was broken
-        echo "<script>alertify.alert('Seguir usuario', 'Error de sesión<br />No se puede ejecutar tu orden.<br />Intenta nuevamente.<br />Si el problema persiste, por favor cierra e inicia sesión nuevamente.', function(){ location.reload(); });</script>";
+        alertMessage("Seguir usuario","Error de sesión<br />No se puede ejecutar tu orden.<br />Intenta nuevamente.<br />Si el problema persiste, por favor cierra e inicia sesión nuevamente.","reload",false);
+        //echo "<script>alertify.alert('Seguir usuario', 'Error de sesión<br />No se puede ejecutar tu orden.<br />Intenta nuevamente.<br />Si el problema persiste, por favor cierra e inicia sesión nuevamente.', function(){ location.reload(); });</script>";
     }else{
         if($_POST['param']=="set"){
             //User session is working properly
@@ -36,7 +39,8 @@
                     </script>";
                 }
             }else{
-                echo "<script>alertify.alert('Seguir usuario','Ocurrió un error en el sistema.<br />Por favor intenta luego.');</script>";
+                //echo "<script>alertify.alert('Seguir usuario','Ocurrió un error en el sistema.<br />Por favor intenta luego.');</script>";
+                alertMessage("Seguir usuario","Ocurrió un error en el sistema.<br />Por favor intenta luego.",false,false);
             }
         }else{
             //User needs to unfollow someone
@@ -62,7 +66,8 @@
                     </script>";
                 }
             }else{
-                echo "<script>alertify.alert('Dejar de seguir usuario','Ocurrió un error en el sistema.<br />Por favor intenta luego.');</script>";
+                //echo "<script>alertify.alert('Dejar de seguir usuario','Ocurrió un error en el sistema.<br />Por favor intenta luego.');</script>";
+                alertMessage("Seguir usuario","Ocurrió un error en el sistema.<br />Por favor intenta luego.",false,false);
             }
         }
         

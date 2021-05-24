@@ -1,5 +1,7 @@
 <?php 
 
+    //AlertifyJS Confirmation dialogs
+
     function RemoveConfirmationMessage($id){
         echo "<script>alertify.confirm('Eliminar entrada', '¿En realidad quieres eliminar esta entrada?', function(){ SetUpRemove('",$id,"'); }, function(){ alertify.error('Se cancela eliminación de la entrada')});</script>";
     }

@@ -33,7 +33,6 @@
                     $result = null;
                     PrintEntry($result);
                 }
-                
             }
         }else{
             $result = null;

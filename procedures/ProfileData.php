@@ -32,7 +32,6 @@
             WHERE
                 usr.username = '$user'";
         }
-        //$SQL_Query = "SELECT piu.user_fullname, piu.joindate, piu.username FROM users piu WHERE piu.username = '$user'";
         
         $SQL_CON = mysqli_query(DB_CON(),$SQL_Query);
         $SQL_PKG = mysqli_fetch_array($SQL_CON);

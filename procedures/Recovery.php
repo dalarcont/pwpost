@@ -8,7 +8,7 @@
     }
 
     //Unset actual password and set recovery password
-    function DB_SetUpRecoveryPassword$email,$pswd){
+    function DB_SetUpRecoveryPassword($email,$pswd){
         $SQL_QUERY = "UPDATE users SET recovery_key = '$pswd', user_pswd = '$pswd' WHERE user_email = '$email'";
         if(mysqli_query(DB_CON(),$SQL_QUERY)){
             return true;

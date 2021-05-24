@@ -38,24 +38,7 @@
     }
 
     //Selector functions
-    function SameUser($a){
-        //Print description
-        $PV_Pkg = DB_LoadProfile_Data($a,$a);
-        //Print profile resume
-        //ProfileResume(false,$PV_Pkg);
-        /*
-        echo "<script>$('#profileResume').append('".Print_ProfileResume($a)."');</script>";
-        //Print entries included the hidden because user wants to see its own profile
-        $EntryPkg = DB_Post_Profile($a['username'],false);
-        if(empty($EntryPkg)){
-            //There isn't entries
-            PrintProfile_Empty();
-        }else{
-            EntryPrinter($EntryPkg);
-        }*/
-    }
-
-    function PublicUser($selector,$object,$viewingUser){
+    function ProfileUser($selector,$object,$viewingUser){
         //Procedure was called from public, i.e. not logged user
         if(DB_VerifyUserExistence($object)){
             //User exists
@@ -85,40 +68,15 @@
             PrintProfileNonexistence();
         }
     }
-/*
-    if($ProfileSelected!=null){
-        //Profile selected isn't empty, will charge a profile
-        //Main selector
-        //Detect if logged user tries to see its own profile or another
-        if($ProfileSelected==$UserData['username']){
-            //Logged user wants to see its own profile
-            sameUser($ProfileSelected);
-        }else{
-            //See other user profile
-            PublicUser($Path,$ProfileSelected,$UserData['username']);
-        }
-    }else{
-        if($Path=="LUOWN"){
-            //Logged User Own
-            //Wants to see its own profile from Desktop page
-            echo "<i>Estimado(a) usuario(a): ".$UserData['username'].", esta es la vista de tu perfil ante el público.</i> ELSE SUPERIOR PRIMER IF SENTENCIA TRUE";
-            sameUser($ProfileSelected);
-        }else{
-            echo "<big>No se ha definido el perfil a mostrar. Verifica la URL</big>";
-        }
-    }*/
 
+    //Main selector
     if($Path=="PV"){
         //Private access
         //Can show more data
-        PublicUser("private",$ProfileSelected,$UserData['username']);
+        ProfileUser("private",$ProfileSelected,$UserData['username']);
     }else{
         //Only show basic data (name,username,join date, post cantity, followers cantity, followed cantity)
-        echo "BASIC DATA<br>";
-        PublicUser(false,$ProfileSelected,null);
+        ProfileUser(false,$ProfileSelected,null);
     }
-
-    
-    
 
 ?>

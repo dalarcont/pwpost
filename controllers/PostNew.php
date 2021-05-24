@@ -15,7 +15,7 @@ session_start();
             //Verify if this procedure was called from normal page or was called from a profile page
             //If was called from a profile page, we suppose that the user needs to do an entry with a mention about the visited user
             if(userMention.length!=0 && userMention != "null"){
-                $("#newEntrie_content").val("@"+userMention+": ");
+                $("#newEntry_content").html("@"+userMention+": ");
             }</script>
         ';
     }else{

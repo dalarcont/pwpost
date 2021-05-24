@@ -60,7 +60,10 @@ session_start();
     <?php 
                 if(!empty($_SESSION['UsrPkg'])){
                 //Session is set, that mean that an user is logged on
-                    echo "<br>
+                    echo "
+                    <div id='actionsMenu'>
+                        <button class='btn btn-success' onclick='startNewPost()'><img src='components/newpost.png' style='width:25px;height:25px;'></img> Nueva entrada</button><br><br>
+                    </div>
                     <div id='MoreEntry'>
                         <button class='btn btn-info' onclick='BottomPage()'><img src='components/down.png' style='width:25px;height:25px;'></img> Ir abajo</button>
                     </div>
