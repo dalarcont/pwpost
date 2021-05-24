@@ -69,9 +69,20 @@
         }
     }
 
+    //Delete profile button for logged user profile
+    function DeleteProfile($objective,$whoIsOnline){
+        if($objective==$whoIsOnline){
+            //Show the button
+            echo "<p><button role='unsetprofile' class='btn btn-danger' onclick=startUnsetIdentity()>Eliminar mi perfil</button><br></p>";
+        }
+
+    }
+
     //Main selector
     if($Path=="PV"){
         //Private access
+        //Delete profil button selector
+        DeleteProfile($ProfileSelected,$UserData['username']);
         //Can show more data
         ProfileUser("private",$ProfileSelected,$UserData['username']);
     }else{

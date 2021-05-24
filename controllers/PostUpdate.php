@@ -3,6 +3,7 @@ session_start();
 //Load views
 require '../views/PostForms.php';
 require '../views/Entry.php';
+require '../views/Alerts.php';
 //Load procedure
 require '../procedures/SYS_DB_CON.php';
 require '../procedures/PostLoad.php';
@@ -19,7 +20,8 @@ if ($_POST['call'] == "let") {
     $edition_limit = DB_ReadEditionCounter($_POST['post'])[0];
     if ($edition_limit >= 5) {
         //Entry has been updated 5 times and can't acept a new edition
-        echo "<script>alertify.alert('Actualización de entrada','Ya utilizaste las 5 veces que se permite que una entrada sea editada.<br />No se permite editar la entrada.<br />Crea una nueva o hazle repost a esta.');</script>";
+        //echo "<script>alertify.alert('Actualización de entrada','Ya utilizaste las 5 veces que se permite que una entrada sea editada.<br />No se permite editar la entrada.<br />Crea una nueva o hazle repost a esta.');</script>";
+        alertMessage("Actualización de entrada","Ya utilizaste las 5 veces que se permite que una entrada sea editada.<br />No se permite editar la entrada.<br />Crea una nueva o hazle repost a esta.",false,false);
     } else {
         //Get content of the post that the user wants to edit
         $uid_post = $_POST['post'];
@@ -58,7 +60,8 @@ if ($_POST['call'] == "let") {
 
             if (($Entry_Original_Title_Hash == $Entry_Edited_Title_Hash) && ($Entry_Original_Content_Hash == $Entry_Edited_Content_Hash)) {
                 //There is no data to update
-                echo "<script> $('#form_editPost').dialog('close'); alertify.success('No se realizaron modificaciones.');</script>";
+                echo "<script> $('#form_editPost').dialog('close');</script>";
+                notification(true,"No se realizaron modificaciones.");
             } else {
                 //Before the edit post procedure, set actual counter of editions
                 $edition_limit_2 = DB_ReadEditionCounter($originalId)[0] + 1;
@@ -77,22 +80,25 @@ if ($_POST['call'] == "let") {
                     //Print the entry
                     echo "<script>PostPrinter('", $originalId, "')</script>";
                     //Notification
-                    echo "<script>alertify.success('Entrada actualizada. La encuentras al principio.'); </script>";
+                    notification(true,"Entrada actualizada. La encuentras al principio.");
                     //Clean the div that helps to system do operations
                     echo "<script>$('#main').empty();</script>";
                     //Delete aux div
                     echo "<script>$('#auxEdited_post').remove();</script>";
                 } else {
                     //There is an error
-                    echo "<script>$('#form_editPost').dialog('close'); alertify.alert('Actualización de entrada', 'Ha ocurrido un error en la base de datos.<br />No se pudo actualizar tu entrada. Intenta más tarde.', function(){ location.reload(); });</script>";
+                    echo "<script>$('#form_editPost').dialog('close');</script>";
+                    alertMessage("Actualización de entrada","Ha ocurrido un error en la base de datos.<br />No se pudo actualizar tu entrada. Intenta más tarde.","reload",false);
                 }
             }
         } else {
             //Session is broken
-            echo "<script>$('#form_editPost').dialog('close'); alertify.alert('Actualización de entrada', 'Ha ocurrido un error en el sistema.<br />La sesión está rota.', function(){ location.href='index.php'; });</script>";
+            echo "<script>$('#form_editPost').dialog('close');</script>";
+            alertMessage("Actualización de entrada","Ha ocurrido un error en el sistema.<br />La sesión está rota.","transport","index.php");
         }
     } else {
         //Procedure parameter wasn't recognized
-        echo "<script>$('#form_editPost').dialog('close'); alertify.alert('Actualización de entrada', 'Procedimiento de actualización de entrada erróneo', function(){ location.reload(); });</script>";
+        echo "<script>$('#form_editPost').dialog('close');</script>";
+        alertMessage("Actualización de entrada","Procedimiento de actualización de entrada erróneo.","reload",false);
     }
 }

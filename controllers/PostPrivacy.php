@@ -2,6 +2,7 @@
 session_start();
     //Load views
     require '../views/Confirmations.php';
+    require '../views/Alerts.php';
     //Load procedure
     require '../procedures/SYS_DB_CON.php';
     require '../procedures/Validators.php';
@@ -35,23 +36,22 @@ session_start();
                         //The pub has been hiden
                         echo "<script> 
                         $('#",$_POST['post']," #btn_hide img').attr('src','components/unhide.png'); 
-                        $('#",$_POST['post']," #btn_hide').attr('onclick','startUnhidePost(this)');
-                        alertify.success('Entrada privatizada'); 
-                        alertify.alert('Ocultar entrada','Entrada oculta<br />Aquellos usuarios que hayan realizado repost de esta entrada les saldrá un aviso de que la misma ya no está disponible.');</script>";
+                        $('#",$_POST['post']," #btn_hide').attr('onclick','startUnhidePost(this)');</script>";
+                        alertMessage("Ocultar entrada","Entrada oculta<br />Aquellos usuarios que hayan realizado repost de esta entrada les saldrá un aviso de que la misma ya no está disponible.","truenotification","Entrada privatizada");
                     }else{
                         //There is an error
-                        echo "<script>alertify.alert('Ocultar entrada', 'Ha ocurrido un error en la base de datos.<br />No se pudo ocultar tu entrada. Intenta más tarde.', function(){ location.reload(); });</script>";
+                        alertMessage("Ocultar entrada","Ha ocurrido un error en la base de datos.<br />No se pudo ocultar tu entrada. Intenta más tarde.","reload",false);
                     }
 
                 }else{
                     //The logged user isn't the owner of the entry
-                    echo "<script>alertify.alert('Ocultar entrada', 'No se puede ocultar la entrada<br />Tú no eres el propietario de la entrada.');</script>";
+                    alertMessage("Ocultar entrada","No se puede ocultar la entrada<br />Tú no eres el propietario de la entrada.",false,false);
                 }
                     
                 
             }else{
                 //Session is broken
-                echo "<script>alertify.alert('Ocultar entrada', 'Ha ocurrido un error en el sistema.<br />La sesión está rota.', function(){ location.href='index.php'; });</script>";
+                alertMessage("Ocultar entrada","Ha ocurrido un error en el sistema.<br />La sesión está rota.","transport","index.php");
             }
         break;
 
@@ -78,30 +78,28 @@ session_start();
                         //The pub has been unhide, let change button and event
                         echo "<script>
                         $('#",$_POST['post']," #btn_hide img').attr('src','components/hide.png'); 
-                        $('#",$_POST['post']," #btn_hide').attr('onclick','startHidePost(this)');
-                        alertify.success('Entrada pública'); 
-                        alertify.alert('Mostrar entrada','Entrada pública<br />Aquellos usuarios que hayan realizado repost de esta entrada les aparecerá el contenido.');
-                        </script>";
+                        $('#",$_POST['post']," #btn_hide').attr('onclick','startHidePost(this)');</script>";
+                        alertMessage("Mostrar entrada","Entrada pública<br />Aquellos usuarios que hayan realizado repost de esta entrada les aparecerá el contenido.","truenotification","Entrada pública");
                     }else{
                         //There is an error
-                        echo "<script>alertify.alert('Mostrar entrada', 'Ha ocurrido un error en la base de datos.<br />No se pudo mostrar tu entrada. Intenta más tarde.', function(){ location.reload(); });</script>";
+                        alertMessage("Mostrar entrada","Ha ocurrido un error en la base de datos.<br />No se pudo mostrar tu entrada. Intenta más tarde.","reload",false);
                     }
 
                 }else{
                     //The logged user isn't the owner of the entry
-                    echo "<script>alertify.alert('Mostrar entrada', 'No se puede mostrar la entrada<br />Tú no eres el propietario de la entrada.');</script>";
+                    alertMessage("Mostrar entrada","No se puede mostrar la entrada<br />Tú no eres el propietario de la entrada.",false,false);
                 }
                     
                 
             }else{
                 //Session is broken
-                echo "<script>alertify.alert('Mostrar entrada', 'Ha ocurrido un error en el sistema.<br />La sesión está rota.', function(){ location.href='index.php'; });</script>";
+                alertMessage("Mostrar entrada","Ha ocurrido un error en el sistema.<br />La sesión está rota.","transport","index.php");
             }
         break;
 
         default:
             //Parameter was not recognized
-            echo "<script>alertify.alert('Ocultar/Mostrar entrada', 'Procedimiento de ocultar/mostrar entrada erróneo', function(){ location.reload(); });</script>";
+            alertMessage("Ocultar/Mostrar entrada","Procedimiento de ocultar/mostrar entrada erróneo","reload",false);
         break;
     }
 

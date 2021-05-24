@@ -10,6 +10,7 @@
 
     //Call view templates
     require '../views/UserProfile.php';
+    require '../views/Alerts.php';
     //Call procedures
     require '../procedures/SYS_DB_CON.php';
     require '../procedures/FollowingData.php';
@@ -43,9 +44,10 @@
             ShowFollowData(true,$Pkg,$ObjectUser,$_SESSION['UsrPkg']['username']);
         }else{
             if(empty($Pkg)){
-                echo "<script>alertify.alert('Seguidos','<b>".$ObjectUser."</b> No sigue a nadie.<br />Intenta luego.');</script>";
+                $content = "Seguidos','<b>".$ObjectUser."</b> No sigue a nadie.<br />Intenta luego.";
+                alertMessage("Seguidos",$content,false,false);
             }else{
-                echo "<script>alertify.alert('Seguidos','Ocurrió un error en el sistema.<br />Intenta luego.');</script>";
+                alertMessage("Seguidos","Ocurrió un error en el sistema.<br />Intenta luego.",false,false);
             }
         }
     }else{
@@ -59,9 +61,10 @@
             ShowFollowData(false,$Pkg,$ObjectUser,$_SESSION['UsrPkg']['username']);
         }else{
             if(empty($Pkg)){
-                echo "<script>alertify.alert('Seguidores','<b>".$ObjectUser."</b> No tiene seguidores.<br />Intenta luego.');</script>";
+                $content = "<b>".$ObjectUser."</b> No tiene seguidores.<br />Intenta luego.";
+                alertMessage("Seguidores","",false,false);
             }else{
-                echo "<script>alertify.alert('Seguidores','Ocurrió un error en el sistema.<br />Intenta luego.');</script>";
+                alertMessage("Seguidores","Ocurrió un error en el sistema.<br />Intenta luego.",false,false);
             }
             
         }

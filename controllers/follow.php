@@ -12,7 +12,6 @@
     if(empty($_SESSION['UsrPkg'])){
         //User hasn't logged or its session was broken
         alertMessage("Seguir usuario","Error de sesión<br />No se puede ejecutar tu orden.<br />Intenta nuevamente.<br />Si el problema persiste, por favor cierra e inicia sesión nuevamente.","reload",false);
-        //echo "<script>alertify.alert('Seguir usuario', 'Error de sesión<br />No se puede ejecutar tu orden.<br />Intenta nuevamente.<br />Si el problema persiste, por favor cierra e inicia sesión nuevamente.', function(){ location.reload(); });</script>";
     }else{
         if($_POST['param']=="set"){
             //User session is working properly
@@ -39,7 +38,6 @@
                     </script>";
                 }
             }else{
-                //echo "<script>alertify.alert('Seguir usuario','Ocurrió un error en el sistema.<br />Por favor intenta luego.');</script>";
                 alertMessage("Seguir usuario","Ocurrió un error en el sistema.<br />Por favor intenta luego.",false,false);
             }
         }else{
@@ -66,7 +64,6 @@
                     </script>";
                 }
             }else{
-                //echo "<script>alertify.alert('Dejar de seguir usuario','Ocurrió un error en el sistema.<br />Por favor intenta luego.');</script>";
                 alertMessage("Seguir usuario","Ocurrió un error en el sistema.<br />Por favor intenta luego.",false,false);
             }
         }

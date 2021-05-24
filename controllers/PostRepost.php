@@ -3,6 +3,7 @@ session_start();
 //Load views
 require '../views/PostForms.php';
 require '../views/Entry.php';
+require '../views/Alerts.php';
 //Load procedure
 require '../procedures/SYS_DB_CON.php';
 require '../procedures/PostLoad.php';
@@ -23,7 +24,8 @@ if ($_POST['call'] == "let") {
         Form_RePost($RepostSourceId,$RepostSource['title'],$RepostSource['content']);
     }else{
         //Post source is unavailable
-        echo "<script>alertify.alert('Repost','La entrada a la que quieres hacer repost acaba de declararse no disponible.<br />El usuario ha eliminado la entrada o la hemos eliminado nosotros.');</script>";
+        alertMessage("Repost","La entrada a la que quieres hacer repost acaba de declararse no disponible.<br />El usuario ha eliminado la entrada o la hemos eliminado nosotros.",false,false);
+
     }
 } else {
     //That means we need to publish the repost
@@ -53,14 +55,17 @@ if ($_POST['call'] == "let") {
                     echo "<script>$('#auxEdited_post').remove();</script>";
                 } else {
                     //There is an error
-                    echo "<script>$('#form_editPost').dialog('close'); alertify.alert('Repost', 'Ha ocurrido un error en la base de datos.<br />No se pudo publicar tu entrada. Intenta más tarde.', function(){ location.reload(); });</script>";
+                    echo "<script>$('#form_editPost').dialog('close');</script>";
+                    alertMessage("Repost","Ha ocurrido un error en la base de datos.<br />No se pudo publicar tu entrada. Intenta más tarde.","reload",false);
                 }
         } else {
             //Session is broken
-            echo "<script>$('#form_editPost').dialog('close'); alertify.alert('Repost', 'Ha ocurrido un error en el sistema.<br />La sesión está rota.', function(){ location.href='index.php'; });</script>";
+            echo "<script>$('#form_editPost').dialog('close');</script>";
+            alertMessage("Repost","Ha ocurrido un error en el sistema.<br />La sesión está rota.","transport","index.php");
         }
     } else {
         //Procedure parameter wasn't recognized
-        echo "<script>$('#form_editPost').dialog('close'); alertify.alert('Repost', 'Procedimiento de publicación de entrada erróneo', function(){ location.reload(); });</script>";
+        echo "<script>$('#form_editPost').dialog('close');</script>";
+        alertMessage("Repost","Procedimiento de publicación de entrada erróneo.","reload",false);
     }
 }

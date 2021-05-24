@@ -2,6 +2,7 @@
 session_start();
     //Load views
     require '../views/Confirmations.php';
+    require '../views/Alerts.php';
     //Load procedure
     require '../procedures/SYS_DB_CON.php';
     require '../procedures/Validators.php';
@@ -29,25 +30,25 @@ session_start();
                     $r = DB_RemovePost($_POST['post'],$_SESSION['UsrPkg']['username']);
                     if($r){
                         //The pub has been updated
-                        echo "<script>$('#",$_POST['post'],"').remove(); alertify.success('Entrada eliminada'); alertify.alert('Eliminación de entrada','Entrada eliminada<br />Aquellos usuarios que hayan realizado repost de esta entrada les saldrá un aviso de que la misma ya no está disponible.');</script>";
+                        echo "<script>$('#",$_POST['post'],"').remove();</script>";
+                        alertMessage("Eliminación de entrada","Entrada eliminada<br />Aquellos usuarios que hayan realizado repost de esta entrada les saldrá un aviso de que la misma ya no está disponible.","truenotification","Entrada eliminada");
                     }else{
                         //There is an error
-                        echo "<script>alertify.alert('Eliminación de entrada', 'Ha ocurrido un error en la base de datos.<br />No se pudo eliminar tu entrada. Intenta más tarde.', function(){ location.reload(); });</script>";
+                        alertMessage("Eliminación de entrada","Ha ocurrido un error en la base de datos.<br />No se pudo eliminar tu entrada. Intenta más tarde.","reload",false);
                     }
 
                 }else{
                     //The logged user isn't the owner of the entry
-                    echo "<script>alertify.alert('Eliminación de entrada', 'No se puede eliminar la entrada<br />Tú no eres el propietario de la entrada.');</script>";
+                    alertMessage("Eliminación de entrada","No se puede eliminar la entrada<br />Tú no eres el propietario de la entrada.",false,false);
                 }
-                    
                 
             }else{
                 //Session is broken
-                echo "<script>alertify.alert('Eliminación de entrada', 'Ha ocurrido un error en el sistema.<br />La sesión está rota.', function(){ location.href='index.php'; });</script>";
+                alertMessage("Eliminación de entrada","","transport","index.php");
             }
         }else{
             //Parameter isn't recognized
-            echo "<script>alertify.alert('Eliminación de entrada', 'Procedimiento de eliminación de entrada erróneo', function(){ location.reload(); });</script>";
+            alertMessage("Eliminación de entrada","Procedimiento de eliminación de entrada erróneo","reload",false);
         }
     }
 

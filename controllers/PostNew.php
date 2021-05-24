@@ -2,6 +2,7 @@
 session_start();
     //Load views
     require '../views/PostForms.php';
+    require '../views/Alerts.php';
     //Load procedure
     require '../procedures/NewPost.php';
     require '../procedures/SYS_DB_CON.php';
@@ -47,13 +48,16 @@ session_start();
                     echo "<script>$('#auxEdited_post').remove();</script>";
                 }else{
                     //There is an error
-                    echo "<script>$('#form_newPost').dialog('close'); alertify.alert('Nueva entrada', 'Ha ocurrido un error en la base de datos.<br />No se pudo publicar tu entrada. Intenta más tarde.', function(){ location.reload(); });</script>";
+                    echo "<script>$('#form_newPost').dialog('close');</script>";
+                    alertMessage("Nueva entrada","Ha ocurrido un error en la base de datos.<br />No se pudo publicar tu entrada. Intenta más tarde.","reload",false);
                 }
             }else{
-                echo "<script>$('#form_newPost').dialog('close'); alertify.alert('Nueva entrada', 'Ha ocurrido un error en el sistema.<br />La sesión está rota.', function(){ location.href='index.php'; });</script>";
+                echo "<script>$('#form_newPost').dialog('close');</script>";
+                alertMessage("Nueva entrada","Ha ocurrido un error en el sistema.<br />La sesión está rota.","transport","index.php");
             }
         }else{
-            echo "<script>$('#form_newPost').dialog('close'); alertify.alert('Nueva entrada', 'Procedimiento de publicación de entrada erróneo', function(){ location.reload(); });</script>";
+            echo "<script>$('#form_newPost').dialog('close');</script>";
+            alertMessage("Nueva entrada","Procedimiento de publicación de entrada erróneo.","reload",false);
         }
     }
 

@@ -37,5 +37,15 @@
         echo "<script>alertify.alert('".$title."','".$content."'".addOnSelector($extra,$extra2).";</script>";
     }
 
+    function notification($type,$content){
+        if($type){
+            //Success notification
+            echo "<script>alertify.success(".$content.");</script>";
+        }else{
+            //Error notification
+            echo "<script>alertify.error(".$content.");</script>";
+        }
+    }
+
 
 ?>
