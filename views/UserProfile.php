@@ -29,6 +29,12 @@
         echo "<big>Este usuario no existe o no está disponible temporalmente.</big>";
     }
 
+    //Home load detects user doesn't publish and doesn't follow at least 1 of each one.
+    function PrintProfile_EmptyFollowAndEntry(){
+        echo "<big>No tienes publicaciones ni sigues a alguien.</big><br>Anímate, no seas mala onda.<br>
+        <button class='art-button' onclick='startNewPost()'><img src='components/newpost.png' style='width:25px;height:25px;'></img> Publicar algo...</button>";
+    }
+
     //Show profile resume grid
     function ProfileResume($type,$data,$visitor){
         

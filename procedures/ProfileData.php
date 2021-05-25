@@ -50,4 +50,9 @@
     }
 
 
+    function DB_DeleteProfile($user,$key){
+        SQL
+    }
+
+
 ?>

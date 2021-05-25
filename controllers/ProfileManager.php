@@ -59,7 +59,13 @@
             //Selector of post's cantity
             if(empty($PV_Entry)){
                 //User exists but doesn't have entries
-                PrintProfilePublic_Empty();
+                if($object==$viewingUser){
+                    //Same profile as logged user haven't entries yet
+                    PrintProfile_Empty();
+                }else{
+                    //Any profile doesn't have entries
+                    PrintProfilePublic_Empty();
+                }
             }else{
                 //User have at least 1 entry
                 EntryPrinter($PV_Entry);

@@ -40,10 +40,10 @@
     function notification($type,$content){
         if($type){
             //Success notification
-            echo "<script>alertify.success(".$content.");</script>";
+            echo "<script>alertify.success('".$content."');</script>";
         }else{
             //Error notification
-            echo "<script>alertify.error(".$content.");</script>";
+            echo "<script>alertify.error('".$content."');</script>";
         }
     }
 

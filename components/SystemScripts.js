@@ -522,15 +522,30 @@
     }
 
 //Remove profile procedure
-function startUnsetIdentity(data){
-    var id = data;
-    $.post('controllers/removeProfile.php', {call:"letU",post:id},function(sucess){
+function startUnsetIdentity(){
+    var whoRequest = $("#whoIsOnline").val();
+    $.post('controllers/removeProfile.php', {call:"let",to:whoRequest},function(sucess){
         $("#main").html(sucess);
-    })
+    });
 }
+
 function UnsetIdentity(confirmation){
-    $.post('controllers/removeProfile.php', {call:"doItU",post:confirmation},function(sucess){
-        $("#main").html(sucess);
-    })
+    if(confirmation){
+        //Get data
+        var x = $("#rmprflmail").val();
+        var y = $("#rmprflkey").val();
+        if(x.length==0 && y.length==0){
+            //Confirmation fields are empty
+            alertify.alert("Eliminar perfil","No se ingresaron los datos requeridos.<br />Proceso cancelado.");
+        }else{
+            //Confirmation fields have data
+            $.post('controllers/removeProfile.php', {call:"doIt",who:x,key:y},function(sucess){
+                $("#main").html(sucess);
+            });
+        }        
+    }else{
+        alertify.alert("Eliminar perfil","No se puede eliminar tu perfil. Error en los parámetros.");
+    }
+    
 }
     
