@@ -10,6 +10,7 @@
     //Call procedure
     require '../procedures/sys_db_con.php';
     require '../procedures/validators.php' ;
+    require '../procedures/ProfileData.php';
 
     //Data
     $selector = $_POST['call']; //Procedure to follow
@@ -36,7 +37,13 @@
             $authDelete = ValidateAuthorityProfile($object,$key);
             if($authDelete){
                 //Authority is OK
-                notification(true,"PERFIL ELIMINADO");
+                //notification(true,"PERFIL ELIMINADO");
+                $delete = DB_DeleteProfile($object,$key);
+                if($delete){
+                    alertMessage("Eliminar perfil","El perfil ha sido eliminado exitosamente.","transport","index.php?p=rms");
+                }else{
+                    alertMessage("Eliminar perfil","Ocurrió un error en la base de datos.<br />Verifica tu identidad nuevamente.","transport","index.php");
+                }
             }else{
                 //Authority fails
                 alertMessage("Eliminar perfil","Los datos para verificación de autoridad sobre el perfil no son correctos.<br />Se puede tratar de una suplantación de identidad en este preciso momento.","transport","index.php");

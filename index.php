@@ -2,6 +2,7 @@
 session_start();
 session_destroy();
 include 'views/LoginForms.php';
+include 'views/Alerts.php';
 ?><!DOCTYPE html>
 <html lang="es">
 <head>
@@ -39,7 +40,17 @@ include 'views/LoginForms.php';
        <article>
            <center>
            <div id="main">
-               <?php Form_Login(); ?>
+               <?php 
+               
+               if($_GET['p']=="rms"){
+                   //This page was loaded after a delete profile procedure, say our respects to the ex-user
+                    alertMessage("Adiós","Lamentamos que hayas dado de baja tu perfil, nos duele tu retiro.<br />Eres libre de regresar cuando quieras.<br />Atentamente, Equipo PwPost.",false,false);
+               }
+               Form_Login(); 
+               
+               
+               
+               ?>
            </div>
            <div id="FrontEnd">
            </div>

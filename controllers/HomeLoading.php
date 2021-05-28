@@ -21,8 +21,8 @@
                 PrintProfile_Empty();
             }else{
 
-                print_r($result);
-                /*
+                //print_r($result);
+                
                 for($i=0; $i<=($size-1); $i++){
                     //Entry privacy selector, IF ENTRY = PRIVATE but LOGGED USER IS THE OWNER, SHOW IT
                     if($result[$i]['hiddenprop']!=0 && ($result[$i]['own_user']==$_SESSION['UsrPkg']['username'])){
@@ -42,7 +42,7 @@
                         $result = null;
                         PrintEntry($result);
                     }
-                }*/
+                }
             }
            
         }else{

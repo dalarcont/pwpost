@@ -51,7 +51,16 @@
 
 
     function DB_DeleteProfile($user,$key){
-        SQL
+        $SQL_Query = "DELETE usr, ge, evc, fllw, lp 
+        FROM users AS usr
+        JOIN general_entries AS ge ON ge.own_user = usr.username
+        JOIN entry_versioncontrol AS evc ON evc.own_user = usr.username
+        JOIN following AS fllw ON fllw.username = usr.username
+        JOIN following AS fllw2 ON fllw2.username = usr.username
+        JOIN likedpost AS lp ON lp.username = usr.username
+        WHERE usr.username = '$user' AND usr.user_pswd = '$key'";
+        $SQL_CON = mysqli_query(DB_CON(),$SQL_Query);
+        if($SQL_CON){return true;}else{return false;}
     }
 
 
