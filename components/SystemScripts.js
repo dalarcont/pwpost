@@ -54,10 +54,11 @@
         //Let the nav options menu works
         $("#loadHome").click(function(){
             //Delete aux profile description div
-            $("#profileDescription").remove();
+            /*$("#profileDescription").remove();
             $.post('controllers/HomeLoading.php', function(sucess){
                 $("#FrontEnd").html(sucess);
-            });
+            });*/
+            location.href='Desktop.php';
             
         });
 
@@ -102,7 +103,7 @@
     function FirstCodeValidation(){
         var x = $("#firstCode");
 
-        if(x.val().length == 8){
+        if(x.val().length >= 8){
             //User wrote the exactly 8 digits
             $("#validateFirstButton").show();
         }
@@ -356,6 +357,10 @@
                 $.post('controllers/PostNew.php', {call:"doIt",data:pkg},function(sucess){
                     $("#main").html(sucess);
                 });
+
+                if($("#emptyUser")!=undefined){
+                    $("#emptyUser").remove();
+                }
             }   
         }
     }
@@ -480,6 +485,16 @@
     }
     function UnsetPrivacy(id){
         $.post('controllers/PostPrivacy.php', {call:"doItU",post:id},function(sucess){
+            $("#main").html(sucess);
+        })
+    }
+
+
+
+    //Like /Dislike event
+    function setLikePost(data){
+        var id = $(data).val();
+        $.post('controllers/PostLike.php', {call:"like",post:id},function(sucess){
             $("#main").html(sucess);
         })
     }

@@ -44,8 +44,7 @@
             ShowFollowData(true,$Pkg,$ObjectUser,$_SESSION['UsrPkg']['username']);
         }else{
             if(empty($Pkg)){
-                $content = "Seguidos','<b>".$ObjectUser."</b> No sigue a nadie.<br />Intenta luego.";
-                alertMessage("Seguidos",$content,false,false);
+                alertMessage("Seguidos","No hay seguidos...",false,false);
             }else{
                 alertMessage("Seguidos","Ocurrió un error en el sistema.<br />Intenta luego.",false,false);
             }
@@ -61,8 +60,7 @@
             ShowFollowData(false,$Pkg,$ObjectUser,$_SESSION['UsrPkg']['username']);
         }else{
             if(empty($Pkg)){
-                $content = "<b>".$ObjectUser."</b> No tiene seguidores.<br />Intenta luego.";
-                alertMessage("Seguidores","",false,false);
+                alertMessage("Seguidores","No hay seguidores",false,false);
             }else{
                 alertMessage("Seguidores","Ocurrió un error en el sistema.<br />Intenta luego.",false,false);
             }

@@ -15,8 +15,8 @@
 
     //Print entries
     function PrintProfile_Empty(){
-        echo "<br>No has publicado algo, por algo tu perfil está vacío.<br>Anímate, no seas mala onda.<br>
-            <button class='art-button' onclick='startNewPost()'><img src='components/newpost.png' style='width:25px;height:25px;'></img> Publicar algo...</button>";
+        echo "<div id='emptyUser'><br>No has publicado algo, por algo tu perfil está vacío.<br>Anímate, no seas mala onda.<br>
+            <button class='art-button' onclick='startNewPost()'><img src='components/newpost.png' style='width:25px;height:25px;'></img> Publicar algo...</button></div>";
     }
 
     //User haven't post any entry

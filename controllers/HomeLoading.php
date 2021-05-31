@@ -9,6 +9,7 @@
     //Require views
         include '../views/Entry.php';
         include '../views/Alerts.php';
+        include '../views/UserProfile.php';
 
         if(!empty($_SESSION['UsrPkg'])){
             //Get data from DB

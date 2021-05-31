@@ -37,7 +37,6 @@
             $authDelete = ValidateAuthorityProfile($object,$key);
             if($authDelete){
                 //Authority is OK
-                //notification(true,"PERFIL ELIMINADO");
                 $delete = DB_DeleteProfile($object,$key);
                 if($delete){
                     alertMessage("Eliminar perfil","El perfil ha sido eliminado exitosamente.","transport","index.php?p=rms");

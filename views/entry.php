@@ -27,12 +27,14 @@ session_start();
                 //Then disable Edit(), Delete(), Hide()/Unhide() edit, delete and hide functions
                 echo "<tr>
                 <th id='entryTitle' colspan='5'>",$pkg['title'],"</th>
+                <th style='width:45px'><button class='btn btn-light' id='btn_edit' onclick='startLikePost(this)' value='",$pkg['uid_post'],"'><img src='components/liked.png' style='width:25px;height:25px;'></img></button></th>
                 <th style='width:45px'><button class='btn btn-light' id='btn_repost' onclick='startRepost(this)' value='",$pkg['uid_post'],"'><img src='components/repost.png' style='width:28px;height:28px;'></img></button></th>
                 </tr>";
             }else{
                 //Entry owner is the same as logged user
                 echo "<tr>
                 <th id='entryTitle' colspan='2'>",$pkg['title'],"</th>
+                <th style='width:45px'><button class='btn btn-light' id='btn_edit' onclick='startLikePost(this)' value='",$pkg['uid_post'],"'><img src='components/liked.png' style='width:25px;height:25px;'></img></button></th>
                 <th style='width:45px'><button class='btn btn-info' id='btn_edit' onclick='startUpdatePost(this)' value='",$pkg['uid_post'],"'><img src='components/edit.png' style='width:25px;height:25px;'></img></button></th>
                 <th style='width:45px'><button class='btn btn-danger' id='btn_del' onclick='startRemovePost(this)' value='",$pkg['uid_post'],"'><img src='components/delete.png' style='width:25px;height:25px;'></img></button></th>
                 <th style='width:45px'><button class='btn btn-warning' id='btn_hide' onclick='",hidden_FxSelector($pkg['hiddenprop']),"(this)' value='",$pkg['uid_post'],"' ><img src='components/",hidden_imgSelector($pkg['hiddenprop']),".png' style='width:25px;height:25px;'></img></button></th>
@@ -49,12 +51,12 @@ session_start();
             //There is an attached entry, post its content while the attached post exists
             if(!$pkg['attached_content']){
                 //The attached entry is private or was deleted.
-                echo "<tr><td colspan='6' style='height:85px;'><b><i>Esta entrada es un repost de otra que está privada o fue eliminada.</i></b></td></tr>";
+                echo "<tr><td colspan='7' style='height:85px;'><b><i>Esta entrada es un repost de otra que está privada o fue eliminada.</i></b></td></tr>";
             }else{
                 //The attached entry is available
-                echo "<tr><td colspan='6' style='height:45px;'>Repost a entrada de: <a href='Profile.php?p=",$pkg['attached_user'],"' target='_blank'><b>@",$pkg['attached_user'],"</b></a> : '",$pkg['attached_title'],"'</td></tr>";
-                echo "<tr><td colspan='6' style='height:85px;'><i>",$pkg['attached_content'],"</i></td></tr>";
-                echo "<tr><td colspan='6'><a href='Post.php?post=",$pkg['attached_uid_post'],"' target='_blank'>Ver original del post adjunto</a></td></tr>";
+                echo "<tr><td colspan='7' style='height:45px;'>Repost a entrada de: <a href='Profile.php?p=",$pkg['attached_user'],"' target='_blank'><b>@",$pkg['attached_user'],"</b></a> : '",$pkg['attached_title'],"'</td></tr>";
+                echo "<tr><td colspan='7' style='height:85px;'><i>",$pkg['attached_content'],"</i></td></tr>";
+                echo "<tr><td colspan='7'><a href='Post.php?post=",$pkg['attached_uid_post'],"' target='_blank'>Ver original del post adjunto</a></td></tr>";
             }
             
         }
@@ -86,11 +88,11 @@ session_start();
                 </thead>
                 <tbody>
                 <tr>
-                    <td  id='entryContent' colspan='6' style='height:85px'>",$pkg['content'],"</td>
+                    <td  id='entryContent' colspan='7' style='height:85px'>",$pkg['content'],"</td>
                 </tr>
                     ",PrintEntryAttached($pkg),"
                 <tr>
-                <td colspan='6'>
+                <td colspan='7'>
                     <span id='publishData'>Publicado por: <b>
                         <a href='Profile.php?p=",$pkg['own_user'],"' target='_blank'>",$pkg['own_user'],"</a></b> - 
                         Fecha de publicación: <a href='Post.php?post=",$pkg['uid_post'],"' target='_blank'>",$pkg['pubdate'],"</a>

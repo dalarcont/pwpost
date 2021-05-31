@@ -30,7 +30,7 @@
             //Send email with validation code for user's first access
             sendEmail("registro@pwpost.com",$pkg['email'],"Código de confirmación de registro",$EmailContent);
             $content = "Apreciado(a) ".$pkg['fullname']."<br />Tu registro ha sido exitoso. Falta un paso más!<br />En tu correo electrónico encontrarás un código que te será solicitado cuando inicies sesión por primera vez.";
-            alertMessage("Registro de usuario",$content,"reload",false);
+            alertMessage("Registro de usuario",$content,"transport","index.php");
         }else{
             alertMessage("Registro de usuario","Ha ocurrido un error en nuestro servidor al momento de registrarte. Intenta nuevamente más tarde, si el problema persiste comunícate con soporte.",false,false);
         }
