@@ -4,6 +4,7 @@
         include '../procedures/SYS_DB_CON.php';
         include '../procedures/PostLoad.php';
         include '../controllers/PrivacyManager.php';
+        require '../controllers/LikeManagement.php';
         require '../controllers/AttachedManagement.php';
         include '../views/Entry.php';
         require '../views/Alerts.php';

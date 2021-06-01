@@ -499,6 +499,13 @@
         })
     }
 
+    function unsetLikePost(data){
+        var id = $(data).val();
+        $.post('controllers/PostLike.php', {call:"unlike",post:id},function(sucess){
+            $("#main").html(sucess);
+        })
+    }
+
 //Auxiliar for profile viewing
     function ProfileView(path,object){
         $.post('controllers/ProfileManager.php', {path:path,p:object},function(sucess){

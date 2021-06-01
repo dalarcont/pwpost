@@ -7,6 +7,7 @@ session_start();
         require 'procedures/PostLoad.php';
         require 'procedures/EntryVersionControl.php';
         require 'controllers/PrivacyManager.php';
+        require 'controllers/LikeManagement.php';
         require 'controllers/AttachedManagement.php';
     //Require views, in the same directory because was called from a file on first directory paths
         include 'views/Entry.php';

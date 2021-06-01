@@ -15,5 +15,7 @@
         }else{
             return false;
         }
+        DB_CON_CLOSE($SQL_QUERY,DB_CON());
     }
+
 ?>

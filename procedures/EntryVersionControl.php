@@ -10,6 +10,7 @@
             $Package[]=$SQL_PKG;
         }
         return $Package ;
+        DB_CON_CLOSE($SQL_Query,DB_CON());
     }
 
     //At new registry or editing post, let version control
@@ -27,6 +28,7 @@
         }else{
             return false;
         }
+        DB_CON_CLOSE($SQL_QUERY,DB_CON());
     }
 
 ?>

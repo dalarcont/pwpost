@@ -19,6 +19,7 @@
             echo "<span style='color:green'>Email <b>'$email'</b> está libre de asociación!</span>";
             echo "<script>$('#isOk_3').val('true');</script>";
         }
+        DB_CON_CLOSE($SQL_QUERY,DB_CON());
     }
 
 ?>

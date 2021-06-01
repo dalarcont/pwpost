@@ -4,6 +4,7 @@
         $r = mysqli_query(DB_CON(),$SQL_QUERY);
         $r = mysqli_fetch_array($r);
         return $r[0];
+        DB_CON_CLOSE($SQL_QUERY,DB_CON());
     }
 
     function ValidateAuthorityProfile($email,$key){
@@ -11,5 +12,23 @@
         $r = mysqli_query(DB_CON(),$SQL_QUERY);
         $r = mysqli_fetch_array($r);
         return $r[0];
+        DB_CON_CLOSE($SQL_QUERY,DB_CON());
+    }
+
+    function validatePostPublicExists($post){
+        $SQL_QUERY = "SELECT * FROM general_entries WHERE uid_post = '$post'";
+        $r = mysqli_query(DB_CON(),$SQL_QUERY);
+        $r = mysqli_fetch_array($r);
+        if(!empty($r)){
+            if($r['hiddenprop']==1){
+                //Its available and public
+                return false;
+            }else{
+                return true;
+            }
+        }else{
+            return false;
+        }
+        DB_CON_CLOSE($SQL_QUERY,DB_CON());
     }
 ?>

@@ -8,10 +8,13 @@
         $SQL_PKG = mysqli_fetch_array($SQL_CON);
         $result = $SQL_PKG ;
         return $result ;
+        DB_CON_CLOSE($SQL_Query,DB_CON());
     }
 
     //Load post of the user and its followed accounts
     function DB_Post_GeneralLoad($loggeduser){
+        /*
+        //Entries without 'likeproperty' field
         $SQL_Query = "
         SELECT 
             pif.username_followed, ge.*
@@ -23,12 +26,28 @@
             pif.username = '$loggeduser'
         ORDER BY
             ge.pubdate DESC
-        ";
+        ";*/
+
+        $SQL_Query = "SELECT   DISTINCT
+            pif.username_followed, ge.*,
+            CASE
+                WHEN EXISTS(SELECT * FROM likedpost lp WHERE lp.likedpost_id = ge.uid_post AND lp.username ='$loggeduser' ) THEN true
+                ELSE false
+            END  AS likeproperty
+        FROM
+            following AS pif
+        JOIN
+            general_entries AS ge ON (pif.username_followed = ge.own_user)
+        WHERE
+            pif.username = '$loggeduser'
+        ORDER BY
+            ge.pubdate DESC;";
         $SQL_CON = mysqli_query(DB_CON(),$SQL_Query);
         while($SQL_PKG = mysqli_fetch_array($SQL_CON)){
             $result[]=$SQL_PKG;
         }
         return $result;
+        DB_CON_CLOSE($SQL_Query,DB_CON());
     }
 
     //Load posts of an specific user
@@ -46,6 +65,7 @@
             $result[]=$SQL_PKG;
         }
         return $result;
+        DB_CON_CLOSE($SQL_Query,DB_CON());
     }
 
     

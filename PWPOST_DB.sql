@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 27, 2021 at 09:50 PM
+-- Generation Time: Jun 01, 2021 at 10:54 PM
 -- Server version: 5.7.17-log
 -- PHP Version: 5.6.30
 
@@ -45,22 +45,15 @@ CREATE TABLE `entry_versioncontrol` (
 --
 
 INSERT INTO `entry_versioncontrol` (`commit_id`, `uid_post`, `edit_version`, `own_user`, `pubdate`, `title`, `content`, `attached_prop`, `attached_uid_post`, `hiddenprop`, `attached_tw_sourcelink`) VALUES
-('PWP6bFknaIEmZ830', 'PWP6bFknaIEmZ83', 0, 'dalarcont', '2021-04-26 23:55:27', 'UPOKANTA', 'UPOLKANTA', 0, '', 0, ''),
-('PWP6JWhBq124Moa0', 'PWP6JWhBq124Moa', 0, 'dalarcont', '2021-04-27 16:29:15', 'PRIMER REPOST HDSPM', 'COMENTARIO SOBRE EL POST RAIZ', 1, 'PWPQrkofxO8HtFv', 0, ''),
-('PWP7WV8vSLmru0F0', 'PWP7WV8vSLmru0F', 0, 'dalarcont', '2021-04-27 16:27:16', 'PRIMER REPOST HDSPM!', 'MERA MIERDA!', 1, 'PWPQrkofxO8HtFv', 0, ''),
-('PWPdc6YboGjwRQl0', 'PWPdc6YboGjwRQl', 0, 'dalarcont', '2021-04-27 16:32:48', 'PRIMER REPOST HDSPM', 'Maldito Uribe', 1, 'PWPQrkofxO8HtFv', 0, ''),
-('PWPeuIKi6Pwx1oL0', 'PWPeuIKi6Pwx1oL', 0, 'dalarcont', '2021-04-27 16:48:24', 'Prueba DONTRELOAD::after[newPost] ', 'Probando si esta entrada se publica al top del frontEnd sin necesidad de recargar o dejar en blanco el frontEnd', 0, '', 0, ''),
-('PWPfhWip6ISGYTP0', 'PWPfhWip6ISGYTP', 0, 'dalarcont', '2021-04-26 22:51:00', 'PRIMER POST DALARCONT', 'CONTENIDO PRIMARIO DALARCONT', 0, '', 0, ''),
-('PWPfhWip6ISGYTP1', 'PWPfhWip6ISGYTP', 1, 'dalarcont', '2021-04-26 22:51:36', 'PRIMER POST DALARCONT EDITADO', 'CONTENIDO PRIMARIO DALARCONT EDITADO', 0, '', 0, ''),
-('PWPfhWip6ISGYTP2', 'PWPfhWip6ISGYTP', 2, 'dalarcont', '2021-04-26 22:57:57', 'PRIMER POST DALARCONT EDITADO 2DA', 'CONTENIDO PRIMARIO DALARCONT EDITADO POR SEGUNDA VEZ', 0, '', 0, ''),
-('PWPfhWip6ISGYTP3', 'PWPfhWip6ISGYTP', 3, 'dalarcont', '2021-04-27 11:41:26', 'PRIMER POST DALARCONT EDITADO 2DA', 'CONTENIDO PRIMARIO DALARCONT EDITADO POR TERCERA VEZ', 0, '', 0, ''),
-('PWPi1YsBxJbkw7V0', 'PWPi1YsBxJbkw7V', 0, 'dalarcont', '2021-04-27 16:33:50', 'No se expresa...', 'Nadie sabe lo que dice ahí, salvo quien lo escribió.', 1, 'PWP6bFknaIEmZ83', 0, ''),
-('PWPnw7prLdGzbcP0', 'PWPnw7prLdGzbcP', 0, 'dalarcont', '2021-04-27 16:46:35', 'Prueba DONTRELOAD::after[newPost]', 'Probando si esta entrada se publica al top del frontEnd sin necesidad de recargar o dejar en blanco el frontEnd', 0, '', 0, ''),
-('PWPpw1PCtl8oSTY0', 'PWPpw1PCtl8oSTY', 0, 'dalarcont', '2021-04-27 16:42:52', 'Fin del CRUD', 'Hemos finalizado el CRUD!!!!!!<br />\nAbril 27 de 2021 a las 4:42pm', 0, '', 0, ''),
-('PWPQrkofxO8HtFv0', 'PWPQrkofxO8HtFv', 0, 'system', '2021-04-26 23:36:32', 'PRIMERA ENTRADA DEL SISTEMA', 'PRIMERA PRIMERA', 0, '', 0, ''),
-('PWPRnTPDf92mgrs0', 'PWPRnTPDf92mgrs', 0, 'dalarcont', '2021-04-27 16:21:18', 'Prueba de Repost', 'Contenido de repost (o sea el comentario) xd xd xd', 1, 'PWPQrkofxO8HtFv', 0, ''),
-('PWPvRcxJQWhBPOC0', 'PWPvRcxJQWhBPOC', 0, 'dalarcont', '2021-04-27 16:35:59', 'REPOST DE UN REPOST', 'Veremos que al hacer repost a un post que es un repost, nos mostrará que el repost que hicimos es del comentario hecho al repost raíz. RepostInception().', 1, 'PWPdc6YboGjwRQl', 0, ''),
-('PWPvRcxJQWhBPOC1', 'PWPvRcxJQWhBPOC', 1, 'dalarcont', '2021-04-27 16:36:55', 'EDITANDO REPOST DE UN REPOST', 'Veremos que al hacer repost a un post que es un repost, nos mostrará que el repost que hicimos es del comentario hecho al repost raíz. RepostInception().<br /><br />\nEsto fue editado. Omg...', 0, '', 0, '');
+('PWP8T02ESQAYzrW0', 'PWP8T02ESQAYzrW', 0, 'dalarcont', '2021-05-31 16:30:39', 'Prube post con edicion', 'CONTENIDO PRIMARIO', 0, '', 0, ''),
+('PWP8T02ESQAYzrW1', 'PWP8T02ESQAYzrW', 1, 'dalarcont', '2021-05-31 16:30:45', 'Prube post con edicion', 'CONTENIDO SECUNDARIO', 0, '', 0, ''),
+('PWPg95n1NYWRq4B0', 'PWPg95n1NYWRq4B', 0, 'dalarcont', '2021-06-01 13:28:03', 'Repost a mi seguidor', 'Repost del primer post de mi seguidor Alan Brito', 1, 'PWPSbliqVH0GOj2', 0, ''),
+('PWPImW0JTOcAVUL0', 'PWPImW0JTOcAVUL', 0, 'dalarcont', '2021-05-31 16:29:25', 'Prueba simple', 'Publicando un post simple', 0, '', 0, ''),
+('PWPiUW8MTlOPRZX0', 'PWPiUW8MTlOPRZX', 0, 'dalarcont', '2021-05-31 16:32:06', 'Prueba de privacidad', 'Este post lo verá el autor pero no la persona que le haga repost', 0, '', 0, ''),
+('PWPKs9AxuX7tNBZ0', 'PWPKs9AxuX7tNBZ', 0, 'dalarcont', '2021-05-31 16:32:29', 'Prueba de repost', 'Haciendo repost al primer post de prueba', 1, 'PWPImW0JTOcAVUL', 0, ''),
+('PWPOi8n9olkD5ye0', 'PWPOi8n9olkD5ye', 0, 'alanbrito', '2021-05-31 16:57:44', 'Repost a un seguido', 'Estoy haciendo repost a un seguido.', 1, 'PWP8T02ESQAYzrW', 0, ''),
+('PWPSbliqVH0GOj20', 'PWPSbliqVH0GOj2', 0, 'alanbrito', '2021-05-31 16:51:33', 'PRIMERA ENTRADA ALAN BRITO', 'Alan brito publica esta entrada', 0, '', 0, ''),
+('PWPZ9CsDJWGweB20', 'PWPZ9CsDJWGweB2', 0, 'dalarcont', '2021-05-31 16:30:21', 'Prueba de contenido html incrustado', '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/9OUurVdRGsc\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>', 0, '', 0, '');
 
 -- --------------------------------------------------------
 
@@ -71,9 +64,9 @@ INSERT INTO `entry_versioncontrol` (`commit_id`, `uid_post`, `edit_version`, `ow
 CREATE TABLE `following` (
   `record` int(11) NOT NULL,
   `uid_user` varchar(15) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `username` tinytext COLLATE utf8_spanish_ci,
+  `username` varchar(15) COLLATE utf8_spanish_ci DEFAULT NULL,
   `uid_followed` varchar(15) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `username_followed` tinytext COLLATE utf8_spanish_ci,
+  `username_followed` varchar(15) COLLATE utf8_spanish_ci DEFAULT NULL,
   `follow_date` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
@@ -82,10 +75,10 @@ CREATE TABLE `following` (
 --
 
 INSERT INTO `following` (`record`, `uid_user`, `username`, `uid_followed`, `username_followed`, `follow_date`) VALUES
-(18, 'PWP1beVwLy', 'dalarcont', 'PWP1beVwLy', 'dalarcont', '2021-04-14 15:40:15'),
-(19, 'PWPYpxBI1bO8gsX', 'system', 'PWPYpxBI1bO8gsX', 'system', '2021-04-14 15:43:30'),
-(20, 'PWPYpxBI1bO8gsX', 'system', 'PWP1beVwLy', 'dalarcont', '2021-04-14 15:44:15'),
-(21, 'PWP1beVwLy', 'dalarcont', 'PWPYpxBI1bO8gsX', 'system', '2021-04-14 15:45:11');
+(23, 'PWP6uWZvXd8LJPg', 'dalarcont', 'PWP6uWZvXd8LJPg', 'dalarcont', '2021-05-31 16:16:56'),
+(24, 'PWP6LT5rvhZN1Qd', 'alanbrito', 'PWP6LT5rvhZN1Qd', 'alanbrito', '2021-05-31 16:17:58'),
+(25, 'PWP6LT5rvhZN1Qd', 'alanbrito', 'PWP6uWZvXd8LJPg', 'dalarcont', '2021-05-31 16:56:25'),
+(26, 'PWP6uWZvXd8LJPg', 'dalarcont', 'PWP6LT5rvhZN1Qd', 'alanbrito', '2021-05-31 16:56:47');
 
 -- --------------------------------------------------------
 
@@ -113,14 +106,34 @@ CREATE TABLE `general_entries` (
 --
 
 INSERT INTO `general_entries` (`uid_post`, `own_user`, `pubdate_original`, `pubdate`, `title`, `content`, `edit_counter`, `edit_lastdate`, `attached_prop`, `attached_uid_post`, `hiddenprop`, `attached_tw_sourcelink`) VALUES
-('PWP6bFknaIEmZ83', 'dalarcont', '2021-04-26 23:55:27', '2021-04-26 23:55:27', 'UPOKANTA', 'UPOLKANTA', 0, NULL, 0, '', 0, ''),
-('PWPdc6YboGjwRQl', 'dalarcont', '2021-04-27 16:32:48', '2021-04-27 16:32:48', 'PRIMER REPOST HDSPM', 'Maldito Uribe', 0, NULL, 1, 'PWPQrkofxO8HtFv', 0, ''),
-('PWPeuIKi6Pwx1oL', 'dalarcont', '2021-04-27 16:48:24', '2021-04-27 16:48:24', 'Prueba DONTRELOAD::after[newPost] ', 'Probando si esta entrada se publica al top del frontEnd sin necesidad de recargar o dejar en blanco el frontEnd', 0, NULL, 0, '', 0, ''),
-('PWPfhWip6ISGYTP', 'dalarcont', '2021-04-26 22:51:00', '2021-04-27 11:41:26', 'PRIMER POST DALARCONT EDITADO 2DA', 'CONTENIDO PRIMARIO DALARCONT EDITADO POR TERCERA VEZ', 3, '2021-04-26 22:57:57', 1, 'PWP6bFknaIEmZ83', 0, ''),
-('PWPi1YsBxJbkw7V', 'dalarcont', '2021-04-27 16:33:50', '2021-04-27 16:33:50', 'No se expresa...', 'Nadie sabe lo que dice ahí, salvo quien lo escribió.', 0, NULL, 1, 'PWP6bFknaIEmZ83', 0, ''),
-('PWPpw1PCtl8oSTY', 'dalarcont', '2021-04-27 16:42:52', '2021-04-27 16:42:52', 'Fin del CRUD', 'Hemos finalizado el CRUD!!!!!!<br />\nAbril 27 de 2021 a las 4:42pm', 0, NULL, 0, '', 0, ''),
-('PWPQrkofxO8HtFv', 'system', '2021-04-26 23:36:32', '2021-04-26 23:36:32', 'PRIMERA ENTRADA DEL SISTEMA', 'PRIMERA PRIMERA', 0, NULL, 0, '', 0, ''),
-('PWPvRcxJQWhBPOC', 'dalarcont', '2021-04-27 16:35:59', '2021-04-27 16:36:55', 'EDITANDO REPOST DE UN REPOST', 'Veremos que al hacer repost a un post que es un repost, nos mostrará que el repost que hicimos es del comentario hecho al repost raíz. RepostInception().<br />\nEsto fue editado. Omg...', 1, '2021-04-27 16:35:59', 1, 'PWPdc6YboGjwRQl', 0, '');
+('PWP8T02ESQAYzrW', 'dalarcont', '2021-05-31 16:30:39', '2021-05-31 16:30:45', 'Prube post con edicion', 'CONTENIDO SECUNDARIO', 1, '2021-05-31 16:30:39', 0, '', 0, ''),
+('PWPg95n1NYWRq4B', 'dalarcont', '2021-06-01 13:28:03', '2021-06-01 13:28:03', 'Repost a mi seguidor', 'Repost del primer post de mi seguidor Alan Brito', 0, NULL, 1, 'PWPSbliqVH0GOj2', 0, ''),
+('PWPImW0JTOcAVUL', 'dalarcont', '2021-05-31 16:29:25', '2021-05-31 16:29:25', 'Prueba simple', 'Publicando un post simple', 0, NULL, 0, '', 0, ''),
+('PWPiUW8MTlOPRZX', 'dalarcont', '2021-05-31 16:32:06', '2021-05-31 16:32:06', 'Prueba de privacidad', 'Este post lo verá el autor pero no la persona que le haga repost', 0, NULL, 0, '', 1, ''),
+('PWPKs9AxuX7tNBZ', 'dalarcont', '2021-05-31 16:32:28', '2021-05-31 16:32:28', 'Prueba de repost', 'Haciendo repost al primer post de prueba', 0, NULL, 1, 'PWPImW0JTOcAVUL', 0, ''),
+('PWPOi8n9olkD5ye', 'alanbrito', '2021-05-31 16:57:44', '2021-05-31 16:57:44', 'Repost a un seguido', 'Estoy haciendo repost a un seguido.', 0, NULL, 1, 'PWP8T02ESQAYzrW', 0, ''),
+('PWPSbliqVH0GOj2', 'alanbrito', '2021-05-31 16:51:33', '2021-05-31 16:51:33', 'PRIMERA ENTRADA ALAN BRITO', 'Alan brito publica esta entrada', 0, NULL, 0, '', 0, ''),
+('PWPZ9CsDJWGweB2', 'dalarcont', '2021-05-31 16:30:21', '2021-05-31 16:30:21', 'Prueba de contenido html incrustado', '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/9OUurVdRGsc\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>', 0, NULL, 0, '', 0, '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `likedpost`
+--
+
+CREATE TABLE `likedpost` (
+  `username` varchar(15) COLLATE utf8_spanish_ci NOT NULL,
+  `likedpost_id` varchar(15) COLLATE utf8_spanish_ci NOT NULL,
+  `likedate` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Dumping data for table `likedpost`
+--
+
+INSERT INTO `likedpost` (`username`, `likedpost_id`, `likedate`) VALUES
+('dalarcont', 'PWPg95n1NYWRq4B', '2021-06-01 17:45:16'),
+('dalarcont', 'PWPZ9CsDJWGweB2', '2021-06-01 17:47:22');
 
 -- --------------------------------------------------------
 
@@ -136,17 +149,17 @@ CREATE TABLE `users` (
   `user_pswd` text COLLATE utf8_spanish_ci NOT NULL COMMENT 'Password',
   `joindate` date NOT NULL COMMENT 'JoinDate',
   `first_access` varchar(10) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `recovery_key` varchar(45) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `following` json NOT NULL
+  `recovery_key` varchar(45) COLLATE utf8_spanish_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci COMMENT='Contents all of client users profiles';
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`uid_user`, `username`, `user_fullname`, `user_email`, `user_pswd`, `joindate`, `first_access`, `recovery_key`, `following`) VALUES
-('PWP1beVwLy', 'dalarcont', 'Daniel Alarcón Tabares', 'daniel.alarcon@utp.edu.co', 'D4larcont', '2021-04-14', '', NULL, 'null'),
-('PWPYpxBI1bO8gsX', 'system', 'SISTEMA', 'registro@pwpost.com', 'sistema', '2021-04-14', '', NULL, 'null');
+INSERT INTO `users` (`uid_user`, `username`, `user_fullname`, `user_email`, `user_pswd`, `joindate`, `first_access`, `recovery_key`) VALUES
+('PWP6LT5rvhZN1Qd', 'alanbrito', 'Alan Brito', 'danielalarckon@gmail.com', 'alanbrito', '2021-05-31', '', NULL),
+('PWP6uWZvXd8LJPg', 'dalarcont', 'Daniel Alarcón Tabares', 'daniel.alarcon@utp.edu.co', 'D4larcont', '2021-05-31', '', NULL),
+('PWPabcdefghijkl', 'system', 'Sistema Administrador', 'system@pwpost.com', 'system', '0000-00-00', NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -156,20 +169,32 @@ INSERT INTO `users` (`uid_user`, `username`, `user_fullname`, `user_email`, `use
 -- Indexes for table `entry_versioncontrol`
 --
 ALTER TABLE `entry_versioncontrol`
-  ADD UNIQUE KEY `commit_id` (`commit_id`);
+  ADD UNIQUE KEY `commit_id` (`commit_id`),
+  ADD KEY `own_user` (`own_user`),
+  ADD KEY `uid_post` (`uid_post`);
 
 --
 -- Indexes for table `following`
 --
 ALTER TABLE `following`
   ADD PRIMARY KEY (`record`),
-  ADD UNIQUE KEY `record_UNIQUE` (`record`);
+  ADD UNIQUE KEY `record_UNIQUE` (`record`),
+  ADD KEY `username` (`username`),
+  ADD KEY `username_followed` (`username_followed`);
 
 --
 -- Indexes for table `general_entries`
 --
 ALTER TABLE `general_entries`
-  ADD UNIQUE KEY `uid_post` (`uid_post`);
+  ADD UNIQUE KEY `uid_post` (`uid_post`),
+  ADD KEY `own_user` (`own_user`);
+
+--
+-- Indexes for table `likedpost`
+--
+ALTER TABLE `likedpost`
+  ADD KEY `username` (`username`),
+  ADD KEY `likedpost_id` (`likedpost_id`);
 
 --
 -- Indexes for table `users`
@@ -186,7 +211,38 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `following`
 --
 ALTER TABLE `following`
-  MODIFY `record` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `record` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `entry_versioncontrol`
+--
+ALTER TABLE `entry_versioncontrol`
+  ADD CONSTRAINT `entry_versioncontrol_ibfk_1` FOREIGN KEY (`own_user`) REFERENCES `users` (`username`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `entry_versioncontrol_ibfk_2` FOREIGN KEY (`uid_post`) REFERENCES `general_entries` (`uid_post`) ON DELETE CASCADE ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `following`
+--
+ALTER TABLE `following`
+  ADD CONSTRAINT `following_ibfk_1` FOREIGN KEY (`username`) REFERENCES `users` (`username`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `following_ibfk_2` FOREIGN KEY (`username_followed`) REFERENCES `users` (`username`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `general_entries`
+--
+ALTER TABLE `general_entries`
+  ADD CONSTRAINT `general_entries_ibfk_1` FOREIGN KEY (`own_user`) REFERENCES `users` (`username`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `likedpost`
+--
+ALTER TABLE `likedpost`
+  ADD CONSTRAINT `likedpost_ibfk_1` FOREIGN KEY (`username`) REFERENCES `users` (`username`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `likedpost_ibfk_2` FOREIGN KEY (`likedpost_id`) REFERENCES `general_entries` (`uid_post`) ON DELETE CASCADE ON UPDATE NO ACTION;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

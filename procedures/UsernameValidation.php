@@ -18,6 +18,8 @@
             echo "<span style='color:green'>Nombre de usuario <b>'$username'</b> está disponible!";
             echo "<script>$('#isOk_2').val('true');</script>";
         }
+
+        DB_CON_CLOSE($SQL_QUERY,DB_CON());
     }
 
 ?>

@@ -5,6 +5,7 @@
         $do = mysqli_query(DB_CON(),$SQL_QUERY);
         $r = mysqli_fetch_array($do);
         return $r;
+        DB_CON_CLOSE($SQL_QUERY,DB_CON());
     }
 
     function DB_SetUpdatePost($updUser,$updPostId,$updTitle,$updContent,$lastUpddate){
@@ -37,6 +38,7 @@
         }else{
             return false;
         }
+        DB_CON_CLOSE($SQL_QUERY,DB_CON());
 
     }
 ?>

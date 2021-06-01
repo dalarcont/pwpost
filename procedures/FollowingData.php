@@ -18,6 +18,7 @@
         }else{
             return false;
         }
+        DB_CON_CLOSE($SQL_QUERY,DB_CON());
     }
 
     function getFollowersList($user){
@@ -37,6 +38,7 @@
         }else{
             return false;
         }
+        DB_CON_CLOSE($SQL_QUERY,DB_CON());
     }
 
     //Validate if an user follow other
@@ -50,16 +52,15 @@
             if($r['username_followed']==$followed AND $r['username']==$follower){
                 //Yeah, that follow exists
                 return true;
-                //echo "PETRO";
             }else{
                 //Oh! That follow doesn't exits
-                //echo false;
                 return false;
             }
         }else{
             //Oh! That follow wasn't verifyed.
             return false;
         }
+        DB_CON_CLOSE($SQL_QUERY,DB_CON());
            
     }
     

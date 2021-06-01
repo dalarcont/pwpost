@@ -37,6 +37,7 @@
         $SQL_PKG = mysqli_fetch_array($SQL_CON);
         $result = $SQL_PKG;
         return $result;
+        DB_CON_CLOSE($SQL_Query,DB_CON());
     }
 
     function DB_LoadProfile_Entries($user){
@@ -47,6 +48,7 @@
             $result[]=$SQL_PKG;
         }
         return $result ;
+        DB_CON_CLOSE($SQL_Query,DB_CON());
     }
 
 
@@ -55,6 +57,7 @@
         $SQL_Query = "DELETE FROM users WHERE users.user_email = '$user' AND users.user_pswd = '$key'";
         $SQL_CON = mysqli_query(DB_CON(),$SQL_Query);
         if($SQL_CON){return true;}else{return false;}
+        DB_CON_CLOSE($SQL_Query,DB_CON());
     }
 
 

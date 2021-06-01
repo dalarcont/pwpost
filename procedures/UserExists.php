@@ -11,6 +11,7 @@
             //User exits
             return true;
         }
+        DB_CON_CLOSE($SQL_QUERY,DB_CON());
     }
 
 

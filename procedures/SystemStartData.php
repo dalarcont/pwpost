@@ -6,6 +6,7 @@
         $SQL_PKG = mysqli_fetch_array($SQL_CON);
         $result = $SQL_PKG;
         return $result ;
+        DB_CON_CLOSE($SQL_QUERY,DB_CON());
     }
 
 

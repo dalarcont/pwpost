@@ -26,7 +26,7 @@ session_start();
         }
 
         return $r ;
-
+        DB_CON_CLOSE($SQL_QUERY,DB_CON());
     }
 
     

@@ -9,4 +9,5 @@
         $r = mysqli_query(DB_CON(),$SQL_QUERY);
         return $r ;
     }
+    DB_CON_CLOSE($SQL_QUERY,DB_CON());
 ?>

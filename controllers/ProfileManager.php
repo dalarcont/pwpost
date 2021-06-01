@@ -20,6 +20,7 @@
         require '../procedures/PostLoad.php'; //Post loader
         require '../procedures/ProfileData.php'; //Data profile loader
         require '../controllers/PrivacyManager.php'; //Privacy manager at printing post
+        require '../controllers/LikeManagement.php'; //Like/Dislike manager at printing post
         require '../procedures/UserExists.php'; //Verify user existence
         require '../controllers/AttachedManagement.php'; //Attached entry management
     //Require views

@@ -6,95 +6,47 @@ session_start();
     //Load procedure
     require '../procedures/SYS_DB_CON.php';
     require '../procedures/Validators.php';
-    require '../procedures/DeletePost.php';
-    require '../procedures/PrivacyOperator.php';
+    require '../procedures/PostLike.php';
 
-    /* Procedures has not been needed yet*/
+    $Selector = $_POST['call'];
+    $Object = $_POST['post'];
 
-
-    switch($_POST['call']){
-
-        case "like":
-            //User confirms to hide an entry
-            //Yes, like it, but check if session isn't broken
-            if(!empty($_SESSION['UsrPkg'])){
-                //To like we need to verify the authority between the entry and it's true owner
-                $auth = ValidateAuthorityPost($_POST['post'],$_SESSION['UsrPkg']['username']);
-                //By the auth value, take the properly way
-                if($auth=="true"){
-                    //The entry is property of the same logged user, that means the owner user is who wants to like it
-                    //Ok, like now
-                    //$r = hiddenProperty("hide",$_POST['post'],$_SESSION['UsrPkg']['username']);
-                    if($r){
-                        //The pub has been hiden
-                        echo "<script> 
-                        $('#",$_POST['post']," #btn_hide img').attr('src','components/unhide.png'); 
-                        $('#",$_POST['post']," #btn_hide').attr('onclick','startUnhidePost(this)');</script>";
-                        alertMessage("Ocultar entrada","Entrada oculta<br />Aquellos usuarios que hayan realizado repost de esta entrada les saldrá un aviso de que la misma ya no está disponible.","truenotification","Entrada privatizada");
-                    }else{
-                        //There is an error
-                        alertMessage("Ocultar entrada","Ha ocurrido un error en la base de datos.<br />No se pudo ocultar tu entrada. Intenta más tarde.","reload",false);
-                    }
-
+    //First of all, verify post existence and if its public
+    $PostAvailable = validatePostPublicExists($Object);
+    if($PostAvailable){
+        //Post available and its public, then take the way according to the selector
+        if($Selector=="like"){
+            //User wants to say that it likes a post
+                //Set like on DB
+                $like = DB_setLikePost($Object,$_SESSION['UsrPkg']['username']);
+                if($like){
+                    echo "<script> 
+                    $('#",$Object," #btn_like img').attr('src','components/unsetlike.png'); 
+                    $('#",$Object," #btn_like').attr('onclick','unsetLikePost(this)');</script>";
                 }else{
-                    //The logged user isn't the owner of the entry
-                    alertMessage("Ocultar entrada","No se puede ocultar la entrada<br />Tú no eres el propietario de la entrada.",false,false);
+                    alertMessage("Marcar post","No puedes marcar que te gusta este post.<br />Error del sistema.",false,false);
                 }
-                    
-                
-            }else{
-                //Session is broken
-                alertMessage("Ocultar entrada","Ha ocurrido un error en el sistema.<br />La sesión está rota.","transport","index.php");
-            }
-        break;
-
-        case "letU":
-            //User wants to unhide an entry
-                //Get UID of post that the user wants to unhide
-                $uid_post = $_POST['post'];
-                //Ask for confirmation
-                UnhideConfirmationMessage($uid_post);
-        break;
-
-        case "doItU":
-            //User confirms to unhide an entry
-            //Yes, unhide it, but check if session isn't broken
-            if(!empty($_SESSION['UsrPkg'])){
-                //To unhide we need to verify the authority between the entry and it's true owner
-                $auth = ValidateAuthorityPost($_POST['post'],$_SESSION['UsrPkg']['username']);
-                //By the auth value, take the properly way
-                if($auth=="true"){
-                    //The entry is property of the same logged user, that means the owner user is who wants to unhide it
-                    //Ok, unhide now
-                    $r = hiddenProperty("unhide",$_POST['post'],$_SESSION['UsrPkg']['username']);
-                    if($r){
-                        //The pub has been unhide, let change button and event
-                        echo "<script>
-                        $('#",$_POST['post']," #btn_hide img').attr('src','components/hide.png'); 
-                        $('#",$_POST['post']," #btn_hide').attr('onclick','startHidePost(this)');</script>";
-                        alertMessage("Mostrar entrada","Entrada pública<br />Aquellos usuarios que hayan realizado repost de esta entrada les aparecerá el contenido.","truenotification","Entrada pública");
-                    }else{
-                        //There is an error
-                        alertMessage("Mostrar entrada","Ha ocurrido un error en la base de datos.<br />No se pudo mostrar tu entrada. Intenta más tarde.","reload",false);
-                    }
-
+        }else if($Selector=="unlike"){
+            //User wants to remove a like in a post
+                //Unset like on DB
+                $unlike = DB_unsetLikePost($Object,$_SESSION['UsrPkg']['username']);
+                if($unlike){
+                    echo "<script> 
+                    $('#",$Object," #btn_like img').attr('src','components/setlike.png'); 
+                    $('#",$Object," #btn_like').attr('onclick','setLikePost(this)');</script>";
                 }else{
-                    //The logged user isn't the owner of the entry
-                    alertMessage("Mostrar entrada","No se puede mostrar la entrada<br />Tú no eres el propietario de la entrada.",false,false);
+                    alertMessage("Marcar post","No puedes marcar que ya no te gusta este post.<br />Error del sistema",false,false);
                 }
-                    
-                
-            }else{
-                //Session is broken
-                alertMessage("Mostrar entrada","Ha ocurrido un error en el sistema.<br />La sesión está rota.","transport","index.php");
-            }
-        break;
-
-        default:
-            //Parameter was not recognized
-            alertMessage("Ocultar/Mostrar entrada","Procedimiento de ocultar/mostrar entrada erróneo","reload",false);
-        break;
+        }else{
+            //No order was received
+            alertMessage("PwPost","Ocurrió un error en la acción solicitada.<br />Intenta luego.",false,false);
+        }
+    }else{
+        //Post isn't available or is private.
+        alertMessage("Me gusta un post","El post que intentas marcar como que te gusta ha sido privatizado o ya no está disponible.",false,false);
     }
+
+    
 
 
 ?>

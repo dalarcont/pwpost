@@ -4,7 +4,9 @@
         require '../procedures/SYS_DB_CON.php';
     //Require procedures
         require '../procedures/PostLoad.php';
+        require '../procedures/PostLike.php';
         require '../controllers/PrivacyManager.php';
+        require '../controllers/LikeManagement.php';
         require '../controllers/AttachedManagement.php';
     //Require views
         include '../views/Entry.php';
@@ -20,10 +22,7 @@
             if($size==0){
                 //There isn't entries, that means the user doesn't publish any entry yet and doesn't follow someone
                 PrintProfile_Empty();
-            }else{
-
-                //print_r($result);
-                
+            }else{                
                 for($i=0; $i<=($size-1); $i++){
                     //Entry privacy selector, IF ENTRY = PRIVATE but LOGGED USER IS THE OWNER, SHOW IT
                     if($result[$i]['hiddenprop']!=0 && ($result[$i]['own_user']==$_SESSION['UsrPkg']['username'])){
