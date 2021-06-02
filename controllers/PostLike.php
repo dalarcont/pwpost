@@ -11,39 +11,63 @@ session_start();
     $Selector = $_POST['call'];
     $Object = $_POST['post'];
 
+
+    function aux_ExecuteLike($Object,$whoLikes){
+        $like = DB_setLikePost($Object,$whoLikes);
+        if($like){
+            echo "<script> 
+            $('#",$Object," #btn_like img').attr('src','components/unsetlike.png'); 
+            $('#",$Object," #btn_like').attr('onclick','unsetLikePost(this)');</script>";
+        }else{
+            alertMessage("Marcar post","No puedes marcar que te gusta este post.<br />Error del sistema.",false,false);
+        }
+    }
+
+    function aux_ExecuteDislike($Object,$whoLikes){
+        $unlike = DB_unsetLikePost($Object,$whoLikes);
+        if($unlike){
+            echo "<script> 
+            $('#",$Object," #btn_like img').attr('src','components/setlike.png'); 
+            $('#",$Object," #btn_like').attr('onclick','setLikePost(this)');</script>";
+        }else{
+            alertMessage("Marcar post","No puedes marcar que ya no te gusta este post.<br />Error del sistema",false,false);
+        }
+    }
+
     //First of all, verify post existence and if its public
-    $PostAvailable = validatePostPublicExists($Object);
-    if($PostAvailable){
+    $PostAvailable = validatePostExists($Object);
+    if(!empty($PostAvailable)){
         //Post available and its public, then take the way according to the selector
         if($Selector=="like"){
             //User wants to say that it likes a post
-                //Set like on DB
-                $like = DB_setLikePost($Object,$_SESSION['UsrPkg']['username']);
-                if($like){
-                    echo "<script> 
-                    $('#",$Object," #btn_like img').attr('src','components/unsetlike.png'); 
-                    $('#",$Object," #btn_like').attr('onclick','unsetLikePost(this)');</script>";
+                //Check hidden property first
+                if($PostAvailable['hiddenprop'!=0]){
+                    //Its private, let mark as liked post ONLY if the logged user its the same owner of the object post
+                    if($PostAvailable['own_user']==$_SESSION['UsrPkg']['username']){
+                        //Who wants to mark as like post its the same user as the owner of the post
+                        aux_ExecuteLike($Object,$_SESSION['UsrPkg']['username']);
+                    }else{
+                        //Its private and isn't liked by the own user
+                        alertMessage("Me gusta un post","El post que intentas marcar como que te gusta ya no está disponible.",false,false);
+                    }
                 }else{
-                    alertMessage("Marcar post","No puedes marcar que te gusta este post.<br />Error del sistema.",false,false);
+                    //Isn't private, then can be liked by any user
+                    aux_ExecuteLike($Object,$_SESSION['UsrPkg']['username']);
                 }
+                //Set like on DB
+                
         }else if($Selector=="unlike"){
             //User wants to remove a like in a post
-                //Unset like on DB
-                $unlike = DB_unsetLikePost($Object,$_SESSION['UsrPkg']['username']);
-                if($unlike){
-                    echo "<script> 
-                    $('#",$Object," #btn_like img').attr('src','components/setlike.png'); 
-                    $('#",$Object," #btn_like').attr('onclick','setLikePost(this)');</script>";
-                }else{
-                    alertMessage("Marcar post","No puedes marcar que ya no te gusta este post.<br />Error del sistema",false,false);
-                }
+                //Here we don't need to check if the post its private or not, because if the user can CLICKS 'Unlike' its because the post hasn't privacy enable
+                //Unset like
+                aux_ExecuteDislike($Object,$_SESSION['UsrPkg']['username']);
         }else{
             //No order was received
             alertMessage("PwPost","Ocurrió un error en la acción solicitada.<br />Intenta luego.",false,false);
         }
     }else{
-        //Post isn't available or is private.
-        alertMessage("Me gusta un post","El post que intentas marcar como que te gusta ha sido privatizado o ya no está disponible.",false,false);
+        //Post isn't available
+        alertMessage("Me gusta un post","El post que intentas marcar como que te gusta ya no está disponible.",false,false);
     }
 
     

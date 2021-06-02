@@ -1,18 +1,4 @@
 <?php 
-    
-    //Resume of profile
-    function Print_ProfileResume($pkg){
-        echo  "<div id='contentProfileDescription'>
-        <br><p>Nombre completo: <b>".$pkg['user_fullname']."</b>-Correo electrónico: <b>".$pkg['user_email']."</b><br>
-        <i>Tu correo no será visible ante el público.</i> -Fecha de registro: <b>".$pkg['joindate']."</b></p>
-        <button class='btn btn-info' id='btn_showpeople' onclick='showFollowed()' >Seguidos</button><span style='padding-left:55px;'></span><button class='btn btn-info' id='btn_showpeople' onclick='showFollowers()' >Seguidores</button><br>
-        <button class='btn btn-danger' style='margin-top:15px;' id='btn_hide' onclick='startRemovePostoveProfile(".$_SESSION['UsrPkg']['username'].")'>Eliminar mi perfil</button><p><br \></p></div>"; 
-    }
-
-    function Print_ProfileResumePublic($pkg){
-        echo "<div id='contentProfileDescription'><p>Nombre completo: <b>".$pkg['user_fullname']."</b><br>Fecha de registro: <b>".$pkg['joindate']."</b></p></div>";
-    }
-
     //Print entries
     function PrintProfile_Empty(){
         echo "<div id='emptyUser'><br>No has publicado algo, por algo tu perfil está vacío.<br>Anímate, no seas mala onda.<br>
@@ -24,6 +10,11 @@
         echo "<br>Este usuario no ha publicado nada.<br>Visita este perfil después.<br>";
     }
 
+    //Profile doesn't have liked post
+    function PrintEmptyLikedPost(){
+        echo "<big>No existen publicaciones que hayas marcado con <img src='components/unsetlike.png' style='width:25px;height:25px;'></img>.</big>";
+    }
+
     //Profile doesn't exists or incorrect profile parameter
     function PrintProfileNonexistence(){
         echo "<big>Este usuario no existe o no está disponible temporalmente.</big>";
@@ -33,6 +24,11 @@
     function PrintProfile_EmptyFollowAndEntry(){
         echo "<big>No tienes publicaciones ni sigues a alguien.</big><br>Anímate, no seas mala onda.<br>
         <button class='art-button' onclick='startNewPost()'><img src='components/newpost.png' style='width:25px;height:25px;'></img> Publicar algo...</button>";
+    }
+
+    //Profile in the URL on "profile.php" isn't declard
+    function PrintProfileNotDeclared(){
+        echo "<big>No se indicó el perfil a cargar.<br>Cierra esta página.</big>";
     }
 
     //Show profile resume grid

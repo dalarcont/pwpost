@@ -10,7 +10,7 @@ session_start();
         require 'controllers/LikeManagement.php';
         require 'controllers/AttachedManagement.php';
     //Require views, in the same directory because was called from a file on first directory paths
-        include 'views/Entry.php';
+        require 'views/Entry.php';
 
     //Functions
     function VersionControlStatement($counter,$postid){

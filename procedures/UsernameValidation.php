@@ -2,7 +2,7 @@
 
 
     //We need to call DB method because this file is only called by a keyup control
-    include 'SYS_DB_CON.php';
+    require 'SYS_DB_CON.php';
     if(isset($_POST['username'])){
         $username = mysqli_real_escape_string(DB_CON(), $_POST['username']);
         $SQL_QUERY = "SELECT username FROM users WHERE USERNAME = '$username'";

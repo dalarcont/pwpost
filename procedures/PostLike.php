@@ -40,7 +40,23 @@
             //return true;
             echo "no tiene like";
         }
-       // DB_CON_CLOSE($SQL_PKG,DB_CON());
+       DB_CON_CLOSE($SQL_PKG,DB_CON());
+    }
+
+    function DB_getLikedPosts($user){
+        $SQL_QUERY = "SELECT DISTINCT ge.*,
+        CASE
+            WHEN lp.likedpost_id = ge.uid_post AND lp.username = '$user' THEN true
+            ELSE false
+        END AS likeproperty
+        FROM general_entries AS ge JOIN likedpost AS lp WHERE ge.uid_post = lp.likedpost_id AND lp.username = '$user'";
+        $SQL_CON = mysqli_query(DB_CON(),$SQL_QUERY);
+        while($SQL_PKG = mysqli_fetch_array($SQL_CON)){
+            $result[]=$SQL_PKG;
+        }
+        return $result;
+
+        DB_CON_CLOSE($SQL_QUERY,DB_CON());
     }
 
 ?>

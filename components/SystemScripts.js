@@ -543,6 +543,12 @@
         $("#main").empty();
     }
 
+
+    function showLikedPosts(){
+        $.post('controllers/LikedList.php',function(sucess){
+            $("#FrontEnd").html(sucess);
+        })
+    }
 //Remove profile procedure
 function startUnsetIdentity(){
     var whoRequest = $("#whoIsOnline").val();

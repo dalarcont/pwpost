@@ -15,17 +15,12 @@
         DB_CON_CLOSE($SQL_QUERY,DB_CON());
     }
 
-    function validatePostPublicExists($post){
+    function validatePostExists($post){
         $SQL_QUERY = "SELECT * FROM general_entries WHERE uid_post = '$post'";
         $r = mysqli_query(DB_CON(),$SQL_QUERY);
         $r = mysqli_fetch_array($r);
         if(!empty($r)){
-            if($r['hiddenprop']==1){
-                //Its available and public
-                return false;
-            }else{
-                return true;
-            }
+            return $r;
         }else{
             return false;
         }

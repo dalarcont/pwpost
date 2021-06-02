@@ -40,40 +40,41 @@
 
     //Selector functions
     function ProfileUser($selector,$object,$viewingUser){
-        //Procedure was called from public, i.e. not logged user
-        if(DB_VerifyUserExistence($object)){
-            //User exists
-            //Get data but indicate if a logged user is viewing the profile
-            if($selector=="private"){
-                //Someone logged is viewing this profile
-                $PV_Pkg = DB_LoadProfile_Data($object,$viewingUser);
-            }else{
-                //Public is viewing, will load basic data
-                $PV_Pkg = DB_LoadProfile_Data($object,false);
-            }
-
-            //Print profile resume
-            ProfileResume($selector,$PV_Pkg,$viewingUser);
-            
-            //Print entries (Public entries)
-            $PV_Entry = DB_Post_Profile($object,true);
-            //Selector of post's cantity
-            if(empty($PV_Entry)){
-                //User exists but doesn't have entries
-                if($object==$viewingUser){
-                    //Same profile as logged user haven't entries yet
-                    PrintProfile_Empty();
+            //Procedure was called from public, i.e. not logged user
+            if(DB_VerifyUserExistence($object)){
+                //User exists
+                //Get data but indicate if a logged user is viewing the profile
+                if($selector=="private"){
+                    //Someone logged is viewing this profile
+                    $PV_Pkg = DB_LoadProfile_Data($object,$viewingUser);
                 }else{
-                    //Any profile doesn't have entries
-                    PrintProfilePublic_Empty();
+                    //Public is viewing, will load basic data
+                    $PV_Pkg = DB_LoadProfile_Data($object,false);
+                }
+
+                //Print profile resume
+                ProfileResume($selector,$PV_Pkg,$viewingUser);
+                
+                //Print entries (Public entries)
+                $PV_Entry = DB_Post_Profile($object,true);
+                //Selector of post's cantity
+                if(empty($PV_Entry)){
+                    //User exists but doesn't have entries
+                    if($object==$viewingUser){
+                        //Same profile as logged user haven't entries yet
+                        PrintProfile_Empty();
+                    }else{
+                        //Any profile doesn't have entries
+                        PrintProfilePublic_Empty();
+                    }
+                }else{
+                    //User have at least 1 entry
+                    EntryPrinter($PV_Entry);
                 }
             }else{
-                //User have at least 1 entry
-                EntryPrinter($PV_Entry);
+                PrintProfileNonexistence();
             }
-        }else{
-            PrintProfileNonexistence();
-        }
+        
     }
 
     //Delete profile button for logged user profile
@@ -82,7 +83,14 @@
             //Show the button
             echo "<p><button role='unsetprofile' class='btn btn-danger' onclick=startUnsetIdentity()>Eliminar mi perfil</button><br></p>";
         }
+    }
 
+    //Show liked posts for logged user profile
+    function LikedPostList($objective,$whoIsOnline){
+        if($objective==$whoIsOnline){
+            //Show the button
+            echo "<p><button role='showliked' class='btn btn-info' onclick=showLikedPosts()>Mostrar post que me gustan<img src='components/unsetlike.png' style='width:28px;height:28px;'></img></button><br></p>";
+        }
     }
 
     //Main selector
@@ -90,6 +98,8 @@
         //Private access
         //Delete profil button selector
         DeleteProfile($ProfileSelected,$UserData['username']);
+        //Show list of liked posts
+        LikedPostList($ProfileSelected,$UserData['username']);
         //Can show more data
         ProfileUser("private",$ProfileSelected,$UserData['username']);
     }else{

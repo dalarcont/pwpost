@@ -1,7 +1,7 @@
 <?php
 
     //We need to call DB method because this file is only called by a keyup control
-    include 'SYS_DB_CON.php';
+    require 'SYS_DB_CON.php';
 
     if(isset($_POST['email'])){
         $email = mysqli_real_escape_string(DB_CON(), $_POST['email']);

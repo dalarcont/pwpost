@@ -1,8 +1,8 @@
 <?php 
 session_start();
 session_destroy();
-include 'views/LoginForms.php';
-include 'views/Alerts.php';
+require 'views/LoginForms.php';
+require 'views/Alerts.php';
 ?><!DOCTYPE html>
 <html lang="es">
 <head>

@@ -34,7 +34,7 @@ session_start();
                 //Entry owner is the same as logged user
                 echo "<tr>
                 <th id='entryTitle' colspan='2'>",$pkg['title'],"</th>
-                <th style='width:45px'><button class='btn btn-light' id='btn_like' onclick='setLikePost(this)' value='",$pkg['uid_post'],"'><img src='components/setlike.png' style='width:25px;height:25px;'></img></button></th>
+                <th style='width:45px'><button class='btn btn-light' id='btn_like' onclick='",like_FxSelector($pkg['likeproperty']),"(this)' value='",$pkg['uid_post'],"'><img src='components/",like_imgSelector($pkg['likeproperty']),".png' style='width:25px;height:25px;'></img></button></th>
                 <th style='width:45px'><button class='btn btn-info' id='btn_edit' onclick='startUpdatePost(this)' value='",$pkg['uid_post'],"'><img src='components/edit.png' style='width:25px;height:25px;'></img></button></th>
                 <th style='width:45px'><button class='btn btn-danger' id='btn_del' onclick='startRemovePost(this)' value='",$pkg['uid_post'],"'><img src='components/delete.png' style='width:25px;height:25px;'></img></button></th>
                 <th style='width:45px'><button class='btn btn-warning' id='btn_hide' onclick='",hidden_FxSelector($pkg['hiddenprop']),"(this)' value='",$pkg['uid_post'],"' ><img src='components/",hidden_imgSelector($pkg['hiddenprop']),".png' style='width:25px;height:25px;'></img></button></th>

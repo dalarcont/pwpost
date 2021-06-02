@@ -9,9 +9,9 @@
         require '../controllers/LikeManagement.php';
         require '../controllers/AttachedManagement.php';
     //Require views
-        include '../views/Entry.php';
-        include '../views/Alerts.php';
-        include '../views/UserProfile.php';
+        require '../views/Entry.php';
+        require '../views/Alerts.php';
+        require '../views/UserProfile.php';
 
         if(!empty($_SESSION['UsrPkg'])){
             //Get data from DB

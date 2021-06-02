@@ -1,8 +1,15 @@
 <?php
 session_start();
     if(empty($_GET['p'])){
-        //URL hasn't indicate a profile username
-        $profile_username = null ;
+        //URL hasn't indicate a profile username, show logged user profile
+        if(empty($_SESSION['UsrPkg'])){
+            //There is no one logged, all data will be display as public viewing
+            $profile_username = null ;
+        }else{
+            //Someone is logged, let show extra data
+            $profile_username = $_SESSION['UsrPkg']['username'];
+        }
+        
     }else{
         //There is a profile indicated on URL
         $profile_username = $_GET['p'];
@@ -49,9 +56,10 @@ session_start();
         <?php 
                 if(!empty($_SESSION['UsrPkg'])){
                     //Session is set, that mean that an user is logged on
+                    $loggedUser = $_SESSION['UsrPkg']['username'];
                     echo "<nav>
                     <a href='#' id='loadHome'>Inicio</a><span style='padding-left:5em'></span>
-                    <a href='#' id='showProfile'>Perfil</a><span style='padding-left:5em'></span>
+                    <a href='Profile.php?=".$loggedUser."' id='showProfile'>Perfil</a><span style='padding-left:5em'></span>
                     <a href='#' id='logOff'>Salir</a>
                     </nav>
                 </header>";} 
@@ -83,6 +91,7 @@ session_start();
            </div>
            <div id="FrontEnd">
            </div>
+           <br><br><p>PwPost - TS5C4 Programación Web - Semestre 1 2021 - Daniel Alarcón - Universidad Tecnológica de Pereira - 2021</p><br>
            </center>
        </article>
     </section>
