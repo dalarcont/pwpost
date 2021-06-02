@@ -9,7 +9,9 @@
         require '../procedures/UserExists.php';
         require '../procedures/SystemStartData.php';
     //Prepare views
-        require '../views/LoginMessages.php';
+    require '../views/Language.php';
+    require '../views/LoginMessages.php';
+        
 
     if(DB_VerifyUserExistence($USR)){
         //User exists, load data to login

@@ -25,12 +25,13 @@ session_start();
     //Call procedure files
         require 'procedures/SYS_DB_CON.php';
         require 'procedures/FollowingData.php';
+        require 'views/Language.php';
 
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<title>PWPost - Perfil de <?php echo $_GET['p']; ?></title>
+<title>PWPost - <?php profilePage::title(); echo $_GET['p']; ?></title>
 <meta charset="utf-8" />
 <meta name="description" content="Página para publicar cosas tipo post o twitter">
 <link rel="stylesheet" href="css/final.css">
@@ -57,29 +58,14 @@ session_start();
                 if(!empty($_SESSION['UsrPkg'])){
                     //Session is set, that mean that an user is logged on
                     $loggedUser = $_SESSION['UsrPkg']['username'];
-                    echo "<nav>
-                    <a href='#' id='loadHome'>Inicio</a><span style='padding-left:5em'></span>
-                    <a href='Profile.php?=".$loggedUser."' id='showProfile'>Perfil</a><span style='padding-left:5em'></span>
-                    <a href='#' id='logOff'>Salir</a>
-                    </nav>
-                </header>";} 
+                    profilePage::NavBar($loggedUser);
+                    } 
             ?><br>
     <section>
     <?php 
                 if(!empty($_SESSION['UsrPkg'])){
-                //Session is set, that mean that an user is logged on
-                    echo "
-                    <div id='actionsMenu'>
-                        <button class='btn btn-success' onclick='startNewPost()'><img src='components/newpost.png' style='width:25px;height:25px;'></img> Nueva entrada</button><br><br>
-                    </div>
-                    <div id='MoreEntry'>
-                        <button class='btn btn-info' onclick='BottomPage()'><img src='components/down.png' style='width:25px;height:25px;'></img> Ir abajo</button>
-                    </div>
-                    <div id='minusEntry'>
-                        <button class='btn btn-info' onclick='TopPage()'><img src='components/up.png' style='width:25px;height:25px;'></img> Ir arriba</button>
-                    </div>
-                    ";
-
+                //Session is set, that mean that an user is lokkgged on
+                    profilePage::actionsMenu();
                 }
             ?>
        <article>

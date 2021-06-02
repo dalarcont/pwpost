@@ -4,11 +4,12 @@
 
     //Call control file
     require 'controllers/PostView.php';
+    require 'views/Language.php';
 
 ?><!DOCTYPE html>
 <html lang="es">
 <head>
-<title>PWPost - Entrada <?php echo $r_title; ?></title>
+<title>PWPost - <?php PostPage::title(); echo " "; echo $r_title; ?></title>
 <meta charset="utf-8" />
 <meta name="description" content="Página para publicar cosas tipo post o twitter">
 <link rel="stylesheet" href="css/final.css">
@@ -33,13 +34,7 @@
         //Show navigation bar if is a logged user
         if(!empty($_SESSION['UsrPkg'])){
             //Session is set, that mean that an user is logged on
-            echo "<nav>
-            <a href='#' id='loadHome'>Inicio</a><span style='padding-left:5em'></span>
-            <a href='#' id='showProfile'>Perfil</a><span style='padding-left:5em'></span>
-            <a href='#' id='logOff'>Salir</a>
-            </nav>
-            <!-- In this page we didn't include the 'New entry' button-->";
-
+            PostPage::NavBar();
         }
     ?>
     </header>
@@ -53,34 +48,25 @@
                 <br><?php 
                 if($result=="PRIVATE"){
                     //The entry is private or doesn't exits
-                    echo "La publicación que buscas no está disponible. Puede ser que esté privada o haya sido eliminada.";
+                    PostPage::EntryPrivateAlertText();
                 }else{
                     //The entry isn't private OR the entry is private but the logged user is the owner of that entry
                     PrintEntry($result); 
                     //Print version controlling of the entry
                     VersionControlStatement($result['edit_counter'],$post_id);
-                    
                 }
-                
-                
-                
                 ?>
            </div>
            </center>
        </article>
     </section>
-    <!-- <footer>
+    <footer>
         <div>
-            <span class='footTxt'><br><img src='components/favicon.ico' style='width:32px;height:32px;'><br>PWPost!</span><br><span class='footTxtsign'>
-            Sin derechos reservados, es tan solo un proyecto de asignatura<br>
-            No ande de exigente<br>
-            Final - TS5C4 - Programación Web<br>
-            Tecnología en Desarrollo de Software<br>
-            Universidad Tecnológica de Pereira<br>
+            <?php indexPage::footer(); ?>
             2021-1<br>
             Daniel Alarcón</span>
         </div>
         
-    </footer>-->
+    </footer>
 </body>
 </html>

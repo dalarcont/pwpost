@@ -1,14 +1,14 @@
 <?php 
 
     function LoginMessage_UserNonexistence($usr){
-        echo "<br><br>El usuario ",$usr," no existe.<br>Por favor verifica bien los datos.";
+        echo loginMessages::UserNonexistence();
     }
 
     function LoginMessage_UserExistence(){
-        echo "<br><br>Por favor espere...";
+        echo loginMessages::UserExistence();
    }
 
    function LoginMessage_TroubleData(){
-       echo "<br><br><b>Verifica si tu contraseña está bien escrita...</b>";
+       echo loginMessages::TroubleData();
    }
 ?>

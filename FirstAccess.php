@@ -1,5 +1,6 @@
 <?php
     session_start();
+    require 'views/Language.php';
 
     $inactiveTime = 15;
     if (isset($_SESSION['timeout'])) {
@@ -14,7 +15,7 @@
 
     if (empty($_SESSION['UsrPkg'])) {
         //There is no user logged in
-        echo "<script>alert('No estás identificado correctamente...'); location.href='index.php';</script>";
+        loginMessages::WrongIdentified();
     }else{
             $UserData = $_SESSION['UsrPkg'];
                 echo "
@@ -42,17 +43,16 @@
 
             <header>
             <h1 class='headline'><img src='components/favicon.ico' style='width:32px;height:32px;'></img>  PWPost!</h1>
-            <p><span class='slogan'><i>Publica lo que quieras, igual nadie lo va a leer ni le dará importancia!</i></span></p>
+            <p><span class='slogan'><i>"; indexPage::Slogan(); echo "</i></span></p>
             </header>
             <section>
             <article>
             <center>
-            <div id='main'>
-            <p>Dado que es tu primer acceso necesitamos confirmar que la dirección de correo electrónico que suministraste al momento del registro es de fácil acceso para ti.</p>
-            <p>A continuación ingresa el código de confirmación que te enviamos:<br><i>Debes digitarlo manualmente, no lo copies y pegues directamente del correo que te enviamos.</i></p>
-            <div class='mb-3'>
+            <div id='main'>";
+            FirstAccessPage::resume();
+            echo "<div class='mb-3'>
                 <input type='text' class='form-control' style='width:150px;' id='firstCode' aria-describedby='firstCode' onkeyup='FirstCodeValidation()'><br><br>
-                <button id='validateFirstButton' class='btn btn-primary' onclick='FirstCodeConfirmation()' style='display:none;'>Confirmar</button><br><br>
+                <button id='validateFirstButton' class='btn btn-primary' onclick='FirstCodeConfirmation()' style='display:none;'>"; recoveryPage::button(); echo "</button><br><br>
             </div>
             </div>
             <div id='FrontEnd'>
@@ -62,13 +62,9 @@
             </section>
             <footer class='footer'>
                 <div>
-                    <span class='footTxt'>PWPost!</span><br><span class='footTxtsign'>
-                    Sin derechos reservados, es tan solo un proyecto de asignatura<br>
-                    No ande de exigente<br>
-                    Final - TS5C4 - Programación Web<br>
-                    Tecnología en Desarrollo de Software<br>
-                    Universidad Tecnológica de Pereira<br>
-                    2021-1<br>
+                    <span class='footTxt'>PWPost!</span><br><span class='footTxtsign'>";
+                    indexPage::footer();
+                    echo "2021-1<br>
                     Daniel Alarcón</span>
                 </div>
                 

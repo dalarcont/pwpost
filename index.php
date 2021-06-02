@@ -1,8 +1,10 @@
 <?php 
 session_start();
-session_destroy();
+require 'views/Language.php';
 require 'views/LoginForms.php';
 require 'views/Alerts.php';
+$lang = $_SESSION['lang'];
+
 ?><!DOCTYPE html>
 <html lang="es">
 <head>
@@ -34,7 +36,7 @@ require 'views/Alerts.php';
     <header>
     <br>
        <h1 class="headline"><img src='components/favicon.ico' style='width:32px;height:32px;'>PWPost!</h1>
-       <p class="slogan"><i>Publica lo que quieras, igual nadie lo va a leer ni le dará importancia!</i></p>
+       <p class="slogan"><i><?php indexPage::Slogan();?></i></p>
     </header>
     <section>
        <article>
@@ -46,10 +48,7 @@ require 'views/Alerts.php';
                    //This page was loaded after a delete profile procedure, say our respects to the ex-user
                     alertMessage("Adiós","Lamentamos que hayas dado de baja tu perfil, nos duele tu retiro.<br />Eres libre de regresar cuando quieras.<br />Atentamente, Equipo PwPost.","transport","index.php");
                }
-               Form_Login(); 
-               
-               
-               
+               Form_Login();
                ?>
            </div>
            <div id="FrontEnd">
@@ -60,11 +59,7 @@ require 'views/Alerts.php';
     <footer class="footer">
         <div>
             <span class="footTxt">PWPost!</span><br><span class="footTxtsign">
-            Sin derechos reservados, es tan solo un proyecto de asignatura<br>
-            No ande de exigente<br>
-            Final - TS5C4 - Programación Web<br>
-            Tecnología en Desarrollo de Software<br>
-            Universidad Tecnológica de Pereira<br>
+            <?php indexPage::footer()?>
             2021-1<br>
             Daniel Alarcón</span>
         </div>

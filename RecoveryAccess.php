@@ -1,5 +1,6 @@
 <?php
 session_start();
+require 'views/Language.php';
 if(empty($_SESSION['UsrPkg']['recovery_key'])){
     //Take back to index
     echo "<script>alert('No estás identificado correctamente...'); location.href='index.php';</script>";
@@ -9,7 +10,7 @@ if(empty($_SESSION['UsrPkg']['recovery_key'])){
     <!DOCTYPE html>
         <html lang='es'>
         <head>
-        <title>PWPost - Recuperación de acceso</title>
+        <title>PWPost - "; recoveryPage::title(); echo "</title>
         <meta charset='utf-8' />
         <meta name='description' content='Página para publicar cosas tipo post o twitter'>
         <link rel='stylesheet' href='css/final.css'>
@@ -31,15 +32,14 @@ if(empty($_SESSION['UsrPkg']['recovery_key'])){
         <header>
         <br>
         <h1 class='headline'><img src='components/favicon.ico' style='width:32px;height:32px;'></img>  PWPost!</h1>
-        <p><span class='slogan'><i>Publica lo que quieras, igual nadie lo va a leer ni le dará importancia!</i></span></p>
+        <p><span class='slogan'><i>"; indexPage::Slogan(); echo "</i></span></p>
         </header>
         <br><h1>Paso Final Recuperar Acceso</h1><br>
         <section>
         <article>
         <center>
         <div id='main'>
-        <p>Ingresaste con la contraseña temporal</p>
-        <p>Dado esto, tendrás que asignar a tu perfil una nueva contraseña<br> Digita tu nueva contraseña. Recuerda que debe ser igual o mayor a 8 dígitos.</p>
+        "; recoveryPage::instructionChangePass(); echo "
         <div class='mb-3'>
             <input type='password' class='form-control' id='newpswd' style='width:200px;' onkeyup='UserKeyValidation_2()'><br><br>
             <span id='msgSpan' style='color:red;'></span>

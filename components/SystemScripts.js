@@ -75,7 +75,12 @@
         });
     });
 
-
+//Language switcher
+    function setLang(lang){
+        $.post('controllers/LanguageEngine.php', {select:lang},function(sucess){
+            $("#FrontEnd").html(sucess);
+        });
+    }
 //Go to top or down
     function BottomPage(){
         var hgt = $(document).height();

@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang='es'>
 <head>
-<title>PWPost - Recuperación de cuenta</title>
+<title>PWPost - <?php require 'views/Language.php'; recoveryPage::title(); ?></title>
 <meta charset='utf-8' />
 <meta name='description' content='Página para publicar cosas tipo post o twitter'>
 <link rel='stylesheet' href='css/final.css'>
@@ -24,19 +24,18 @@
 <header>
 <br>
 <h1 class='headline'><img src='components/favicon.ico' style='width:32px;height:32px;'></img>  PWPost!</h1>
-<p><span class='slogan'><i>Publica lo que quieras, igual nadie lo va a leer ni le dará importancia!</i></span></p>
+<p><span class='slogan'><i><?php indexPage::Slogan(); ?></i></span></p>
 </header>
-<br><h1>Recuperar Acceso</h1><br>
+<br><h1><?php recoveryPage::titleInside(); ?></h1><br>
 <section>
 <article>
 <center>
 <div id='main'>
-<p>Si has olvidado tu nombre de usuario, puedes recuperar tu acceso.</p>
-<p>A continuación ingresa la dirección de correo electrónico con la cual te registraste.<br> A esa dirección enviaremos tu nombre de usuario y una contraseña temporal que usarás para ingresar, una vez ingreses serás obligado a cambiar esa contraseña.</p>
+<?php recoveryPage::resume(); ?>
 <div class='mb-3'>
     <input type='text' class='form-control' style='width:450px;' id='emailRecovery' aria-describedby='emailRecovery' onkeydown='chkRcvEmail()'><br><br>
     <span id='msgSpan' style='color:red;'></span>
-    <button id='rcvButton' class='btn btn-primary' onclick='confirmRecovery()' style='display:none;'>Continuar</button><br><br>
+    <button id='rcvButton' class='btn btn-primary' onclick='confirmRecovery()' style='display:none;'><?php recoveryPage::button(); ?></button><br><br>
 </div>
 </div>
 <div id='FrontEnd'>
@@ -47,11 +46,7 @@
 <footer class='footer'>
     <div>
         <span class='footTxt'>PWPost!</span><br><span class='footTxtsign'>
-        Sin derechos reservados, es tan solo un proyecto de asignatura<br>
-        No ande de exigente<br>
-        Final - TS5C4 - Programación Web<br>
-        Tecnología en Desarrollo de Software<br>
-        Universidad Tecnológica de Pereira<br>
+        <?php indexPage::footer();?>
         2021-1<br>
         Daniel Alarcón</span>
     </div>
