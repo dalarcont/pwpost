@@ -102,9 +102,11 @@ session_start();
                 </table>
             </div>";
         }else{
-            //System doesn't have any entry to show, that means the user haven't published an entry or follow nobody.
-            echo "<br>No sigues a ninguna cuenta y tampoco has publicado algo.<br>Anímate, no seas mala onda.<br>
-            <button class='art-button' onclick='startNewPost()'><img src='components/newpost.png' style='width:25px;height:25px;'></img></button>";
+            if($pkg!=false){
+                //System doesn't have any entry to show, that means the user haven't published an entry or follow nobody.
+                echo "<br>No sigues a ninguna cuenta y tampoco has publicado algo.<br>Anímate, no seas mala onda.<br>
+                <button class='art-button' onclick='startNewPost()'><img src='components/newpost.png' style='width:25px;height:25px;'></img></button>";
+            }
         }
     }
 

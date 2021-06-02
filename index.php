@@ -44,7 +44,7 @@ require 'views/Alerts.php';
                
                if($_GET['p']=="rms"){
                    //This page was loaded after a delete profile procedure, say our respects to the ex-user
-                    alertMessage("Adiós","Lamentamos que hayas dado de baja tu perfil, nos duele tu retiro.<br />Eres libre de regresar cuando quieras.<br />Atentamente, Equipo PwPost.",false,false);
+                    alertMessage("Adiós","Lamentamos que hayas dado de baja tu perfil, nos duele tu retiro.<br />Eres libre de regresar cuando quieras.<br />Atentamente, Equipo PwPost.","transport","index.php");
                }
                Form_Login(); 
                

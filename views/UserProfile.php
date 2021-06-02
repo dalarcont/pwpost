@@ -106,6 +106,10 @@
             }
         }
 
+        function NeutralNumbers($x){
+            if($x<0){return "0";}else{return $x;}
+        }
+
         echo "<div id='profileResumeTable'><table class='profileResumeTable'>
         <thead>
         ".ProfileResumeHeader($type,$data,$visitor)."
@@ -121,11 +125,11 @@
         </tr>
         <tr>
         <td colspan='2'>".followDataFrameButtons($type,1)."</td>
-        <td colspan='2'>".$data['cantidadSeguidos']."</td>
+        <td colspan='2'>".NeutralNumbers($data['cantidadSeguidos'])."</td>
         </tr>
         <tr>
         <td colspan='2'>".followDataFrameButtons($type,2)."</td>
-        <td colspan='2'>".$data['cantidadSeguidores']."</td>
+        <td colspan='2'>".NeutralNumbers($data['cantidadSeguidores'])."</td>
         </tr>
         </tbody>
         </table>

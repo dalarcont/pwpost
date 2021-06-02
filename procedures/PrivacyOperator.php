@@ -8,6 +8,7 @@
         $SQL_QUERY = "UPDATE general_entries SET hiddenprop = '$choose' WHERE (uid_post = '$postid' AND own_user ='$own_user')";
         $r = mysqli_query(DB_CON(),$SQL_QUERY);
         return $r ;
+        DB_CON_CLOSE($SQL_QUERY,DB_CON());
     }
-    DB_CON_CLOSE($SQL_QUERY,DB_CON());
+    
 ?>

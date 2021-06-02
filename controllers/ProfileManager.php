@@ -55,8 +55,13 @@
                 //Print profile resume
                 ProfileResume($selector,$PV_Pkg,$viewingUser);
                 
-                //Print entries (Public entries)
-                $PV_Entry = DB_Post_Profile($object,true);
+                //Print entries, load the hidden entries ONLY if viewing user its the same as the logged user
+                if($object==$viewingUser){
+                    $PV_Entry = DB_Post_Profile($object,false);
+                }else{
+                    $PV_Entry = DB_Post_Profile($object,true);
+                }
+                
                 //Selector of post's cantity
                 if(empty($PV_Entry)){
                     //User exists but doesn't have entries

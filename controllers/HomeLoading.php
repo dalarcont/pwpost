@@ -39,8 +39,7 @@
                         PrintEntry($result[$i]);
                     }else{
                         //Its private and the logged user isn't the owner of the entry
-                        $result = null;
-                        PrintEntry($result);
+                        PrintEntry($null);
                     }
                 }
             }
