@@ -11,6 +11,7 @@ session_start();
         require 'controllers/AttachedManagement.php';
     //Require views, in the same directory because was called from a file on first directory paths
         require 'views/Entry.php';
+        require 'views/Language.php';
 
     //Functions
     function VersionControlStatement($counter,$postid){
@@ -49,7 +50,7 @@ session_start();
                 $r_title = $result['title'];
             }else{
                 //Entry is private, don't show to other users and the public
-                $r_title = "no disponible";
+                $r_title = PostPage::titlePostAux();
                 $result = "PRIVATE";
             }
         }else{

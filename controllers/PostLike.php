@@ -7,6 +7,7 @@ session_start();
     require '../procedures/SYS_DB_CON.php';
     require '../procedures/Validators.php';
     require '../procedures/PostLike.php';
+    require '../views/Language.php';
 
     $Selector = $_POST['call'];
     $Object = $_POST['post'];
@@ -30,7 +31,7 @@ session_start();
             $('#",$Object," #btn_like img').attr('src','components/setlike.png'); 
             $('#",$Object," #btn_like').attr('onclick','setLikePost(this)');</script>";
         }else{
-            alertMessage("Marcar post","No puedes marcar que ya no te gusta este post.<br />Error del sistema",false,false);
+            alertMessage("PwPost",Alerts::errorUnsetLike(),false,false);
         }
     }
 
@@ -48,7 +49,7 @@ session_start();
                         aux_ExecuteLike($Object,$_SESSION['UsrPkg']['username']);
                     }else{
                         //Its private and isn't liked by the own user
-                        alertMessage("Me gusta un post","El post que intentas marcar como que te gusta ya no está disponible.",false,false);
+                        alertMessage("PwPost",Alerts::noAvailablePostLike(),false,false);
                     }
                 }else{
                     //Isn't private, then can be liked by any user
@@ -63,11 +64,11 @@ session_start();
                 aux_ExecuteDislike($Object,$_SESSION['UsrPkg']['username']);
         }else{
             //No order was received
-            alertMessage("PwPost","Ocurrió un error en la acción solicitada.<br />Intenta luego.",false,false);
+            alertMessage("PwPost",Alerts::parameterError(),false,false);
         }
     }else{
         //Post isn't available
-        alertMessage("Me gusta un post","El post que intentas marcar como que te gusta ya no está disponible.",false,false);
+        alertMessage("PwPost",Alerts::noAvailablePostLike(),false,false);
     }
 
     

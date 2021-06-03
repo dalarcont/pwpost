@@ -4,7 +4,6 @@
 
     //Call control file
     require 'controllers/PostView.php';
-    require 'views/Language.php';
 
 ?><!DOCTYPE html>
 <html lang="es">

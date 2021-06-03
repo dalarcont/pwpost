@@ -15,6 +15,7 @@
         require '../views/Entry.php';
         require '../views/Alerts.php';
         require '../views/UserProfile.php';
+        require '../views/Language.php';
 
     if(!empty($_SESSION['UsrPkg'])){
         //Get data from DB
@@ -26,7 +27,7 @@
             //There isn't entries, that means the user doesn't publish any entry yet and doesn't follow someone
             PrintEmptyLikedPost();
         }else{                
-            echo "<h3>Publicaciones que te gustaron</h3>";
+            Like::LikeTitleHead();
             for($i=0; $i<=($size-1); $i++){
                 //Entry privacy selector, IF ENTRY = PRIVATE but LOGGED USER IS THE OWNER, SHOW IT
                 if($result[$i]['hiddenprop']!=0 && ($result[$i]['own_user']==$_SESSION['UsrPkg']['username'])){
@@ -50,7 +51,7 @@
        
     }else{
         //Session is empty
-       alertMessage("PWPost!","Error del sistema S404<br/>Sesión no encontrada.","transport","index.php");
+        alertMessage("PWPost!",Alerts::sessionBroke_message(),"transport","index.php");
     }
     
 

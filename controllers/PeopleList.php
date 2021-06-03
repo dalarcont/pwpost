@@ -11,6 +11,7 @@
     //Call view templates
     require '../views/UserProfile.php';
     require '../views/Alerts.php';
+    require '../views/Language.php';
     //Call procedures
     require '../procedures/SYS_DB_CON.php';
     require '../procedures/FollowingData.php';
@@ -44,9 +45,9 @@
             ShowFollowData(true,$Pkg,$ObjectUser,$_SESSION['UsrPkg']['username']);
         }else{
             if(empty($Pkg)){
-                alertMessage("Seguidos","No hay seguidos...",false,false);
+                alertMessage(Alerts::followedTitle(),Alerts::noPeople("fwd"),false,false);
             }else{
-                alertMessage("Seguidos","Ocurrió un error en el sistema.<br />Intenta luego.",false,false);
+                alertMessage(Alerts::followedTitle(),Alerts::systemError(),false,false);
             }
         }
     }else{
@@ -60,9 +61,9 @@
             ShowFollowData(false,$Pkg,$ObjectUser,$_SESSION['UsrPkg']['username']);
         }else{
             if(empty($Pkg)){
-                alertMessage("Seguidores","No hay seguidores",false,false);
+                alertMessage(Alerts::followersTitle(),Alerts::noPeople("fwr"),false,false);
             }else{
-                alertMessage("Seguidores","Ocurrió un error en el sistema.<br />Intenta luego.",false,false);
+                alertMessage(Alerts::followersTitle(),Alerts::systemError(),false,false);
             }
             
         }

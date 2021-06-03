@@ -53,13 +53,7 @@
 
         //Let the nav options menu works
         $("#loadHome").click(function(){
-            //Delete aux profile description div
-            /*$("#profileDescription").remove();
-            $.post('controllers/HomeLoading.php', function(sucess){
-                $("#FrontEnd").html(sucess);
-            });*/
             location.href='Desktop.php';
-            
         });
 
         $("#showProfile").click(function(){

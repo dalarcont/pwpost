@@ -2,6 +2,8 @@
     //Confirmation for first access after a signup
         require '../procedures/FirstAccessValidation.php';
         require '../procedures/SYS_DB_CON.php';
+    //Languague
+        require '../views/Language.php';
     //Code
         $code = $_POST['code'];
     //Check code integrity

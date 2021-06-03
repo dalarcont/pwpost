@@ -8,7 +8,7 @@ session_start();
         //If there is a 1 single or more edits attached to an entry, let print it's respective data
         if($count!=0){
             //There is affections attached to the entry across the time
-            $r = "Ediciones: ".$count." - Fecha de edición previa a la actual: ".$lastdate." - Fecha de publicación original: ".$originalDate;
+            $r = Entry::EditCounterFrame($count,$lastdate,$originalDate);
         }
 
         return $r;
@@ -51,12 +51,12 @@ session_start();
             //There is an attached entry, post its content while the attached post exists
             if(!$pkg['attached_content']){
                 //The attached entry is private or was deleted.
-                echo "<tr><td colspan='7' style='height:85px;'><b><i>Esta entrada es un repost de otra que está privada o fue eliminada.</i></b></td></tr>";
+                echo "<tr><td colspan='7' style='height:85px;'><b><i>".Entry::EntryAttached(0)."</i></b></td></tr>";
             }else{
                 //The attached entry is available
-                echo "<tr><td colspan='7' style='height:45px;'>Repost a entrada de: <a href='Profile.php?p=",$pkg['attached_user'],"' target='_blank'><b>@",$pkg['attached_user'],"</b></a> : '",$pkg['attached_title'],"'</td></tr>";
+                echo "<tr><td colspan='7' style='height:45px;'>".Entry::EntryAttached(1)."<a href='Profile.php?p=",$pkg['attached_user'],"' target='_blank'><b>@",$pkg['attached_user'],"</b></a> : '",$pkg['attached_title'],"'</td></tr>";
                 echo "<tr><td colspan='7' style='height:85px;'><i>",$pkg['attached_content'],"</i></td></tr>";
-                echo "<tr><td colspan='7'><a href='Post.php?post=",$pkg['attached_uid_post'],"' target='_blank'>Ver original del post adjunto</a></td></tr>";
+                echo "<tr><td colspan='7'><a href='Post.php?post=",$pkg['attached_uid_post'],"' target='_blank'>".Entry::EntryAttached(2)."</a></td></tr>";
             }
             
         }
@@ -65,7 +65,7 @@ session_start();
 
     //Auxiliar counter for printEntry_VC
     function PrintEntryVersionControlCounter($version){
-        if($version==0){echo "Versión original.";}else{echo "Edición #".$version;}
+        if($version==0){echo Entry::EntryVersionControl(0);}else{echo Entry::EntryVersionControl(1).$version;}
     }
 
     //Show the entry
@@ -93,9 +93,9 @@ session_start();
                     ",PrintEntryAttached($pkg),"
                 <tr>
                 <td colspan='7'>
-                    <span id='publishData'>Publicado por: <b>
+                    <span id='publishData'>".Entry::publishText(0)."<b>
                         <a href='Profile.php?p=",$pkg['own_user'],"' target='_blank'>",$pkg['own_user'],"</a></b> - 
-                        Fecha de publicación: <a href='Post.php?post=",$pkg['uid_post'],"' target='_blank'>",$pkg['pubdate'],"</a>
+                        ".Entry::publishText(1)."<a href='Post.php?post=",$pkg['uid_post'],"' target='_blank'>",$pkg['pubdate'],"</a>
                     </span>
                 </td>
                 </tbody>
@@ -104,8 +104,7 @@ session_start();
         }else{
             if($pkg!=false){
                 //System doesn't have any entry to show, that means the user haven't published an entry or follow nobody.
-                echo "<br>No sigues a ninguna cuenta y tampoco has publicado algo.<br>Anímate, no seas mala onda.<br>
-                <button class='art-button' onclick='startNewPost()'><img src='components/newpost.png' style='width:25px;height:25px;'></img></button>";
+                echo Entry::publishOne_ifEmptyProfile(0)."<button class='art-button' onclick='startNewPost()'><img src='components/newpost.png' style='width:25px;height:25px;'></img> ".Entry::publishOne_ifEmptyProfile(1)."</button>";
             }
         }
     }
@@ -133,7 +132,7 @@ session_start();
                     ",PrintEntryAttached($pkg),"
                 <tr>
                 <td colspan='6'>
-                    <span id='publishData'>Publicado por: <b>",$pkg['own_user'],"</b> - Fecha de publicación de esta versión: ",$pkg['pubdate'],"
+                    <span id='publishData'>".Entry::publishTextVersionControl(0)."<b>",$pkg['own_user'],"</b> - ".Entry::publishTextVersionControl(1)." - ",$pkg['pubdate'],"
                     </span><br>
                 </td>
                 </tbody>

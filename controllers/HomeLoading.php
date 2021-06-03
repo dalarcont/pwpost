@@ -12,6 +12,7 @@
         require '../views/Entry.php';
         require '../views/Alerts.php';
         require '../views/UserProfile.php';
+        require '../views/Language.php';
 
         if(!empty($_SESSION['UsrPkg'])){
             //Get data from DB
@@ -46,7 +47,7 @@
            
         }else{
             //Session is empty
-           alertMessage("PWPost!","Error del sistema S404<br/>Sesión no encontrada.","transport","index.php");
+           alertMessage("PWPost!",Alerts::sessionBroke_message(),"transport","index.php");
         }
 
 ?>

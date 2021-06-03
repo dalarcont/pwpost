@@ -7,6 +7,7 @@ session_start();
     require '../procedures/SYS_DB_CON.php';
     require '../procedures/Validators.php';
     require '../procedures/DeletePost.php';
+    require '../views/Language.php';
 
     /* Procedures has not been needed yet*/
     if($_POST['call']=="let"){
@@ -29,26 +30,26 @@ session_start();
                     //Ok, delete now
                     $r = DB_RemovePost($_POST['post'],$_SESSION['UsrPkg']['username']);
                     if($r){
-                        //The pub has been updated
+                        //The pub has been deleted
                         echo "<script>$('#",$_POST['post'],"').remove();</script>";
-                        alertMessage("Eliminación de entrada","Entrada eliminada<br />Aquellos usuarios que hayan realizado repost de esta entrada les saldrá un aviso de que la misma ya no está disponible.","truenotification","Entrada eliminada");
+                        alertMessage(Alerts::postDeleteTitle(),Alerts::successDelete(),false,false);
                     }else{
                         //There is an error
-                        alertMessage("Eliminación de entrada","Ha ocurrido un error en la base de datos.<br />No se pudo eliminar tu entrada. Intenta más tarde.","reload",false);
+                        alertMessage(Alerts::postDeleteTitle(),Alerts::errorDelete(),"reload",false);
                     }
 
                 }else{
                     //The logged user isn't the owner of the entry
-                    alertMessage("Eliminación de entrada","No se puede eliminar la entrada<br />Tú no eres el propietario de la entrada.",false,false);
+                    alertMessage(Alerts::postDeleteTitle(),Alerts::errorDeleteAuthority(),false,false);
                 }
                 
             }else{
                 //Session is broken
-                alertMessage("Eliminación de entrada","","transport","index.php");
+                alertMessage(Alerts::postDeleteTitle(),Alerts::sessionBroke_message(),"transport","index.php");
             }
         }else{
             //Parameter isn't recognized
-            alertMessage("Eliminación de entrada","Procedimiento de eliminación de entrada erróneo","reload",false);
+            alertMessage(Alerts::postDeleteTitle(),Alerts::parameterError(),"reload",false);
         }
     }
 

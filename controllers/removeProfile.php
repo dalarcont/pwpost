@@ -6,6 +6,7 @@
     //Call views
     require '../views/Alerts.php';
     require '../views/confirmations.php';
+    require '../views/Language.php';
 
     //Call procedure
     require '../procedures/sys_db_con.php';
@@ -28,7 +29,7 @@
             deleteProfileConfirmation();
         }else{
             //Session data isn't the same as the user who request for delete profile
-            alertMessage("Eliminar perfil","Ocurrió un error en los datos de sesión.<br />No podemos procesar tu petición ahora",false,false);
+            alertMessage(Alerts::deleteProfileTitle(),Alerts::sessionBroke_message(),false,false);
         }
     }else{
         if($selector=="doIt"){
@@ -39,17 +40,17 @@
                 //Authority is OK
                 $delete = DB_DeleteProfile($object,$key);
                 if($delete){
-                    alertMessage("Eliminar perfil","El perfil ha sido eliminado exitosamente.","transport","index.php?p=rms");
+                    alertMessage(Alerts::deleteProfileTitle(),Alerts::successDeleteProfile(),"transport","index.php?p=rms");
                 }else{
-                    alertMessage("Eliminar perfil","Ocurrió un error en la base de datos.<br />Verifica tu identidad nuevamente.","transport","index.php");
+                    alertMessage(Alerts::deleteProfileTitle(),Alerts::systemError(),"transport","index.php");
                 }
             }else{
                 //Authority fails
-                alertMessage("Eliminar perfil","Los datos para verificación de autoridad sobre el perfil no son correctos.<br />Se puede tratar de una suplantación de identidad en este preciso momento.","transport","index.php");
+                alertMessage(Alerts::deleteProfileTitle(),Alerts::deleteProfileAuthority(),"transport","index.php");
             }
         }else{
             //Option selector wasn't recognized
-            alertMessage("Eliminar perfil","Ocurrió un error inesperado.<br />No podemos procesar tu petición ahora.","reload",false);
+            alertMessage(Alerts::deleteProfileTitle(),Alerts::parameterError(),"reload",false);
         }
     }
 

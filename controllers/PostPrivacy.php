@@ -3,6 +3,7 @@ session_start();
     //Load views
     require '../views/Confirmations.php';
     require '../views/Alerts.php';
+    require '../views/Language.php';
     //Load procedure
     require '../procedures/SYS_DB_CON.php';
     require '../procedures/Validators.php';
@@ -37,21 +38,21 @@ session_start();
                         echo "<script> 
                         $('#",$_POST['post']," #btn_hide img').attr('src','components/unhide.png'); 
                         $('#",$_POST['post']," #btn_hide').attr('onclick','startUnhidePost(this)');</script>";
-                        alertMessage("Ocultar entrada","Entrada oculta<br />Aquellos usuarios que hayan realizado repost de esta entrada les saldrá un aviso de que la misma ya no está disponible.","truenotification","Entrada privatizada");
+                        alertMessage(Alerts::privacyTitle(),Alerts::successPrivacySet(),"truenotification",Alerts::privacyNotificationSet());
                     }else{
                         //There is an error
-                        alertMessage("Ocultar entrada","Ha ocurrido un error en la base de datos.<br />No se pudo ocultar tu entrada. Intenta más tarde.","reload",false);
+                        alertMessage(Alerts::privacyTitle(),Alerts::errorPrivacy(),"reload",false);
                     }
 
                 }else{
                     //The logged user isn't the owner of the entry
-                    alertMessage("Ocultar entrada","No se puede ocultar la entrada<br />Tú no eres el propietario de la entrada.",false,false);
+                    alertMessage(Alerts::privacyTitle(),Alerts::errorPrivacyAuthority(),false,false);
                 }
                     
                 
             }else{
                 //Session is broken
-                alertMessage("Ocultar entrada","Ha ocurrido un error en el sistema.<br />La sesión está rota.","transport","index.php");
+                alertMessage(Alerts::privacyTitle(),Alerts::sessionBroke_message(),"transport","index.php");
             }
         break;
 
@@ -79,27 +80,27 @@ session_start();
                         echo "<script>
                         $('#",$_POST['post']," #btn_hide img').attr('src','components/hide.png'); 
                         $('#",$_POST['post']," #btn_hide').attr('onclick','startHidePost(this)');</script>";
-                        alertMessage("Mostrar entrada","Entrada pública<br />Aquellos usuarios que hayan realizado repost de esta entrada les aparecerá el contenido.","truenotification","Entrada pública");
+                        alertMessage(Alerts::privacyTitle(),Alerts::successPrivacyUnset(),"truenotification",Alerts::privacyNotificationUnset());
                     }else{
                         //There is an error
-                        alertMessage("Mostrar entrada","Ha ocurrido un error en la base de datos.<br />No se pudo mostrar tu entrada. Intenta más tarde.","reload",false);
+                        alertMessage(Alerts::privacyTitle(),Alerts::errorPrivacy(),"reload",false);
                     }
 
                 }else{
                     //The logged user isn't the owner of the entry
-                    alertMessage("Mostrar entrada","No se puede mostrar la entrada<br />Tú no eres el propietario de la entrada.",false,false);
+                    alertMessage(Alerts::privacyTitle(),Alerts::errorPrivacyAuthority(),false,false);
                 }
                     
                 
             }else{
                 //Session is broken
-                alertMessage("Mostrar entrada","Ha ocurrido un error en el sistema.<br />La sesión está rota.","transport","index.php");
+                alertMessage(Alerts::privacyTitle(),Alerts::sessionBroke_message(),"transport","index.php");
             }
         break;
 
         default:
             //Parameter was not recognized
-            alertMessage("Ocultar/Mostrar entrada","Procedimiento de ocultar/mostrar entrada erróneo","reload",false);
+            alertMessage(Alerts::privacyTitle(),Alerts::parameterError(),"reload",false);
         break;
     }
 

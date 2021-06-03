@@ -7,6 +7,7 @@ session_start();
     require '../procedures/NewPost.php';
     require '../procedures/SYS_DB_CON.php';
     require '../procedures/EntryVersionControl.php';
+    require '../views/Language.php';
 
     /* Procedures has not been needed yet*/
     if($_POST['call']=="let"){
@@ -49,15 +50,15 @@ session_start();
                 }else{
                     //There is an error
                     echo "<script>$('#form_newPost').dialog('close');</script>";
-                    alertMessage("Nueva entrada","Ha ocurrido un error en la base de datos.<br />No se pudo publicar tu entrada. Intenta más tarde.","reload",false);
+                    alertMessage(Alerts::newEntryTitle(),Alerts::errorNewEntry(),"reload",false);
                 }
             }else{
                 echo "<script>$('#form_newPost').dialog('close');</script>";
-                alertMessage("Nueva entrada","Ha ocurrido un error en el sistema.<br />La sesión está rota.","transport","index.php");
+                alertMessage(Alerts::newEntryTitle(),Alerts::sessionBroke_message(),"transport","index.php");
             }
         }else{
             echo "<script>$('#form_newPost').dialog('close');</script>";
-            alertMessage("Nueva entrada","Procedimiento de publicación de entrada erróneo.","reload",false);
+            alertMessage(Alerts::newEntryTitle(),Alerts::parameterError(),"reload",false);
         }
     }
 

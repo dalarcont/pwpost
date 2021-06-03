@@ -4,6 +4,7 @@ session_start();
 require '../views/PostForms.php';
 require '../views/Entry.php';
 require '../views/Alerts.php';
+require '../views/Language.php';
 //Load procedure
 require '../procedures/SYS_DB_CON.php';
 require '../procedures/PostLoad.php';
@@ -24,7 +25,7 @@ if ($_POST['call'] == "let") {
         Form_RePost($RepostSourceId,$RepostSource['title'],$RepostSource['content']);
     }else{
         //Post source is unavailable
-        alertMessage("Repost","La entrada a la que quieres hacer repost acaba de declararse no disponible.<br />El usuario ha eliminado la entrada o la hemos eliminado nosotros.",false,false);
+        alertMessage("PwPost",Alerts::noAvailablePostRepost(),false,false);
 
     }
 } else {
@@ -56,16 +57,16 @@ if ($_POST['call'] == "let") {
                 } else {
                     //There is an error
                     echo "<script>$('#form_editPost').dialog('close');</script>";
-                    alertMessage("Repost","Ha ocurrido un error en la base de datos.<br />No se pudo publicar tu entrada. Intenta más tarde.","reload",false);
+                    alertMessage("PwPost",Alerts::errorNewEntry(),"reload",false);
                 }
         } else {
             //Session is broken
             echo "<script>$('#form_editPost').dialog('close');</script>";
-            alertMessage("Repost","Ha ocurrido un error en el sistema.<br />La sesión está rota.","transport","index.php");
+            alertMessage("PwPost",Alerts::sessionBroke_message(),"transport","index.php");
         }
     } else {
         //Procedure parameter wasn't recognized
         echo "<script>$('#form_editPost').dialog('close');</script>";
-        alertMessage("Repost","Procedimiento de publicación de entrada erróneo.","reload",false);
+        alertMessage("PwPost",Alerts::parameterError(),"reload",false);
     }
 }

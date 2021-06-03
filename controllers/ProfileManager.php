@@ -26,6 +26,7 @@
     //Require views
         require '../views/Entry.php'; //Entry templates
         require '../views/UserProfile.php'; //User's profile template
+        require '../views/Language.php'; //User interface language engine
 
     //Entry printer in loop
     function EntryPrinter($PKG){
@@ -86,7 +87,7 @@
     function DeleteProfile($objective,$whoIsOnline){
         if($objective==$whoIsOnline){
             //Show the button
-            echo "<p><button role='unsetprofile' class='btn btn-danger' onclick=startUnsetIdentity()>Eliminar mi perfil</button><br></p>";
+            echo "<p><button role='unsetprofile' class='btn btn-danger' onclick=startUnsetIdentity()>".profilePage::buttonDeleteProfile()."</button><br></p>";
         }
     }
 
@@ -94,7 +95,7 @@
     function LikedPostList($objective,$whoIsOnline){
         if($objective==$whoIsOnline){
             //Show the button
-            echo "<p><button role='showliked' class='btn btn-info' onclick=showLikedPosts()>Mostrar post que me gustan<img src='components/unsetlike.png' style='width:28px;height:28px;'></img></button><br></p>";
+            echo "<p><button role='showliked' class='btn btn-info' onclick=showLikedPosts()>".profilePage::buttonListLikedPost()."<img src='components/unsetlike.png' style='width:28px;height:28px;'></img></button><br></p>";
         }
     }
 
