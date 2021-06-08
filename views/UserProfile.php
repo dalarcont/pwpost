@@ -1,34 +1,22 @@
 <?php 
     //Print entries
     function PrintProfile_Empty(){
-        echo "<div id='emptyUser'><br>No has publicado algo, por algo tu perfil está vacío.<br>Anímate, no seas mala onda.<br>
-            <button class='art-button' onclick='startNewPost()'><img src='components/newpost.png' style='width:25px;height:25px;'></img> Publicar algo...</button></div>";
+        ProfileViewer::profileInformationText(0);
     }
 
     //User haven't post any entry
     function PrintProfilePublic_Empty(){
-        echo "<br>Este usuario no ha publicado nada.<br>Visita este perfil después.<br>";
+        ProfileViewer::profileInformationText(1);
     }
 
     //Profile doesn't have liked post
     function PrintEmptyLikedPost(){
-        echo "<big>No existen publicaciones que hayas marcado con <img src='components/unsetlike.png' style='width:25px;height:25px;'></img>.</big>";
+        ProfileViewer::profileInformationText(2);
     }
 
     //Profile doesn't exists or incorrect profile parameter
     function PrintProfileNonexistence(){
-        echo "<big>Este usuario no existe o no está disponible temporalmente.</big>";
-    }
-
-    //Home load detects user doesn't publish and doesn't follow at least 1 of each one.
-    function PrintProfile_EmptyFollowAndEntry(){
-        echo "<big>No tienes publicaciones ni sigues a alguien.</big><br>Anímate, no seas mala onda.<br>
-        <button class='art-button' onclick='startNewPost()'><img src='components/newpost.png' style='width:25px;height:25px;'></img> Publicar algo...</button>";
-    }
-
-    //Profile in the URL on "profile.php" isn't declard
-    function PrintProfileNotDeclared(){
-        echo "<big>No se indicó el perfil a cargar.<br>Cierra esta página.</big>";
+        ProfileViewer::profileInformationText(3);
     }
 
     //Show profile resume grid
@@ -38,20 +26,20 @@
             //Normal procedure
             if($fbstat){
                 //User follows
-                return "<span id='followStatus' class='followStatus'>&nbsp;&nbsp;TE SIGUE&nbsp;&nbsp;</span>";
+                return "<span id='followStatus' class='followStatus'>&nbsp;&nbsp;".ProfileViewer::followLegend(0)."&nbsp;&nbsp;</span>";
             }else{
                 //User doesnt follow
-                return "<span id='followStatus' class='followStatusNull'>&nbsp;&nbsp;NO TE SIGUE&nbsp;&nbsp;</span>";
+                return "<span id='followStatus' class='followStatusNull'>&nbsp;&nbsp;".ProfileViewer::followLegend(1)."&nbsp;&nbsp;</span>";
             }
         }
 
         function profileFollowButtonSelector($fstat,$object){
             if($fstat){
                 //User follows
-                return "<button id='btn-".$object."' role='".$object."' class='btn btn-danger' onclick=UnsetFollow(this)>Dejar de seguir</button>";
+                return "<button id='btn-".$object."' role='".$object."' class='btn btn-danger' onclick=UnsetFollow(this)>".Follow::unfollowButton()."</button>";
             }else{
                 //User doesnt follow
-                return "<button id='btn-".$object."' role='".$object."' class='btn btn-success' onclick=SetUpFollow(this)>Seguir</button>";
+                return "<button id='btn-".$object."' role='".$object."' class='btn btn-success' onclick=SetUpFollow(this)>".Follow::followButton()."</button>";
             }            
         }
 
@@ -86,21 +74,21 @@
                 //Can show all data but according the button
                 switch($button){
                     case 1:
-                        return "<button class='btn btn-info' id='btn_showpeople' onclick='showFollowed()' >Seguidos</button>";
+                        return "<button class='btn btn-info' id='btn_showpeople' onclick='showFollowed()' >".ProfileViewer::followListsPeople(0)."</button>";
                     break;
 
                     case 2:
-                        return "<button class='btn btn-info' id='btn_showpeople' onclick='showFollowers()' >Seguidores</button>";
+                        return "<button class='btn btn-info' id='btn_showpeople' onclick='showFollowers()' >".ProfileViewer::followListsPeople(1)."</button>";
                     break;
                 }
             }else{
                 switch($button){
                     case 1:
-                        return "Seguidos";
+                        return ProfileViewer::followListsPeople(0);
                     break;
 
                     case 2:
-                        return "Seguidores";
+                        return ProfileViewer::followListsPeople(1);
                     break;
                 }
             }
@@ -116,11 +104,11 @@
         </thead>
         <tbody>
         <tr>
-        <td colspan='2'>Fecha de registro</td>
+        <td colspan='2'>".ProfileViewer::PeopleListText(0).":</td>
         <td colspan='2'>".$data['fechaRegistro']."</td>
         </tr>
         <tr>
-        <td colspan='2'>Cantidad de publicaciones:</td>
+        <td colspan='2'>".ProfileViewer::PeopleListText(1).":</td>
         <td colspan='2'>".$data['cantidadPublicaciones']."</td>
         </tr>
         <tr>
@@ -142,25 +130,25 @@
         //Dialog title
         if($mode==true){
             //1N means 1 to much, i.e. list all people followed by the user
-            $modeName = "Seguidos por ".$aux."";
+            $modeName = ProfileViewer::PeopleListFollowText(0).$aux."";
             $followBackField = true;
         }else{
-            $modeName = "Seguidores de ".$aux."";
+            $modeName = ProfileViewer::PeopleListFollowText(1).$aux."";
             $followBackField = false;
         }
 
         function buttonSelector($mode,$object,$status){
             if($mode==true){
                 //Always show this button because we are showing the users followed by the logged user, isn't logic if we show a 'Follow' button related to a user that the logged user follows already
-                return "<button id='btn-".$object."' role='".$object."' class='btn btn-danger' onclick=UnsetFollow(this)>Dejar de seguir</button>";
+                return "<button id='btn-".$object."' role='".$object."' class='btn btn-danger' onclick=UnsetFollow(this)>".Follow::unfollowButton()."</button>";
             }else{
                 //System will show the people who is following the logged user, may someone of these isn't followed by the logged user, then use a selector
                 if($status==true){
                     //Some follower is followed by the logged user
-                    return "<button id='btn-".$object."' role='".$object."' class='btn btn-danger' onclick=UnsetFollow(this)>Dejar de seguir</button>";
+                    return "<button id='btn-".$object."' role='".$object."' class='btn btn-danger' onclick=UnsetFollow(this)>".Follow::unfollowButton()."</button>";
                 }else{
                     //Some follower isn't followed by the logged user
-                    return "<button id='btn-".$object."' role='".$object."' class='btn btn-success' onclick=SetUpFollow(this)>Seguir</button>";
+                    return "<button id='btn-".$object."' role='".$object."' class='btn btn-success' onclick=SetUpFollow(this)>".Follow::followButton()."</button>";
                 }
             }
         }
@@ -169,11 +157,11 @@
 
             switch($x){
                 case true:
-                    return "<span id='followStatus' class='followStatus'>&nbsp;&nbsp;TE SIGUE&nbsp;&nbsp;</span>";
+                    return "<span id='followStatus' class='followStatus'>&nbsp;&nbsp;".ProfileViewer::followLegend(0)."&nbsp;&nbsp;</span>";
                 break;
 
                 case false:
-                    return "<span id='followStatus' class='followStatusNull'>&nbsp;&nbsp;NO TE SIGUE&nbsp;&nbsp;</span>";
+                    return "<span id='followStatus' class='followStatusNull'>&nbsp;&nbsp;".ProfileViewer::followLegend(1)."&nbsp;&nbsp;</span>";
                 break;
 
                 default:
@@ -207,8 +195,8 @@
                     <td id='usrpic'><img src='components/avatarNull.png' style='width:25px;height:25px;'></img></td>
                     <td id='username'>".$data[$i]['identificador']."</td>
                     <td id='name'>".$data[$i]['nombre']."</td>
-                    <td id='username'><span id='followStatus' class='followStatus'>&nbsp;&nbsp;ERES TÚ&nbsp;&nbsp;</span></td>
-                    <td id='action'><button class='btn btn-info'>Eres tú.</button></td></tr>";
+                    <td id='username'><span id='followStatus' class='followStatus'>&nbsp;&nbsp;".ProfileViewer::PeopleListSameUser(0)."&nbsp;&nbsp;</span></td>
+                    <td id='action'><button class='btn btn-info'>".ProfileViewer::PeopleListSameUser(1)."</button></td></tr>";
                 }
 
             }

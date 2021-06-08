@@ -87,11 +87,16 @@
     
 //Login procedure
     //Connect
-    function systemConnect(){
+    function systemConnect(l){
         var username = $("#username").val();
         var password = $("#password").val();
         if(username.length <=4 || password.length<=4){
-            $("#FrontEnd").html("Verifica que tu nombre de usuario esté bien digitado al igual que tu contraseña.<br>");
+            if(l==0){
+                $("#FrontEnd").html("Verifica que tu nombre de usuario esté bien digitado al igual que tu contraseña.<br>");
+            }else{
+                $("#FrontEnd").html("Verify that your username is correctly typed as well as your password.<br>");
+            }
+            
         }else{
             $.post('controllers/SystemLogin.php',{username:username,password:password},function(sucess){
                 $("#FrontEnd").html(sucess);
@@ -144,10 +149,14 @@
         return r ;
     }
     //Validate if the user's full name is at least 4 chars
-    function validatefullname(){
+    function validatefullname(l){
         var a = $("#mk_fullname").val();
         if(a.length<4){
-            $("#mkmsg1").html("Tu nombre debe ser de por lo menos 4 dígitos"); 
+            if(l==0){
+                $("#mkmsg1").html("Tu nombre debe ser de por lo menos 4 dígitos"); 
+            }else{
+                $("#mkmsg1").html("Your name must be at least 4 digits"); 
+            }
         }else{
             $("#mkmsg1").html(""); 
             $('#isOk_1').val('true'); 
@@ -166,7 +175,7 @@
         }
     }
     //Validate email
-    function EmailValidation(){
+    function EmailValidation(l){
         var email = $("#mk_email").val();
         email = email.toLowerCase();
         if(email.indexOf('@') >= 0){
@@ -176,16 +185,24 @@
                 });
             }
         }else{
-            $("#mkmsg3").html("<span style='color:red'>Escribe una dirección de e-mail correcta.</span>");
+            if(l==0){
+                $("#mkmsg3").html("<span style='color:red'>Escribe una dirección de e-mail correcta.</span>");
+            }else{
+                $("#mkmsg3").html("<span style='color:red'>Write a correct e-mail address.</span>");
+            }
         }   
         $("#mkmsg3").delay(5000).fadeOut(1000);
     }
     //Passwords field check procedure, as last field to fill, this Fx will be enable or disable the executor of mkIdentity
-    function UserKeyValidation(){
+    function UserKeyValidation(l){
         var pswd = $("#mk_pswd").val();
         var isOk = false;
         if(pswd.length<5){
-            $("#mkmsg4").html("La contraseña debe ser igual o mayor a 5 dígitos");
+            if(l==0){
+                $("#mkmsg4").html("La contraseña debe ser igual o mayor a 5 dígitos");
+            }else{
+                $("#mkmsg4").html("The password must be equal to or greater than 5 digits");
+            }
         }else{
             $("#mkmsg4").html("");
             $("#isOk_4").val('true');
@@ -199,7 +216,7 @@
     }
     
     //Executor
-    function doMkIdentity(){
+    function doMkIdentity(l){
         //Enable or disable button
         var pkg = [] ;
             pkg.push($("#isOk_1").val());
@@ -220,7 +237,11 @@
 
         }else{
             //There is a field without a validation unprocessed
-            $("#completedData").html("Verifica la información ingresada.");
+            if(l==0){
+                $("#completedData").html("Verifica la información ingresada.");
+            }else{
+                $("#completedData").html("Verify the information entered.");
+            }
         }
         
     }
@@ -236,7 +257,7 @@
         var email = $("#emailRecovery").val();
         email = email.toLowerCase();
         if(email.indexOf('@') == -1){
-            $("#msgSpan").html("Escribe una dirección de correo verídica.");
+            $("#msgSpan").html("E-mail error.");
         }else{
             $("#msgSpan").html("");
             $("#rcvButton").show();
@@ -252,10 +273,14 @@
         });
     }
     //Vaidation for the new password afer recovery login
-    function UserKeyValidation_2(){
+    function UserKeyValidation_2(l){
         var pswd = $("#newpswd").val();
         if(pswd.length<5){
-            $("#FrontEnd").html("La contraseña debe ser igual o mayor a 8 dígitos");
+            if(l==0){
+                $("#FrontEnd").html("La contraseña debe ser igual o mayor a 8 dígitos");
+            }else{
+                $("#FrontEnd").html("The password must be equal to or greater than 8 digits");
+            }
             $("#rcvButton").hide();
         }else{
             $("#FrontEnd").html("");
@@ -333,7 +358,7 @@
         
     }
     //Execution procedure
-    function SetUpPost(){
+    function SetUpPost(l){
         r = 0;
         //Read properties
         var t = $("#newEntry_title").val();
@@ -342,12 +367,20 @@
 
         if(t.length<5){
             //Title haven't 5 digits or more
-            alertify.alert("Nueva entrada","El título debe contener 5 o más digitos.");
+            if(l==0){
+                alertify.alert("Nueva entrada","El título debe contener 5 o más digitos.");
+            }else{
+                alertify.alert("New entry","The title must contain 5 or more digits");
+            }
         }else{
             //Title have 5 digits or more, lets check the content
             if(c.length<5){
                 //The content haven't 5 digits or more
-                alertify.alert("Nueva entrada","El contenido debe contener 5 o más digitos.");
+                if(l==0){
+                    alertify.alert("Nueva entrada","El contenido debe contener 5 o más digitos.");
+                }else{
+                    alertify.alert("New entry","Content must contain 5 or more digits");
+                }
             }else{
                 //The title and content have the required requisites, user can publish
                 var pkg = {title: "",content: ""};
@@ -429,12 +462,20 @@
 
         if(t.length<5){
             //Title haven't 5 digits or more
-            alertify.alert("Repost","El título debe contener 5 o más digitos.");
+            if(l==0){
+                alertify.alert("Repost","El título debe contener 5 o más digitos.");
+            }else{
+                alertify.alert("Republish","The title must contain 5 or more digits");
+            }
         }else{
             //Title have 5 digits or more, lets check the content
             if(c.length<5){  
                 //The content haven't 5 digits or more
-                alertify.alert("Repost","El contenido debe contener 5 o más digitos.");
+                if(l==0){
+                    alertify.alert("Repost","El contenido debe contener 5 o más digitos.");
+                }else{
+                    alertify.alert("Republish","Content must contain 5 or more digits");
+                }
             }else{
                 //The title and content have the required requisites, user can publish
                 var pkg = {title: "",content: "",attachedid: ""};
@@ -556,14 +597,18 @@ function startUnsetIdentity(){
     });
 }
 
-function UnsetIdentity(confirmation){
+function UnsetIdentity(confirmation,l){
     if(confirmation){
         //Get data
         var x = $("#rmprflmail").val();
         var y = $("#rmprflkey").val();
         if(x.length==0 && y.length==0){
             //Confirmation fields are empty
-            alertify.alert("Eliminar perfil","No se ingresaron los datos requeridos.<br />Proceso cancelado.");
+            if(l==0){
+                alertify.alert("Eliminar perfil","No se ingresaron los datos requeridos.<br />Proceso cancelado.");
+            }else{
+                alertify.alert("Delete profile","The required data was not entered. <br /> Process canceled.");
+            }
         }else{
             //Confirmation fields have data
             $.post('controllers/removeProfile.php', {call:"doIt",who:x,key:y},function(sucess){
@@ -571,7 +616,11 @@ function UnsetIdentity(confirmation){
             });
         }        
     }else{
-        alertify.alert("Eliminar perfil","No se puede eliminar tu perfil. Error en los parámetros.");
+        if(l==0){
+            alertify.alert("Eliminar perfil","No se puede eliminar tu perfil. Error en los parámetros.");
+        }else{
+            alertify.alert("Delete profile","Your profile cannot be deleted. Parameter error.");
+        }
     }
     
 }

@@ -72,6 +72,14 @@ session_start();
             }
         }
 
+        public static function loginExecutor(){
+            if($_SESSION['lang']!="EN"){
+                return "systemConnect(0)";
+            }else{
+                return "systemConnect(1)";
+            }
+        }
+
         
     }
 
@@ -131,6 +139,46 @@ session_start();
                 }
             }
         }
+
+        public static function FormFields($selector){
+            if($_SESSION['lang']!="EN"){
+                switch($selector){
+                    case 0:
+                        return "validatefullname(0)";
+                    break;
+
+                    case 1:
+                        return "EmailValidation(0)";
+                    break;
+
+                    case 2:
+                        return "UserKeyValidation(0)";
+                    break;
+
+                    case 3:
+                        return "doMkIdentity(0)";
+                    break;
+                }
+            }else{
+                switch($selector){
+                    case 0:
+                        return "validatefullname(1)";
+                    break;
+
+                    case 1:
+                        return "EmailValidation(1)";
+                    break;
+
+                    case 2:
+                        return "UserKeyValidation(1)";
+                    break;
+
+                    case 3:
+                        return "doMkIdentity(1)";
+                    break;
+                }
+            }
+        }
     }
     
     class loginMessages{
@@ -163,6 +211,14 @@ session_start();
                 echo "<script>alert('No estás identificado correctamente...'); location.href='index.php';</script>";
             }else{
                 echo "<script>alert('You are not correctly identified....'); location.href='index.php';</script>";
+            }
+        }
+
+        public static function unsetIdScript(){
+            if($_SESSION['lang']!="EN"){
+                return 0;
+            }else{
+                return 1;
             }
         }
     }
@@ -199,9 +255,9 @@ session_start();
 
         public static function resume(){
             if($_SESSION['lang']!="EN"){
-                echo "<p>Si has olvidado tu nombre de usuario, puedes recuperar tu acceso.</p><p>Then enter the email address with which you registered. <br> To that address we will send your username and a temporary password that you will use to enter, once you enter you will be forced to change that password.</p>";
+                echo "<p>Si has olvidado tu nombre de usuario, puedes recuperar tu acceso.</p><p> Luego ingresea la dirección de correo electrónico con la que te registraste. <br> A esa dirección te enviaremos tu nombre de usuario y una contraseña temporal que usarás para ingresar, una vez que ingreses te verás obligado a cambiar esa contraseña. </p>";
             }else{
-                echo "<p>If you have forgotten your username, you can regain your access.</p>";
+                echo "<p>If you have forgotten your username, you can regain your access.</p><p>Then enter the email address with which you registered. <br> To that address we will send your username and a temporary password that you will use to enter, once you enter you will be forced to change that password.</p>";
             }
         }
 
@@ -223,9 +279,9 @@ session_start();
 
         public static function tempKey(){
             if($_SESSION['lang']!="EN"){
-                return "En tu correo electrónico encontrarás una contraseña temporal, úsala para iniciar sesión.<br />Una vez ingreses, el sistema te pedirá una nueva contraseña.";
+                return "En tu correo electrónico encontrarás tu usuario y una contraseña temporal, úsala para iniciar sesión.<br />Una vez ingreses, el sistema te pedirá una nueva contraseña.";
             }else{
-                return "In your email you will find a temporary password, use it to log in. <br /> Once you log in, the system will ask you for a new password.";
+                return "In your email you will find your username and a temporary password, use it to log in. <br /> Once you log in, the system will ask you for a new password.";
             }
         }
 
@@ -234,6 +290,54 @@ session_start();
                 return "Recuperación de acceso a cuenta";
             }else{
                 return "Account access recovery";
+            }
+        }
+
+        public static function mailTemplate($selector){
+            if($_SESSION['lang']!="EN"){
+                switch($selector){
+                    case 0:
+                        return "C&oacute;digo de recuperaci&oacute;n de usuario";
+                    break;
+
+                    case 1:
+                        return "Aquí está tu usuario e ingresa el siguiente c&oacute;digo cuando te sea solicitado en el pr&oacute;ximo inicio de sesi&oacute;n:";
+                    break;
+                    
+                    case 2:
+                        return "Este correo fue enviado a la direcci&oacute;n propuesta ";
+                    break;
+
+                    case 3:
+                        return "Si usted no es el destinatario final y se trata de una equivocaci&oacute;n, por favor hacer caso omiso de este mensaje y eliminarlo.";
+                    break;
+                }
+            }else{
+                switch($selector){
+                    case 0:
+                        return "User recovery code";
+                    break;
+
+                    case 1:
+                        return "Here is your username and enter this code when prompted at your next login.";
+                    break;
+                    
+                    case 2:
+                        return "This email was sent to the proposed address ";
+                    break;
+
+                    case 3:
+                        return "If you are not the final recipient and it is a mistake, please ignore this message and delete it.";
+                    break;
+                }
+            }
+        }
+
+        public static function KeyValidation(){
+            if($_SESSION['lang']!="EN"){
+                return "UserKeyValidation_2(0)";
+            }else{
+                return "UserKeyValidation_2(1)";
             }
         }
 
@@ -699,6 +803,14 @@ session_start();
             }
         }
 
+        public static function byeProfileAfterDelete(){
+            if($_SESSION['lang']!="EN"){
+                return "Lamentamos que hayas dado de baja tu perfil, nos duele tu retiro.<br />Eres libre de regresar cuando quieras.<br />Atentamente, Equipo PwPost.";
+            }else{
+                return "We are sorry that you have unsubscribed your profile, your withdrawal hurts us. <br /> You are free to return whenever you want. <br /> Sincerely, PwPost Team.";
+            }
+        }
+
     }
 
     class Follow{
@@ -759,6 +871,30 @@ session_start();
                 return "Nombre de usuario ";
             }else{
                 return "Username ";
+            }
+        }
+
+        public static function emailTemplate($selector){
+            if($_SESSION['lang']!="EN"){
+                switch($selector){
+                    case 0:
+                        return "C&oacute;digo de confirmaci&oacute;n de registro de usuario";
+                    break;
+
+                    case 1:
+                        return "Est&aacute;s a unos pasos de usar nuestro sistema.<br />Ingresa el siguiente c&oacute;digo cuando te sea solicitado en tu primer inicio de sesi&oacute;n:<br>";
+                    break;
+                }
+            }else{
+                switch($selector){
+                    case 0:
+                        return "User registration confirmation code";
+                    break;
+
+                    case 1:
+                        return "You are a few steps away from using our system. <br /> Enter the following code when prompted for your first login:";
+                    break;
+                }
             }
         }
 
@@ -908,6 +1044,227 @@ session_start();
         }
     }
 
+    class Form_newEntry{
+        public static function Fields($data){
+            if($_SESSION['lang']!="EN"){
+                switch($data){
+                    case 0:
+                        return "Nueva entrada";
+                    break;
+
+                    case 1:
+                        return "Título del post";
+                    break;
+
+                    case 2:
+                        return "Escribe el contenido de tu post&#10Recuerda que el sistema lee HTML por si lo deseas agregar";
+                    break;
+
+                    case 3:
+                        return "Publicar";
+                    break;
+
+                    case 4:
+                        return "Editar entrada";
+                    break;
+
+                    case 5:
+                        return "Nuevo título del post";
+                    break;
+
+                    case 6:
+                        return "No se habilitará el botón hasta que hagas una modificación.<br>El solo hecho de añadir un espacio o cualquier elemento y dejarlo o hasta incluso borrarlo para dejar el contenido intacto se considerará como actualización de entrada.";
+                    break;
+
+                    case 7:
+                        return "Actualizar";
+                    break;
+
+                    case 8:
+                        return "Repost";
+                    break;
+
+                    case 9:
+                        return "Escribe el contenido/comentario de tu repost&#10Recuerda que el sistema lee etiquetas HTML por si lo deseas";
+                    break;
+
+                    case 10:
+                        return "Título de la publicación a la que haces repost";
+                    break;
+
+                    case 11:
+                        return "Contenido de la publicación a la que haces repost";
+                    break;
+
+                    case 12:
+                        return "Publicar repost";
+                    break;
+
+                    case 13:
+                        return "Título del repost";
+                    break;
+                }
+            }else{
+                switch($data){
+                    case 0:
+                        return "New post";
+                    break;
+
+                    case 1:
+                        return "Entry title";
+                    break;
+
+                    case 2:
+                        return "Type your post content&#10Remember that the system can read HTML if you want to add it.";
+                    break;
+
+                    case 3:
+                        return "Publish";
+                    break;
+
+                    case 4:
+                        return "Edit entry";
+                    break;
+
+                    case 5:
+                        return "New post title";
+                    break;
+
+                    case 6:
+                        return "The button will not be enabled until you make a modification. <br> The mere fact of adding a space or any element and leaving it or even deleting it to leave the content intact will be considered as an input update.";
+                    break;
+
+                    case 7:
+                        return "Update";
+                    break;
+
+                    case 8:
+                        return "Entry mention";
+                    break;
+
+                    case 9:
+                        return "Write the content/comment of your mentioned post&#10Remember that the system can read HTML if you want to add it.";
+                    break;
+
+                    case 10:
+                        return "Mentioned entry title";
+                    break;
+
+                    case 11:
+                        return "Mentioned entry content";
+                    break;
+
+                    case 12:
+                        return "Republish";
+                    break;
+
+                    case 13:
+                        return "Title of post mention";
+                    break;
+                }
+            }
+        }
+
+        public static function ScriptLang(){
+            if($_SESSION['lang']!="EN"){
+                return "SetUpPost(0)";
+            }else{
+                return "SetUpPost(1)";
+            }
+        }
+
+        public static function ScriptLang_R(){
+            if($_SESSION['lang']!="EN"){
+                return "SetUpRepost(0)";
+            }else{
+                return "SetUpRepost(1)";
+            }
+        }
+    }
+
+    class ProfileViewer{
+        public static function profileInformationText($selector){
+            if($_SESSION['lang']!="EN"){
+                switch($selector){
+                    case 0:
+                        echo "<div id='emptyUser'><br>No has publicado algo, por algo tu perfil está vacío.<br>Anímate, no seas mala onda.<br>
+                        <button class='art-button' onclick='startNewPost()'><img src='components/newpost.png' style='width:25px;height:25px;'></img> Publicar algo...</button></div>";
+                    break;
+
+                    case 1:
+                        echo "<br>Este usuario no ha publicado nada.<br>Visita este perfil después.<br>";
+                    break;
+
+                    case 2:
+                        echo "<big>No existen publicaciones que hayas marcado con <img src='components/unsetlike.png' style='width:25px;height:25px;'></img>.</big>";
+                    break;
+
+                    case 3:
+                        echo "<big>Este usuario no existe o no está disponible temporalmente.</big>";
+                    break;
+                }
+            }else{
+                switch($selector){
+                    case 0:
+                        echo "<div id='emptyUser'><br>You have not published something, then your profile is empty. <br> Cheer up, don't be mean.<br>
+                        <button class='art-button' onclick='startNewPost()'><img src='components/newpost.png' style='width:25px;height:25px;'></img> Post something...</button></div>";
+                    break;
+
+                    case 1:
+                        echo "<br> This user has not published anything. <br> Visit this profile later. <br>";
+                    break;
+
+                    case 2:
+                        echo "<big>There are no posts that you have marked with <img src='components/unsetlike.png' style='width:25px;height:25px;'></img>.</big>";
+                    break;
+
+                    case 3:
+                        echo "<big>This user does not exist or is temporarily unavailable.</big>";
+                    break;
+                }
+            }
+        }
+
+        public static function followLegend($selector){
+            if($_SESSION['lang']!="EN"){
+                if($selector==0){return "TE SIGUE";}else{return "NO TE SIGUE";}
+            }else{
+                if($selector==0){return "FOLLOWS YOU";}else{return "DOESN'T FOLLOWS YOU";}
+            }
+        }
+
+        public static function followListsPeople($selector){
+            if($_SESSION['lang']!="EN"){
+                if($selector==0){return "Seguidos";}else{return "Seguidores";}
+            }else{
+                if($selector==0){return "Followed";}else{return "Followers";}
+            }
+        }
+
+        public static function PeopleListText($selector){
+            if($_SESSION['lang']!="EN"){
+                if($selector==0){return "Fecha de registro";}else{return "Cantidad de publicaciones";}
+            }else{
+                if($selector==0){return "Signup date";}else{return "Quantity of posts";}
+            }
+        }
+
+        public static function PeopleListFollowText($selector){
+            if($_SESSION['lang']!="EN"){
+                if($selector==0){return "Seguidos por ";}else{return "Seguidores de ";}
+            }else{
+                if($selector==0){return "Followed by ";}else{return "Followers of ";}
+            }
+        }
+
+        public static function PeopleListSameUser($selector){
+            if($_SESSION['lang']!="EN"){
+                if($selector==0){return "Eres tú";}else{return "ERES TÚ";}
+            }else{
+                if($selector==0){return "It's you";}else{return "IT'S YOU ";}
+            }
+        }
+    }
 
 
 /*

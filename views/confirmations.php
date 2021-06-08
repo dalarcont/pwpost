@@ -15,7 +15,7 @@
     }
 
     function deleteProfileConfirmation(){
-        echo "<script>alertify.confirm('".ConfirmationDialogs::DeleteProfile(0)."', '".ConfirmationDialogs::DeleteProfile(1)."', function(){ UnsetIdentity(true); }, function(){ alertify.error('".ConfirmationDialogs::DeleteProfileNotification()."')}); $('#rmprflmail').val(''); $('#rmprflkey').val('');</script>";
+        echo "<script>alertify.confirm('".ConfirmationDialogs::DeleteProfile(0)."', '".ConfirmationDialogs::DeleteProfile(1)."', function(){ UnsetIdentity(true,".loginMessages::unsetIdScript()."); }, function(){ alertify.error('".ConfirmationDialogs::DeleteProfileNotification()."')}); $('#rmprflmail').val(''); $('#rmprflkey').val('');</script>";
     }
 
 

@@ -2,14 +2,15 @@
 
     session_start();
     //Call views
-    require '../views/RecoveryMail.php';
     require '../views/Alerts.php';
     require '../views/Language.php';
+    require '../views/RecoveryMail.php';
     //Call procedures
     require '../procedures/Recovery.php';
     require '../procedures/SYS_DB_CON.php';
     require '../procedures/Email.php';
     require '../procedures/UpdatePassword.php';
+    require '../procedures/UserExists.php';
 
     if(empty($_POST['call'])){
         //email
@@ -17,7 +18,8 @@
         $pswd = MakeTemporalPassword(10);
 
         $r = DB_SetUpRecoveryPassword($email,$pswd);
-        $content = EmailTemplate_Recovery($email, $pswd);
+        $usrnm = DB_getUsername($email);
+        $content = EmailTemplate_Recovery($email, $pswd, $usrnm);
 
         if($r){
             //Recovery account procedure on DB was correct.

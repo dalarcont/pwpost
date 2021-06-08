@@ -4,6 +4,11 @@ require 'views/Language.php';
 require 'views/LoginForms.php';
 require 'views/Alerts.php';
 $lang = $_SESSION['lang'];
+if($lang=="EN"){
+    $l = 1;
+}else{
+    $l = 0;
+}
 
 ?><!DOCTYPE html>
 <html lang="es">
@@ -23,13 +28,15 @@ $lang = $_SESSION['lang'];
 <link rel="stylesheet" href="plugins/alertifyjs/css/themes/default.min.css" />
 <script src="components/SystemScripts.js"></script>
 <link rel="shortcut icon" href="components/favicon.ico" type="image/x-icon">
-<script>
+<?php 
+echo "<script>
     $(document).on('keypress',function(e){
         if(e.which == 13){
-            systemConnect();
+            systemConnect(".$l.");
         }
     });
-</script>
+</script>"
+?>
 </head>
  
 <body>
@@ -46,7 +53,7 @@ $lang = $_SESSION['lang'];
                
                if($_GET['p']=="rms"){
                    //This page was loaded after a delete profile procedure, say our respects to the ex-user
-                    alertMessage("Adiós","Lamentamos que hayas dado de baja tu perfil, nos duele tu retiro.<br />Eres libre de regresar cuando quieras.<br />Atentamente, Equipo PwPost.","transport","index.php");
+                    alertMessage("PwPost",Alerts::byeProfileAfterDelete(),"transport","index.php");
                }
                Form_Login();
                ?>

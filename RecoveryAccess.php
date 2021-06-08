@@ -41,7 +41,7 @@ if(empty($_SESSION['UsrPkg']['recovery_key'])){
         <div id='main'>
         "; recoveryPage::instructionChangePass(); echo "
         <div class='mb-3'>
-            <input type='password' class='form-control' id='newpswd' style='width:200px;' onkeyup='UserKeyValidation_2()'><br><br>
+            <input type='password' class='form-control' id='newpswd' style='width:200px;' onkeyup='".recoveryPage::KeyValidation()."'><br><br>
             <span id='msgSpan' style='color:red;'></span>
             <button id='rcvButton' class='btn btn-primary' onclick='StartRecovery()' style='display:none;'>Continuar</button><br><br>
         </div>

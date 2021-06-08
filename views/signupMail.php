@@ -85,16 +85,16 @@ function EmailTemplate_SignUp($email,$code){
     </div>
     <div class='divTableBody'>
     <div class='divTableRow'>
-    <div class='divTableCell'><br>C&oacute;digo de confirmaci&oacute;n de registro de usuario<br></div>
+    <div class='divTableCell'><br>".MakeIdentity::emailTemplate(0)."<br></div>
     </div>
     <div class='divTableRow'>
-    <div class='divTableCell'><br>Est&aacute;s a unos pasos de usar nuestro sistema.<br />Ingresa el siguiente c&oacute;digo cuando te sea solicitado en tu primer inicio de sesi&oacute;n:<br></div>
+    <div class='divTableCell'><br>".MakeIdentity::emailTemplate(1)."<br></div>
     </div>
     <div class='divTableRow'>
     <div class='divTableCell'><br>".$code."<br></div>
     </div>
     <div class='divTableRow'>
-    <div class='divTableCell'><br>Este correo fue enviado a la direcci&oacute;n propuesta ".$email."<br />Si usted no es el destinatario final y se trata de una equivocaci&oacute;n, por favor hacer caso omiso de este mensaje y eliminarlo.<br /><br />PWPost!<br />2021</div>
+    <div class='divTableCell'><br>".recoveryPage::mailTemplate(2)." ".$email."<br />".recoveryPage::mailTemplate(3)."<br /><br />PWPost!<br />2021</div>
     </div>
     </div>
     </div>";

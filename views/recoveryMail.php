@@ -1,6 +1,6 @@
 <?php 
 
-function EmailTemplate_Recovery($email,$code){
+function EmailTemplate_Recovery($email,$code,$user){
     $result = "<style>
     div.PWPostnewuser {
       border: 1px solid #1C6EA4;
@@ -85,16 +85,16 @@ function EmailTemplate_Recovery($email,$code){
     </div>
     <div class='divTableBody'>
     <div class='divTableRow'>
-    <div class='divTableCell'><br>C&oacute;digo de recuperaci&oacute;n de usuario<br></div>
+    <div class='divTableCell'><br>".recoveryPage::mailTemplate(0)."<br></div>
     </div>
     <div class='divTableRow'>
-    <div class='divTableCell'><br />Ingresa el siguiente c&oacute;digo cuando te sea solicitado en el pr&oacute;ximo inicio de sesi&oacute;n:<br></div>
+    <div class='divTableCell'><br />".recoveryPage::mailTemplate(1)."<br></div>
     </div>
     <div class='divTableRow'>
-    <div class='divTableCell'><br>".$code."<br></div>
+    <div class='divTableCell'><br>".$user." --- ".$code."<br></div>
     </div>
     <div class='divTableRow'>
-    <div class='divTableCell'><br>Este correo fue enviado a la direcci&oacute;n propuesta ".$email."<br />Si usted no es el destinatario final y se trata de una equivocaci&oacute;n, por favor hacer caso omiso de este mensaje y eliminarlo.<br /><br />PWPost!<br />2021</div>
+    <div class='divTableCell'><br>".recoveryPage::mailTemplate(2)."".$email."<br />".recoveryPage::mailTemplate(3)."<br /><br />PWPost!<br />2021</div>
     </div>
     </div>
     </div>";

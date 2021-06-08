@@ -49,7 +49,7 @@
             WHEN lp.likedpost_id = ge.uid_post AND lp.username = '$user' THEN true
             ELSE false
         END AS likeproperty
-        FROM general_entries AS ge JOIN likedpost AS lp WHERE ge.uid_post = lp.likedpost_id AND lp.username = '$user'";
+        FROM general_entries AS ge JOIN likedpost AS lp WHERE ge.uid_post = lp.likedpost_id AND lp.username = '$user' ORDER BY lp.likedate DESC";
         $SQL_CON = mysqli_query(DB_CON(),$SQL_QUERY);
         while($SQL_PKG = mysqli_fetch_array($SQL_CON)){
             $result[]=$SQL_PKG;
