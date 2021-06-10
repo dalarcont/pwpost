@@ -7,7 +7,6 @@ session_start();
     //Load procedure
     require '../procedures/SYS_DB_CON.php';
     require '../procedures/Validators.php';
-    require '../procedures/DeletePost.php';
     require '../procedures/PrivacyOperator.php';
 
     /* Procedures has not been needed yet*/

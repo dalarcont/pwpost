@@ -5,7 +5,48 @@ session_start();
     Follow this statement to use correctly this language engine
     If you are in a file and one of these functions will be called after or inside an 'echo' you will declare a function with 'return'
     If you are in a file and one of these functions will be called without an echo, you will declare a echo inside the function HERE or convert the caller statement with an echo before call one of these functions.
-*/
+
+    EXAMPLE:
+        In any file 
+            You see this:
+                echo "bla bla bla bla bla bla _YOU-NEED-TO-PUT-SOMETHING-HERE-IN-ITS-RESPECTIVELY-LANGUAGE_ ";   
+                --> Your function needs to be this way
+                    public static function Something(){
+                        if($_SESSION['lang']!="EN"){
+                            return "WHAT_YOU_WANT_IN_X_LANGUAGE";
+                        }else{
+                            return "WHAT_YOU_WANT_IN_Y_LANGUAGE";
+                        }
+                    }
+                    --> Your call procedure needs to be this way
+                        echo "bla bla bla bla bla bla ".Something()." ";   
+            
+            You see this:
+                echo "YOU-NEED-TO-PUT-SOMETHING-HERE-IN-ITS-RESPECTIVELY-LANGUAGE_";   
+                --> Your function needs to be this way
+                    public static function Something(){
+                        if($_SESSION['lang']!="EN"){
+                            echo "WHAT_YOU_WANT_IN_X_LANGUAGE";
+                        }else{
+                            echo "WHAT_YOU_WANT_IN_Y_LANGUAGE";
+                        }
+                    }
+                    --> Your call procedure needs to be this way, delete that sentence and put:
+                    Something();
+                    There is no more to do, because that 'echo' you deleted, its included already in the function.
+                    That's all.
+    
+    Structure of methods:
+    if(lang is different from english){
+        use spanish, all of this block MUST BE in spanish or your language selected for this block
+        --extra params if you need, but simple params: conditionals, switchs and read some data in session frame of cookies but not processing data that you haven't, remember that this file is only for user interface behaviors
+    }else{
+        use english, all of this block MUST BE in english or your language selected for this block
+        --extra params if you need, but simple params: conditionals, switchs and read some data in session frame of cookies but not processing data that you haven't, remember that this file is only for user interface behaviors
+    }
+    */
+        
+
 
     class indexPage{
         public static function Slogan(){
@@ -570,9 +611,9 @@ session_start();
 
         public static function noPeople($list){
             if($_SESSION['lang']!="EN"){
-                if($list=="fwr"){ return "No hay seguidores"; }else{ return "There is not followers"; }
+                if($list=="fwr"){ return "No hay seguidores"; }else{ return "No hay seguidos"; }
             }else{
-                if($list=="fwd"){ return "No hay seguidos"; }else{ return "There is not followed people."; }
+                if($list=="fwd"){ return "There is not followers"; }else{ return "There is not followed people."; }
             }
         }
 
@@ -1265,27 +1306,4 @@ session_start();
             }
         }
     }
-
-
-/*
-    if($_SESSION['lang']!="EN"){
-        return "Perfil: ";
-    }else{
-        return "Profile: ";
-    }
-
-    if($_SESSION['lang']!="EN"){
-        echo "Perfil: ";
-    }else{
-        echo "Profile: ";
-    }
-
-    if(lang is different from english){
-        use spanish
-        --extra params if you need
-    }else{
-        use english
-        --extra params if you need
-    }
-    */
 ?>

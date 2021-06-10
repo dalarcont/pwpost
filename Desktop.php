@@ -43,7 +43,9 @@
                 <br>
                     <img src='components/favicon.ico' style='width:32px;height:32px;'></img>  <h2>PWPost!</h2>";
                     DesktopPage::NavBar();
-                echo "<br></header>";
+                echo "<br>
+                <a href='#' onclick='setLang(0)' style='font-size:10px;'><img src='components/englishus.png' style='width:32px;height:32px;'></img></a>&nbsp;<a href='#' onclick='setLang(1)' style='font-size:10px;'><img src='components/spanish.png' style='width:30px;height:23px;'></img></a>
+                </header><br><br>";
                 
                     profilePage::actionsMenu();
             

@@ -13,20 +13,6 @@
 
     //Load post of the user and its followed accounts
     function DB_Post_GeneralLoad($loggeduser){
-        /*
-        //Entries without 'likeproperty' field
-        $SQL_Query = "
-        SELECT 
-            pif.username_followed, ge.*
-        FROM
-            following AS pif
-        JOIN
-            general_entries AS ge ON (pif.username_followed = ge.own_user)
-        WHERE
-            pif.username = '$loggeduser'
-        ORDER BY
-            ge.pubdate DESC
-        ";*/
 
         $SQL_Query = "SELECT   DISTINCT
             pif.username_followed, ge.*,
