@@ -108,5 +108,36 @@
         ";
     }
 
+    function Form_TwNew($x,$y){
+        echo  "<div id='form_TwNewPost' title='Twitter' style='display:none;'><center>
+            <table class='blueTable' style='height:95%; width:95%'>
+            <thead>
+                <tr>
+                <th colspan='1' style='height:30px'>
+                    <input type='text' id='tw_add_title' placeholder='".Twitter::dialogText(0)."' style='width:450px'>
+                </th>
+                </tr>
+            </thead>
+            <tbody>
+            <tr>
+            <td colspan='1'  >
+                <textarea id='tw_add_content' style='width:500px;height:280px;resize:none' placeholder='".Twitter::dialogText(1)."'></textarea>
+            </td>
+            </tr>
+            <tr>
+            <td colspan='1'>
+            <button class='btn btn-light' onclick=SetUp_TwPost('".$x."','".$y."')>".Form_newEntry::Fields(3)."</button>
+                </td>
+            </tr>
+            </tbody>
+            </table><br>        
+
+
+                </center>
+                </div>
+                <script>$('#form_TwNewPost').dialog({height:450,width:550});</script>
+        ";
+    }
+
 
 ?>

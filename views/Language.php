@@ -46,7 +46,24 @@ session_start();
     }
     */
         
+    class globalFrame{
 
+        public static function langSelector_r(){
+            if($_SESSION['lang']!="EN"){
+                return "es";
+            }else{
+                return "en";
+            } 
+        }
+
+        public static function langSelector_e(){
+            if($_SESSION['lang']!="EN"){
+                return "es";
+            }else{
+                return "en";
+            } 
+        }
+    }
 
     class indexPage{
         public static function Slogan(){
@@ -99,16 +116,12 @@ session_start();
 
         public static function footer(){
             if($_SESSION['lang']!="EN"){
-                echo "Sin derechos reservados, es tan solo un proyecto de asignatura<br>
-                No ande de exigente<br>
-                Final - TS5C4 - Programación Web<br>
-                Tecnología en Desarrollo de Software<br>
+                echo "Sin derechos reservados, es tan solo un proyecto de asignatura - No ande de exigente<br>
+                Final - TS5C4 - Programación Web - Tecnología en Desarrollo de Software<br>
                 Universidad Tecnológica de Pereira<br>";
             }else{
-                echo "No rights reserved, it is just a subject project.<br>
-                Don't be picky.<br>
-                Final - TS5C4 - Web Programming.<br>
-                Technology in Software Development.<br>
+                echo "No rights reserved, it is just a subject project. - Don't be picky.<br>
+                Final - TS5C4 - Web Programming. - Technology in Software Development.<br>
                 Technological University of Pereira.<br>";
             }
         }
@@ -225,17 +238,17 @@ session_start();
     class loginMessages{
         public static function UserNonexistence(){
             if($_SESSION['lang']!="EN"){
-                echo "<br><br>El usuario no existe.<br>Por favor verifica bien los datos.";
+                echo "<span style='color:red'>El usuario no existe. Por favor verifica bien los datos.</span>";
             }else{
-                echo "<br><br>Username does not exist. Check the data entered.";
+                echo "<span style='color:red'>Username does not exist. Check the data entered.</span>";
             }
         }
 
         public static function UserExistence(){
             if($_SESSION['lang']!="EN"){
-                echo "<br><br>Por favor espere...";
+                echo "<span style='color:green'>Por favor espere...</span>";
             }else{
-                echo "<br><br>Please wait...";
+                echo "<span style='color:green'>Please wait...</span>";
             }
         }
 
@@ -416,7 +429,10 @@ session_start();
             if($_SESSION['lang']!="EN"){
                 echo "
                     <div id='actionsMenu'>
-                        <button class='btn btn-success' onclick='startNewPost()'><img src='components/newpost.png' style='width:25px;height:25px;'></img> Nueva entrada</button><br><br>
+                        <button class='btn btn-success' onclick='startNewPost()'><img src='components/newpost.png' style='width:25px;height:25px;'></img> Nueva entrada</button>
+                    </div><br>
+                    <div id='TwitterMenu'>
+                        <button class='btn btn-light' onclick=startTwPost(0)><img src='components/newpost.png' style='width:25px;height:25px;'></img> Repost a usuario de Twitter</button>
                     </div>
                     <div id='MoreEntry'>
                         <button class='btn btn-info' onclick='BottomPage()'><img src='components/down.png' style='width:25px;height:25px;'></img> Ir abajo</button>
@@ -428,7 +444,10 @@ session_start();
             }else{
                 echo "
                     <div id='actionsMenu'>
-                        <button class='btn btn-success' onclick='startNewPost()'><img src='components/newpost.png' style='width:25px;height:25px;'></img> New entry</button><br><br>
+                        <button class='btn btn-success' onclick='startNewPost()'><img src='components/newpost.png' style='width:25px;height:25px;'></img> New entry</button>
+                    </div><br>
+                    <div id='TwitterMenu'>
+                        <button class='btn btn-light' onclick=startTwPost(0)><img src='components/newpost.png' style='width:25px;height:25px;'></img> Republish to Twitter user</button>
                     </div>
                     <div id='MoreEntry'>
                         <button class='btn btn-info' onclick='BottomPage()'><img src='components/down.png' style='width:25px;height:25px;'></img> Go bottom</button>
@@ -523,6 +542,18 @@ session_start();
                 <a href='#' id='loadHome'>Home</a><span style='padding-left:5em'></span>
                 <a href='#' id='showProfile'>Profile</a><span style='padding-left:5em'></span>
                 <a href='#' id='logOff'>Logout</a>
+            </nav>";
+            }
+        }
+
+        public static function NavBar_Tw(){
+            if($_SESSION['lang']!="EN"){
+                echo "<nav>
+                <a href='Desktop.php'>Inicio</a>
+            </nav>";
+            }else{
+                echo "<nav>
+                <a href='Desktop.php' id='loadHome'>Home</a>
             </nav>";
             }
         }
@@ -1304,6 +1335,102 @@ session_start();
             }else{
                 if($selector==0){return "It's you";}else{return "IT'S YOU ";}
             }
+        }
+    }
+
+
+    class Twitter{
+
+        public static function Form_RunTL_user(){
+            if($_SESSION['lang']!="EN"){
+                return "Ingresa el nombre de usuario de Twitter de quien deseas hacer repost:";
+            }else{
+                return "Type username of Twitter user you want to do repost";
+            }
+        }
+
+        public static function Form_RunTL_cant(){
+            if($_SESSION['lang']!="EN"){
+                return "Ingresa la cantidad de entradas a visualizar:";
+            }else{
+                return "Type the cantity of posts you want to load";
+            }
+        }
+
+        public static function Form_RunTL_button(){
+            if($_SESSION['lang']!="EN"){
+                return "Cargar";
+            }else{
+                return "Load";
+            }
+        }
+
+        public static function Form_RunTL_Warnings($selector){
+            if($_SESSION['lang']!="EN"){
+                if($selector==0){echo "<br><p>Debes indicar un nombre de usuario</p>";}else{echo "<p>Debes indicar una cantidad de posts a cargar entre 1 y 25</p>";}
+            }else{
+                if($selector==0){echo "<br><p>You must indicate a username</p>";}else{echo "<p>You must indicate a number of posts to load between 1 and 25.</p>";}
+            }
+        }
+
+        public static function EntryFields($selector){
+            switch($selector){
+                case 1:
+                    if($_SESSION['lang']!="EN"){
+                        return "Nombre:";
+                    }else{
+                        return "Name";
+                    }
+                break;
+
+                case 2:
+                    if($_SESSION['lang']!="EN"){
+                        return "Nombre de usuario:";
+                    }else{
+                        return "Username:";
+                    }
+                break;
+            }
+        }
+
+        public static function dialogText($field){
+            if($field==0){
+                if($_SESSION['lang']!="EN"){
+                    return "Añade un título a tu repost de Twitter";
+                }else{
+                    return "Type a title to this new post based on Twitter post";
+                }
+            }else{
+                if($_SESSION['lang']!="EN"){
+                    return "Escribe un comentario respecto a la publicación de Twitter que has elegido.";
+                }else{
+                    return "Type a comment about the Twitter publication that you choose.";
+                }
+            }
+        }
+
+        public static function startButton(){
+            if($_SESSION['lang']!="EN"){
+                return "Hacer repost";
+            }else{
+                return "Do a repost";
+            } 
+        }
+
+        public static function successPost(){
+                if($_SESSION['lang']!="EN"){
+                    return "Tu publicación con base en una entrada de Twitter ha sido publicada";
+                }else{
+                    return "Your entry about a Twitter post, has been published.";
+                }            
+        }
+
+        public static function TwPostFrame(){
+            if($_SESSION['lang']!="EN"){
+                return "es";
+            }else{
+                return "en";
+            } 
         }
     }
 ?>

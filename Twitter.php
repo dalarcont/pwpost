@@ -1,7 +1,6 @@
 <?php
     session_start();
     require 'views/Language.php';
-
     $inactiveTime = 15;
     if (isset($_SESSION['timeout'])) {
         $sesionTimeToUnset = time() - $_SESSION['timeout'];
@@ -22,7 +21,7 @@
             <!DOCTYPE html>
             <html lang='".globalFrame::langSelector_r()."'>
             <head>
-            <title>PWPost</title>
+            <title>PWPost - Twitter</title>
             <meta charset='utf-8' />
             <meta name='description' content='Página para publicar cosas tipo post o twitter'>
             <link rel='stylesheet' href='css/final.css'>
@@ -35,42 +34,54 @@
             <script src='plugins/alertifyjs/alertify.min.js'></script>
             <link rel='stylesheet' href='plugins/alertifyjs/css/alertify.min.css' />
             <link rel='stylesheet' href='plugins/alertifyjs/css/themes/default.min.css' />
+            <link rel='stylesheet' href='css/twitterTable.css' />
             <script src='components/SystemScripts.js'></script>
-            <script src='components/scrollScripts.js'></script>
-            
             <link rel='shortcut icon' href='components/favicon.ico' type='image/x-icon'>
             </head>
 
             <body>
-
-            <header>
-            <h1 class='headline'><img src='components/favicon.ico' style='width:32px;height:32px;'></img>  PWPost!</h1>
-            <p><span class='slogan'><i>"; indexPage::Slogan(); echo "</i></span></p>
-            </header>
-            <section>
+                <header>
+                <br>
+                    <img src='components/favicon.ico' style='width:32px;height:32px;'></img>  <h2>PWPost!</h2>";
+                    DesktopPage::NavBar_Tw();
+                echo "<br>
+                <a href='#' onclick='setLang(0)' style='font-size:10px;'><img src='components/englishus.png' style='width:32px;height:32px;'></img></a>&nbsp;<a href='#' onclick='setLang(1)' style='font-size:10px;'><img src='components/spanish.png' style='width:30px;height:23px;'></img></a>
+                </header><br><br>";
+                
+                    //In this page we don't need actions menu
+            
+            echo "<section>
             <article>
             <center>
-            <div id='main'>";
-            FirstAccessPage::resume();
-            echo "<div class='mb-3'>
-                <input type='text' class='form-control' style='width:150px;' id='firstCode' aria-describedby='firstCode' onkeyup='FirstCodeValidation()'><br><br>
-                <button id='validateFirstButton' class='btn btn-primary' onclick='FirstCodeConfirmation()' style='display:none;'>"; recoveryPage::button(); echo "</button><br><br>
+            <div id='main'>
+            <br>
+            </div>            
+            <!-- -->
+            <div class='mb-3'>
+            <label for='username' class='form-label'>".Twitter::Form_RunTL_user()."</label>
+            <input type='text' class='form-control' id='tw_username' style='width:225px;' placeholder='@'>
             </div>
+            <div class='mb-3'>
+            <label for='cantity' class='form-label'>".Twitter::Form_RunTL_cant()."</label>
+            <input type='number' class='form-control' id='tw_cantityload' style='width:185px;' min='1' max='25' placeholder='Min:1, Max:25.'>
             </div>
-            <div id='FrontEnd'>
+            <button class='btn btn-info' onclick=startTwPost(1)>".Twitter::Form_RunTL_button()."</button>
+            <!-- -->
+            <br>
+            <div id='FrontEnd' style='overflow:scroll'>
+
+            
             </div>
-            </center>
+            <br>
+            ";
+            DesktopPage::insideSlogan();
+            echo "</center>
             </article>
+            
             </section>
-            <footer class='footer'>
-                <div>
-                    <span class='footTxt'>PWPost!</span><br><span class='footTxtsign'>";
-                    indexPage::footer();
-                    echo "2021-1<br>
-                    Daniel Alarcón</span>
-                </div>
-                
-            </footer>
+            
+            <p><br></p>
+            
             </body>
             </html>
             ";

@@ -10,8 +10,10 @@ if($lang=="EN"){
     $l = 0;
 }
 
-?><!DOCTYPE html>
-<html lang="es">
+
+echo '<!DOCTYPE html>
+<html lang="'.globalFrame::langSelector_r().'">';
+?>
 <head>
 <title>PWPost</title>
 <meta charset="utf-8" />
@@ -27,6 +29,7 @@ if($lang=="EN"){
 <link rel="stylesheet" href="plugins/alertifyjs/css/alertify.min.css" />
 <link rel="stylesheet" href="plugins/alertifyjs/css/themes/default.min.css" />
 <script src="components/SystemScripts.js"></script>
+<script src="components/scrollScripts.js"></script>
 <link rel="shortcut icon" href="components/favicon.ico" type="image/x-icon">
 <?php 
 echo "<script>
@@ -48,6 +51,9 @@ echo "<script>
     <section>
        <article>
            <center>
+
+           <div id="FrontEnd">
+           </div>
            <div id="main">
                <?php 
                
@@ -58,8 +64,6 @@ echo "<script>
                Form_Login();
                ?>
            </div>
-           <div id="FrontEnd">
-           </div>
            </center>
        </article>
     </section>
@@ -67,8 +71,7 @@ echo "<script>
         <div>
             <span class="footTxt">PWPost!</span><br><span class="footTxtsign">
             <?php indexPage::footer()?>
-            2021-1<br>
-            Daniel Alarcón</span>
+            2021-1 \ Daniel Alarcón</span>
         </div>
         
     </footer>

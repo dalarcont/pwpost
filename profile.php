@@ -26,10 +26,9 @@ session_start();
         require 'procedures/SYS_DB_CON.php';
         require 'procedures/FollowingData.php';
         require 'views/Language.php';
-
-?>
-<!DOCTYPE html>
-<html lang="es">
+        echo '<!DOCTYPE html>
+    <html lang="'.globalFrame::langSelector_r().'">';
+    ?>
 <head>
 <title>PWPost - <?php profilePage::title(); echo $_GET['p']; ?></title>
 <meta charset="utf-8" />
@@ -45,6 +44,7 @@ session_start();
 <link rel="stylesheet" href="plugins/alertifyjs/css/alertify.min.css" />
 <link rel="stylesheet" href="plugins/alertifyjs/css/themes/default.min.css" />
 <script src="components/SystemScripts.js"></script>
+<script src="components/scrollScripts.js"></script>
 <link rel="shortcut icon" href="components/favicon.ico" type="image/x-icon">
 
 </head>

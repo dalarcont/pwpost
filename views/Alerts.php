@@ -47,5 +47,11 @@
         }
     }
 
+    function aDialog($title,$content){
+        echo "<script>
+        alertify.alert('".$title."','".$content."');
+        </script>";
+    }
+
 
 ?>

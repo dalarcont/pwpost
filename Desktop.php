@@ -19,7 +19,7 @@
             $UserData = $_SESSION['UsrPkg'];
                 echo "
             <!DOCTYPE html>
-            <html lang='es'>
+            <html lang='".globalFrame::langSelector_r()."'>
             <head>
             <title>PWPost - Portal</title>
             <meta charset='utf-8' />
@@ -35,6 +35,7 @@
             <link rel='stylesheet' href='plugins/alertifyjs/css/alertify.min.css' />
             <link rel='stylesheet' href='plugins/alertifyjs/css/themes/default.min.css' />
             <script src='components/SystemScripts.js'></script>
+            <script src='components/scrollScripts.js'></script>
             <link rel='shortcut icon' href='components/favicon.ico' type='image/x-icon'>
             </head>
 

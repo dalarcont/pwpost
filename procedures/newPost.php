@@ -41,4 +41,19 @@
         DB_CON_CLOSE($SQL_QUERY,DB_CON());
 
     }
+
+    function DB_setTwitterPost($user,$title,$comment,$postuid,$tw_attached_id,$tw_attached_user){
+        date_default_timezone_set('America/Bogota');
+        $pubdate = date("Y-m-d H:i:s");
+        //
+        $content = nl2br($comment,true);
+        $SQL_QUERY = "INSERT INTO general_entries (uid_post, own_user, pubdate_original, pubdate, title, content, edit_counter, attached_tw_user, attached_tw_sourcelink)
+        VALUES ('$postuid','$user','$pubdate','$pubdate','$title','$content',0,'$tw_attached_user','$tw_attached_id')";
+        if(mysqli_query(DB_CON(),$SQL_QUERY)){
+            return true;
+        }else{
+            return false;
+        }
+        DB_CON_CLOSE($SQL_QUERY,DB_CON());
+    }
 ?>

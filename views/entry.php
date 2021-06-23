@@ -3,6 +3,15 @@ session_start();
 
     /*Entry print*/
 
+    //Cute Twitter printer
+    function cutePrinter($user,$postid){
+        return "
+            <blockquote class='twitter-tweet'>
+            <p lang='es' dir='ltr'></p>&mdash;<a href='https://twitter.com/".$user."/status/".$postid."?ref_src=twsrc%5Etfw'></a></blockquote> 
+            <script async src='https://platform.twitter.com/widgets.js' charset='utf-8'></script>
+            ";
+    }
+
     //This provides to the viewers if an entry was edited and how many times was affected.
     function PrintEditCounterFrame($count,$lastdate,$originalDate){
         //If there is a 1 single or more edits attached to an entry, let print it's respective data
@@ -57,8 +66,16 @@ session_start();
                 echo "<tr><td colspan='7' style='height:45px;'>".Entry::EntryAttached(1)."<a href='Profile.php?p=",$pkg['attached_user'],"' target='_blank'><b>@",$pkg['attached_user'],"</b></a> : '",$pkg['attached_title'],"'</td></tr>";
                 echo "<tr><td colspan='7' style='height:85px;'><i>",$pkg['attached_content'],"</i></td></tr>";
                 echo "<tr><td colspan='7'><a href='Post.php?post=",$pkg['attached_uid_post'],"' target='_blank'>".Entry::EntryAttached(2)."</a></td></tr>";
+            }            
+        }else{
+            //Maybe isn't a PwPost entry attached but a Twitter post instead.
+            if(!(empty($pkg['attached_tw_sourcelink']))){
+                //There is a Twitter post attached
+                //Just load the entry
+                $temptw = cutePrinter($pkg['attached_tw_user'],$pkg['attached_tw_sourcelink']);
+                echo "<tr><td colspan='7' style='height:85px;'><center>".$temptw."</center></td></tr>";
             }
-            
+            //Nothing to do if is empty in both attached frames
         }
         
     }
@@ -140,6 +157,39 @@ session_start();
             </div><br>";
         }
     }
-    
+
+    function printTwitterEntry($Pkg){
+
+        
+        //Count entries on array
+        $Pkg_Size = count($Pkg);
+        //Print
+        for($i=0;$i<=($Pkg_Size-1); $i++){
+            $auxuser = "'".$Pkg[$i]['tw_username']."'";
+            $auxid = "'".$Pkg[$i]['tw_id']."'"; //As string because if we let this as 'number', controller side will receipt it as number but wrong or mismatched
+            echo '
+           </input><br><div style="width:50%"><table class="twitterTable">
+            <thead>
+            <tr>
+            <th style="height: 35px; width:40%" colspan="4"><img src="components/twitter.png" style="width:32px;height:32px"></img> '.Twitter::EntryFields(0).'</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+            <td style="width: 20%;"><b>'.Twitter::EntryFields(1).'</b></td>
+            <td style="width: 30%;">'.$Pkg[$i]['tw_fullname'].'</td>
+            <td style="width: 20%;"><b>'.Twitter::EntryFields(2).'</b></td>
+            <td style="width: 30%;">'.$Pkg[$i]['tw_username'].'</td>
+            </tr>
+            <tr><td colspan="4"><button class="btn btn-success" onclick=postTwEntry('.$auxid.','.$auxuser.')><img src="components/newpost.png" style="width:25px;height:25px;"></img>'.Twitter::startButton().'</td></tr>
+            <tr>
+            <td colspan="4"><center>'.cutePrinter($Pkg[$i]['tw_username'],$Pkg[$i]['tw_id']).'</center></td>
+            
+            </tr>
+            </tbody>
+            </table></div>
+            ';
+        }
+    }
     
 ?>

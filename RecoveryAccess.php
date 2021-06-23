@@ -8,7 +8,7 @@ if(empty($_SESSION['UsrPkg']['recovery_key'])){
     //Let show the page
     echo "
     <!DOCTYPE html>
-        <html lang='es'>
+    <html lang='".globalFrame::langSelector_r()."'>
         <head>
         <title>PWPost - "; recoveryPage::title(); echo "</title>
         <meta charset='utf-8' />
@@ -24,6 +24,7 @@ if(empty($_SESSION['UsrPkg']['recovery_key'])){
         <link rel='stylesheet' href='plugins/alertifyjs/css/alertify.min.css' />
         <link rel='stylesheet' href='plugins/alertifyjs/css/themes/default.min.css' />
         <script src='components/SystemScripts.js'></script>
+        <script src='components/scrollScripts.js'></script>
         <link rel='shortcut icon' href='components/favicon.ico' type='image/x-icon'>
         </head>
 

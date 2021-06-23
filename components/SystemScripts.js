@@ -4,71 +4,6 @@
  */
 
 
-//Entire body action listener and onload behavior
-    $(document).ready(function(){
-        //Let the 'New post' button move around the scroll movement
-        var am = $("#actionsMenu");
-        var pos = am.position();
-        $(window).scroll(function(){
-            var winpos = $(window).scrollTop();
-            if(winpos>=pos.top){
-                am.addClass("actionsMenuMove");
-            }else{
-                am.removeClass("actionsMenuMove");
-            }
-        });
-
-        //Let the 'Go Down' button move around the scroll movement
-        var am2 = $("#MoreEntry");
-        var pos2 = am2.position();
-        //Hidde button because we only need it when the user scrolls down
-        am2.hide();
-        $(window).scroll(function(){
-            var winpos = $(window).scrollTop();
-            if(winpos>=pos2.top){
-                am2.show();
-                am2.addClass("MoreEntryMove");
-            }else{
-                am2.hide();
-                am2.removeClass("MoreEntryMove");
-            }
-        });
-
-        //Let the 'Go Top' button move around the scroll movement
-        var am3 = $("#minusEntry");
-        var pos3 = am3.position();
-        //Hidde button because we only need it when the user scrolls up
-        am3.hide();
-        $(window).scroll(function(){
-            var winpos = $(window).scrollTop();
-            if(winpos>=pos3.top){
-                am3.show();
-                am3.addClass("minusEntryMove");
-            }else{
-                am3.hide();
-                am3.removeClass("minusEntryMove");
-            }
-        });
-
-
-        //Let the nav options menu works
-        $("#loadHome").click(function(){
-            location.href='Desktop.php';
-        });
-
-        $("#showProfile").click(function(){
-            var objLogged = $("#whoIsOnline").val();
-            $.post('controllers/ProfileManager.php', {path:"PV",p:objLogged},function(sucess){
-                $("#FrontEnd").html(sucess);
-            });
-                    
-        });
-
-        $("#logOff").click(function(){
-            location.href='index.php' ;
-        });
-    });
-
 //Language switcher
     function setLang(lang){
         $.post('controllers/LanguageEngine.php', {select:lang},function(sucess){
@@ -92,9 +27,9 @@
         var password = $("#password").val();
         if(username.length <=4 || password.length<=4){
             if(l==0){
-                $("#FrontEnd").html("Verifica que tu nombre de usuario esté bien digitado al igual que tu contraseña.<br>");
+                $("FrontEnd").html("Verifica que tu nombre de usuario esté bien digitado al igual que tu contraseña.<br>");
             }else{
-                $("#FrontEnd").html("Verify that your username is correctly typed as well as your password.<br>");
+                $("FrontEnd").html("Verify that your username is correctly typed as well as your password.<br>");
             }
             
         }else{
@@ -488,6 +423,39 @@
         }
     }
 
+//Repost Twitter entry procedure
+    function postTwEntry(data,usr){
+        //Next statement will clean any garbage of the other 'Repost' usage.
+        $("#main").empty();
+        document.querySelectorAll('[role="dialog"]').forEach(function (el){
+            el.remove();
+        });
+        //Start form toa dd title and comment about the twitter entry
+        $.post('controllers/PostTwitter.php', {call:"let",post:data,twobj:usr},function(sucess){
+            $("#main").html(sucess);
+        })
+    }
+
+    //Execution procedure of repost
+    function SetUp_TwPost(id,usr){
+        if(typeof(id) != "undefined"){
+            //Execute post
+            //Read properties
+            var t = $("#tw_add_title").val();
+            var c = $("#tw_add_content").val();
+            //The title and content have the required requisites, user can publish
+            var pkg = {title: "",content: "",attachedid: "", usernametw: ""};
+            pkg["title"] = t ; pkg["content"] = c ; pkg["attachedid"] = id; pkg["usernametw"] = usr;
+            // Call controller
+            $.post('controllers/PostTwitter.php', {call:"doIt",data:pkg},function(sucess){
+                $("#main").html(sucess); 
+            });
+        }else{
+            //Maybe something was wrong with ID assign procedure on Twitter entry printing or Twitter Repost form
+        }
+        
+    }
+
 //Delete post procedure
     function startRemovePost(data){
         var rm_id = $(data).val();
@@ -624,4 +592,26 @@ function UnsetIdentity(confirmation,l){
     }
     
 }
+
+
+//Twitter Engine
+//Delete post procedure
+function startTwPost(opt){
+    if(opt!=0){
+        var x = $("#tw_username").val();
+        var y = $("#tw_cantityload").val();
+        $.post('controllers/Twitter.php', {call:opt,obj:x,cant:y},function(sucess){
+            $("#FrontEnd").html(sucess);
+        })
+    }else{
+        location.href='Twitter.php';
+    }
     
+    
+}
+
+function SetUpRemove(id){
+    $.post('controllers/PostDelete.php', {call:"doIt",post:id},function(sucess){
+        $("#main").html(sucess);
+    })
+}
