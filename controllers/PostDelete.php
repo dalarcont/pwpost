@@ -21,7 +21,6 @@ session_start();
         if($_POST['call']=="doIt"){
             //Yes, delete it, but check if session isn't broken
             if(!empty($_SESSION['UsrPkg'])){
-                //echo $_SESSION['UsrPkg']['username'];
                 //To delete we need to verify the authority between the entry and it's true owner
                 $auth = ValidateAuthorityPost($_POST['post'],$_SESSION['UsrPkg']['username']);
                 //By the auth value, take the properly way

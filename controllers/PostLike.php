@@ -20,7 +20,7 @@ session_start();
             $('#",$Object," #btn_like img').attr('src','components/unsetlike.png'); 
             $('#",$Object," #btn_like').attr('onclick','unsetLikePost(this)');</script>";
         }else{
-            alertMessage("Marcar post","No puedes marcar que te gusta este post.<br />Error del sistema.",false,false);
+            alertMessage("PwPost",Alerts::errorSetLike(),false,false);
         }
     }
 

@@ -13,9 +13,7 @@ session_start();
 
     function twapikeyengine(){
         // Twitter API Tokens
-        return array(
-            
-        );
+        // This data isn't saved when it's uploaded to GitHub because contains developer keys that owns to project owner.
     }
     //Main 
     function TwitterLoadEntries($who,$howmany){
@@ -95,111 +93,37 @@ session_start();
     }
 
     
+    //Main engine
+    switch($Procedure){
 
-switch($Procedure){
+        case 1:
+            //Run dialog to load someone's profile
+            //Check correct write of username
+            $ObjectV = VerirfyObject($Object);
+            //Check correct min or max cantity
+            $verify_Cantity = checkCantity($Cantity);
 
-    case 1:
-        //Run dialog to load someone's profile
-        //Check correct write of username
-        $ObjectV = VerirfyObject($Object);
-        //Check correct min or max cantity
-        $verify_Cantity = checkCantity($Cantity);
-
-        if(($ObjectV) && ($verify_Cantity)){
-            //Can load Twitter entries
-            $Pkg = TwitterLoadEntries($Object,$Cantity);
-            //If the 1st array $Pkg matrix is empty, then the username isn't available or was incorrectly typed
-            if(!empty($Pkg[0])){
-                //There is data to print
-                printTwitterEntry($Pkg);
+            if(($ObjectV) && ($verify_Cantity)){
+                //Can load Twitter entries
+                $Pkg = TwitterLoadEntries($Object,$Cantity);
+                //If the 1st array $Pkg matrix is empty, then the username isn't available or was incorrectly typed
+                if(!empty($Pkg[0]['tw_id'])){
+                    //There is data to print
+                    printTwitterEntry($Pkg);
+                }else{
+                    //Maybe the user isn't available or not exists
+                    Twitter::TwLoad_Empty();
+                }            
             }else{
-                //Maybe the user isn't available or not exists
-                echo "There is no data, verify if you typed username correctly";
-            }            
-        }else{
-            //User to load and entry cantity wasn't indicated correctly.
-            if(!$ObjectV){ Twitter::Form_RunTL_Warnings(0); }
-            if(!$verify_Cantity){ Twitter::Form_RunTL_Warnings(1); }
-        }
-    break;
+                //User to load and entry cantity wasn't indicated correctly.
+                if(!$ObjectV){ Twitter::Form_RunTL_Warnings(0); }
+                if(!$verify_Cantity){ Twitter::Form_RunTL_Warnings(1); }
+            }
+        break;
 
-    default:
-        alertMessage("Twitter",Alerts::parameterError(),false,false);
-    break;
-}
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    /*
-    //Include TwitterAPI library
-    require_once 'TwitterAPIExchange.php';
-
-
-    // Twitter API Tokens
-    $settings = array(
-        'oauth_access_token' => null,
-        'oauth_access_token_secret' => null,
-        'consumer_key' => null,
-        'consumer_secret' => null
-    ); 
-  
-
-    $objetivo="NoSoyBarbado"; $counter=3;$rts="false";$answ="true";
-    $url = 'https://api.twitter.com/1.1/statuses/user_timeline.json';
-    $getfield = '?screen_name='.$objetivo.'&count='.$counter.'';
-    $requestMethod = 'GET';
-    $twitter = new TwitterAPIExchange($settings);
-    //Perform request and get data
-    $data = $twitter->setGetfield($getfield)->buildOauth($url, $requestMethod)->performRequest(true, [CURLOPT_SSL_VERIFYPEER => false]);
-    //Decode JSON package
-    $arr_Tweets = json_decode($data);
-    //Package to return with decoded and organized data
-    $TweetsPackage = array();
-    
-    foreach ($arr_Tweets as $tweet){
-        $tempPkg = array($tweet->id_str,$tweet->created_at,$tweet->text,$tweet->user->profile_image_url);
-        array_push($TweetsPackage,$tempPkg);
+        default:
+            alertMessage("Twitter",Alerts::parameterError(),false,false);
+        break;
     }
-    //print_r($result_twitts);
-    $TW_Cant = sizeof($TweetsPackage);
-    for($i=0;$i<=$TW_Cant-1; $i++){
-        echo $TweetsPackage[$i][0]."<br>";
-        echo $TweetsPackage[$i][1]."<br>";
-        echo $TweetsPackage[$i][2]."<br>";
-        echo $TweetsPackage[$i][3]."<br>";
-        echo "<br>";
-    }*/
+
 ?>

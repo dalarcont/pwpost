@@ -699,6 +699,14 @@ session_start();
             }
         }
 
+        public static function errorSetLike(){
+            if($_SESSION['lang']!="EN"){
+                return "No puedes marcar que te gusta este post.<br />Error del sistema";
+            }else{
+                return "Can't add 'Like' mark of that post.<br />System error";
+            }
+        }
+
         public static function noAvailablePostLike(){
             if($_SESSION['lang']!="EN"){
                 return "El post que intentas marcar como que te gusta ya no está disponible.";
@@ -1431,6 +1439,14 @@ session_start();
             }else{
                 return "en";
             } 
+        }
+
+        public static function TwLoad_Empty(){
+            if($_SESSION['lang']!="EN"){
+                echo "<p></p>No hay datos, verifica que el nombre de usuario esté escrito correctamente.";
+            }else{
+                echo "<p></p>There is no data, verify if you typed username correctly.";
+            }
         }
     }
 ?>

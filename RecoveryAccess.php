@@ -1,6 +1,6 @@
 <?php
-session_start();
 require 'views/Language.php';
+session_start();
 if(empty($_SESSION['UsrPkg']['recovery_key'])){
     //Take back to index
     echo "<script>alert('No estás identificado correctamente...'); location.href='index.php';</script>";

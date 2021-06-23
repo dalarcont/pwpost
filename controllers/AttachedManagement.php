@@ -3,7 +3,6 @@
 
     //Attached entry manager
     function AttachedEntryManagement($package){
-        //$package_size = count($package);
         if($package['attached_prop']!=0){
             //There is an attached entry
             $attachedPackage = DB_Post_DirectLoad($package['attached_uid_post']);

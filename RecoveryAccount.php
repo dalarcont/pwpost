@@ -14,7 +14,7 @@ echo '<!DOCTYPE html>
 <html lang="'.globalFrame::langSelector_r().'">';
 ?>
 <head>
-<title>PWPost - <?php require 'views/Language.php'; recoveryPage::title(); ?></title>
+<title>PWPost - <?php  recoveryPage::title(); ?></title>
 <meta charset='utf-8' />
 <meta name='description' content='Página para publicar cosas tipo post o twitter'>
 <link rel='stylesheet' href='css/final.css'>

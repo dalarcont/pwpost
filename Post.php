@@ -2,7 +2,6 @@
     //Get the post ID
     $post_id = $_GET['post'];
     
-    require 'views/Language.php';
     //Call control file
     require 'controllers/PostView.php';
     echo '<!DOCTYPE html>
