@@ -94,7 +94,7 @@ function EmailTemplate_SignUp($email,$code){
     <div class='divTableCell'><br>".$code."<br></div>
     </div>
     <div class='divTableRow'>
-    <div class='divTableCell'><br>".recoveryPage::mailTemplate(2)." ".$email."<br />".recoveryPage::mailTemplate(3)."<br /><br />PWPost!<br />2021</div>
+    <div class='divTableCell'><br>".recoveryPage::mailTemplate(2)." ".$email."<br />".recoveryPage::mailTemplate(3)."<br /><br />PWPost!<br />2022</div>
     </div>
     </div>
     </div>";

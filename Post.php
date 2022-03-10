@@ -63,7 +63,7 @@
     <footer>
         <div>
             <?php indexPage::footer(); ?>
-            2021-1<br>
+            2022-1<br>
             Daniel Alarcón</span>
         </div>
         

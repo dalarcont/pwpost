@@ -8,7 +8,7 @@
 		#Usuario
 			$linkusr="root"; 
 		#Contraseña
-			$linkpss="unmico57"; 
+			$linkpss="D4larcont"; 
 		#Base de datos
 			$linktbl="pwpostdb"; 
 		#Ejecutor de conexión

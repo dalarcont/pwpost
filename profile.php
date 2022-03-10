@@ -77,7 +77,7 @@ session_start();
            </div>
            <div id="FrontEnd">
            </div>
-           <br><br><p>PwPost - TS5C4 Programación Web - Semestre 1 2021 - Daniel Alarcón - Universidad Tecnológica de Pereira - 2021</p><br>
+           <br><br><p>PwPost - TS5C4 Programación Web - Semestre 1 2022 - Daniel Alarcón - Universidad Tecnológica de Pereira - 2022</p><br>
            </center>
        </article>
     </section>

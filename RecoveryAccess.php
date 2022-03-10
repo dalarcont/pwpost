@@ -60,7 +60,7 @@ if(empty($_SESSION['UsrPkg']['recovery_key'])){
                 Final - TS5C4 - Programación Web<br>
                 Tecnología en Desarrollo de Software<br>
                 Universidad Tecnológica de Pereira<br>
-                2021-1<br>
+                2022-1<br>
                 Daniel Alarcón</span>
             </div>
             

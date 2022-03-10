@@ -524,9 +524,9 @@ session_start();
 
         public static function insideSlogan(){
             if($_SESSION['lang']!="EN"){
-                echo "<p>PwPost - TS5C4 Programación Web - Semestre 1 2021 - Daniel Alarcón - Universidad Tecnológica de Pereira - 2021</p></div>";
+                echo "<p>PwPost - TS5C4 Programación Web - Semestre 1 2022 - Daniel Alarcón - Universidad Tecnológica de Pereira - 2022</p></div>";
             }else{
-                echo "<p>PwPost - TS5C4 Web Programming - Semester 1 2021 - Daniel Alarcón - Technological University of Pereira - 2021</p></div>";
+                echo "<p>PwPost - TS5C4 Web Programming - Semester 1 2022 - Daniel Alarcón - Technological University of Pereira - 2022</p></div>";
             }
         }
 

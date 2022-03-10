@@ -71,7 +71,7 @@ echo "<script>
         <div>
             <span class="footTxt">PWPost!</span><br><span class="footTxtsign">
             <?php indexPage::footer()?>
-            2021-1 \ Daniel Alarcón</span>
+            2022-1 \ Daniel Alarcón</span>
         </div>
         
     </footer>

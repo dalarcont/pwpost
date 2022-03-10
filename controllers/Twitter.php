@@ -13,7 +13,9 @@ session_start();
 
     function twapikeyengine(){
         // Twitter API Tokens
-        // This data isn't saved when it's uploaded to GitHub because contains developer keys that owns to project owner.
+        /*
+        Privacy policy: Can't upload this block because it contents private keys
+        */
     }
     //Main 
     function TwitterLoadEntries($who,$howmany){
