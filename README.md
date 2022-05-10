@@ -4,24 +4,21 @@
   
   WebApp for Blogging or Twitter behavior.
   
-  Presented as final project of TS5C4 - Programación Web subject
+  Presented as final project of: 
+  TS5C4 - Programación Web subject
+  TS6A4 - Programación En JavaScript subject
+  TS6A2 - Curso Avanzado de HTML
   
-  Purposed by the teacher.
+  Purposed to each teacher because it's subjects treat about the components of is composed this project.
   
   Universidad Tecnológica de Pereira
   
-  This project is only for academical purposes to show the teacher how much we learn during the semester.
+  This project is only for academic purposes to show the teachers the abilities over the components of is composed this project.
   -
   
   The project is going to get bigger since it was proposed because I'm a student of the previously mentioned subject, and I develop websites empirically.
   
   But I think that I'm doing that in a good way...
-  
-  I don't know if my classmates know how to programming websites and webapps. 
-
-  When I heard the teacher saying how the final project would be and posted the instructions I already had an idea.
-  
-  I think that I can pass this subject without seeing it all the classes of the semester...
   
   I'm developing the project to the best of my ability. To present it as request to validation to pass the subject.
   -
@@ -61,7 +58,7 @@
     Folder 'procedures': Has the files that the controller use to pull and push data on the DB or advanced procedures that the controller can't host.
     
     Folder 'views': Has the files that manage the user interface and graphical answer in the website. 
-      ! - Some views have methods to modify a little things in the UI depending on the controller's answer and instructions to the views.
+      ! - Some views have methods to modify a little things in the UI depending on the controller's answer and instructions to the views. But this corresponds only to view logic and not business logic. 
     
     File 'Desktop': Acts like a Dashboard, is the page that the user see after a correct login procedure.
     
